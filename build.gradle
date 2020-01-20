@@ -1,3 +1,4 @@
+/*
 plugins {
 	id 'org.springframework.boot' version '2.2.3.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
@@ -24,4 +25,52 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+*/
+
+allprojects {
+
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'eclipse'
+	apply plugin: 'war'
+
+	group = 'bend.platform'
+	version = '1.0.0'
+	sourceCompatibility = '13'
+	targetCompatibility = '13'
+
+	//repositories
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		maven { url "https://repo.spring.io/milestone" }
+	}
+
+	ext {
+		springBootVersion = '2.2.3.RELEASE'
+		springBootDependencyVersion = '1.0.8.RELEASE'
+		bendFrameworkVersion = '1.0.0'
+		lombokVersion = '1.18.10'
+		excludeJavaxValidationApi = {exclude group: 'javax.validation', module: 'validation-api'}
+		excludeSpringBootStarterWeb = {exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'}
+	}
+
+}
+
+//block applies for sub projects(app, core)
+//a project could have many numbers of 'allproject' and 'subproject' blocks
+subprojects {
+
+	configurations {
+		all*.exclude group: "org.slf4j", module: "slf4j-log4j12"
+	}
+
+	dependencies {
+
+		compileOnly "org.projectlombok:lombok:$lombokVersion"
+		annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+		implementation "javax.validation:validation-api:2.0.1.Final"
+	}
 }
