@@ -1,0 +1,14 @@
+plugins { id "io.spring.dependency-management" version '1.0.8.RELEASE' }
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    }
+}
+
+subprojects {
+    jar {
+        archivesBaseName = 'bend-library-' + project.name
+    }
+}
+

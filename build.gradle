@@ -72,5 +72,10 @@ subprojects {
 		compileOnly "org.projectlombok:lombok:$lombokVersion"
 		annotationProcessor "org.projectlombok:lombok:$lombokVersion"
 		implementation "javax.validation:validation-api:2.0.1.Final"
+
+		implementation 'org.springframework.boot:spring-boot-starter'
+		implementation 'org.springframework.boot:spring-boot-starter-security'
+
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	}
 }

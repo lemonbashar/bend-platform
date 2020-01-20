@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
 public class InfImpl implements Inf {
     @Override
     public void say() {
-
+        System.out.println("Good Night");
     }
 }
