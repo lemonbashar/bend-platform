@@ -16,8 +16,5 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web', excludeJavaxValidationApi
-    implementation 'org.springframework.boot:spring-boot-starter-hateoas', excludeSpringBootStarterWeb
-    implementation 'org.springframework.mobile:spring-mobile-starter:2.0.0.M2', excludeSpringBootStarterWeb
-    implementation project(':bend-library:core')
+    implementation project(':bend-library:config')
 }

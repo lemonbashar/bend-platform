@@ -1,0 +1,70 @@
+#Enabled All Facilities for development, Testing & Debugging
+
+spring:
+    profiles:
+        include: actuator,stateless,postgre
+
+bend-platform:
+    settings:
+        security:
+            secret-key: BHWTBWQE(&#RHDNKJLSH&EHWDJY*E(GKJOYFDW^FBSDSPYE()#RBHKJI
+            session-live-time: 20F
+            account:
+                password:
+                    recoverable: true
+                    recovery-timeout-minutes: 5
+                    recovery-code-length: 8
+            authentication:
+                maximum-live-session-count: 5
+                maximum-login-limit-in-day: 20
+                maximum-live-session-from-same-ip: 3
+                maximum-login-limit-in-month: 140
+                maximum-request-per-session: 2000
+                maximum-live-session-in-one-ip: 6
+                jwt:
+                    secret: WWpVek1XSXpOakE1TW1Kak5EbG1PRFWWpVek1XSXpOakE1TW1Kak5EbG1PRFpsTUR
+                    base64-secret: WWpVek1XSXpOakE1TW1Kak5EbG1PRFpsTURGaU0yWmxZe
+                    token-validity-in-seconds: 3600
+                    token-validity-in-seconds-for-remember-me: 7200
+            secure-channel:
+                - dev
+                - console
+            cors:
+                allowed-clients:
+                    - http://localhost:4200
+                    - http://192.168.1.43:4200
+                    - http://192.168.0.154:4200
+                    - http://192.168.0.153:4200
+            public-servlet-prefixes:
+                - /api/public
+        mail:
+            host: smtp.gmail.com
+            port: 587
+            username: springboottest420@gmail.com
+            password: springboottest42kblkbl
+            protocol: smtp
+            debug: true
+            smtp:
+                auth: true
+                starttls-enable: true
+                ssl-trust: smtp.gmail.com
+        async:
+            core-pool-size: 8
+            max-pool-size: 50
+            queue-capacity: 1000
+            thread-name-prefix: spring-dev
+    database:
+        hibernate:
+            hbm2-ddl-auto: update
+            format-sql: true
+            comments: true
+            show-sql: true
+            enable-second-level-cache: true
+            enable-strutured-cache: true
+            enable-auto-evict-coll-cache: true
+            enable-query-cache: true
+        jpa:
+            persistent-unit: SPRING
+    cache:
+        eh-cache:
+            max-local-heap-size: 20M

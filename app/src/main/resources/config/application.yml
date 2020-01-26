@@ -1,0 +1,10 @@
+bend-platform:
+  settings:
+    general:
+      name: Spring-Boot-Application
+
+spring:
+  profiles:
+    active: dev
+server:
+  port: 2343
