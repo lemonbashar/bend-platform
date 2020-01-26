@@ -44,8 +44,7 @@ subprojects {
 		implementation 'javax.inject:javax.inject:1'
 		implementation "javax.validation:validation-api:2.0.1.Final"
 
-		implementation 'org.springframework.boot:spring-boot-starter-web'
-		implementation 'org.springframework.boot:spring-boot-starter-security'
+		implementation 'org.springframework.boot:spring-boot-starter'
 
 		implementation "bend.framework:bend-properties:$bendFrameworkVersion"
 		implementation "bend.framework.bend-properties:bend-spring-properties:$bendFrameworkVersion"

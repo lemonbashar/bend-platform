@@ -6,8 +6,6 @@ dependencyManagement {
     }
 }
 
-subprojects {
-    jar {
-        archivesBaseName = 'bend-library-config-' + project.name
-    }
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
