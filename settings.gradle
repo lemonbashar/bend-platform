@@ -2,3 +2,4 @@ rootProject.name = 'bend-platform'
 
 include ':app'
 include ':bend-library:config'
+include ':bend-library:config:database'
