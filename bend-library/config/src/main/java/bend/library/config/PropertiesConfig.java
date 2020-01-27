@@ -1,4 +1,4 @@
-package bend.platform.library.config;
+package bend.library.config;
 
 import bend.framework.properties.springproperties.SpringProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;

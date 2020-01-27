@@ -1,4 +1,4 @@
-package bend.platform.library.config.database;
+package bend.library.config.database;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
