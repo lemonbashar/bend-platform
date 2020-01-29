@@ -8,11 +8,11 @@ dependencyManagement {
 
 subprojects {
     jar {
-        archivesBaseName = 'bend-library-controller' + project.name
+        archivesBaseName = 'bend-library-controller-' + project.name
     }
 
     dependencies {
-        implementation project(':bend-library:controller')
+        //implementation project(':bend-library:controller')
     }
 }
 

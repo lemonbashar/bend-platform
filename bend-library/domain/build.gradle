@@ -6,13 +6,25 @@ dependencyManagement {
     }
 }
 
-subprojects {
+allprojects {
+    dependencies {
+        implementation "jakarta.persistence:jakarta.persistence-api:$jakartaPersistenceVersion"
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    }
+}
+
+/*subprojects {
     jar {
-        archivesBaseName = 'bend-library-domain' + project.name
+        archivesBaseName = 'bend-library-domain-' + project.name
     }
 
     dependencies {
         implementation project(':bend-library:domain')
+
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
     }
-}
+}*/
 

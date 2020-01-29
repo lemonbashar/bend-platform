@@ -6,13 +6,13 @@ dependencyManagement {
     }
 }
 
-subprojects {
+/*subprojects {
     jar {
-        archivesBaseName = 'bend-library-service' + project.name
+        archivesBaseName = 'bend-library-service-' + project.name
     }
 
     dependencies {
-        implementation project(':bend-library:service')
+        //implementation project(':bend-library:service')
     }
-}
+}*/
 

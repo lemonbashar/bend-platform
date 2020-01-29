@@ -18,12 +18,21 @@ allprojects {
 	}
 
 	ext {
+		bendFrameworkVersion = '1.0.0'
+		jakartaPersistenceVersion = '2.2.3'
+		lombokVersion = '1.18.10'
 		springBootVersion = '2.2.3.RELEASE'
 		springBootDependencyVersion = '1.0.8.RELEASE'
-		bendFrameworkVersion = '1.0.0'
-		lombokVersion = '1.18.10'
+
+
 		excludeJavaxValidationApi = {exclude group: 'javax.validation', module: 'validation-api'}
+		excludeJavaxPersistenceApi = {exclude group: 'jakarta.persistence', module: 'jakarta.persistence-api'}
 		excludeSpringBootStarterWeb = {exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'}
+		excludeSpringBootStarter = {exclude group: 'org.springframework.boot', module: 'spring-boot-starter'}
+	}
+
+	configurations {
+		all*.exclude group: "org.slf4j", module: "slf4j-log4j12"
 	}
 
 }
@@ -37,14 +46,13 @@ subprojects {
 	}
 
 	dependencies {
-
-		compileOnly "org.projectlombok:lombok:$lombokVersion"
-		annotationProcessor "org.projectlombok:lombok:$lombokVersion"
-
 		implementation 'javax.inject:javax.inject:1'
-		implementation "javax.validation:validation-api:2.0.1.Final"
 
-		implementation 'org.springframework.boot:spring-boot-starter'
+		implementation 'org.springframework.boot:spring-boot-starter',
+				{
+					exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+					exclude group: 'org.yaml'
+				}
 
 		implementation "bend.framework:bend-properties:$bendFrameworkVersion"
 		implementation "bend.framework.bend-properties:bend-spring-properties:$bendFrameworkVersion"
