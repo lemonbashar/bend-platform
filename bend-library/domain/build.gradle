@@ -5,3 +5,14 @@ dependencyManagement {
         mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
     }
 }
+
+subprojects {
+    jar {
+        archivesBaseName = 'bend-library-domain' + project.name
+    }
+
+    dependencies {
+        implementation project(':bend-library:domain')
+    }
+}
+
