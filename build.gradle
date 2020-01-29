@@ -55,8 +55,8 @@ subprojects {
 					exclude group: 'org.yaml'
 				}
 
-		implementation "bend.framework:bend-properties:$bendFrameworkVersion"
-		implementation "bend.framework.bend-properties:bend-spring-properties:$bendFrameworkVersion"
+		runtimeOnly "bend.framework:bend-properties:$bendFrameworkVersion"
+		runtimeOnly "bend.framework.bend-properties:bend-spring-properties:$bendFrameworkVersion"
 
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	}
