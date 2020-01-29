@@ -23,6 +23,7 @@ allprojects {
 		lombokVersion = '1.18.10'
 		springBootVersion = '2.2.3.RELEASE'
 		springBootDependencyVersion = '1.0.8.RELEASE'
+		javaxValidationApi = '2.0.1.Final'
 
 
 		excludeJavaxValidationApi = {exclude group: 'javax.validation', module: 'validation-api'}
