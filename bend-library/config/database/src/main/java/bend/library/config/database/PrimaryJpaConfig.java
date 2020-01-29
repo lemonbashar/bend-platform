@@ -3,6 +3,7 @@ package bend.library.config.database;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -18,9 +19,15 @@ import java.util.Properties;
  * Created 1/26/2020
  */
 @Configuration
-public class JpaConfig {
+public class PrimaryJpaConfig {
 
     private static final String CLIENT_ENTITIES = "";
+
+    @Primary
+    @Bean
+    public DataSource dataSource() {
+        return new DriverManagerDataSource();
+    }
 
     @Primary
     @Bean

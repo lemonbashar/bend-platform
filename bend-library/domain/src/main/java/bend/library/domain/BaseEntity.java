@@ -21,20 +21,20 @@ import java.time.LocalDate;
 public abstract class BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "create_by")
+    @JoinColumn(name = "CREATE_BY")
     private User createBy;
 
     @ManyToOne
-    @JoinColumn(name = "update_by")
+    @JoinColumn(name = "UPDATE_BY")
     private User updateBy;
 
-    @Column(name = "create_date")
+    @Column(name = "CREATE_DATE")
     private LocalDate createDate;
 
-    @Column(name = "update_date")
+    @Column(name = "UPDATE_DATE")
     private LocalDate updateDate;
 
-    @Column(name = "active_status")
+    @Column(name = "ACTIVE_STATUS")
     private boolean active;
 
     public abstract BigInteger getId();

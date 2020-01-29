@@ -1,5 +1,6 @@
 package bend.library.domain;
 
+import bend.library.domain.enumeretion.PropertiesType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,17 +19,13 @@ import java.math.BigInteger;
  */
 @Setter
 @Getter
-@Table(name = "BEND_USER")
+@Table(name = "DATASOURCE_PROPERTIES")
 @Entity
-public class User extends BaseEntity {
+public class DatasourceProperties extends BaseEntity {
     @Id
     private BigInteger id;
 
-    @Size(min = 5, max = 32, message = "Username length must be in between 4 ~ 32 ")
-    @Column(name = "USERNAME")
-    private String username;
-
-    @Email
-    @Column(name = "EMAIL")
-    private String email;
+    private String key;
+    private String value;
+    private PropertiesType propertiesType;
 }

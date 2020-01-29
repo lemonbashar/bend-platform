@@ -13,11 +13,7 @@ import javax.sql.DataSource;
  * Created 1/26/2020
  */
 @Configuration
-public class DatasourceConfig {
+public class MultiTenantJpaConfig {
 
-    @Primary
-    @Bean
-    public DataSource dataSource() {
-        return new DriverManagerDataSource();
-    }
+
 }
