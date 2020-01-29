@@ -1,0 +1,17 @@
+plugins { id "io.spring.dependency-management" }
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    }
+}
+
+subprojects {
+    jar {
+        archivesBaseName = 'bend-library-config-broker-' + project.name
+    }
+
+    dependencies {
+        implementation project(':bend-library:config:broker')
+    }
+}
