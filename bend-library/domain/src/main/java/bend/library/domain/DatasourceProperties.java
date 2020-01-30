@@ -13,6 +13,9 @@ import javax.validation.constraints.Size;
 import java.math.BigInteger;
 
 /**
+ * Use to manage multi-tenant database connection. with hikariCP and this table is the mapping
+ * of hibernate and japa connection properties, like
+ * key=hbm2ddl.auto, value=update, propertiesType=PropertiesType.HIBERNATE_PROPERTIES
  * @author lemon
  * Email lemon.bashar@gmail.com
  * Created 1/29/2020
