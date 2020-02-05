@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @MappedSuperclass
-public abstract class BaseEntity {
+public abstract class BaseEntity<ID> {
 
     @ManyToOne
     @JoinColumn(name = "CREATE_BY")
@@ -37,6 +37,6 @@ public abstract class BaseEntity {
     @Column(name = "ACTIVE_STATUS")
     private boolean active;
 
-    public abstract BigInteger getId();
-    public abstract void setId(BigInteger id);
+    public abstract ID getId();
+    public abstract void setId(ID id);
 }

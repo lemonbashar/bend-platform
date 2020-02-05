@@ -20,7 +20,7 @@ import java.math.BigInteger;
 @Getter
 @Table(name = "BEND_USER")
 @Entity
-public class User extends BaseEntity {
+public class User extends BaseEntity<BigInteger> {
     @Id
     private BigInteger id;
 

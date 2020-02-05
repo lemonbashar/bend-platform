@@ -24,7 +24,7 @@ import java.math.BigInteger;
 @Getter
 @Table(name = "DATASOURCE_PROPERTIES")
 @Entity
-public class DatasourceProperties extends BaseEntity {
+public class DatasourceProperties extends BaseEntity<BigInteger> {
     @Id
     private BigInteger id;
 

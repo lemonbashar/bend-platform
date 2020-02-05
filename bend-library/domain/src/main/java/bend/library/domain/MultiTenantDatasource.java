@@ -17,7 +17,7 @@ import java.math.BigInteger;
 @Getter
 @Table(name = "MULTI_TENANT_DATA_SOURCE")
 @Entity
-public class MultiTenantDatasource extends BaseEntity {
+public class MultiTenantDatasource extends BaseEntity<BigInteger> {
     @Id
     private BigInteger id;
 
