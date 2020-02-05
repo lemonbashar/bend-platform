@@ -15,6 +15,10 @@ repositories {
     maven { url "https://repo.spring.io/milestone" }
 }
 
+jar {
+    archivesBaseName = 'bend-application'
+}
+
 dependencies {
     implementation project(':bend-library:config')
     implementation project(':bend-library:config:database')

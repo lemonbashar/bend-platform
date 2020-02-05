@@ -47,16 +47,14 @@ subprojects {
 	}
 
 	dependencies {
-		implementation 'javax.inject:javax.inject:1'
-
 		implementation 'org.springframework.boot:spring-boot-starter',
 				{
 					exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 					exclude group: 'org.yaml'
 				}
 
-		runtimeOnly "bend.framework:bend-properties:$bendFrameworkVersion"
-		runtimeOnly "bend.framework.bend-properties:bend-spring-properties:$bendFrameworkVersion"
+		implementation "bend.framework:bend-properties:$bendFrameworkVersion"
+		implementation "bend.framework.bend-properties:bend-spring-properties:$bendFrameworkVersion"
 
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	}
