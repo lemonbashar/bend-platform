@@ -24,7 +24,7 @@ allprojects {
 		springBootVersion = '2.2.3.RELEASE'
 		springBootDependencyVersion = '1.0.8.RELEASE'
 		javaxValidationApi = '2.0.1.Final'
-
+		junitVersion = '5.5.2'
 
 		excludeJavaxValidationApi = {exclude group: 'javax.validation', module: 'validation-api'}
 		excludeJavaxPersistenceApi = {exclude group: 'jakarta.persistence', module: 'jakarta.persistence-api'}
@@ -35,7 +35,6 @@ allprojects {
 	configurations {
 		all*.exclude group: "org.slf4j", module: "slf4j-log4j12"
 	}
-
 }
 
 //block applies for sub projects(app, core)
@@ -48,14 +47,27 @@ subprojects {
 
 	dependencies {
 		implementation 'org.springframework.boot:spring-boot-starter',
-				{
-					exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-					exclude group: 'org.yaml'
-				}
+			{
+				exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+				exclude group: 'org.yaml'
+			}
 
 		implementation "bend.framework:bend-properties:$bendFrameworkVersion"
 		implementation "bend.framework.bend-properties:bend-spring-properties:$bendFrameworkVersion"
 
-		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		testImplementation "org.springframework.boot:spring-boot-starter-test", {
+			exclude group: "junit" , module: "junit"
+			exclude group: "org.junit.jupiter" , module: "junit-jupiter"
+			exclude group: "org.junit.jupiter" , module: "junit-jupiter-engine"
+			exclude group: "org.junit.jupiter" , module: "junit-jupiter-api"
+			exclude group: "org.junit.platform" , module: "junit-platform-engine"
+			exclude group: "org.junit.vintage" , module: "junit-vintage-engine"
+		}
+		testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+		//testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+	}
+
+	test {
+		useJUnitPlatform()
 	}
 }
