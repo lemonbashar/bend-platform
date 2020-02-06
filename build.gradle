@@ -25,15 +25,12 @@ allprojects {
 		springBootDependencyVersion = '1.0.8.RELEASE'
 		javaxValidationApi = '2.0.1.Final'
 		junitVersion = '5.5.2'
+		log4j2Version = '2.12.1'
 
 		excludeJavaxValidationApi = {exclude group: 'javax.validation', module: 'validation-api'}
 		excludeJavaxPersistenceApi = {exclude group: 'jakarta.persistence', module: 'jakarta.persistence-api'}
 		excludeSpringBootStarterWeb = {exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'}
 		excludeSpringBootStarter = {exclude group: 'org.springframework.boot', module: 'spring-boot-starter'}
-	}
-
-	configurations {
-		all*.exclude group: "org.slf4j", module: "slf4j-log4j12"
 	}
 }
 
@@ -42,7 +39,9 @@ allprojects {
 subprojects {
 
 	configurations {
-		all*.exclude group: "org.slf4j", module: "slf4j-log4j12"
+		all {
+			exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+		}
 	}
 
 	dependencies {
@@ -51,8 +50,11 @@ subprojects {
 				exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 				exclude group: 'org.yaml'
 			}
+		implementation "org.apache.logging.log4j:log4j-api:$log4j2Version"
+		implementation "org.apache.logging.log4j:log4j-core:$log4j2Version"
 
 		implementation "bend.framework:bend-properties:$bendFrameworkVersion"
+		implementation "bend.framework:bend-logging:$bendFrameworkVersion"
 		implementation "bend.framework.bend-properties:bend-spring-properties:$bendFrameworkVersion"
 
 		testImplementation "org.springframework.boot:spring-boot-starter-test", {

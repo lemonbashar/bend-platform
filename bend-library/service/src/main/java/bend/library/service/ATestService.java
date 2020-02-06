@@ -1,5 +1,6 @@
 package bend.library.service;
 
+import bend.framework.logging.Log;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ATestService {
+    private final Log log=Log.of(ATestService.class);
+
     public void test() {
-        System.out.println("HELLO TEST");
+        log.info("HELLO TEST");
     }
 }
