@@ -10,5 +10,9 @@ subprojects {
     jar {
         archivesBaseName = 'bend-library-' + project.name
     }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+    }
 }
 

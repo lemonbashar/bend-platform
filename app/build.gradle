@@ -15,17 +15,14 @@ repositories {
     maven { url "https://repo.spring.io/milestone" }
 }
 
-jar {
-    archivesBaseName = 'bend-application'
-}
-
 dependencies {
+    implementation project(':bend-library:domain')
     implementation project(':bend-library:config')
     implementation project(':bend-library:config:database')
+    implementation project(':bend-library:config:database:rdbms')
+    implementation 'org.postgresql:postgresql:42.2.2'
 
-    implementation "org.springframework.boot:spring-boot-starter-web",
-            {
-                exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-                exclude group: 'org.yaml'
-            }
+
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-security"
 }

@@ -6,20 +6,18 @@ dependencyManagement {
     }
 }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa',
-            {
-                exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
-                exclude group: 'org.springframework.boot', module: 'spring-boot-starter-aop'
-                exclude group: 'org.springframework', module: 'spring-aspects'
-            }
-}
 
-subprojects {
+allprojects {
     jar {
         archivesBaseName = 'bend-library-config-database-' + project.name
     }
 
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    }
+}
+
+subprojects {
     dependencies {
         implementation project(':bend-library:config:database')
     }

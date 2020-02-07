@@ -1,3 +1,5 @@
+
+
 bend-platform:
   settings:
     general:
@@ -7,4 +9,6 @@ spring:
   profiles:
     active: dev
 server:
-  port: 2343
+  port: 8787
+  servlet:
+    context-path: /bend

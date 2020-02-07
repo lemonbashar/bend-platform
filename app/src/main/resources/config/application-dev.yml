@@ -59,12 +59,16 @@ bend-platform:
             format-sql: true
             comments: true
             show-sql: true
-            enable-second-level-cache: true
-            enable-strutured-cache: true
-            enable-auto-evict-coll-cache: true
-            enable-query-cache: true
+#            enable-second-level-cache: true
+#            enable-strutured-cache: true
+#            enable-auto-evict-coll-cache: true
+#            enable-query-cache: true
+            annotated-packages:
+                - bend.library.domain.entity
         jpa:
             persistent-unit: SPRING
+            repository-locations:
+                - bend.library.domain.repositories
     cache:
         eh-cache:
             max-local-heap-size: 20M

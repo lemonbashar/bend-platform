@@ -1,0 +1,22 @@
+
+
+bend-platform:
+  database:
+    url: jdbc:postgresql://192.168.0.152:5432/bend-platform-test
+    schema: spring
+    username: lemon
+    password: lemon
+    driver: org.postgresql.Driver
+    hibernate:
+      hbm2-ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQL82Dialect
+      format-sql: true
+      comments: true
+      show-sql: true
+      annotated-packages:
+        - bend.library.domain.entity
+    jpa:
+      persistent-unit: SPRING
+      repository-locations:
+        - bend.library.domain.repositories
+    database-type: POSTGRESQL

@@ -1,12 +1,9 @@
-package bend.library.domain;
+package bend.library.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.math.BigInteger;
@@ -22,13 +19,15 @@ import java.math.BigInteger;
 @Entity
 public class User extends BaseEntity<BigInteger> {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "BEND_USER_PK")
+    @SequenceGenerator(name = "BEND_USER_PK", sequenceName = "BEND_USER_SEQ", allocationSize = 1)
     private BigInteger id;
 
     @Size(min = 5, max = 32, message = "Username length must be in between 4 ~ 32 ")
-    @Column(name = "USERNAME")
+    @Column(name = "USERNAME", unique = true)
     private String username;
 
     @Email
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", unique = true)
     private String email;
 }

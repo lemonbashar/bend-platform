@@ -8,24 +8,11 @@ dependencyManagement {
 
 allprojects {
     dependencies {
-        implementation "jakarta.persistence:jakarta.persistence-api:$jakartaPersistenceVersion"
-        implementation "javax.validation:validation-api:$javaxValidationApi"
-        compileOnly "org.projectlombok:lombok:$lombokVersion"
-        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+        testImplementation project(':bend-library:config')
+        testImplementation project(':bend-library:config:database')
+        testImplementation project(':bend-library:config:database:rdbms')
+        testRuntime 'org.postgresql:postgresql:42.2.2'
     }
 }
-
-/*subprojects {
-    jar {
-        archivesBaseName = 'bend-library-domain-' + project.name
-    }
-
-    dependencies {
-        implementation project(':bend-library:domain')
-
-        compileOnly "org.projectlombok:lombok:$lombokVersion"
-        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
-
-    }
-}*/
-

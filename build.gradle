@@ -38,24 +38,28 @@ allprojects {
 //a project could have many numbers of 'allproject' and 'subproject' blocks
 subprojects {
 
-	configurations {
+	/*configurations {
 		all {
 			exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 		}
-	}
+	}*/
 
 	dependencies {
-		implementation 'org.springframework.boot:spring-boot-starter',
+		implementation "javax.validation:validation-api:$javaxValidationApi"
+
+		/*implementation 'org.springframework.boot:spring-boot-starter',
 			{
 				exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-				exclude group: 'org.yaml'
-			}
-		implementation "org.apache.logging.log4j:log4j-api:$log4j2Version"
-		implementation "org.apache.logging.log4j:log4j-core:$log4j2Version"
+			}*/
+		//implementation "org.apache.logging.log4j:log4j-api:$log4j2Version"
+		//implementation "org.apache.logging.log4j:log4j-core:$log4j2Version"
 
+		implementation "bend.framework:bend-data-structure:$bendFrameworkVersion"
 		implementation "bend.framework:bend-properties:$bendFrameworkVersion"
-		implementation "bend.framework:bend-logging:$bendFrameworkVersion"
 		implementation "bend.framework.bend-properties:bend-spring-properties:$bendFrameworkVersion"
+
+		compileOnly "org.projectlombok:lombok:$lombokVersion"
+		annotationProcessor "org.projectlombok:lombok:$lombokVersion"
 
 		testImplementation "org.springframework.boot:spring-boot-starter-test", {
 			exclude group: "junit" , module: "junit"

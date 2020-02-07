@@ -1,4 +1,4 @@
-package bend.library.domain;
+package bend.library.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;

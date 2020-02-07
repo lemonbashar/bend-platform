@@ -13,6 +13,5 @@ subprojects {
 }
 
 dependencies {
-    implementation project(':bend-library:config:database')
-    implementation project(':bend-library:config:security:stateful')
+    //implementation project(':bend-library:config:security:stateful')
 }

@@ -1,6 +1,6 @@
 package bend.library.service;
 
-import bend.framework.logging.Log;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
  * @date 2/6/2020
  * @email khairul@impelitsolutions.com
  */
+@Log4j2
 @Service
 public class ATestService {
-    private final Log log=Log.of(ATestService.class);
 
     public void test() {
         log.info("HELLO TEST");
