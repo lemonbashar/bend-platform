@@ -34,26 +34,12 @@ allprojects {
 	}
 }
 
-//block applies for sub projects(app, core)
-//a project could have many numbers of 'allproject' and 'subproject' blocks
 subprojects {
-
-	/*configurations {
-		all {
-			exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-		}
-	}*/
 
 	dependencies {
 		implementation "javax.validation:validation-api:$javaxValidationApi"
 
-		/*implementation 'org.springframework.boot:spring-boot-starter',
-			{
-				exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-			}*/
-		//implementation "org.apache.logging.log4j:log4j-api:$log4j2Version"
-		//implementation "org.apache.logging.log4j:log4j-core:$log4j2Version"
-
+		implementation "bend.framework:bend-base:$bendFrameworkVersion"
 		implementation "bend.framework:bend-data-structure:$bendFrameworkVersion"
 		implementation "bend.framework:bend-properties:$bendFrameworkVersion"
 		implementation "bend.framework.bend-properties:bend-spring-properties:$bendFrameworkVersion"
@@ -70,7 +56,6 @@ subprojects {
 			exclude group: "org.junit.vintage" , module: "junit-vintage-engine"
 		}
 		testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
-		//testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 	}
 
 	test {
