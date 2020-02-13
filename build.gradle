@@ -26,6 +26,7 @@ allprojects {
 		javaxValidationApi = '2.0.1.Final'
 		junitVersion = '5.5.2'
 		log4j2Version = '2.12.1'
+		javaxServletVersion = '4.0.1'
 
 		excludeJavaxValidationApi = {exclude group: 'javax.validation', module: 'validation-api'}
 		excludeJavaxPersistenceApi = {exclude group: 'jakarta.persistence', module: 'jakarta.persistence-api'}

@@ -9,6 +9,7 @@ dependencyManagement {
 allprojects {
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation "javax.servlet:javax.servlet-api:$javaxServletVersion"
     }
 }
 
