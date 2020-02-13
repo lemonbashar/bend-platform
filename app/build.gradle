@@ -20,6 +20,7 @@ dependencies {
     implementation project(':bend-library:config')
     implementation project(':bend-library:config:database')
     implementation project(':bend-library:config:database:rdbms')
+    implementation project(':bend-library:config:security:jwt')
     implementation 'org.postgresql:postgresql:42.2.2'
 
 
