@@ -1,6 +1,7 @@
-package bend.library.config.security.jwt.service;
+package bend.library.config.security.service.impl;
 
 import bend.library.config.security.data.CustomUserDetails;
+import bend.library.config.security.service.CustomUserDetailsService;
 import bend.library.domain.repositories.UserRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class CustomUserDetailsService implements bend.library.config.security.service.CustomUserDetailsService {
+public class StandardCustomUserDetailsService implements CustomUserDetailsService {
     private final @NonNull UserRepository userRepository;
 
     @Override

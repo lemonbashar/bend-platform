@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * Created 2/14/2020
  */
 @Service
-@Profile(ProfileConstants.DEV)
+@Profile({ProfileConstants.DEV})
 public class DevConditionalHttpSecurityApply implements ConditionalApply<HttpSecurity> {
     @Override
     public void apply(HttpSecurity http) throws Exception {

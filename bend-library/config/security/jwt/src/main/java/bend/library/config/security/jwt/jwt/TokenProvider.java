@@ -2,7 +2,6 @@ package bend.library.config.security.jwt.jwt;
 
 import bend.framework.properties.springproperties.SpringProperties;
 import bend.library.config.security.data.LoginInfo;
-import bend.library.config.security.data.LogoutInfo;
 import bend.library.config.security.jwt.data.JwtLogoutInfo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -20,6 +19,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Arrays;
@@ -43,6 +43,7 @@ public class TokenProvider {
 
     protected final SpringProperties properties;
 
+    @PostConstruct
     public void init() {
         byte[] keyBytes;
         String secret = properties.getSettings().getSecurity().getAuthentication().getJwt().getSecret();
@@ -75,7 +76,7 @@ public class TokenProvider {
         return Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
-                .signWith(SignatureAlgorithm.HS512, key)
+                .signWith(SignatureAlgorithm.HS512,key)
                 .setExpiration(validity)
                 .compact();
     }

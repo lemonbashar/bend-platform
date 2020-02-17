@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.math.BigInteger;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author lemon
@@ -28,8 +29,15 @@ public class CustomUserDetails implements UserDetails {
     private boolean credentialsNonExpired;
     private Set<? extends GrantedAuthority> authorities;
 
+    public CustomUserDetails(BigInteger id, String username, String password,String... authorities) {
+        this(id, username, password,true, true, true, true, Stream.of(authorities).map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));
+    }
+
+    public CustomUserDetails(BigInteger id, String username, String password,Set<? extends GrantedAuthority> authorities) {
+        this(id, username, password,true, true, true, true, authorities);
+    }
 
     public static CustomUserDetails of(User user) {
-        return new CustomUserDetails(user.getId(), user.getUsername(), user.getPassword(),user.isActive(), true, true, true, user.getAuthorities().stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toSet()));
+        return new CustomUserDetails(user.getId(), user.getUsername(), user.getPassword(),user.getAuthorities().stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toSet()));
     }
 }

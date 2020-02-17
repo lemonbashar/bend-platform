@@ -1,5 +1,9 @@
 plugins { id "io.spring.dependency-management" }
 
+ext {
+    jwtLatest = '0.11.0'
+}
+
 dependencyManagement {
     imports {
         mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
@@ -7,6 +11,7 @@ dependencyManagement {
 }
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation "io.jsonwebtoken:jjwt:$jsonWebTokenVersion"
-    implementation "io.jsonwebtoken:jjwt-api:$jsonWebTokenApiVersion"
+    implementation "io.jsonwebtoken:jjwt-api:$jwtLatest"
+    implementation "io.jsonwebtoken:jjwt-jackson:$jwtLatest", {exclude group:'io.jsonwebtoken', module:'jjwt-api'}
+    implementation "io.jsonwebtoken:jjwt-impl:$jwtLatest", {exclude group:'io.jsonwebtoken', module:'jjwt-api'}
 }

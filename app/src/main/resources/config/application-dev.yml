@@ -7,7 +7,7 @@ spring:
 bend-platform:
     settings:
         security:
-            secret-key: WWPRFWWVXSXPRFWWTURPRFWW
+            secret-key: WWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWW
             session-live-time: 20F
             account:
                 password:
@@ -22,8 +22,8 @@ bend-platform:
                 maximum-request-per-session: 2000
                 maximum-live-session-in-one-ip: 6
                 jwt:
-                    secret: WWPRFWWVXSXPRFWWTURPRFWW
-                    base64-secret: WWPRFWWVXSXPRFWWTURPRFWW
+                    secret: WWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWW
+                    base64-secret: WWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWW
                     token-validity-in-seconds: 3600
                     token-validity-in-seconds-for-remember-me: 7200
                     token-store-database:

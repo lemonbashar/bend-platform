@@ -3,22 +3,18 @@ package bend.library.config.security.jwt.service;
 import bend.framework.base.util.BendOptional;
 import bend.library.config.security.data.AccountInfo;
 import bend.library.config.security.data.LoginInfo;
-import bend.library.config.security.data.LogoutInfo;
 import bend.library.config.security.jwt.data.JwtAccountInfo;
-import bend.library.config.security.jwt.data.JwtLogoutInfo;
-import bend.library.config.security.jwt.jwt.TokenProvider;
+import bend.library.config.security.jwt.filter.jwt.JwtAuthenticationFilter;
 import bend.library.config.security.service.AuthenticationManager;
-import bend.library.config.security.service.SaltedPasswordEncoder;
+import bend.library.config.security.service.AuthenticationService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 /**
  * @author lemon
@@ -27,27 +23,14 @@ import java.util.stream.Collectors;
  */
 @RequiredArgsConstructor
 @Service
-public class JwtAuthenticationService implements AuthenticationManager {
-    private final @NonNull TokenProvider tokenProvider;
-    private final @NonNull UserDetailsService customUserDetailsService;
-    private final @NonNull SaltedPasswordEncoder saltedPasswordEncoder;
-
+public class JwtAuthenticationService implements AuthenticationService {
+    private final @NonNull AuthenticationManager jwtAuthenticationManager;
 
     @Override
-    public JwtAccountInfo authenticate(LoginInfo loginInfo) {
-        return BendOptional.of(customUserDetailsService.loadUserByUsername(loginInfo.getUsername()))
-                .mustTrue(user->saltedPasswordEncoder.matches(loginInfo.getPassword(),user.getUsername(), user.getPassword()))
-                .map(userDetails -> {
-                    Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getUsername(),userDetails.getAuthorities());
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-                    return JwtAccountInfo.builder().authorities(userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet()))
-                            .token(tokenProvider.createToken(authentication, loginInfo)).username(userDetails.getUsername()).build();
-                }).get();
+    public ResponseEntity<AccountInfo> authenticate(LoginInfo loginInfo) {
+        return BendOptional.ofNullable(jwtAuthenticationManager.authenticate(loginInfo))
+                .mustTrue(Objects::nonNull)
+                .map(accountInfo -> new ResponseEntity<>(accountInfo,BendOptional.of(new HttpHeaders()).mustTrue(()->accountInfo instanceof JwtAccountInfo, "Authentication Manager Must Return accountInfo, which is an instance of JwtAccountInfo").insideOperation(header->header.add(JwtAuthenticationFilter.AUTHORIZATION_HEADER, ((JwtAccountInfo)accountInfo).getToken())).get(), HttpStatus.OK)).get();
     }
 
-    @Override
-    public void logout(LogoutInfo logoutInfo) {
-        if(logoutInfo instanceof JwtLogoutInfo)
-            tokenProvider.deleteToken(((JwtLogoutInfo)logoutInfo).getToken());
-    }
 }
