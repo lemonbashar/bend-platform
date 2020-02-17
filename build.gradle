@@ -27,6 +27,10 @@ allprojects {
 		junitVersion = '5.5.2'
 		log4j2Version = '2.12.1'
 		javaxServletVersion = '4.0.1'
+		jsonWebTokenVersion = '0.9.1'
+		jsonWebTokenApiVersion = '0.11.0'
+		swaggerUiVersion = '2.6.1'
+		postgreVersion = '42.2.2'
 
 		excludeJavaxValidationApi = {exclude group: 'javax.validation', module: 'validation-api'}
 		excludeJavaxPersistenceApi = {exclude group: 'jakarta.persistence', module: 'jakarta.persistence-api'}
