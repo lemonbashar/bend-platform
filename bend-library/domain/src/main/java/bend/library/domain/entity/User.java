@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -24,7 +25,9 @@ import java.util.Set;
 @Getter
 @Table(name = "BEND_USER")
 @Entity
-public class User extends BaseEntity<BigInteger> {
+public class User extends BaseEntity<BigInteger> implements Serializable {
+    private static final long serialVersionUID=1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "BEND_USER_PK")
     @SequenceGenerator(name = "BEND_USER_PK", sequenceName = "BEND_USER_SEQ", allocationSize = 1)

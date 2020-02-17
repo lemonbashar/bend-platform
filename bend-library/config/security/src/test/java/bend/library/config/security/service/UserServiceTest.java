@@ -22,7 +22,7 @@ public class UserServiceTest {
 
     @Test
     public void saveUser() {
-        User user = this.userService.saveUser("lemon", "lemon", "ROLE_TEST_USER");
+        User user = this.userService.saveUser("lemon", "lemon@mail.com", "lemon", "ROLE_TEST_USER");
         assertThat(user).isNotNull();
     }
 }

@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User systemUser() {
         User systemUser = userRepository.findByUsername(SecurityConstants.UserConstants.SYSTEM_USER)
-                .orElse(userRepository.save(new User(SecurityConstants.UserConstants.SYSTEM_USER, saltedPasswordEncoder.encode(SecurityConstants.UserConstants.SYSTEM_PASSWORD, SecurityConstants.UserConstants.SYSTEM_USER), SecurityConstants.UserConstants.SYSTEM_EMAIL, new HashSet<>(), null)));
+                .orElseGet(()->userRepository.save(new User(SecurityConstants.UserConstants.SYSTEM_USER, saltedPasswordEncoder.encode(SecurityConstants.UserConstants.SYSTEM_PASSWORD, SecurityConstants.UserConstants.SYSTEM_USER), SecurityConstants.UserConstants.SYSTEM_EMAIL, new HashSet<>(), null)));
         systemUser.setAuthorities(authorityService.validRawAuthorities(systemUser,SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN));
         return userRepository.save(systemUser);
     }
