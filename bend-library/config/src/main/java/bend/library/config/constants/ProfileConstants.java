@@ -24,4 +24,16 @@ public final class ProfileConstants {
      * Profile Production with extreme level security
      */
     public static final String PROD_SECURE="prodsecure";
+
+    public static final class TestInclude {
+        /**
+         * Indicate that tagged test will depends on database data, so we will test those data manually.
+         */
+        public static final String DATABASE_HIT="db";
+
+        /**
+         * Indicate that tagged test won't depends on database data, so we can tested them using gradle tool.
+         */
+        public static final String NON_DATABASE_HIT="ndb";
+    }
 }

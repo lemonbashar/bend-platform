@@ -1,6 +1,7 @@
 package bend.library.config.security.jwt.service;
 
 import bend.library.config.PropertiesConfig;
+import bend.library.config.constants.ProfileConstants;
 import bend.library.config.constants.SecurityConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
@@ -15,6 +16,7 @@ import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.config.security.util.SecurityUtil;
 import bend.library.domain.DomainConfig;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
 @SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, JwtSecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)

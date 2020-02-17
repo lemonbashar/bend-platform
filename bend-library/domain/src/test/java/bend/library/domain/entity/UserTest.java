@@ -1,9 +1,11 @@
 package bend.library.domain.entity;
 
 import bend.library.config.PropertiesConfig;
+import bend.library.config.constants.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.repositories.UserRepository;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +14,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDate;
 
+@Tag(ProfileConstants.TestInclude.DATABASE_HIT)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
 @SpringBootTest(classes = {PropertiesConfig.class,RdbmsJpaConfig.class,DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
