@@ -6,7 +6,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.cfg.Environment;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -34,7 +33,6 @@ import java.util.Properties;
 @Configuration
 public class RdbmsJpaConfig {
     private final @NonNull SpringProperties properties;
-    private final @NonNull ConfigurableApplicationContext applicationContext;
 
     @Bean
     public DataSource datasource() {
