@@ -15,5 +15,11 @@ public interface SaltedPasswordEncoder{
      */
     String encode(String password, String salt);
 
+    /**
+     * @param rawPassword actor user's raw password
+     * @param salt username as salt
+     * @param encodedPassword encoded password from database.
+     * @return true if raw password and salt matched with encoded password.
+     */
     boolean matches(String rawPassword, String salt, String encodedPassword);
 }

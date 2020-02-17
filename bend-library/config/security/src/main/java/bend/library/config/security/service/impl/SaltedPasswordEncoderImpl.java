@@ -16,11 +16,6 @@ import org.springframework.stereotype.Service;
 public class SaltedPasswordEncoderImpl implements bend.library.config.security.service.SaltedPasswordEncoder {
     private final @NonNull PasswordEncoder passwordEncoder;
 
-    /**
-     * @param password password
-     * @param salt here salt means the username
-     * @return encoded password
-     */
     public String encode(String password, String salt) {
         return this.passwordEncoder.encode(password+salt);
     }
