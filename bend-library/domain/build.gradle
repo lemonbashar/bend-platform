@@ -8,11 +8,9 @@ dependencyManagement {
 
 allprojects {
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
         testImplementation project(':bend-library:config')
         testImplementation project(':bend-library:config:database')
         testImplementation project(':bend-library:config:database:rdbms')
-        testRuntime 'org.postgresql:postgresql:42.2.2'
+        testRuntime "org.postgresql:postgresql:$postgreVersion"
     }
 }

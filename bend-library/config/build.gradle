@@ -10,8 +10,8 @@ subprojects {
     jar {
         archivesBaseName = 'bend-library-config-' + project.name
     }
-}
 
-dependencies {
-    //implementation project(':bend-library:config:security:stateful')
+    dependencies {
+        implementation project(':bend-library:config')
+    }
 }
