@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
+import java.util.Optional;
 
 /**
  * @author lemon
@@ -16,5 +17,5 @@ import java.math.BigInteger;
 @Transactional
 public interface UserRepository extends JpaRepository<User, BigInteger> {
 
-    User findByUsername(String username);
+    Optional<User> findByUsername(String username);
 }
