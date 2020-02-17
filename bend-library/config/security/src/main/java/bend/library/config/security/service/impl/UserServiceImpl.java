@@ -36,10 +36,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User systemUser() {
-        User systemUser = userRepository.findByUsername(SecurityConstants.UserConstants.SYSTEM_USER)
-                .orElseGet(()->userRepository.save(new User(SecurityConstants.UserConstants.SYSTEM_USER, saltedPasswordEncoder.encode(SecurityConstants.UserConstants.SYSTEM_PASSWORD, SecurityConstants.UserConstants.SYSTEM_USER), SecurityConstants.UserConstants.SYSTEM_EMAIL, new HashSet<>(), null)));
-        systemUser.setAuthorities(authorityService.validRawAuthorities(systemUser,SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN));
-        return userRepository.save(systemUser);
+        return userRepository.findByUsername(SecurityConstants.UserConstants.SYSTEM_USER)
+                .orElseGet(()->
+                    BendOptional.of(userRepository.save(new User(SecurityConstants.UserConstants.SYSTEM_USER, saltedPasswordEncoder.encode(SecurityConstants.UserConstants.SYSTEM_PASSWORD, SecurityConstants.UserConstants.SYSTEM_USER), SecurityConstants.UserConstants.SYSTEM_EMAIL, new HashSet<>(), null)))
+                            .insideOperation(user->user.setAuthorities(authorityService.validRawAuthorities(user,SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN)))
+                            .nowReturn(userRepository::save));
     }
 
     @Override
