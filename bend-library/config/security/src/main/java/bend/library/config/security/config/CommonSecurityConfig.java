@@ -1,4 +1,4 @@
-package bend.library.config.security;
+package bend.library.config.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.security.SecureRandom;
 
 /**
+ * Some common bean's exporter configurations.
  * @author lemon
  * Email lemon.bashar@gmail.com
  * Created 2/13/2020
