@@ -1,8 +1,62 @@
+#Enabled All Facilities for development, Testing & Debugging
 
+spring:
+  profiles:
+    include: postgre
 
 bend-platform:
+  settings:
+    security:
+      secret-key: WWPRFWWVXSXPRFWWTURPRFWW
+      session-live-time: 20F
+      account:
+        password:
+          recoverable: true
+          recovery-timeout-minutes: 5
+          recovery-code-length: 8
+      authentication:
+        maximum-live-session-count: 5
+        maximum-login-limit-in-day: 20
+        maximum-live-session-from-same-ip: 3
+        maximum-login-limit-in-month: 140
+        maximum-request-per-session: 2000
+        maximum-live-session-in-one-ip: 6
+        jwt:
+          secret: WWPRFWWVXSXPRFWWTURPRFWW
+          base64-secret: WWPRFWWVXSXPRFWWTURPRFWW
+          token-validity-in-seconds: 3600
+          token-validity-in-seconds-for-remember-me: 7200
+          token-store-database:
+
+      secure-channel:
+        - dev
+        - console
+      cors:
+        allowed-clients:
+          - http://localhost:4200
+          - http://192.168.1.43:4200
+          - http://192.168.0.154:4200
+          - http://192.168.0.153:4200
+      public-servlet-prefixes:
+        - /api/public
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: springboottest420@gmail.com
+      password: springboottest42kblkbl
+      protocol: smtp
+      debug: true
+      smtp:
+        auth: true
+        starttls-enable: true
+        ssl-trust: smtp.gmail.com
+    async:
+      core-pool-size: 8
+      max-pool-size: 50
+      queue-capacity: 1000
+      thread-name-prefix: spring-dev
   database:
-    url: jdbc:postgresql://192.168.0.152:5432/bend-platform-test
+    url: jdbc:postgresql://localhost:5432/bend-platform-test
     schema: spring
     username: lemon
     password: lemon
