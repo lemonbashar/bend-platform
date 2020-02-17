@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 public class PropertiesConfig {
 
     @Bean(name = "properties")
-    @ConfigurationProperties(prefix = "bend-platform")
+    @ConfigurationProperties(prefix = "bend-platform", ignoreInvalidFields = true, ignoreUnknownFields = true)
     public SpringProperties properties() {
         return new SpringProperties();
     }
