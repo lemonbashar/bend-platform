@@ -1,7 +1,9 @@
 package bend.library.config.security.service;
 
 
-import org.springframework.security.core.userdetails.UserDetails;
+import bend.library.config.security.data.AccountInfo;
+import bend.library.config.security.data.LoginInfo;
+import org.springframework.http.ResponseEntity;
 
 /**
  * CGI of Authentication service which must be implemented by
@@ -13,8 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public interface AuthenticationService {
     /**
-     * Authenticate provided user-details user.
-     * @param userDetails User-Details of user-credentials
+     * Authenticate provided user-details user and return response-entity with module implemented account-info.
+     * @param loginInfo User-Details of user-credentials
      */
-    void authenticate(UserDetails userDetails);
+    ResponseEntity<AccountInfo> authenticate(LoginInfo loginInfo);
 }
