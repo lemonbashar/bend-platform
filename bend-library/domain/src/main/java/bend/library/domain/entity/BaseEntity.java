@@ -1,12 +1,15 @@
 package bend.library.domain.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 /**
@@ -14,6 +17,8 @@ import java.time.LocalDate;
  * Email lemon.bashar@gmail.com
  * Created 1/29/2020
  */
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 @MappedSuperclass
