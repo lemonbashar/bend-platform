@@ -42,7 +42,7 @@ public class JwtAuthenticationServiceTest {
     @Autowired
     private TokenProvider tokenProvider;
 
-    private CustomUserDetailsService customUserDetailsService;
+    CustomUserDetailsService customUserDetailsService;
 
     private static final String USERNAME="lemon";
     private static final String PASSWORD="lemon1234";

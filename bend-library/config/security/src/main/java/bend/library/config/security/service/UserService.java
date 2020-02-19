@@ -12,7 +12,12 @@ import java.math.BigInteger;
 public interface UserService {
 
     /**
-     * @return Logged in user id, if user already authenticated, otherwise return system user-id.
+     * <pre>
+     * Find and return Logged in user id, if user already authenticated,
+     * otherwise return system user-id if system user exist on database,
+     * otherwise it create system user and return.
+     * </pre>
+     * @return Logged in user id, if user already authenticated, otherwise return system user-id
      */
     BigInteger loggedInUserIdOrSystemUserId();
 
@@ -28,7 +33,7 @@ public interface UserService {
     User saveUser(User user);
 
     /**
-     * User Information to save
+     * User Information to save on database.
      * @param username Username
      * @param email email
      * @param password non-encoded password

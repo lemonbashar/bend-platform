@@ -31,10 +31,10 @@ public class Authority extends BaseEntity<BigInteger> implements Serializable {
     private BigInteger id;
 
     @Column(name = "AUTHORITY_NAME")
-    private String authority;
+    private String name;
 
-    public Authority(User createBy, String authority) {
+    public Authority(User createBy, String name) {
         super(createBy, null, LocalDate.now(), null, true);
-        this.authority = authority;
+        this.name = name;
     }
 }

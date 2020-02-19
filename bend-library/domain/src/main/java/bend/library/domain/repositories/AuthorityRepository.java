@@ -1,7 +1,6 @@
 package bend.library.domain.repositories;
 
 import bend.library.domain.entity.Authority;
-import bend.library.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,5 +16,5 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface AuthorityRepository extends JpaRepository<Authority, BigInteger> {
-    Optional<Authority> findAuthorityByAuthority(String authority);
+    Optional<Authority> findAuthorityByName(String authorityName);
 }

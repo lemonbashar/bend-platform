@@ -13,10 +13,12 @@ import java.util.Set;
 public interface AuthorityService {
 
     /**
+     * <pre>
      * While you have some authorities but those may doesn't exist on database
      * but you need to save them and make sure at last you have valid authorities whose already exist on database.
+     * </pre>
      * @param createdBy createBy User
-     * @param authorities authorities
+     * @param authorities raw authorities which may not exist on database.
      * @return Valid Authorities
      */
     Set<Authority> validRawAuthorities(User createdBy, String ...authorities);

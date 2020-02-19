@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 /**
@@ -32,12 +34,15 @@ public abstract class BaseEntity<ID> {
     @JoinColumn(name = "UPDATE_BY")
     private User updateBy;
 
-    @Column(name = "CREATE_DATE")
+    @CreationTimestamp
+    @Column(name = "CREATE_DATE", updatable = false)
     private LocalDate createDate;
 
+    @UpdateTimestamp
     @Column(name = "UPDATE_DATE")
     private LocalDate updateDate;
 
+    @Value("true")
     @Column(name = "ACTIVE_STATUS")
     private boolean active;
 

@@ -38,6 +38,6 @@ public class CustomUserDetails implements UserDetails {
     }
 
     public static CustomUserDetails of(User user) {
-        return new CustomUserDetails(user.getId(), user.getUsername(), user.getPassword(),user.getAuthorities().stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toSet()));
+        return new CustomUserDetails(user.getId(), user.getUsername(), user.getPassword(),user.getAuthorities().stream().map(authority -> new SimpleGrantedAuthority(authority.getName())).collect(Collectors.toSet()));
     }
 }

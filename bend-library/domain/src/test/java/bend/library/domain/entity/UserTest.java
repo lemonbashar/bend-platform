@@ -31,11 +31,10 @@ public class UserTest {
             user.setUsername(USERNAME);
             user.setEmail("test-mail");
             user.setActive(true);
-            user.setCreateDate(LocalDate.now());
 
             userRepository.save(user);
         } catch (Exception e) {
-            if(userRepository.findByUsername(USERNAME)==null)
+            if(userRepository.findByUsername(USERNAME).isEmpty())
             throw e;
         }
     }
