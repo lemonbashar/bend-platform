@@ -20,14 +20,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Setter
 @Getter
-@Table(name = "AUTHORITY")
+@Table(name = "DB_MAIN_AUTHORITY")
 @Entity
 public class Authority extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID=1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "AUTHORITY_PK")
-    @SequenceGenerator(name = "AUTHORITY_PK", sequenceName = "AUTHORITY_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "DB_MAIN_AUTHORITY_PK")
+    @SequenceGenerator(name = "DB_MAIN_AUTHORITY_PK", sequenceName = "DB_MAIN_AUTHORITY_SEQ", allocationSize = 1)
     private BigInteger id;
 
     @Column(name = "AUTHORITY_NAME")

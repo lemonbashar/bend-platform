@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
+ * Aim to config jwt token storage and maintain database on redis or any-other noSql or elastic-search db
  * @author lemon
  * Email lemon.bashar@gmail.com
  * Created 2/15/2020

@@ -9,8 +9,15 @@ dependencyManagement {
 allprojects {
     dependencies {
         testImplementation project(':bend-library:config')
+        testImplementation project(':bend-library:domain:cluster')
         testImplementation project(':bend-library:config:database')
         testImplementation project(':bend-library:config:database:rdbms')
         testRuntime "org.postgresql:postgresql:$postgreVersion"
+    }
+}
+
+subprojects {
+    dependencies {
+        implementation project(':bend-library:domain')
     }
 }

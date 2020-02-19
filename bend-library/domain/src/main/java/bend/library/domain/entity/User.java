@@ -23,14 +23,14 @@ import java.util.Set;
 @AllArgsConstructor
 @Setter
 @Getter
-@Table(name = "BEND_USER")
+@Table(name = "DB_MAIN_BEND_USER")
 @Entity
 public class User extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID=1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "BEND_USER_PK")
-    @SequenceGenerator(name = "BEND_USER_PK", sequenceName = "BEND_USER_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "DB_MAIN_BEND_USER_PK")
+    @SequenceGenerator(name = "DB_MAIN_BEND_USER_PK", sequenceName = "DB_MAIN_BEND_USER_SEQ", allocationSize = 1)
     private BigInteger id;
 
     @Size(min = 5, max = 32, message = "Username length must be in between 4 ~ 32 ")
@@ -45,7 +45,7 @@ public class User extends BaseEntity<BigInteger> implements Serializable {
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "JT_BEND_USER_AUTHORITY_MAPPING", uniqueConstraints = @UniqueConstraint(name = "USER_ID_AUTHORITY_UNIQUE_KEY", columnNames = {"BEND_USER_ID", "AUTHORITY_NAME"}),joinColumns = @JoinColumn(name = "BEND_USER_ID", referencedColumnName = "ID", nullable = false), inverseJoinColumns = @JoinColumn(name = "AUTHORITY_NAME", referencedColumnName = "AUTHORITY_NAME", nullable = false))
+    @JoinTable(name = "JT_DB_MAIN_BEND_USER_DB_MAIN_AUTHORITY", uniqueConstraints = @UniqueConstraint(name = "USER_ID_AUTHORITY_UNIQUE_KEY", columnNames = {"BEND_USER_ID", "AUTHORITY_NAME"}),joinColumns = @JoinColumn(name = "BEND_USER_ID", referencedColumnName = "ID", nullable = false), inverseJoinColumns = @JoinColumn(name = "AUTHORITY_NAME", referencedColumnName = "AUTHORITY_NAME", nullable = false))
     private Set<Authority> authorities=new HashSet<>();
 
     public User(String username, String encodedPassword, String email, Set<Authority> authorities, User createdBy) {
