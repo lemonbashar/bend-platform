@@ -4,7 +4,10 @@ import bend.library.config.PropertiesConfig;
 import bend.library.config.constants.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
+import bend.library.config.security.config.CommonSecurityConfig;
+import bend.library.config.security.config.WebConfigurer;
 import bend.library.config.security.data.LoginInfo;
+import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.domain.DomainConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -15,6 +18,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
+import java.math.BigInteger;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
-@SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(classes = {WebConfigurer.class, JwtSecurityConfig.class, CommonSecurityConfig.class, PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class TokenProviderTest {
     @Autowired
     private TokenProvider tokenProvider;
@@ -31,6 +35,7 @@ public class TokenProviderTest {
     @BeforeEach
     public void init() {
         loginInfo = new LoginInfo();
+        loginInfo.setId(BigInteger.ONE);
         loginInfo.setUsername("lemon");
         loginInfo.setPassword("password");
         loginInfo.setRememberMe(true);

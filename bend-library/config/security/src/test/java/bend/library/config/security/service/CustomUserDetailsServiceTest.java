@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Tag(ProfileConstants.TestInclude.DATABASE_HIT)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
-@SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class CustomUserDetailsServiceTest {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;

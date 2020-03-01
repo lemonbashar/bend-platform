@@ -18,23 +18,25 @@ import bend.library.domain.DomainConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
 import java.math.BigInteger;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
-@SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, JwtSecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, JwtSecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@Configuration
 public class JwtAuthenticationServiceTest {
     private AuthenticationService authenticationService;
     @Autowired
@@ -48,6 +50,12 @@ public class JwtAuthenticationServiceTest {
     private static final String PASSWORD="lemon1234";
 
     private LoginInfo loginInfo;
+
+    public JwtAuthenticationServiceTest beanWire(SaltedPasswordEncoder saltedPasswordEncoder, TokenProvider tokenProvider) {
+        this.saltedPasswordEncoder = saltedPasswordEncoder;
+        this.tokenProvider = tokenProvider;
+        return this;
+    }
 
     @BeforeEach
     public void beforeEach() {
@@ -66,9 +74,13 @@ public class JwtAuthenticationServiceTest {
 
     @Test
     public void authenticate() {
-        ResponseEntity<AccountInfo> infoResponseEntity = this.authenticationService.authenticate(loginInfo);
+        ResponseEntity<AccountInfo> infoResponseEntity = authenticateCurrent();
         assertTrue(SecurityUtil.isAuthenticated());
         assertTrue(SecurityUtil.hasAnyAuthority(SecurityConstants.AuthorityConstants.SingleAuth.ROLE_ADMIN));
         assertEquals(SecurityUtil.loggedInUserId(), BigInteger.TEN);
+    }
+
+    public ResponseEntity<AccountInfo> authenticateCurrent() {
+        return this.authenticationService.authenticate(loginInfo);
     }
 }

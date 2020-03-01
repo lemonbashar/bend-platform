@@ -7,7 +7,7 @@ spring:
 bend-platform:
   settings:
     security:
-      secret-key: WWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWW
+      secret-key: ZDc4MzUyZjZjOGM2MTkzNjE1N2JjOTc0MzhiNGFkMGNlNTA0MzQ0YTJkMTVhM2JkMjI5NGIwM2Y4OGU4NjIxM2JmNTA4ZTg3YjI3ZDJiZGQwYzNmZmJhN2NjYTQ1NTllODNmOTJjOWNhODkzNDI1ZDFmYzkzMWEzYWYyMGZhNjA=
       session-live-time: 20F
       account:
         password:
@@ -22,8 +22,8 @@ bend-platform:
         maximum-request-per-session: 2000
         maximum-live-session-in-one-ip: 6
         jwt:
-          secret: WWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWW
-          base64-secret: WWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWWWWPRFWWVXSXPRFWWTURPRFWW
+          secret: ZDc4MzUyZjZjOGM2MTkzNjE1N2JjOTc0MzhiNGFkMGNlNTA0MzQ0YTJkMTVhM2JkMjI5NGIwM2Y4OGU4NjIxM2JmNTA4ZTg3YjI3ZDJiZGQwYzNmZmJhN2NjYTQ1NTllODNmOTJjOWNhODkzNDI1ZDFmYzkzMWEzYWYyMGZhNjA=
+          base64-secret: ZDc4MzUyZjZjOGM2MTkzNjE1N2JjOTc0MzhiNGFkMGNlNTA0MzQ0YTJkMTVhM2JkMjI5NGIwM2Y4OGU4NjIxM2JmNTA4ZTg3YjI3ZDJiZGQwYzNmZmJhN2NjYTQ1NTllODNmOTJjOWNhODkzNDI1ZDFmYzkzMWEzYWYyMGZhNjA=
           token-validity-in-seconds: 3600
           token-validity-in-seconds-for-remember-me: 7200
           token-store-database:
@@ -56,7 +56,7 @@ bend-platform:
       queue-capacity: 1000
       thread-name-prefix: spring-dev
   database:
-    url: jdbc:postgresql://localhost:5432/bend-platform-test
+    url: jdbc:postgresql://192.168.0.103:5432/bend-platform-test
     schema: spring
     username: lemon
     password: lemon

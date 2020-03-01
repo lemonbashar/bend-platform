@@ -1,7 +1,9 @@
 package bend.library.config.security.jwt.jwt;
 
 import bend.framework.properties.springproperties.SpringProperties;
+import bend.library.config.security.data.CustomUserDetails;
 import bend.library.config.security.data.LoginInfo;
+import bend.library.config.security.jwt.constant.JwtConstants;
 import bend.library.config.security.jwt.data.JwtLogoutInfo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -20,12 +22,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static bend.library.config.security.jwt.constant.JwtConstants.AUTHORITIES_KEY;
 
 /**
  * @author lemon
@@ -36,7 +42,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class TokenProvider {
-    protected static final String AUTHORITIES_KEY = "auth";
     protected Key key;
     protected long tokenValidityInMilliseconds;
     protected long tokenValidityInMillisecondsForRememberMe;
@@ -76,6 +81,7 @@ public class TokenProvider {
         return Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
+                .claim(JwtConstants.USER_IDENTITY_KEY, loginInfo.getId())
                 .signWith(SignatureAlgorithm.HS512,key)
                 .setExpiration(validity)
                 .compact();
@@ -87,14 +93,11 @@ public class TokenProvider {
                 .parseClaimsJws(token)
                 .getBody();
 
-        Collection<? extends GrantedAuthority> authorities =
-                Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
-                        .map(SimpleGrantedAuthority::new)
-                        .collect(Collectors.toList());
+        String[] authorities = claims.get(AUTHORITIES_KEY).toString().split(",");
 
-        User principal = new User(claims.getSubject(), "", authorities);
+        CustomUserDetails principal = new CustomUserDetails(new BigInteger(claims.get(JwtConstants.USER_IDENTITY_KEY).toString()), claims.getSubject(), "", authorities);
 
-        return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+        return new UsernamePasswordAuthenticationToken(principal, token, Stream.of(authorities).map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));
     }
 
     public boolean validateToken(String authToken) {

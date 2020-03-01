@@ -6,13 +6,21 @@ dependencyManagement {
     }
 }
 
+allprojects {
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation project(':bend-library:config')
+        implementation project(':bend-library:config:security')
+    }
+}
+
 subprojects {
     jar {
         archivesBaseName = 'bend-library-controller-' + project.name
     }
 
     dependencies {
-        //implementation project(':bend-library:controller')
+        implementation project(':bend-library:controller')
     }
 }
 

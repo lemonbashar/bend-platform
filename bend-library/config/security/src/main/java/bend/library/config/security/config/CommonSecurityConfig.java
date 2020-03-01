@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.security.SecureRandom;
 
@@ -13,6 +14,7 @@ import java.security.SecureRandom;
  * Email lemon.bashar@gmail.com
  * Created 2/13/2020
  */
+@EnableWebMvc
 @Configuration
 public class CommonSecurityConfig {
 

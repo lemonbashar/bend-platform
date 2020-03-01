@@ -13,6 +13,9 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+import static bend.library.config.security.jwt.constant.JwtConstants.AUTHORIZATION_HEADER;
+import static bend.library.config.security.jwt.constant.JwtConstants.BEARER;
+
 /**
  * @author lemon
  * Email lemon.bashar@gmail.com
@@ -21,8 +24,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @Service
 public class JwtAuthenticationFilter extends AbstractFilter {
-    public static final String AUTHORIZATION_HEADER = "Authorization";
-    public static final String BEARER = "Bearer ";
     protected final @NonNull TokenProvider tokenProvider;
 
 

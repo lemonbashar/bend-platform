@@ -2,6 +2,7 @@ package bend.library.config.security.jwt.service;
 
 import bend.framework.base.util.BendOptional;
 import bend.library.config.security.data.AccountInfo;
+import bend.library.config.security.data.CustomUserDetails;
 import bend.library.config.security.data.LoginInfo;
 import bend.library.config.security.data.LogoutInfo;
 import bend.library.config.security.jwt.data.JwtAccountInfo;
@@ -38,6 +39,7 @@ public class JwtAuthenticationManager implements AuthenticationManager {
         return BendOptional.of(customUserDetailsService.loadUserByUsername(loginInfo.getUsername()))
                 .mustTrue(user->saltedPasswordEncoder.matches(loginInfo.getPassword(),user.getUsername(), user.getPassword()))
                 .map(userDetails -> {
+                    loginInfo.setId(((CustomUserDetails)userDetails).getId());
                     Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getUsername(),userDetails.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                     return JwtAccountInfo.builder().authorities(userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet()))

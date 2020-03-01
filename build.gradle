@@ -20,19 +20,14 @@ allprojects {
 	ext {
 		bendFrameworkVersion = '1.0.0'
 		lombokVersion = '1.18.10'
-		springBootVersion = '2.2.3.RELEASE'
-		springBootDependencyVersion = '1.0.8.RELEASE'
+		springBootVersion = '2.2.4.RELEASE'
+		springBootDependencyVersion = '1.0.9.RELEASE'
 		javaxValidationApi = '2.0.1.Final'
 		junitVersion = '5.5.2'
 		log4j2Version = '2.12.1'
 		javaxServletVersion = '4.0.1'
 		swaggerUiVersion = '2.6.1'
 		postgreVersion = '42.2.2'
-
-		excludeJavaxValidationApi = {exclude group: 'javax.validation', module: 'validation-api'}
-		excludeJavaxPersistenceApi = {exclude group: 'jakarta.persistence', module: 'jakarta.persistence-api'}
-		excludeSpringBootStarterWeb = {exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'}
-		excludeSpringBootStarter = {exclude group: 'org.springframework.boot', module: 'spring-boot-starter'}
 	}
 }
 
