@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
@@ -70,6 +71,14 @@ public class JwtAuthenticationFilterTest {
         ).andDo(print()).andExpect(status().isOk()).andReturn();
         AccountInfo accountInfo = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), AccountInfo.class);
         assertEquals(accountInfoEntity.getBody().getUsername(), accountInfo.getUsername());
+    }
+
+    @Test
+    void testFailure() throws Exception {
+        MvcResult mvcResult=mockMvc.perform(
+                get(RestApiProvider.build(RestApiProvider.AccountApi.ACCOUNT_ROOT_API, RestApiProvider.AccountApi.CURRENT_ACCOUNT_INFO))
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+        ).andDo(print()).andExpect(status().is(HttpStatus.FORBIDDEN.value())).andReturn();
     }
 
 }
