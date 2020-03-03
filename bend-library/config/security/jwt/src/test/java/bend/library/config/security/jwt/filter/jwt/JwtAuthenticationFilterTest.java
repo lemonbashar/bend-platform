@@ -60,7 +60,7 @@ public class JwtAuthenticationFilterTest {
     }
 
     @Test
-    public void testJWTFilter() throws Exception {
+    void testJWTFilter() throws Exception {
         ResponseEntity<AccountInfo> accountInfoEntity = jwtAuthenticationServiceTest.authenticateCurrent();
         JwtAccountInfo jwtAccountInfo= (JwtAccountInfo) accountInfoEntity.getBody();
         assertNotNull(jwtAccountInfo);
@@ -75,10 +75,10 @@ public class JwtAuthenticationFilterTest {
 
     @Test
     void testFailure() throws Exception {
-        MvcResult mvcResult=mockMvc.perform(
+        mockMvc.perform(
                 get(RestApiProvider.build(RestApiProvider.AccountApi.ACCOUNT_ROOT_API, RestApiProvider.AccountApi.CURRENT_ACCOUNT_INFO))
                         .accept(MediaType.APPLICATION_JSON_VALUE)
-        ).andDo(print()).andExpect(status().is(HttpStatus.FORBIDDEN.value())).andReturn();
+        ).andDo(print()).andExpect(status().is(HttpStatus.FORBIDDEN.value()));
     }
 
 }
