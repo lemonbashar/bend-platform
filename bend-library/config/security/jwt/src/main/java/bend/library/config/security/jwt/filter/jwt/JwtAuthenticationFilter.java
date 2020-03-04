@@ -43,8 +43,7 @@ public class JwtAuthenticationFilter extends AbstractFilter {
     }
 
     public static String resolveToken(HttpServletRequest httpServletRequest) {
-        String bearer = AbstractFilter.findHeaderValue(httpServletRequest, AUTHORIZATION_HEADER);
-        return resolveBearer(bearer);
+        return resolveBearer(AbstractFilter.findHeaderValue(httpServletRequest, AUTHORIZATION_HEADER));
     }
 
     public static String resolveBearer(String headerWithBearer) {

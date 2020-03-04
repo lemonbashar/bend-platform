@@ -1,5 +1,6 @@
 package bend.library.config.database.rdbms;
 
+import bend.framework.base.util.BendOptional;
 import bend.framework.properties.springproperties.SpringProperties;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.NonNull;
@@ -18,6 +19,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -36,63 +38,56 @@ public class RdbmsJpaConfig {
 
     @Bean
     public DataSource datasource() {
-        HikariDataSource hikariDataSource = new HikariDataSource();
-        hikariDataSource.setUsername(properties.getDatabase().getUsername());
-        hikariDataSource.setPassword(properties.getDatabase().getPassword());
-        hikariDataSource.setJdbcUrl(properties.getDatabase().getUrl());
-        hikariDataSource.setDriverClassName(properties.getDatabase().getDriver());
-        hikariDataSource.setConnectionTimeout(properties.getDatabase().getConnectionTimeout());
-        hikariDataSource.setMinimumIdle(properties.getDatabase().getMinIdleConnectionSize());
-        hikariDataSource.setMaximumPoolSize(properties.getDatabase().getMaxPoolSize());
-        hikariDataSource.setIdleTimeout(properties.getDatabase().getIdleTimeout());
-        hikariDataSource.setAutoCommit(properties.getDatabase().isAutoCommit());
-        hikariDataSource.setPoolName(properties.getDatabase().getDatasourcePoolName());
-        log.info("A Datasource connection pool for: "+properties.getDatabase().getUrl()+" has been created");
-        return hikariDataSource;
+        return BendOptional.of(new HikariDataSource())
+                .insideOperation(hd->hd.setUsername(properties.getDatabase().getUsername()))
+                .insideOperation(hd->hd.setPassword(properties.getDatabase().getPassword()))
+                .insideOperation(hd->hd.setJdbcUrl(properties.getDatabase().getUrl()))
+                .insideOperation(hd->hd.setDriverClassName(properties.getDatabase().getDriver()))
+                .insideOperation(hd->hd.setConnectionTimeout(properties.getDatabase().getConnectionTimeout()))
+                .insideOperation(hd->hd.setMinimumIdle(properties.getDatabase().getMinIdleConnectionSize()))
+                .insideOperation(hd->hd.setMaximumPoolSize(properties.getDatabase().getMaxPoolSize()))
+                .insideOperation(hd->hd.setIdleTimeout(properties.getDatabase().getIdleTimeout()))
+                .insideOperation(hd->hd.setAutoCommit(properties.getDatabase().isAutoCommit()))
+                .insideOperation(hd->hd.setPoolName(properties.getDatabase().getDatasourcePoolName())).get();
     }
 
     @Bean(name = "bendTransactionManager")
     public PlatformTransactionManager platformTransactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactoryBean.getObject());
-        return transactionManager;
+        return BendOptional.of(new JpaTransactionManager())
+                .insideOperation(tm->tm.setEntityManagerFactory(entityManagerFactoryBean.getObject())).get();
     }
 
     @Bean(name = "bendEntityManager")
     public LocalContainerEntityManagerFactoryBean localContainerEntityManager(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource);
-        em.setPackagesToScan(properties.getDatabase().getHibernate().getAnnotatedPackages());
-        em.setJpaVendorAdapter(jpaVendorAdapter);
-        em.setJpaProperties(hibernateProperties());
-        return em;
+        return BendOptional.of(new LocalContainerEntityManagerFactoryBean())
+                .insideOperation(em->em.setDataSource(dataSource))
+                .insideOperation(em->em.setPackagesToScan(properties.getDatabase().getHibernate().getAnnotatedPackages()))
+                .insideOperation(em->em.setJpaVendorAdapter(jpaVendorAdapter))
+                .insideOperation(em->em.setJpaProperties(hibernateProperties())).get();
     }
 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
-        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-        adapter.setShowSql(properties.getDatabase().getHibernate().isShowSql());
-        adapter.setDatabasePlatform(properties.getDatabase().getHibernate().getDialect());
-        adapter.setGenerateDdl(properties.getDatabase().getHibernate().isShowSql());
-        if (properties.getDatabase().getDatabaseType() == null) throw new RuntimeException("You Must Specify The DatabaseType");
-        adapter.setDatabase(Database.valueOf(properties.getDatabase().getDatabaseType().name()));
-        return adapter;
+        return BendOptional.of(new HibernateJpaVendorAdapter())
+                .insideOperation(adapter->adapter.setShowSql(properties.getDatabase().getHibernate().isShowSql()))
+                .insideOperation(adapter->adapter.setDatabasePlatform(properties.getDatabase().getHibernate().getDialect()))
+                .insideOperation(adapter->adapter.setGenerateDdl(properties.getDatabase().getHibernate().isShowSql()))
+                .mustTrue(()-> Objects.nonNull(properties.getDatabase().getDatabaseType()))
+                .insideOperation(adapter->adapter.setDatabase(Database.valueOf(properties.getDatabase().getDatabaseType().name()))).get();
     }
 
     private Properties hibernateProperties() {
-        Properties hbmProperties = new Properties();
-        hbmProperties.setProperty(Environment.DIALECT, properties.getDatabase().getHibernate().getDialect());
-        hbmProperties.setProperty(Environment.HBM2DDL_AUTO, properties.getDatabase().getHibernate().getHbm2DDLAuto());
-        hbmProperties.setProperty(Environment.USE_SQL_COMMENTS, "" + properties.getDatabase().getHibernate().isShowSqlComments());
-        hbmProperties.setProperty(Environment.SHOW_SQL, "" + properties.getDatabase().getHibernate().isShowSql());
-        hbmProperties.setProperty(Environment.USE_SQL_COMMENTS, "false");
-        hbmProperties.setProperty(Environment.FORMAT_SQL, "" + properties.getDatabase().getHibernate().isFormatSQL());
-        hbmProperties.setProperty(Environment.USE_SECOND_LEVEL_CACHE, "" + properties.getDatabase().getHibernate().isEnableSecondLevelCache());
-        hbmProperties.setProperty(Environment.USE_QUERY_CACHE, "" + properties.getDatabase().getHibernate().isEnableQueryCache());
-        hbmProperties.setProperty(Environment.AUTO_EVICT_COLLECTION_CACHE, "" + properties.getDatabase().getHibernate().isEnableAutoEvictCollCache());
-        hbmProperties.setProperty(Environment.USE_STRUCTURED_CACHE, "" + properties.getDatabase().getHibernate().isEnableStructuredCache());
-        if(properties.getDatabase().getHibernate().getSecondLevelCacheRegionFactoryClass() != null)
-            hbmProperties.setProperty(Environment.CACHE_REGION_FACTORY, "" + properties.getDatabase().getHibernate().getSecondLevelCacheRegionFactoryClass());
-        return hbmProperties;
+        return BendOptional.of(new Properties())
+                .insideOperation(prp->prp.setProperty(Environment.DIALECT, properties.getDatabase().getHibernate().getDialect()))
+                .insideOperation(prp->prp.setProperty(Environment.HBM2DDL_AUTO, properties.getDatabase().getHibernate().getHbm2DDLAuto()))
+                .insideOperation(prp->prp.setProperty(Environment.USE_SQL_COMMENTS, "" + properties.getDatabase().getHibernate().isShowSqlComments()))
+                .insideOperation(prp->prp.setProperty(Environment.SHOW_SQL, "" + properties.getDatabase().getHibernate().isShowSql()))
+                .insideOperation(prp->prp.setProperty(Environment.USE_SQL_COMMENTS, "false"))
+                .insideOperation(prp->prp.setProperty(Environment.FORMAT_SQL, "" + properties.getDatabase().getHibernate().isFormatSQL()))
+                .insideOperation(prp->prp.setProperty(Environment.USE_SECOND_LEVEL_CACHE, "" + properties.getDatabase().getHibernate().isEnableSecondLevelCache()))
+                .insideOperation(prp->prp.setProperty(Environment.USE_QUERY_CACHE, "" + properties.getDatabase().getHibernate().isEnableQueryCache()))
+                .insideOperation(prp->prp.setProperty(Environment.AUTO_EVICT_COLLECTION_CACHE, "" + properties.getDatabase().getHibernate().isEnableAutoEvictCollCache()))
+                .insideOperation(prp->prp.setProperty(Environment.USE_STRUCTURED_CACHE, "" + properties.getDatabase().getHibernate().isEnableStructuredCache()))
+                .ifThenConsume(()->Objects.nonNull(properties.getDatabase().getHibernate().getSecondLevelCacheRegionFactoryClass()), prp-> prp.setProperty(Environment.CACHE_REGION_FACTORY, "" + properties.getDatabase().getHibernate().getSecondLevelCacheRegionFactoryClass())).get();
     }
 }
