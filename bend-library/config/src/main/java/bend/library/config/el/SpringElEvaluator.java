@@ -20,8 +20,8 @@ public interface SpringElEvaluator {
      *
      * @param expression      The Main Expression
      * @param ifErrorOccurred The Value returned, if the current value occurred any error
-     * @param variable The declared variable name
-     * @param value The declared value
+     * @param variable        The declared variable name
+     * @param value           The declared value
      * @return Evaluated Value
      */
     <T> T evaluate(Class<T> clazz, String expression, T ifErrorOccurred, String variable, Object value);
@@ -31,7 +31,7 @@ public interface SpringElEvaluator {
      *
      * @param expression      The Main Expression
      * @param ifErrorOccurred The Value returned, if the current value occurred any error
-     * @param variables The Predeclared Variables
+     * @param variables       The Predeclared Variables
      * @return Evaluated Value
      */
     <T> T evaluate(Class<T> clazz, String expression, T ifErrorOccurred, Map<String, Object> variables);

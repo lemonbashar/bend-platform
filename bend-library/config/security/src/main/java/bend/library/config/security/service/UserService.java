@@ -17,6 +17,7 @@ public interface UserService {
      * otherwise return system user-id if system user exist on database,
      * otherwise it create system user and return.
      * </pre>
+     *
      * @return Logged in user id, if user already authenticated, otherwise return system user-id
      */
     BigInteger loggedInUserIdOrSystemUserId();
@@ -34,11 +35,12 @@ public interface UserService {
 
     /**
      * User Information to save on database.
-     * @param username Username
-     * @param email email
-     * @param password non-encoded password
+     *
+     * @param username    Username
+     * @param email       email
+     * @param password    non-encoded password
      * @param authorities string declared authorities
      * @return saved User
      */
-    User saveUser(String username, String email, String password, String ...authorities);
+    User saveUser(String username, String email, String password, String... authorities);
 }

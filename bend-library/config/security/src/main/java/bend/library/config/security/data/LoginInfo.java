@@ -1,6 +1,5 @@
 package bend.library.config.security.data;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,10 +34,12 @@ public class LoginInfo {
             this.loginInfo.username = username;
             return this;
         }
+
         public LoginInfoBuilder password(String password) {
             this.loginInfo.password = password;
             return this;
         }
+
         public LoginInfoBuilder rememberMe(boolean rememberMe) {
             this.loginInfo.rememberMe = rememberMe;
             return this;

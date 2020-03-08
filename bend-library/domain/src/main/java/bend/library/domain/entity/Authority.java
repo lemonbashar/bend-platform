@@ -23,7 +23,7 @@ import java.time.LocalDate;
 @Table(name = "DB_MAIN_AUTHORITY")
 @Entity
 public class Authority extends BaseEntity<BigInteger> implements Serializable {
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "DB_MAIN_AUTHORITY_PK")
@@ -32,6 +32,8 @@ public class Authority extends BaseEntity<BigInteger> implements Serializable {
 
     @Column(name = "AUTHORITY_NAME")
     private String name;
+
+
 
     public Authority(User createBy, String name) {
         super(createBy, null, LocalDate.now(), null, true);

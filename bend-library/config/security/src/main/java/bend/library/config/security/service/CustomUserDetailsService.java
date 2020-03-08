@@ -18,6 +18,7 @@ public interface CustomUserDetailsService extends UserDetailsService {
 
     /**
      * Find user-details from database and return to respondent.
+     *
      * @param username lowercase username of user.
      * @return User-Details if it find user by username
      */

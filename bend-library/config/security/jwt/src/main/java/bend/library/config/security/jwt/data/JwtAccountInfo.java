@@ -21,7 +21,7 @@ public class JwtAccountInfo extends AccountInfo {
     }
 
     public static final class JwtAccountInfoBuilder {
-        private JwtAccountInfo accountInfo=new JwtAccountInfo();
+        private JwtAccountInfo accountInfo = new JwtAccountInfo();
 
         public JwtAccountInfoBuilder username(String username) {
             accountInfo.setUsername(username);

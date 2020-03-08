@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 public class ResponseUtil<T> {
     private final T body;
-    private HttpStatus httpStatus=HttpStatus.OK;
+    private HttpStatus httpStatus = HttpStatus.OK;
     private HttpHeaders httpHeaders;
 
     private ResponseUtil(T body) {
@@ -19,7 +19,7 @@ public class ResponseUtil<T> {
         return new ResponseUtil<>(body);
     }
 
-    public <K> ResponseUtil<K> map(Function<T,K> tkFunction) {
+    public <K> ResponseUtil<K> map(Function<T, K> tkFunction) {
         return new ResponseUtil<>(tkFunction.apply(body));
     }
 

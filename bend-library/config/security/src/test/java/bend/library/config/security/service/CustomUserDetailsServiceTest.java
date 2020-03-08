@@ -7,7 +7,6 @@ import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.data.CustomUserDetails;
 import bend.library.domain.DomainConfig;
-import bend.library.domain.entity.User;
 import bend.library.domain.repositories.UserRepository;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag(ProfileConstants.TestInclude.DATABASE_HIT)
 @ActiveProfiles(profiles = "test")
@@ -30,12 +29,12 @@ public class CustomUserDetailsServiceTest {
     @Autowired
     private UserService userService;
 
-    private static final String USERNAME="lemonbashar";
+    private static final String USERNAME = "lemonbashar";
 
     @Test
     public void findUserDetails() {
-        if(userRepository.findByUsername(USERNAME).isEmpty()) {
-            userService.saveUser(USERNAME, USERNAME+"@mail.com", "123456", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
+        if (userRepository.findByUsername(USERNAME).isEmpty()) {
+            userService.saveUser(USERNAME, USERNAME + "@mail.com", "123456", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
         }
         CustomUserDetails customUserDetails = customUserDetailsService.findUserDetails(USERNAME);
         assertEquals(USERNAME, customUserDetails.getUsername());

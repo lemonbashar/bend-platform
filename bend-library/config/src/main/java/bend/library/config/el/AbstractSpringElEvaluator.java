@@ -44,8 +44,8 @@ public abstract class AbstractSpringElEvaluator implements SpringElEvaluator {
     }
 
     protected StandardEvaluationContext context(Object rootObject) {
-        StandardEvaluationContext context =null;
-        context = rootObject==null ? new StandardEvaluationContext() : new StandardEvaluationContext(rootObject);
+        StandardEvaluationContext context = null;
+        context = rootObject == null ? new StandardEvaluationContext() : new StandardEvaluationContext(rootObject);
         context.setBeanResolver(beanResolver);
         return context;
     }

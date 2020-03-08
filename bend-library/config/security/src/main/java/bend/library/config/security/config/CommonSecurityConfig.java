@@ -10,6 +10,7 @@ import java.security.SecureRandom;
 
 /**
  * Some common bean's exporter configurations.
+ *
  * @author lemon
  * Email lemon.bashar@gmail.com
  * Created 2/13/2020

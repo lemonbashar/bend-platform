@@ -56,8 +56,8 @@ bend-platform:
       queue-capacity: 1000
       thread-name-prefix: spring-dev
   database:
-    url: jdbc:postgresql://192.168.0.103:5432/bend-platform-test
-    schema: spring
+    host: 192.168.0.102
+    schema: bend-platform-test
     username: lemon
     password: lemon
     driver: org.postgresql.Driver

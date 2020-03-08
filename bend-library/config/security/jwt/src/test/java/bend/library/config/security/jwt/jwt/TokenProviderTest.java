@@ -44,7 +44,7 @@ public class TokenProviderTest {
     @Test
     public void createToken() {
 
-        String token = tokenProvider.createToken(new UsernamePasswordAuthenticationToken("lemon","password"),loginInfo);
+        String token = tokenProvider.createToken(new UsernamePasswordAuthenticationToken("lemon", "password"), loginInfo);
         assertTrue(Objects.nonNull(token));
     }
 }
