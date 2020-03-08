@@ -67,10 +67,10 @@ public class DatabaseConfigServiceImpl implements DatabaseConfigService {
         jpaProperties.add(makeHibernateProperties(actorUser, Environment.CACHE_REGION_FACTORY, Hibernate::getSecondLevelCacheRegionFactoryClass, database.getHibernate()));
         jpaProperties.add(makeHibernateProperties(actorUser, "annotatedPackages", Hibernate::getAnnotatedPackages, database.getHibernate()));
 
-        jpaProperties.add(makeJpaProperties(actorUser, "persistentUnit", Jpa::getPersistentUnit));
-        jpaProperties.add(makeJpaProperties(actorUser, "repositoryLocations", Jpa::getRepositoryLocations));
-        jpaProperties.add(makeJpaProperties(actorUser, "transactionManagerBeanName", Jpa::getTransactionManagerBeanName));
-        jpaProperties.add(makeJpaProperties(actorUser, "entityManagerBeanName", Jpa::getEntityManagerBeanName));
+        jpaProperties.add(makeJpaProperties(actorUser, "persistentUnit", Jpa::getPersistentUnit, database.getJpa()));
+        jpaProperties.add(makeJpaProperties(actorUser, "repositoryLocations", Jpa::getRepositoryLocations, database.getJpa()));
+        jpaProperties.add(makeJpaProperties(actorUser, "transactionManagerBeanName", Jpa::getTransactionManagerBeanName, database.getJpa()));
+        jpaProperties.add(makeJpaProperties(actorUser, "entityManagerBeanName", Jpa::getEntityManagerBeanName, database.getJpa()));
 
         createDatabaseConfig(actorUser, host, databaseType, username, password, jpaProperties, schemas);
     }
@@ -94,17 +94,17 @@ public class DatabaseConfigServiceImpl implements DatabaseConfigService {
     }
 
     private JpaProperties makeNativeProperties(User actorUser, String propertiesKey, Function<Database, Object> databaseProperties, Database database) {
-        return jpaPropertiesRepository.findByPropertyKey(propertiesKey)
+        return jpaPropertiesRepository.findByPropertyKeyAndPropertyValue(propertiesKey, databaseProperties.apply(database).toString())
                 .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, databaseProperties.apply(database).toString())));
     }
 
     private JpaProperties makeHibernateProperties(User actorUser, String propertiesKey, Function<Hibernate, Object> databaseProperties, Hibernate hibernate) {
-        return jpaPropertiesRepository.findByPropertyKey(propertiesKey)
+        return jpaPropertiesRepository.findByPropertyKeyAndPropertyValue(propertiesKey, databaseProperties.apply(hibernate).toString())
                 .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, databaseProperties.apply(hibernate).toString(), DatabasePropertyType.HIBERNATE)));
     }
 
-    private JpaProperties makeJpaProperties(User actorUser, String propertiesKey, Function<Jpa, Object> databaseProperties) {
-        return jpaPropertiesRepository.findByPropertyKey(propertiesKey)
+    private JpaProperties makeJpaProperties(User actorUser, String propertiesKey, Function<Jpa, Object> databaseProperties, Jpa jpa) {
+        return jpaPropertiesRepository.findByPropertyKeyAndPropertyValue(propertiesKey, databaseProperties.apply(jpa).toString())
                 .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, databaseProperties.apply(properties.getDatabase().getJpa()).toString(), DatabasePropertyType.JPA)));
     }
 }

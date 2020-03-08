@@ -12,4 +12,5 @@ import java.util.Optional;
 @Repository
 public interface JpaPropertiesRepository extends JpaRepository<JpaProperties, BigInteger> {
     Optional<JpaProperties> findByPropertyKey(String propertyKey);
+    Optional<JpaProperties> findByPropertyKeyAndPropertyValue(String propertyKey, String propertyValue);
 }
