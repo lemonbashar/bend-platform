@@ -46,8 +46,8 @@ public class JwtAuthenticationServiceTest {
 
     CustomUserDetailsService customUserDetailsService;
 
-    private static final String USERNAME="lemon";
-    private static final String PASSWORD="lemon1234";
+    private static final String USERNAME = "lemon";
+    private static final String PASSWORD = "lemon1234";
 
     private LoginInfo loginInfo;
 
@@ -59,7 +59,7 @@ public class JwtAuthenticationServiceTest {
 
     @BeforeEach
     public void beforeEach() {
-        this.loginInfo=new LoginInfo();
+        this.loginInfo = new LoginInfo();
         this.loginInfo.setUsername(USERNAME);
         this.loginInfo.setRememberMe(true);
         this.loginInfo.setPassword(PASSWORD);

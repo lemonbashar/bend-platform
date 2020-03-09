@@ -5,7 +5,6 @@ import bend.library.config.security.data.AccountInfo;
 import bend.library.config.security.data.LoginInfo;
 import bend.library.config.security.jwt.constant.JwtConstants;
 import bend.library.config.security.jwt.data.JwtAccountInfo;
-import bend.library.config.security.jwt.filter.jwt.JwtAuthenticationFilter;
 import bend.library.config.security.service.AuthenticationManager;
 import bend.library.config.security.service.AuthenticationService;
 import lombok.NonNull;
@@ -31,7 +30,7 @@ public class JwtAuthenticationService implements AuthenticationService {
     public ResponseEntity<AccountInfo> authenticate(LoginInfo loginInfo) {
         return BendOptional.ofNullable(jwtAuthenticationManager.authenticate(loginInfo))
                 .mustTrue(Objects::nonNull)
-                .map(accountInfo -> new ResponseEntity<>(accountInfo,BendOptional.of(new HttpHeaders()).mustTrue(()->accountInfo instanceof JwtAccountInfo, "Authentication Manager Must Return accountInfo, which is an instance of JwtAccountInfo").insideOperation(header->header.add(JwtConstants.AUTHORIZATION_HEADER, ((JwtAccountInfo)accountInfo).getToken())).get(), HttpStatus.OK)).get();
+                .map(accountInfo -> new ResponseEntity<>(accountInfo, BendOptional.of(new HttpHeaders()).mustTrue(() -> accountInfo instanceof JwtAccountInfo, "Authentication Manager Must Return accountInfo, which is an instance of JwtAccountInfo").insideOperation(header -> header.add(JwtConstants.AUTHORIZATION_HEADER, ((JwtAccountInfo) accountInfo).getToken())).get(), HttpStatus.OK)).get();
     }
 
 }

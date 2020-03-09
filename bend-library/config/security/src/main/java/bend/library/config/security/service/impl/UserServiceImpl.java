@@ -37,10 +37,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User systemUser() {
         return userRepository.findByUsername(SecurityConstants.UserConstants.SYSTEM_USER)
-                .orElseGet(()->
-                    BendOptional.of(userRepository.save(new User(SecurityConstants.UserConstants.SYSTEM_USER, saltedPasswordEncoder.encode(SecurityConstants.UserConstants.SYSTEM_PASSWORD, SecurityConstants.UserConstants.SYSTEM_USER), SecurityConstants.UserConstants.SYSTEM_EMAIL, new HashSet<>(), null)))
-                            .insideOperation(user->user.setAuthorities(authorityService.validRawAuthorities(user,SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN)))
-                            .nowReturn(userRepository::save));
+                .orElseGet(() ->
+                        BendOptional.of(userRepository.save(new User(SecurityConstants.UserConstants.SYSTEM_USER, saltedPasswordEncoder.encode(SecurityConstants.UserConstants.SYSTEM_PASSWORD, SecurityConstants.UserConstants.SYSTEM_USER), SecurityConstants.UserConstants.SYSTEM_EMAIL, new HashSet<>(), null)))
+                                .insideOperation(user -> user.setAuthorities(authorityService.validRawAuthorities(user, SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN)))
+                                .nowReturn(userRepository::save));
     }
 
     @Override
@@ -54,6 +54,6 @@ public class UserServiceImpl implements UserService {
     public User saveUser(String username, String email, String password, String... authorities) {
         return BendOptional.ofNullable(SecurityUtil.loggedInUser())
                 .ifNotPresentThenConsume(this::systemUser)
-                .map(systemUser->userRepository.save(new User(username, saltedPasswordEncoder.encode(password, username),email, authorityService.validRawAuthorities(systemUser, authorities), systemUser))).get();
+                .map(systemUser -> userRepository.save(new User(username, saltedPasswordEncoder.encode(password, username), email, authorityService.validRawAuthorities(systemUser, authorities), systemUser))).get();
     }
 }

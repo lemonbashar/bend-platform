@@ -8,6 +8,6 @@ public final class JwtConstants {
     public static final String USER_NAME_KEY = "uname";
 
     public static String bearerWith(String token) {
-        return BEARER+token;
+        return BEARER + token;
     }
 }

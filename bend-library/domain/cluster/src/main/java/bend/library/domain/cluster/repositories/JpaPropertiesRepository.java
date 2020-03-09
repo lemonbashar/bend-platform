@@ -6,8 +6,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Transactional
 @Repository
 public interface JpaPropertiesRepository extends JpaRepository<JpaProperties, BigInteger> {
+    Optional<JpaProperties> findByPropertyKey(String propertyKey);
+    Optional<JpaProperties> findByPropertyKeyAndPropertyValue(String propertyKey, String propertyValue);
 }

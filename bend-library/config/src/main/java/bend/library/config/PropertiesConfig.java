@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Config properties files
+ *
  * @author lemon
  * Email lemon.bashar@gmail.com
  * Created 1/26/2020
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 
 @ComponentScan("bend.library.config")
 @Configuration
+@ComponentScan("bend.library.config")
 @EnableConfigurationProperties
 public class PropertiesConfig {
 

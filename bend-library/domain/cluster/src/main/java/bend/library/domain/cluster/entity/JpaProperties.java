@@ -1,6 +1,8 @@
 package bend.library.domain.cluster.entity;
 
+import bend.library.domain.cluster.enumeretion.DatabasePropertyType;
 import bend.library.domain.entity.BaseEntity;
+import bend.library.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +19,7 @@ import java.math.BigInteger;
 @Table(name = "DB_CLUSTER_JPA_PROPERTIES")
 @Entity
 public class JpaProperties extends BaseEntity<BigInteger> implements Serializable {
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "DB_CLUSTER_JPA_PROPERTIES_PK")
@@ -30,7 +32,17 @@ public class JpaProperties extends BaseEntity<BigInteger> implements Serializabl
     @Column(name = "PROPERTY_VALUE")
     private String propertyValue;
 
-    @ManyToOne
-    @JoinColumn(name = "DATABASE_CONFIG_ID")
-    private DatabaseConfig databaseConfig;
+    @Column(name = "PROPERTY_TYPE")
+    private DatabasePropertyType propertyType = DatabasePropertyType.NATIVE;
+
+    public JpaProperties(User user, String propertyKey, String propertyValue) {
+        this(user, propertyKey, propertyValue, DatabasePropertyType.NATIVE);
+    }
+
+    public JpaProperties(User actorUser, String propertyKey, String propertyValue, DatabasePropertyType propertyType) {
+        super(actorUser, null);
+        this.propertyKey = propertyKey;
+        this.propertyValue = propertyValue;
+        this.propertyType = propertyType;
+    }
 }

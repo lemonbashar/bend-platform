@@ -52,7 +52,7 @@ public class JwtAuthenticationFilterTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private ObjectMapper objectMapper=new ObjectMapper();
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
     public void setUp() {
@@ -62,10 +62,10 @@ public class JwtAuthenticationFilterTest {
     @Test
     void testJWTFilter() throws Exception {
         ResponseEntity<AccountInfo> accountInfoEntity = jwtAuthenticationServiceTest.authenticateCurrent();
-        JwtAccountInfo jwtAccountInfo= (JwtAccountInfo) accountInfoEntity.getBody();
+        JwtAccountInfo jwtAccountInfo = (JwtAccountInfo) accountInfoEntity.getBody();
         assertNotNull(jwtAccountInfo);
         assertNotNull(jwtAccountInfo.getToken());
-        MvcResult mvcResult=mockMvc.perform(
+        MvcResult mvcResult = mockMvc.perform(
                 get(RestApiProvider.build(RestApiProvider.AccountApi.ACCOUNT_ROOT_API, RestApiProvider.AccountApi.CURRENT_ACCOUNT_INFO))
                         .accept(MediaType.APPLICATION_JSON_VALUE).header(JwtConstants.AUTHORIZATION_HEADER, JwtConstants.bearerWith(jwtAccountInfo.getToken()))
         ).andDo(print()).andExpect(status().isOk()).andReturn();

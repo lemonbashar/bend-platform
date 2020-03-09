@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 public interface AuthenticationService {
     /**
      * Authenticate provided user-details user and return response-entity with module implemented account-info.
+     *
      * @param loginInfo User-Details of user-credentials
      */
     ResponseEntity<AccountInfo> authenticate(LoginInfo loginInfo);

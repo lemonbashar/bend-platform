@@ -6,8 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Supplier;
 
 public class ResponseType<T> {
     private final BendOptional<T> body;
@@ -19,8 +17,8 @@ public class ResponseType<T> {
     @SuppressWarnings("unchecked")
     public ResponseType(T body, HttpStatus httpStatus, HttpHeaders httpHeaders) {
         this.body = body instanceof BendOptional ? (BendOptional<T>) body : BendOptional.of(body);
-        this.httpStatus = httpStatus==null? HttpStatus.OK: httpStatus;
-        this.httpHeaders = httpHeaders == null? new HttpHeaders() : httpHeaders ;
+        this.httpStatus = httpStatus == null ? HttpStatus.OK : httpStatus;
+        this.httpHeaders = httpHeaders == null ? new HttpHeaders() : httpHeaders;
     }
 
     public ResponseEntity<T> post() {
@@ -33,7 +31,7 @@ public class ResponseType<T> {
 
     @SuppressWarnings("unchecked")
     public ResponseEntity<T> response() {
-        return body.ifThenMap(Objects::nonNull, t->new ResponseEntity<T>(t, this.httpHeaders, this.httpStatus))
+        return body.ifThenMap(Objects::nonNull, t -> new ResponseEntity<T>(t, this.httpHeaders, this.httpStatus))
                 .orElse((ResponseEntity<T>) empty);
     }
 }

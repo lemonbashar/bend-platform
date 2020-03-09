@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 /**
  * This is the boot-configuration for domain module, which is used to search component's from
  * it's bootstrap path and associate all child packages.
+ *
  * @author lemon
  * Email lemon.bashar@gmail.com
  * Created 2/7/2020

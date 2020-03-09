@@ -26,7 +26,7 @@ import java.util.Set;
 @Table(name = "DB_MAIN_BEND_USER")
 @Entity
 public class User extends BaseEntity<BigInteger> implements Serializable {
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "DB_MAIN_BEND_USER_PK")
@@ -45,8 +45,8 @@ public class User extends BaseEntity<BigInteger> implements Serializable {
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "JT_DB_MAIN_BEND_USER_DB_MAIN_AUTHORITY", uniqueConstraints = @UniqueConstraint(name = "USER_ID_AUTHORITY_UNIQUE_KEY", columnNames = {"BEND_USER_ID", "AUTHORITY_NAME"}),joinColumns = @JoinColumn(name = "BEND_USER_ID", referencedColumnName = "ID", nullable = false), inverseJoinColumns = @JoinColumn(name = "AUTHORITY_NAME", referencedColumnName = "AUTHORITY_NAME", nullable = false))
-    private Set<Authority> authorities=new HashSet<>();
+    @JoinTable(name = "JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY", uniqueConstraints = @UniqueConstraint(name = "USER_ID_AUTHORITY_UNIQUE_KEY", columnNames = {"BEND_USER_ID", "AUTHORITY_NAME"}), joinColumns = @JoinColumn(name = "BEND_USER_ID", referencedColumnName = "ID", nullable = false), inverseJoinColumns = @JoinColumn(name = "AUTHORITY_NAME", referencedColumnName = "AUTHORITY_NAME", nullable = false))
+    private Set<Authority> authorities = new HashSet<>();
 
     public User(String username, String encodedPassword, String email, Set<Authority> authorities, User createdBy) {
         super(createdBy, null, LocalDate.now(), LocalDate.now(), true);

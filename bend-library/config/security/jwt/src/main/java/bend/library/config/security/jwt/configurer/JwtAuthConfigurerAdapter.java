@@ -1,7 +1,6 @@
 package bend.library.config.security.jwt.configurer;
 
 import bend.library.config.security.jwt.filter.jwt.JwtAuthenticationFilter;
-import bend.library.config.security.jwt.jwt.TokenProvider;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;

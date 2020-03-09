@@ -21,16 +21,16 @@ public class ProdConditionalHttpSecurityApply implements ConditionalApply<HttpSe
     @Override
     public void apply(HttpSecurity http) throws Exception {
         http
-            .exceptionHandling(exceptionHandling->exceptionHandling.accessDeniedPage(APiConstants.UtilityApi.ACCESS_DENIED_URL))
-            .headers()
-            .frameOptions()
-            .disable()
-            .and()
-            .authorizeRequests()
-            .mvcMatchers(APiConstants.PRIVATE_ROOT + "/**").authenticated()
-            .mvcMatchers(APiConstants.PRIVATE_ADMIN_ROOT + "/**").hasAnyAuthority(ROLES_FOR_ADMIN)
-            .mvcMatchers(APiConstants.PUBLIC_ROOT + "/**").permitAll()
-            .mvcMatchers("/actuator/**").hasAnyAuthority(ROLES_FOR_SUPER_ADMIN)
-            .anyRequest().authenticated();
+                .exceptionHandling(exceptionHandling -> exceptionHandling.accessDeniedPage(APiConstants.UtilityApi.ACCESS_DENIED_URL))
+                .headers()
+                .frameOptions()
+                .disable()
+                .and()
+                .authorizeRequests()
+                .mvcMatchers(APiConstants.PRIVATE_ROOT + "/**").authenticated()
+                .mvcMatchers(APiConstants.PRIVATE_ADMIN_ROOT + "/**").hasAnyAuthority(ROLES_FOR_ADMIN)
+                .mvcMatchers(APiConstants.PUBLIC_ROOT + "/**").permitAll()
+                .mvcMatchers("/actuator/**").hasAnyAuthority(ROLES_FOR_SUPER_ADMIN)
+                .anyRequest().authenticated();
     }
 }

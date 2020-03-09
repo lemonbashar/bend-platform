@@ -1,0 +1,33 @@
+package bend.library.config.component;
+
+import bend.library.config.PropertiesConfig;
+import bend.library.config.constants.ProfileConstants;
+import bend.library.config.service.EncoderService;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
+@ActiveProfiles(profiles = "test")
+@TestPropertySource(locations = "classpath:config/application-test.yml")
+@SpringBootTest(classes = {PropertiesConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+class EncoderServiceTest {
+    @Autowired
+    private EncoderService encoderService;
+
+    @Test
+    void encode() {
+        final String text = "lemon";
+        final String encoded = encoderService.encode(text);
+        System.out.println(encoded);
+        final String decoded = encoderService.decode(encoded);
+        System.out.println(decoded);
+        assertEquals(text, decoded);
+    }
+
+}

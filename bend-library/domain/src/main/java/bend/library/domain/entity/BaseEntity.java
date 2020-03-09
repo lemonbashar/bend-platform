@@ -2,7 +2,6 @@ package bend.library.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -19,7 +18,6 @@ import java.time.LocalDate;
  * Email lemon.bashar@gmail.com
  * Created 1/29/2020
  */
-@NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
@@ -46,6 +44,34 @@ public abstract class BaseEntity<ID> {
     @Column(name = "ACTIVE_STATUS")
     private boolean active;
 
+    public BaseEntity() {
+        this.active = true;
+        this.createDate = LocalDate.now();
+        this.updateDate = LocalDate.now();
+    }
+
+    public BaseEntity(User createBy, User updateBy) {
+        this();
+        this.createBy = createBy;
+        this.updateBy = updateBy;
+    }
+
     public abstract ID getId();
+
     public abstract void setId(ID id);
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BaseEntity<?> that = (BaseEntity<?>) o;
+
+        return getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
 }

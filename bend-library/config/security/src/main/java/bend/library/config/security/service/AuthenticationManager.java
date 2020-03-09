@@ -20,6 +20,7 @@ public interface AuthenticationManager {
 
     /**
      * Logout the user and do after work of logout.
+     *
      * @param logoutInfo information about logout.
      */
     void logout(LogoutInfo logoutInfo);
