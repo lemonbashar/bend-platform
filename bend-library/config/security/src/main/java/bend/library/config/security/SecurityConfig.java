@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * Email lemon.bashar@gmail.com
  * Created 2/17/2020
  */
-@Configuration
 @ComponentScan("bend.library.config.security")
 public class SecurityConfig {
 }

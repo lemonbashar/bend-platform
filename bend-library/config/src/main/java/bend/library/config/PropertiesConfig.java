@@ -4,6 +4,7 @@ import bend.framework.properties.springproperties.SpringProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * Created 1/26/2020
  */
 
+@ComponentScan("bend.library.config")
 @Configuration
 @EnableConfigurationProperties
 public class PropertiesConfig {

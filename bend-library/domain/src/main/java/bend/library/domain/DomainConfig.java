@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * Email lemon.bashar@gmail.com
  * Created 2/7/2020
  */
-@Configuration
 @ComponentScan("bend.library.domain")
 @EnableJpaRepositories(
         basePackages = {"bend.library.domain.repositories"}
