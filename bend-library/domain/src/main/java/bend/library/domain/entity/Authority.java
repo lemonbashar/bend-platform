@@ -36,7 +36,6 @@ public class Authority extends BaseEntity<BigInteger> implements Serializable {
     private String name;
 
 
-
     public Authority(User createBy, String name) {
         super(createBy, null, LocalDate.now(), null, true);
         this.name = name;

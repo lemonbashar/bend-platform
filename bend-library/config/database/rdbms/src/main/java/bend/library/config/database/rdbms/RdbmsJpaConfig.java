@@ -6,9 +6,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.hibernate.*;
 import org.hibernate.cfg.Environment;
-import org.hibernate.type.Type;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -22,9 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.SharedCacheMode;
 import javax.sql.DataSource;
-import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 

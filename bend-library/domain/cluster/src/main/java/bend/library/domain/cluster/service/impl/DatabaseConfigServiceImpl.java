@@ -81,7 +81,7 @@ public class DatabaseConfigServiceImpl implements DatabaseConfigService {
             DatabaseConfig databaseConfig = databaseConfigRepository.findBySchema(schema).orElseGet(() -> new DatabaseConfig(actorUser, null));
             databaseConfig.setHost(host);
             databaseConfig.setSchema(schema);
-            if(databaseConfig.getId() != null) {
+            if (databaseConfig.getId() != null) {
                 databaseConfig.setUpdateBy(actorUser);
                 databaseConfig.setUpdateDate(LocalDate.now());
             }
