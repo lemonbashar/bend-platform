@@ -1,13 +1,13 @@
 package bend.library.config.security.jwt.jwt;
 
 import bend.library.config.PropertiesConfig;
+import bend.library.config.WebConfigurer;
 import bend.library.config.constants.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.config.CommonSecurityConfig;
 import bend.library.config.security.data.LoginInfo;
 import bend.library.config.security.jwt.JwtSecurityConfig;
-import bend.library.controller.WebConfigurer;
 import bend.library.domain.DomainConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;

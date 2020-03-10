@@ -43,8 +43,6 @@ allprojects {
 subprojects {
 
 	dependencies {
-		implementation "javax.validation:validation-api:$javaxValidationApi"
-
 		implementation "bend.framework:bend-base:$bendFrameworkVersion"
 		implementation "bend.framework:bend-data-structure:$bendFrameworkVersion"
 		implementation "bend.framework:bend-properties:$bendFrameworkVersion"
@@ -62,12 +60,13 @@ subprojects {
 			exclude group: "org.junit.vintage" , module: "junit-vintage-engine"
 		}
 		testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+		testImplementation 'org.springframework.boot:spring-boot-starter-web'
 	}
 
 	test {
 		useJUnitPlatform{
 			includeTags 'ndb'
-			includeTags 'db'
+			//includeTags 'db'
 			//excludeTags 'ndb'
 		}
 	}

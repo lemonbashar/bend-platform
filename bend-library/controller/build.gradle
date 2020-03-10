@@ -9,6 +9,7 @@ dependencyManagement {
 allprojects {
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation "javax.validation:validation-api:$javaxValidationApi"
         implementation project(':bend-library:config')
         implementation project(':bend-library:data')
         implementation project(':bend-library:config:security')

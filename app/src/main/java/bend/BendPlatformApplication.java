@@ -1,12 +1,12 @@
 package bend;
 
 import bend.library.config.PropertiesConfig;
+import bend.library.config.WebConfigurer;
 import bend.library.config.constants.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.controller.ControllerConfig;
-import bend.library.controller.WebConfigurer;
 import bend.library.controller.rest.RestConfig;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.cluster.ClusterDomainConfig;

@@ -11,7 +11,6 @@ allprojects {
         implementation project(':bend-library:domain')
         implementation "org.springframework.boot:spring-boot-starter-web"
         implementation 'org.springframework.boot:spring-boot-starter-security'
-        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
         testImplementation project(':bend-library:config:database')
         testImplementation project(':bend-library:config:database:rdbms')
