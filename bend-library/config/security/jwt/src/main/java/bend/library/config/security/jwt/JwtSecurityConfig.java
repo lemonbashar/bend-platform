@@ -50,11 +50,11 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().apply(jwtAuthConfigurerAdapter);
+        http
+            .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and().apply(jwtAuthConfigurerAdapter);
         conditionalSecurityApply.apply(http);
     }
 }
