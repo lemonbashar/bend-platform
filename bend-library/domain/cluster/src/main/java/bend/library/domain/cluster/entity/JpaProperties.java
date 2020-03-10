@@ -1,5 +1,6 @@
 package bend.library.domain.cluster.entity;
 
+import bend.library.annotation.prepersist.PrePersist;
 import bend.library.domain.cluster.enumeretion.DatabasePropertyType;
 import bend.library.domain.entity.BaseEntity;
 import bend.library.domain.entity.User;
@@ -16,6 +17,7 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @Setter
 @Getter
+@PrePersist
 @Table(name = "DB_CLUSTER_JPA_PROPERTIES")
 @Entity
 public class JpaProperties extends BaseEntity<BigInteger> implements Serializable {

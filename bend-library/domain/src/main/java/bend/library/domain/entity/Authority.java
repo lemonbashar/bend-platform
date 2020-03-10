@@ -1,5 +1,6 @@
 package bend.library.domain.entity;
 
+import bend.library.annotation.prepersist.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Setter
 @Getter
+@PrePersist
 @Table(name = "DB_MAIN_AUTHORITY")
 @Entity
 public class Authority extends BaseEntity<BigInteger> implements Serializable {

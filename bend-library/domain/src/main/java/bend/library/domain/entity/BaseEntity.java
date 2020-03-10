@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * @author lemon
@@ -72,6 +73,6 @@ public abstract class BaseEntity<ID> {
 
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        return Objects.isNull(getId()) ? super.hashCode() : getId().hashCode();
     }
 }

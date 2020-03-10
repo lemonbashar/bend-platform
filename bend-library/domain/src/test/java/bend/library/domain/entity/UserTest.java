@@ -7,6 +7,7 @@ import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.service.AuthorityService;
 import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.config.security.service.UserService;
+import bend.library.core.prepersist.PrePersistConfiguration;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.repositories.UserRepository;
 import org.junit.jupiter.api.Tag;
@@ -23,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 @Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
-@SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, DomainConfig.class, SecurityConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, DomainConfig.class, SecurityConfig.class, PrePersistConfiguration.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class UserTest {
 
     private static final String USERNAME = "test-username";

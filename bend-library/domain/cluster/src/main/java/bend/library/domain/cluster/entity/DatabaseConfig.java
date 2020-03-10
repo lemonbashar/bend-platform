@@ -1,6 +1,7 @@
 package bend.library.domain.cluster.entity;
 
 import bend.framework.properties.springproperties.database.DatabaseType;
+import bend.library.annotation.prepersist.PrePersist;
 import bend.library.domain.entity.BaseEntity;
 import bend.library.domain.entity.User;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Setter
 @Getter
+@PrePersist
 @Table(name = "DB_CLUSTER_DATABASE_CONFIG")
 @Entity
 public class DatabaseConfig extends BaseEntity<BigInteger> implements Serializable {
