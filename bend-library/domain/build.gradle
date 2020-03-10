@@ -9,7 +9,9 @@ dependencyManagement {
 allprojects {
     dependencies {
         implementation project(':bend-library:config')
+        implementation project(':bend-library:annotation:pre-persist-annotation')
 
+        testImplementation project(':bend-library:core:pre-persist')
         testImplementation project(':bend-library:config:database')
         testImplementation project(':bend-library:config:database:rdbms')
         testImplementation project(':bend-library:config:security')

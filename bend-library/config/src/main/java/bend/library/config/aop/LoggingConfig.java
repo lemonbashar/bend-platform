@@ -23,9 +23,9 @@ import java.util.Arrays;
  */
 @RequiredArgsConstructor
 @Log4j2
-@Profile({ProfileConstants.DEV,ProfileConstants.TEST})
-@Component
-@Aspect
+//@Profile({ProfileConstants.DEV,ProfileConstants.TEST})
+//@Component
+//@Aspect
 public class LoggingConfig {
     private final @NonNull Environment env;
 

@@ -7,7 +7,7 @@ bend-platform:
 
 spring:
   profiles:
-    active: dev
+    active: dev, api-docs
 server:
   port: 8787
   servlet:

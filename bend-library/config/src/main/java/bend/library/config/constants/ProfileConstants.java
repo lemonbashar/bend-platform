@@ -19,11 +19,12 @@ public final class ProfileConstants {
     /**
      * Profile Development with basic security
      */
-    public static final String DEV_SECURE = "devsecure";
+    public static final String DEV_SECURE = "dev-secure";
     /**
      * Profile Production with extreme level security
      */
-    public static final String PROD_SECURE = "prodsecure";
+    public static final String PROD_SECURE = "prod-secure";
+    public static final String API_DOCS = "api-docs";
 
     public static final class TestInclude {
         /**

@@ -1,7 +1,10 @@
 rootProject.name = 'bend-platform'
 
 include ':app'
+include ':bend-library:annotation'
+include ':bend-library:annotation:pre-persist-annotation'
 include ':bend-library:config'
+include ':bend-library:config:api-docs'
 include ':bend-library:config:broker'
 include ':bend-library:config:broker:amqp'
 include ':bend-library:config:broker:kafka'
