@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
  * Created 1/26/2020
  */
 
-@ComponentScan("bend.library.config")
 @Configuration
 @ComponentScan("bend.library.config")
 @EnableConfigurationProperties

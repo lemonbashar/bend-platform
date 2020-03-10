@@ -6,6 +6,10 @@ dependencyManagement {
     }
 }
 
+dependencies {
+    implementation "org.aspectj:aspectjweaver:$aspectJVersion"
+}
+
 subprojects {
     jar {
         archivesBaseName = 'bend-library-config-' + project.name

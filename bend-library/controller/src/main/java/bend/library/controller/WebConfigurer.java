@@ -1,4 +1,4 @@
-package bend.library.config.security.config;
+package bend.library.controller;
 
 import bend.framework.properties.springproperties.SpringProperties;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +24,8 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/*")
-                .allowedHeaders("*")
-                .allowedOrigins(properties.getSettings().getSecurity().getCors().getAllowedClients()) /*FOR ALL CLIENT URL*/
+                .allowedHeaders("*").allowedOrigins("*")
+                //.allowedOrigins(properties.getSettings().getSecurity().getCors().getAllowedClients()) /*FOR ALL CLIENT URL*/
                 .allowedMethods("*")
                 .allowCredentials(true);
     }

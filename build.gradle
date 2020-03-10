@@ -35,6 +35,8 @@ allprojects {
 		javaxServletVersion = '4.0.1'
 		swaggerUiVersion = '2.6.1'
 		postgreVersion = '42.2.2'
+		jwtLatest = '0.11.0'
+		aspectJVersion = '1.9.5'
 	}
 }
 

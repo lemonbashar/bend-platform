@@ -5,7 +5,3 @@ dependencyManagement {
         mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
     }
 }
-
-dependencies {
-
-}

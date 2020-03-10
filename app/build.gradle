@@ -16,17 +16,19 @@ repositories {
 }
 
 dependencies {
-    implementation project(':bend-library:domain')
-    implementation project(':bend-library:domain:cluster')
     implementation project(':bend-library:config')
-    implementation project(':bend-library:core:pre-persist')
-    implementation project(':bend-library:config:api-docs')
     implementation project(':bend-library:config:database')
     implementation project(':bend-library:config:database:rdbms')
+    implementation project(':bend-library:domain')
+    implementation project(':bend-library:domain:cluster')
+    implementation project(':bend-library:core:pre-persist')
+    implementation project(':bend-library:config:security')
     implementation project(':bend-library:config:security:jwt')
+    implementation project(':bend-library:controller')
+    implementation project(':bend-library:controller:rest')
+    implementation project(':bend-library:config:api-docs')
     implementation "org.postgresql:postgresql:$postgreVersion"
 
-
     implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 }

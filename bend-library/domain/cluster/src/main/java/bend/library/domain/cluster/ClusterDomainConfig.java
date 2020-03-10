@@ -1,6 +1,7 @@
 package bend.library.domain.cluster;
 
 import bend.library.config.constants.BaseConstants;
+import bend.library.domain.DomainConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -16,7 +17,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * Email lemon.bashar@gmail.com
  * Created 2/7/2020
  */
-@ComponentScan("bend.library.domain.cluster")
+@Configuration
+@ComponentScan(value = "bend.library.domain.cluster")
 @EnableJpaRepositories(
         basePackages = {"bend.library.domain.cluster.repositories"}
         , entityManagerFactoryRef = BaseConstants.BASE_ENTITY_MANAGER_NAME

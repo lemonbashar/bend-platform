@@ -15,7 +15,6 @@ import java.security.SecureRandom;
  * Email lemon.bashar@gmail.com
  * Created 2/13/2020
  */
-@EnableWebMvc
 @Configuration
 public class CommonSecurityConfig {
 

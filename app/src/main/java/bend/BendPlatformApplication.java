@@ -1,6 +1,15 @@
 package bend;
 
+import bend.library.config.PropertiesConfig;
 import bend.library.config.constants.ProfileConstants;
+import bend.library.config.database.rdbms.RdbmsJpaConfig;
+import bend.library.config.security.SecurityConfig;
+import bend.library.config.security.jwt.JwtSecurityConfig;
+import bend.library.controller.ControllerConfig;
+import bend.library.controller.WebConfigurer;
+import bend.library.controller.rest.RestConfig;
+import bend.library.domain.DomainConfig;
+import bend.library.domain.cluster.ClusterDomainConfig;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -12,7 +21,6 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.annotation.PostConstruct;
 import java.net.InetAddress;
@@ -20,10 +28,17 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 
+//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
 @Log4j2
 @RequiredArgsConstructor
-@EnableWebMvc
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+@SpringBootApplication(scanBasePackageClasses = {PropertiesConfig.class, RdbmsJpaConfig.class,
+        DomainConfig.class,
+        WebConfigurer.class,
+        SecurityConfig.class,
+        ClusterDomainConfig.class,
+        JwtSecurityConfig.class, ControllerConfig.class, RestConfig.class},
+        exclude = {DataSourceAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 public class BendPlatformApplication {
 
     public static ConfigurableApplicationContext applicationContext;

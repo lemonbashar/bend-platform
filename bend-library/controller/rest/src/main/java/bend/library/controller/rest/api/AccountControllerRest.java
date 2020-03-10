@@ -1,4 +1,4 @@
-package bend.library.controller.rest;
+package bend.library.controller.rest.api;
 
 import bend.library.config.security.data.AccountInfo;
 import bend.library.config.security.util.SecurityUtil;
