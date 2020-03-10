@@ -1,0 +1,19 @@
+plugins { id "io.spring.dependency-management" }
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    }
+}
+
+allprojects {
+    dependencies {
+        implementation project(':bend-library:config')
+    }
+}
+
+subprojects {
+    jar {
+        archivesBaseName = 'bend-library-annotation-' + project.name
+    }
+}
