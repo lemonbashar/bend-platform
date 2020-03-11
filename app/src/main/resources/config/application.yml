@@ -2,13 +2,22 @@
 
 bend-platform:
   settings:
-    general:
-      name: Spring-Boot-Application
+      general:
+          name: Spring-Boot-Application
+  database:
+      hibernate:
+          annotated-packages:
+              - bend.library.domain.entity
+              - bend.library.domain.cluster.entity
+      jpa:
+          repository-locations:
+              - bend.library.domain.repositories
+              - bend.library.domain.cluster.repositories
 
 spring:
-  profiles:
-    active: dev, api-docs
+    profiles:
+        active: dev
 server:
-  port: 8787
-  servlet:
-    context-path: /bend
+    port: 8787
+    servlet:
+        context-path: /bend

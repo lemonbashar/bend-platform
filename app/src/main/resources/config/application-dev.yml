@@ -2,7 +2,7 @@
 
 spring:
     profiles:
-        include: postgre
+        include: postgre, liquibase, api-docs
 
 bend-platform:
     settings:
@@ -56,23 +56,17 @@ bend-platform:
             queue-capacity: 1000
             thread-name-prefix: spring-dev
     database:
+        liquibase-type: update
+        maximum-active-connection-size: 200
+        max-idle-connection-size: 100
+        min-idle-connection-size: 20
         hibernate:
-            hbm2-ddl-auto: update
+            hbm2-ddl-auto: none
             format-sql: true
             comments: true
             show-sql: true
-#            enable-second-level-cache: true
-#            enable-strutured-cache: true
-#            enable-auto-evict-coll-cache: true
-#            enable-query-cache: true
-            annotated-packages:
-                - bend.library.domain.entity
-                - bend.library.domain.cluster.entity
         jpa:
-            persistent-unit: SPRING
-            repository-locations:
-                - bend.library.domain.repositories
-                - bend.library.domain.cluster.repositories
+            persistent-unit: BEND-PU
     cache:
         eh-cache:
             max-local-heap-size: 20M

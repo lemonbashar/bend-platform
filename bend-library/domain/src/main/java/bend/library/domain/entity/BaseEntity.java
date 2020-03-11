@@ -41,7 +41,6 @@ public abstract class BaseEntity<ID> {
     @Column(name = "UPDATE_DATE")
     private LocalDate updateDate;
 
-    @Value("true")
     @Column(name = "ACTIVE_STATUS")
     private boolean active;
 

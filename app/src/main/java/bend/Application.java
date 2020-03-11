@@ -4,6 +4,7 @@ import bend.library.config.PropertiesConfig;
 import bend.library.config.WebConfigurer;
 import bend.library.config.constants.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
+import bend.library.config.migration.LiquibaseMigrationConfiguration;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.controller.ControllerConfig;
@@ -17,6 +18,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
@@ -32,21 +34,22 @@ import java.util.Collection;
 
 @Log4j2
 @RequiredArgsConstructor
-@SpringBootApplication(scanBasePackageClasses = {PropertiesConfig.class, RdbmsJpaConfig.class,
+@SpringBootApplication(scanBasePackageClasses = {PropertiesConfig.class, LiquibaseMigrationConfiguration.class,
+        RdbmsJpaConfig.class,
         DomainConfig.class,
         WebConfigurer.class,
         SecurityConfig.class,
         ClusterDomainConfig.class,
         JwtSecurityConfig.class, ControllerConfig.class, RestConfig.class},
-        exclude = {DataSourceAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-public class BendPlatformApplication {
+        exclude = {DataSourceAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class, HibernateJpaAutoConfiguration.class, LiquibaseAutoConfiguration.class})
+public class Application {
 
     public static ConfigurableApplicationContext applicationContext;
 
     private final @NonNull Environment env;
 
     public static void main(String[] args) throws UnknownHostException {
-        SpringApplication application = new SpringApplication(BendPlatformApplication.class);
+        SpringApplication application = new SpringApplication(Application.class);
         SimpleCommandLinePropertySource propertySource = new SimpleCommandLinePropertySource(args);
         //addDefaultProfile(application, propertySource);
         applicationContext = application.run(args);
@@ -75,7 +78,7 @@ public class BendPlatformApplication {
             log.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
             Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
             if (activeProfiles.contains(ProfileConstants.DEV) && activeProfiles.contains(ProfileConstants.PROD)) {
-                log.error("You have misconfigured your application! " +
+                log.error("You have mis-configured your application! " +
                         "It should not run with both the 'dev' and 'prod' profiles at the same time.");
             }
         }
