@@ -13,8 +13,7 @@ public class RestApiProvider {
 
     public static final class ApplicationApi {
         public static final String APPLICATION_ROOT_API = APiConstants.PUBLIC_ROOT + "/application";
-        public static final String NAME = APPLICATION_ROOT_API + "/name";
-        public static final String LICENCE = APPLICATION_ROOT_API + "/licence";
+        public static final String LICENCE = "/licence";
     }
 
     public static final class AccountApi {
