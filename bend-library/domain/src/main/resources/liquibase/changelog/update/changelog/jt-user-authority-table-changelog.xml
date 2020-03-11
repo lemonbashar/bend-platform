@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <property name="now" value="now()" dbms="mysql,h2,postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="bigInteger" value="bigint"/>
+    <property name="bigInteger" value="numeric(19,2)" dbms="postgresql"/>
+
+    <property name="localDate" value="date" dbms="postgresql"/>
+
+    <changeSet author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY;</sql>
+        <createTable tableName="JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY">
+            <column name="BEND_USER_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUTHORITY_NAME" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY"
+                             columnNames="BEND_USER_ID,AUTHORITY_NAME" constraintName="JT_USER_X_AUTHORITY_UNIQUE_KEY"/>
+        <rollback>
+            <dropTable tableName="JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY"/>
+        </rollback>
+
+        <addForeignKeyConstraint baseTableName="JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY" baseColumnNames="BEND_USER_ID"
+                                 constraintName="FK_BEND_USER_2_JT_USER_X_AUTHORITY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY" baseColumnNames="AUTHORITY_NAME"
+                                 constraintName="FK_AUTHORITY_2_JT_USER_X_AUTHORITY"
+                                 referencedTableName="DB_MAIN_AUTHORITY"
+                                 referencedColumnNames="AUTHORITY_NAME"/>
+
+        <loadData tableName="JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY" file="classpath:liquibase/data/jt-user-authority-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>

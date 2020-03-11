@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <property name="now" value="now()" dbms="mysql,h2,postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="bigInteger" value="bigint"/>
+    <property name="bigInteger" value="numeric(19,2)" dbms="postgresql"/>
+
+    <property name="localDate" value="date" dbms="postgresql"/>
+
+    <changeSet author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS DB_MAIN_AUTHORITY;</sql>
+        <createTable tableName="DB_MAIN_AUTHORITY">
+            <column name="ID" valueSequenceNext="DB_MAIN_AUTHORITY_SEQ" type="${bigInteger}">
+                <constraints primaryKey="true" primaryKeyName="PK_AUTHORITY"/>
+            </column>
+            <column name="CREATE_BY" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_BY" type="${bigInteger}"/>
+            <column name="UPDATE_DATE" type="${localDate}"/>
+            <column name="ACTIVE_STATUS" type="boolean"/>
+            <!--END-OF-COMMON_BASE-ENTITY-->
+
+            <column name="AUTHORITY_NAME" type="VARCHAR(32)">
+                <constraints unique="true" uniqueConstraintName="UK_AUTHORITY_NAME"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="DB_MAIN_AUTHORITY"/>
+        </rollback>
+
+        <createSequence sequenceName="DB_MAIN_AUTHORITY_SEQ" incrementBy="1" maxValue="999999999999999999" startValue="6" minValue="1" />
+
+        <addForeignKeyConstraint baseTableName="DB_MAIN_BEND_USER" baseColumnNames="CREATE_BY"
+                                 constraintName="FK_BEND_USER_2_AUTHORITY_CREATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_MAIN_BEND_USER" baseColumnNames="UPDATE_BY"
+                                 constraintName="FK_BEND_USER_2_AUTHORITY_UPDATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+
+        <loadData tableName="DB_MAIN_AUTHORITY" file="classpath:liquibase/data/authority/authority-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>
