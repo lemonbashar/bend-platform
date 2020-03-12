@@ -17,6 +17,10 @@ bend-platform:
 spring:
     profiles:
         active: dev
+    liquibase:
+        enabled: true
+    flyway:
+        enabled: false
 server:
     port: 8787
     servlet:
