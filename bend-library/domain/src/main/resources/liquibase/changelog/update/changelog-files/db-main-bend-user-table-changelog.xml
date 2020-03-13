@@ -11,7 +11,7 @@
 
     <property name="localDate" value="date" dbms="postgresql"/>
 
-    <changeSet author="bend" id="1">
+    <changeSet context="core" author="bend" id="1">
         <sql>DROP TABLE IF EXISTS DB_MAIN_BEND_USER;</sql>
         <createTable tableName="DB_MAIN_BEND_USER">
             <column name="ID" valueSequenceNext="DB_MAIN_BEND_USER_SEQ" type="${bigInteger}">
