@@ -1,6 +1,7 @@
 package bend.library.config.migration;
 
 import bend.framework.properties.springproperties.SpringProperties;
+import bend.framework.properties.springproperties.database.migration.Migration;
 import bend.library.config.constants.ProfileConstants;
 import liquibase.Contexts;
 import liquibase.Liquibase;
@@ -44,13 +45,17 @@ public class LiquibaseMigration implements DatabaseMigration {
 
     @Override
     public void migrate(List<DataSource> dataSources) {
-        final bend.framework.properties.springproperties.database.migration.Liquibase lb = properties.getDatabase().getMigration().getLiquibase();
+        final Migration migration = properties.getDatabase().getMigration();
+        if(!migration.isActive()) {
+            log.info("Database Migration is-not active, Make it active to migrate.");
+            return;
+        }
         dataSources.forEach(dataSource -> {
             try(final Connection connection = dataSource.getConnection()) {
-                runChangelog(connection, lb.changelogPath(), lb.getTag(), lb.getContexts());
-                if(lb.getSecondaryChangelogPaths() !=null && lb.getSecondaryChangelogPaths().length>0)
-                    for(String path: lb.getSecondaryChangelogPaths())
-                        runChangelog(connection, lb.changelogPath(path), lb.getTag(), lb.getContexts());
+                runChangelog(connection, migration.getLiquibase().changelogPath(), migration.getLiquibase().getTag(), migration.getLiquibase().getContexts());
+                if(migration.getLiquibase().getSecondaryChangelogPaths() !=null && migration.getLiquibase().getSecondaryChangelogPaths().length>0)
+                    for(String path: migration.getLiquibase().getSecondaryChangelogPaths())
+                        runChangelog(connection, migration.getLiquibase().changelogPath(path), migration.getLiquibase().getTag(), migration.getLiquibase().getContexts());
             } catch (Exception e) {
                 log.error(e);
             }
