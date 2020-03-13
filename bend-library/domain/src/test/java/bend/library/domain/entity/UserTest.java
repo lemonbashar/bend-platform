@@ -42,12 +42,13 @@ public class UserTest {
 
     @Test
     public void save() {
-        Optional<User> optionalUser = userRepository.findByUsername(USERNAME);
+        Optional<User> optionalUser = userRepository.findByUsernameAndActive(USERNAME,true);
         optionalUser.ifPresent(user -> userRepository.deleteById(user.getId()));
         User actorUser = new User(userService.loggedInUserIdOrSystemUserId());
         User user = new User(USERNAME, saltedPasswordEncoder.encode(USERNAME, PASSWORD), EMAIL, authorityService.validRawAuthorities(actorUser, AUTHORITIES), actorUser);
+        user.setActive(true);
         userRepository.save(user);
-        if (userRepository.findByUsername(USERNAME).isEmpty())
+        if (userRepository.findByUsernameAndActive(USERNAME, true).isEmpty())
             fail();
     }
 

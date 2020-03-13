@@ -16,5 +16,5 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface AuthorityRepository extends JpaRepository<Authority, BigInteger> {
-    Optional<Authority> findAuthorityByName(String authorityName);
+    Optional<Authority> findAuthorityByNameAndActive(String authorityName, boolean activeStatus);
 }

@@ -11,7 +11,7 @@ import java.util.Optional;
 @Transactional
 @Repository
 public interface JpaPropertiesRepository extends JpaRepository<JpaProperties, BigInteger> {
-    Optional<JpaProperties> findByPropertyKey(String propertyKey);
+    Optional<JpaProperties> findByPropertyKeyAndActive(String propertyKey, boolean activeStatus);
 
-    Optional<JpaProperties> findByPropertyKeyAndPropertyValue(String propertyKey, String propertyValue);
+    Optional<JpaProperties> findByPropertyKeyAndPropertyValueAndActive(String propertyKey, String propertyValue, boolean activeStatus);
 }

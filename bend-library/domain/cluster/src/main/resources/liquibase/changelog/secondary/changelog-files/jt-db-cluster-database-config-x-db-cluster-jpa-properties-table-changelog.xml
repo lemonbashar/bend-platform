@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES;</sql>
+        <createTable tableName="JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES">
+            <column name="DATABASE_CONFIG_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="JPA_PROPERTIES_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES"
+                             columnNames="DATABASE_CONFIG_ID,JPA_PROPERTIES_ID" constraintName="JT_JT_DATABASE_CONFIG_X_JPA_PROPERTIES_UNIQUE_KEY"/>
+        <rollback>
+            <dropTable tableName="JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES"/>
+        </rollback>
+
+        <addForeignKeyConstraint baseTableName="JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES" baseColumnNames="DATABASE_CONFIG_ID"
+                                 constraintName="FK_BEND_USER_2_JT_DATABASE_CONFIG_X_JPA_PROPERTIES"
+                                 referencedTableName="DB_CLUSTER_DATABASE_CONFIG"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES" baseColumnNames="JPA_PROPERTIES_ID"
+                                 constraintName="FK_AUTHORITY_2_JT_DATABASE_CONFIG_X_JPA_PROPERTIES"
+                                 referencedTableName="DB_CLUSTER_JPA_PROPERTIES"
+                                 referencedColumnNames="ID"/>
+
+        <loadData tableName="JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES" file="classpath:liquibase/data/jt-db-cluster-database-config-x-db-cluster-jpa-properties-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>

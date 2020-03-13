@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS DB_CLUSTER_JPA_PROPERTIES;</sql>
+        <createTable tableName="DB_CLUSTER_JPA_PROPERTIES">
+            <column name="ID" valueSequenceNext="DB_CLUSTER_JPA_PROPERTIES_SEQ" type="${bigInteger}">
+                <constraints primaryKey="true" primaryKeyName="PK_DB_CLUSTER_JPA_PROPERTIES"/>
+            </column>
+            <column name="CREATE_BY" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_BY" type="${bigInteger}"/>
+            <column name="UPDATE_DATE" type="${localDate}"/>
+            <column name="ACTIVE_STATUS" type="boolean"/>
+            <!--END-OF-COMMON_BASE-ENTITY-->
+
+            <column name="PROPERTY_KEY" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROPERTY_VALUE" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROPERTY_TYPE" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="DB_CLUSTER_JPA_PROPERTIES"/>
+        </rollback>
+
+        <addUniqueConstraint tableName="DB_CLUSTER_JPA_PROPERTIES" constraintName="UK_PROPERTY_KEY_N_PROPERTY_VALUE_N_PROPERTY_TYPE" columnNames="PROPERTY_KEY,PROPERTY_VALUE,PROPERTY_TYPE"/>
+
+        <createSequence sequenceName="DB_CLUSTER_JPA_PROPERTIES_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="23" minValue="1" />
+
+        <addForeignKeyConstraint baseTableName="DB_CLUSTER_JPA_PROPERTIES" baseColumnNames="CREATE_BY"
+                                 constraintName="FK_BEND_USER_2_JPA_PROPERTIES_CREATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_CLUSTER_JPA_PROPERTIES" baseColumnNames="UPDATE_BY"
+                                 constraintName="FK_BEND_USER_2_JPA_PROPERTIES_UPDATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+
+        <loadData tableName="DB_CLUSTER_JPA_PROPERTIES" file="classpath:liquibase/data/db-cluster-jpa-properties/jpa-properties-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>

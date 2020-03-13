@@ -94,17 +94,17 @@ public class DatabaseConfigServiceImpl implements DatabaseConfigService {
     }
 
     private JpaProperties makeNativeProperties(User actorUser, String propertiesKey, Function<Database, Object> databaseProperties, Database database) {
-        return jpaPropertiesRepository.findByPropertyKeyAndPropertyValue(propertiesKey, databaseProperties.apply(database).toString())
+        return jpaPropertiesRepository.findByPropertyKeyAndPropertyValueAndActive(propertiesKey, databaseProperties.apply(database).toString(), true)
                 .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, databaseProperties.apply(database).toString())));
     }
 
     private JpaProperties makeHibernateProperties(User actorUser, String propertiesKey, Function<Hibernate, Object> databaseProperties, Hibernate hibernate) {
-        return jpaPropertiesRepository.findByPropertyKeyAndPropertyValue(propertiesKey, databaseProperties.apply(hibernate).toString())
+        return jpaPropertiesRepository.findByPropertyKeyAndPropertyValueAndActive(propertiesKey, databaseProperties.apply(hibernate).toString(), true)
                 .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, databaseProperties.apply(hibernate).toString(), DatabasePropertyType.HIBERNATE)));
     }
 
     private JpaProperties makeJpaProperties(User actorUser, String propertiesKey, Function<Jpa, Object> databaseProperties, Jpa jpa) {
-        return jpaPropertiesRepository.findByPropertyKeyAndPropertyValue(propertiesKey, databaseProperties.apply(jpa).toString())
+        return jpaPropertiesRepository.findByPropertyKeyAndPropertyValueAndActive(propertiesKey, databaseProperties.apply(jpa).toString(), true)
                 .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, databaseProperties.apply(properties.getDatabase().getJpa()).toString(), DatabasePropertyType.JPA)));
     }
 }

@@ -31,19 +31,19 @@ public class User extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "DB_MAIN_BEND_USER_PK")
-    @SequenceGenerator(name = "DB_MAIN_BEND_USER_PK", sequenceName = "DB_MAIN_BEND_USER_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_DB_MAIN_BEND_USER")
+    @SequenceGenerator(name = "PK_DB_MAIN_BEND_USER", sequenceName = "DB_MAIN_BEND_USER_SEQ", allocationSize = 1)
     private BigInteger id;
 
     @Size(min = 5, max = 32, message = "Username length must be in between 4 ~ 32 ")
     @Column(name = "USERNAME", unique = true)
     private String username;
 
-    @Column(name = "PASSWORD", unique = true)/*TODO: USE SALT TO UNIQUE THE PASSWORD*/
+    @Column(name = "PASSWORD", unique = true, length = 255, nullable = false)/*TODO: USE SALT TO UNIQUE THE PASSWORD*/
     private String password;
 
     @Email
-    @Column(name = "EMAIL", unique = true)
+    @Column(name = "EMAIL", unique = true, nullable = false, length = 32)
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)

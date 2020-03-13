@@ -17,5 +17,5 @@ import java.util.Optional;
 @Transactional
 public interface UserRepository extends JpaRepository<User, BigInteger> {
 
-    Optional<User> findByUsername(String username);
+    Optional<User> findByUsernameAndActive(String username, boolean activeStatus);
 }

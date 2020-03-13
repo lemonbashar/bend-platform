@@ -33,7 +33,7 @@ public class CustomUserDetailsServiceTest {
 
     @Test
     public void findUserDetails() {
-        if (userRepository.findByUsername(USERNAME).isEmpty()) {
+        if (userRepository.findByUsernameAndActive(USERNAME, true).isEmpty()) {
             userService.saveUser(USERNAME, USERNAME + "@mail.com", "123456", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
         }
         CustomUserDetails customUserDetails = customUserDetailsService.findUserDetails(USERNAME);

@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User systemUser() {
-        return userRepository.findByUsername(SecurityConstants.UserConstants.SYSTEM_USER)
+        return userRepository.findByUsernameAndActive(SecurityConstants.UserConstants.SYSTEM_USER, true)
                 .orElseGet(() ->
                         BendOptional.of(userRepository.save(new User(SecurityConstants.UserConstants.SYSTEM_USER, saltedPasswordEncoder.encode(SecurityConstants.UserConstants.SYSTEM_PASSWORD, SecurityConstants.UserConstants.SYSTEM_USER), SecurityConstants.UserConstants.SYSTEM_EMAIL, new HashSet<>(), null)))
                                 .insideOperation(user -> user.setAuthorities(authorityService.validRawAuthorities(user, SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN)))

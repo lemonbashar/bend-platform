@@ -3,19 +3,11 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <property name="now" value="now()" dbms="mysql,h2,postgresql"/>
-    <property name="now" value="sysdate" dbms="oracle"/>
-
-    <property name="bigInteger" value="bigint"/>
-    <property name="bigInteger" value="numeric(19,2)" dbms="postgresql"/>
-
-    <property name="localDate" value="date" dbms="postgresql"/>
-
     <changeSet context="core" author="bend" id="1">
         <sql>DROP TABLE IF EXISTS DB_MAIN_BEND_USER;</sql>
         <createTable tableName="DB_MAIN_BEND_USER">
             <column name="ID" valueSequenceNext="DB_MAIN_BEND_USER_SEQ" type="${bigInteger}">
-                <constraints primaryKey="true" primaryKeyName="PK_BEND_USER"/>
+                <constraints primaryKey="true" primaryKeyName="PK_DB_MAIN_BEND_USER"/>
             </column>
             <column name="CREATE_BY" type="${bigInteger}"/> <!--Only User Table contain nullable create-by, cause at least system user need to created itself-->
             <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
@@ -29,7 +21,9 @@
             <column name="USERNAME" type="VARCHAR(32)">
                 <constraints unique="true" uniqueConstraintName="UK_BEND_USER_NAME"/>
             </column>
-            <column name="PASSWORD" type="VARCHAR(255)"/>
+            <column name="PASSWORD" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="EMAIL" type="VARCHAR(32)">
                 <constraints unique="true" uniqueConstraintName="UK_BEND_USER_EMAIL"/>
             </column>
@@ -39,7 +33,7 @@
             <dropTable tableName="DB_MAIN_BEND_USER"/>
         </rollback>
 
-        <createSequence sequenceName="DB_MAIN_BEND_USER_SEQ" incrementBy="1" maxValue="999999999999999999" startValue="5" minValue="1" />
+        <createSequence sequenceName="DB_MAIN_BEND_USER_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="5" minValue="1" />
 
         <addForeignKeyConstraint baseTableName="DB_MAIN_BEND_USER" baseColumnNames="CREATE_BY"
                                  constraintName="FK_BEND_USER_ITSELF_CREATE_BY"

@@ -20,30 +20,30 @@ import java.util.Set;
 @Setter
 @Getter
 @PrePersist
-@Table(name = "DB_CLUSTER_DATABASE_CONFIG")
+@Table(name = "DB_CLUSTER_DATABASE_CONFIG", uniqueConstraints = @UniqueConstraint(name = "UK_DATABASE_SCHEMA_N_DATABASE_HOST_N_DATABASE_TYPE", columnNames = {"DATABASE_SCHEMA", "DATABASE_HOST", "DATABASE_TYPE"}))
 @Entity
 public class DatabaseConfig extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "DB_CLUSTER_DATABASE_CONFIG_PK")
-    @SequenceGenerator(name = "DB_CLUSTER_DATABASE_CONFIG_PK", sequenceName = "DB_CLUSTER_DATABASE_CONFIG_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_DB_CLUSTER_DATABASE_CONFIG")
+    @SequenceGenerator(name = "PK_DB_CLUSTER_DATABASE_CONFIG", sequenceName = "DB_CLUSTER_DATABASE_CONFIG_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "DATABASE_SCHEMA")
+    @Column(name = "DATABASE_SCHEMA", nullable = false, length = 64)
     private String schema;
 
-    @Column(name = "USERNAME")
+    @Column(name = "USERNAME", nullable = false, length = 64)
     private String username;
 
-    @Column(name = "PASSWORD")
+    @Column(name = "PASSWORD", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "DATABASE_HOST")
+    @Column(name = "DATABASE_HOST", nullable = false, length = 64)
     private String host;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "DATABASE_TYPE")
+    @Column(name = "DATABASE_TYPE", nullable = false, length = 16)
     private DatabaseType databaseType;
 
     @ManyToMany(fetch = FetchType.EAGER)

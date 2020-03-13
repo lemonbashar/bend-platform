@@ -28,11 +28,11 @@ public class Authority extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "DB_MAIN_AUTHORITY_PK")
-    @SequenceGenerator(name = "DB_MAIN_AUTHORITY_PK", sequenceName = "DB_MAIN_AUTHORITY_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_DB_MAIN_AUTHORITY")
+    @SequenceGenerator(name = "PK_DB_MAIN_AUTHORITY", sequenceName = "DB_MAIN_AUTHORITY_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "AUTHORITY_NAME")
+    @Column(name = "AUTHORITY_NAME", nullable = false, length = 32)
     private String name;
 
 

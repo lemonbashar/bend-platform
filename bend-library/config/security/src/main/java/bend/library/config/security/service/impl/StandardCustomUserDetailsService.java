@@ -20,6 +20,6 @@ public class StandardCustomUserDetailsService implements CustomUserDetailsServic
 
     @Override
     public CustomUserDetails findUserDetails(String username) {
-        return userRepository.findByUsername(username).map(CustomUserDetails::of).get();
+        return userRepository.findByUsernameAndActive(username, true).map(CustomUserDetails::of).get();
     }
 }
