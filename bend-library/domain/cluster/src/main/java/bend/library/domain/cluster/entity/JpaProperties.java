@@ -31,7 +31,7 @@ public class JpaProperties extends BaseEntity<BigInteger> implements Serializabl
     @Column(name = "PROPERTY_KEY", nullable = false, length = 64)
     private String propertyKey;
 
-    @Column(name = "PROPERTY_VALUE", length = 128, nullable = false)
+    @Column(name = "PROPERTY_VALUE", length = 255, nullable = false)
     private String propertyValue;
 
     @Column(name = "PROPERTY_TYPE", nullable = false, length = 16)

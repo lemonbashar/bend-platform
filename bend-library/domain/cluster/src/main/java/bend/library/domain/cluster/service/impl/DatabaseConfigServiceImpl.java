@@ -25,6 +25,8 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import static bend.library.config.util.DatabaseUtil.makeString;
+
 @Import(SpringProperties.class)
 @RequiredArgsConstructor
 @Service
@@ -95,16 +97,16 @@ public class DatabaseConfigServiceImpl implements DatabaseConfigService {
 
     private JpaProperties makeNativeProperties(User actorUser, String propertiesKey, Function<Database, Object> databaseProperties, Database database) {
         return jpaPropertiesRepository.findByPropertyKeyAndPropertyValueAndActive(propertiesKey, databaseProperties.apply(database).toString(), true)
-                .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, databaseProperties.apply(database).toString())));
+                .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, makeString(databaseProperties.apply(database)))));
     }
 
     private JpaProperties makeHibernateProperties(User actorUser, String propertiesKey, Function<Hibernate, Object> databaseProperties, Hibernate hibernate) {
         return jpaPropertiesRepository.findByPropertyKeyAndPropertyValueAndActive(propertiesKey, databaseProperties.apply(hibernate).toString(), true)
-                .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, databaseProperties.apply(hibernate).toString(), DatabasePropertyType.HIBERNATE)));
+                .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, makeString(databaseProperties.apply(hibernate)), DatabasePropertyType.HIBERNATE)));
     }
 
     private JpaProperties makeJpaProperties(User actorUser, String propertiesKey, Function<Jpa, Object> databaseProperties, Jpa jpa) {
         return jpaPropertiesRepository.findByPropertyKeyAndPropertyValueAndActive(propertiesKey, databaseProperties.apply(jpa).toString(), true)
-                .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, databaseProperties.apply(properties.getDatabase().getJpa()).toString(), DatabasePropertyType.JPA)));
+                .orElseGet(() -> jpaPropertiesRepository.save(new JpaProperties(actorUser, propertiesKey, makeString(databaseProperties.apply(properties.getDatabase().getJpa())), DatabasePropertyType.JPA)));
     }
 }

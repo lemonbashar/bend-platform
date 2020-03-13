@@ -60,7 +60,7 @@ bend-platform:
         max-idle-connection-size: 100
         min-idle-connection-size: 20
         migration:
-            active: false
+            active: true
             liquibase:
                 migration-type: update
                 changelog-path: 'classpath:liquibase-changelog.xml'

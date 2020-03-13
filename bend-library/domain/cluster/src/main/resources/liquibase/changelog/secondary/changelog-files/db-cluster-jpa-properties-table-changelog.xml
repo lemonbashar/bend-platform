@@ -23,7 +23,7 @@
             <column name="PROPERTY_KEY" type="VARCHAR(64)">
                 <constraints nullable="false"/>
             </column>
-            <column name="PROPERTY_VALUE" type="VARCHAR(128)">
+            <column name="PROPERTY_VALUE" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="PROPERTY_TYPE" type="VARCHAR(16)">
