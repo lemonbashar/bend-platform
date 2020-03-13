@@ -1,6 +1,7 @@
 package bend.library.config.el;
 
 import bend.framework.base.console.Console;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.expression.BeanResolver;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
@@ -9,18 +10,17 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 import java.util.Map;
 
+@Log4j2
 public abstract class AbstractSpringElEvaluator implements SpringElEvaluator {
     protected final EvaluationContext evaluationContext;
     protected final ExpressionParser expressionParser;
     protected final Object rootObject;
-    protected final Console console;
     private final BeanResolver beanResolver;
 
     public AbstractSpringElEvaluator(EvaluationContext evaluationContext, ExpressionParser expressionParser, Object rootObject, Console console, BeanResolver beanResolver) {
         this.evaluationContext = evaluationContext;
         this.expressionParser = expressionParser;
         this.rootObject = rootObject;
-        this.console = console;
         this.beanResolver = beanResolver;
     }
 
@@ -55,7 +55,7 @@ public abstract class AbstractSpringElEvaluator implements SpringElEvaluator {
             Expression parsedExpression = expressionParser.parseExpression(expression);
             return parsedExpression.getValue(evaluationContext, clazz);
         } catch (Throwable throwable) {
-            console.handleException(throwable);
+            log.error(throwable);
             return ifErrorOccurred;
         }
     }

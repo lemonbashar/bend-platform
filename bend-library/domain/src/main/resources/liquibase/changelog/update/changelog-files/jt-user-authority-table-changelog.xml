@@ -36,6 +36,6 @@
                                  referencedTableName="DB_MAIN_AUTHORITY"
                                  referencedColumnNames="AUTHORITY_NAME"/>
 
-        <loadData tableName="JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY" file="classpath:liquibase/data/jt-user-authority-update.csv" encoding="UTF-8" separator=","/>
+        <loadData tableName="JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY" file="classpath:liquibase/data/jt-db-main-bend-user-x-db-main-authority-update.csv" encoding="UTF-8" separator=","/>
     </changeSet>
 </databaseChangeLog>

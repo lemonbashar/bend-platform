@@ -50,6 +50,6 @@
                                  referencedTableName="DB_MAIN_BEND_USER"
                                  referencedColumnNames="ID"/>
 
-        <loadData tableName="DB_MAIN_BEND_USER" file="classpath:liquibase/data/user/user-update.csv" encoding="UTF-8" separator=","/>
+        <loadData tableName="DB_MAIN_BEND_USER" file="classpath:liquibase/data/db-main-bend-user/user-update.csv" encoding="UTF-8" separator=","/>
     </changeSet>
 </databaseChangeLog>

@@ -56,10 +56,20 @@ bend-platform:
             queue-capacity: 1000
             thread-name-prefix: spring-dev
     database:
-        liquibase-type: update
         maximum-active-connection-size: 200
         max-idle-connection-size: 100
         min-idle-connection-size: 20
+        migration:
+            active: true
+            liquibase:
+                migration-type: update
+                changelog-path: 'classpath:liquibase-changelog.xml'
+                changelog-path-type: migration_type
+#                changelog-path-type: exact
+                recursive: false
+                include-files: true
+                include-directories: false
+
         hibernate:
             hbm2-ddl-auto: none
             format-sql: true

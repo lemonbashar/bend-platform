@@ -13,5 +13,6 @@ subprojects {
 
     dependencies {
         implementation project(':bend-library:config:database')
+        implementation project(':bend-library:config:migration')
     }
 }

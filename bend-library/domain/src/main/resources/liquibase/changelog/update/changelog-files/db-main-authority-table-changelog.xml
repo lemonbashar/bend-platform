@@ -47,6 +47,6 @@
                                  referencedTableName="DB_MAIN_BEND_USER"
                                  referencedColumnNames="ID"/>
 
-        <loadData tableName="DB_MAIN_AUTHORITY" file="classpath:liquibase/data/authority/authority-update.csv" encoding="UTF-8" separator=","/>
+        <loadData tableName="DB_MAIN_AUTHORITY" file="classpath:liquibase/data/db-main-authority/authority-update.csv" encoding="UTF-8" separator=","/>
     </changeSet>
 </databaseChangeLog>

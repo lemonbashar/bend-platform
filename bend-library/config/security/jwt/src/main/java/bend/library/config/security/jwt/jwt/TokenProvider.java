@@ -11,6 +11,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -36,6 +37,7 @@ import static bend.library.config.security.jwt.constant.JwtConstants.AUTHORITIES
  * Created 2/13/2020
  */
 @SuppressWarnings("unused")
+@Log4j2
 @RequiredArgsConstructor
 @Service
 public class TokenProvider {
@@ -110,7 +112,7 @@ public class TokenProvider {
             Jwts.parser().setSigningKey(key).parseClaimsJws(authToken);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return false;
     }
