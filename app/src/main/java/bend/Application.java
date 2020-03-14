@@ -9,6 +9,7 @@ import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.controller.ControllerConfig;
 import bend.library.controller.rest.RestConfig;
+import bend.library.core.prepersist.PrePersistConfiguration;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.cluster.ClusterDomainConfig;
 import lombok.NonNull;
@@ -36,6 +37,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 @SpringBootApplication(scanBasePackageClasses = {PropertiesConfig.class, LiquibaseMigrationConfiguration.class,
         RdbmsJpaConfig.class,
+        PrePersistConfiguration.class,
         DomainConfig.class,
         WebConfigurer.class,
         SecurityConfig.class,
