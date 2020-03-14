@@ -1,6 +1,7 @@
 package bend.library.config.security.util;
 
 import bend.framework.base.util.BendOptional;
+import bend.library.config.constants.SecurityConstants;
 import bend.library.config.security.data.AccountInfo;
 import bend.library.config.security.data.CustomUserDetails;
 import bend.library.domain.entity.User;
@@ -58,4 +59,7 @@ public final class SecurityUtil {
                 .orElse(null);
     }
 
+    public static boolean isSuperAdmin() {
+        return hasAnyAuthority(SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN);
+    }
 }

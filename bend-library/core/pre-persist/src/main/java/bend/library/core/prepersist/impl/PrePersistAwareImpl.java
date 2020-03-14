@@ -5,19 +5,15 @@ import bend.library.annotation.prepersist.AutoCreate;
 import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
 import bend.library.config.el.ElEvaluator;
-import bend.library.config.security.service.UserService;
-import bend.library.core.prepersist.AutoPrePersistAware;
+import bend.library.config.exception.PrePersistException;
 import bend.library.core.prepersist.PrePersistAware;
 import bend.library.domain.entity.BaseEntity;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.expression.EvaluationContext;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.Map;
 
 /**
  * @author lemon
@@ -30,29 +26,30 @@ import java.util.Map;
 @Service
 public class PrePersistAwareImpl implements PrePersistAware<PrePersist> {
     private final @NonNull ElEvaluator elEvaluator;
-    private final @NonNull AutoPrePersistAware<AutoCreate> autoCreatePrePersistAware;
-    private final @NonNull AutoPrePersistAware<AutoUpdate> updateAutoPrePersistAware;
-    public static final String model ="#model";
+    private final @NonNull PrePersistAware<AutoCreate> autoCreatePrePersistAware;
+    private final @NonNull PrePersistAware<AutoUpdate> updateAutoPrePersistAware;
 
     @Override
     public void aware(BaseEntity<?> baseEntity, PrePersist prePersist) {
-        final EvaluationContext evaluationContext = elEvaluator.context(baseEntity);
-        if(!elEvaluator.evaluate(Boolean.class, prePersist.isApplicable().replace(model, " "), ()->false, evaluationContext))
+        if(!elEvaluator.evaluate(Boolean.class, prePersist.isUpdatable(), ()->false, baseEntity)) {
+            throw new PrePersistException("Sorry! The model "+baseEntity.getClass().getName()+" is Not Updatable for current context/user actor.");
+        }
+        if(!elEvaluator.evaluate(Boolean.class, prePersist.isApplicable(), ()->false, baseEntity ))
             return;
         if(baseEntity.getClass().isAnnotationPresent(AutoActive.class)) {
             AutoActive autoActive = baseEntity.getClass().getAnnotation(AutoActive.class);
-            if(elEvaluator.evaluate(Boolean.class, autoActive.isApplicable().replace(model, " "), ()->false, evaluationContext))
-                baseEntity.setActive(elEvaluator.evaluate(Boolean.class, autoActive.isActive().replace(model, " "), ()->false, evaluationContext));
+            if(elEvaluator.evaluate(Boolean.class, autoActive.isApplicable(), ()->false, baseEntity))
+                baseEntity.setActive(elEvaluator.evaluate(Boolean.class, autoActive.isActive(), ()->false, baseEntity));
         }
         if(baseEntity.getId()==null) {
             baseEntity.setCreateDate(LocalDate.now());
             if(baseEntity.getClass().isAnnotationPresent(AutoCreate.class))
-                autoCreatePrePersistAware.aware(baseEntity, baseEntity.getClass().getAnnotation(AutoCreate.class), evaluationContext);
+                autoCreatePrePersistAware.aware(baseEntity, baseEntity.getClass().getAnnotation(AutoCreate.class));
         }
         else {
             baseEntity.setUpdateDate(LocalDate.now());
             if(baseEntity.getClass().isAnnotationPresent(AutoUpdate.class))
-            updateAutoPrePersistAware.aware(baseEntity, baseEntity.getClass().getAnnotation(AutoUpdate.class), evaluationContext);
+            updateAutoPrePersistAware.aware(baseEntity, baseEntity.getClass().getAnnotation(AutoUpdate.class));
         }
     }
 }

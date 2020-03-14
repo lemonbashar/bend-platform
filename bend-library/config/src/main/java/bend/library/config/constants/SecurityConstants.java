@@ -11,6 +11,8 @@ public final class SecurityConstants {
     public static final class AuthorityConstants {
         public static final String[] ROLES_FOR_ADMIN = {SingleAuth.ROLE_ADMIN, SingleAuth.ROLE_SETTINGS_ADMIN, SingleAuth.ROLE_SYSTEM_ADMIN, SingleAuth.ROLE_USER_ADMIN};
         public static final String[] ROLES_FOR_SUPER_ADMIN = {SingleAuth.ROLE_ADMIN, SingleAuth.ROLE_SYSTEM_ADMIN};
+        public static final String[] ROLES_FOR_SETTINGS_ADMIN = {SingleAuth.ROLE_ADMIN, SingleAuth.ROLE_SYSTEM_ADMIN, SingleAuth.ROLE_SETTINGS_ADMIN};
+        public static final String[] ROLES_FOR_USER_ADMIN = {SingleAuth.ROLE_ADMIN, SingleAuth.ROLE_SYSTEM_ADMIN, SingleAuth.ROLE_USER_ADMIN};
 
         /**
          * Beside the {@link AuthorityConstants} we declare the class {@link SingleAuth} thus

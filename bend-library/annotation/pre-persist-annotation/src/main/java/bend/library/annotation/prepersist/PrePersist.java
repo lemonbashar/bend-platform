@@ -26,4 +26,6 @@ public @interface PrePersist {
      * @return True if annotation is applicable otherwise false.
      */
     String isApplicable() default SpringElConstants.TRUE;
+
+    String isUpdatable() default SpringElConstants.TRUE;
 }

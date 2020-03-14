@@ -1,12 +1,9 @@
 package bend.library.config.database.rdbms;
 
 import bend.framework.properties.springproperties.SpringProperties;
-import bend.framework.properties.springproperties.database.migration.Migration;
 import bend.library.config.constants.BaseConstants;
 import bend.library.config.migration.DatabaseMigration;
 import com.zaxxer.hikari.HikariDataSource;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;

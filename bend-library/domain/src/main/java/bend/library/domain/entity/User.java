@@ -1,9 +1,11 @@
 package bend.library.domain.entity;
 
+import bend.library.annotation.Restrictions;
 import bend.library.annotation.prepersist.AutoActive;
 import bend.library.annotation.prepersist.AutoCreate;
 import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
+import bend.library.config.constants.SpringElConstants;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,8 +28,9 @@ import java.util.stream.Stream;
 @NoArgsConstructor
 @Setter
 @Getter
-@PrePersist
-@AutoActive
+@Restrictions(canFetch = SpringElConstants.Security.IS_SUPER_ADMIN, restrictedFields = "@securityService.isAnyAdmin()?{'password'}:{'password','email','authorities'}", restrictedFieldsIfErrorOccurred = {"password", "email", "authorities"})
+@PrePersist(isUpdatable = SpringElConstants.User.WHEN_USER_IS_NOT_SYSTEM)
+@AutoActive(isApplicable = "#model.getId()==null || !"+SpringElConstants.Security.IS_USER_ADMIN, isActive = SpringElConstants.Security.IS_USER_ADMIN) /*User active/inactive can only edited by Setting-admins or super admins, so only they can change active status, and for them WHEN update active status applied from actual value which they set, otherwise each time it's override by SPEL. That Means if user-info updated by non-admins then it always marked as inactive */
 @AutoUpdate
 @AutoCreate
 @Table(name = "DB_MAIN_BEND_USER")

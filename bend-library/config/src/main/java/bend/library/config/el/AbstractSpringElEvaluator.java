@@ -1,5 +1,6 @@
 package bend.library.config.el;
 
+import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.expression.BeanResolver;
 import org.springframework.expression.EvaluationContext;
@@ -10,10 +11,13 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@SuppressWarnings("WeakerAccess")
 @Log4j2
 public abstract class AbstractSpringElEvaluator implements SpringElEvaluator {
-    protected final ExpressionParser expressionParser;
-    private final BeanResolver beanResolver;
+    protected final @NonNull ExpressionParser expressionParser;
+    protected final @NonNull BeanResolver beanResolver;
+
+    private static final String ROOT_VARIABLE_NAMAE = "model";
 
     public AbstractSpringElEvaluator(ExpressionParser expressionParser, BeanResolver beanResolver) {
         this.expressionParser = expressionParser;
@@ -21,14 +25,18 @@ public abstract class AbstractSpringElEvaluator implements SpringElEvaluator {
     }
 
     @Override
-    public <T> T evaluate(Class<T> clazz, String expression, Supplier<T> ifErrorOccurred, EvaluationContext evaluationContext) {
-        try {
-            Expression parsedExpression = expressionParser.parseExpression(expression);
-            return parsedExpression.getValue(evaluationContext, clazz);
-        } catch (Throwable throwable) {
-            log.error(throwable);
-            return ifErrorOccurred.get();
-        }
+    public <T> T evaluate(Class<T> clazz, String expression, Supplier<T> ifErrorOccurred) {
+        return evaluate(clazz, expression, ifErrorOccurred, context(null));
+    }
+
+    @Override
+    public <T> T evaluate(Class<T> clazz, String expression, Supplier<T> ifErrorOccurred, Object modelValue) {
+        return evaluate(clazz, expression, ifErrorOccurred, modelValue, null);
+    }
+
+    @Override
+    public <T> T evaluate(final Class<T> clazz, final String expression, final Supplier<T> ifErrorOccurred, final Object modelValue, final Object rootObject) {
+        return evaluate(clazz, expression, ifErrorOccurred, ROOT_VARIABLE_NAMAE, modelValue, rootObject);
     }
 
     @Override
@@ -50,5 +58,15 @@ public abstract class AbstractSpringElEvaluator implements SpringElEvaluator {
         context = rootObject == null ? new StandardEvaluationContext() : new StandardEvaluationContext(rootObject);
         context.setBeanResolver(beanResolver);
         return context;
+    }
+
+    protected  <T> T evaluate(Class<T> clazz, String expression, Supplier<T> ifErrorOccurred, EvaluationContext context) {
+        try {
+            Expression parsedExpression = expressionParser.parseExpression(expression);
+            return parsedExpression.getValue(context, clazz);
+        } catch (Throwable throwable) {
+            log.error(throwable);
+            return ifErrorOccurred.get();
+        }
     }
 }

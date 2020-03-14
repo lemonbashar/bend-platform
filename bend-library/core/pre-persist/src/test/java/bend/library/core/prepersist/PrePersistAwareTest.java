@@ -3,6 +3,7 @@ package bend.library.core.prepersist;
 import bend.library.config.PropertiesConfig;
 import bend.library.config.constants.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
+import bend.library.config.exception.PrePersistException;
 import bend.library.config.security.data.LoginInfo;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.config.security.service.AuthenticationService;
@@ -12,6 +13,7 @@ import bend.library.domain.DomainConfig;
 import bend.library.domain.entity.User;
 import bend.library.domain.repositories.UserRepository;
 import org.apache.catalina.security.SecurityConfig;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
 @ActiveProfiles(profiles = "test")
@@ -55,5 +60,57 @@ class PrePersistAwareTest {
     void testForUpdate() {
         this.userRepository.findByUsername("pre-persist-user").ifPresent(this.userRepository::save);
 
+    }
+
+    @Order(2)
+    @Test
+    void testForUpdateByAnonymous() {
+        this.userRepository.findByUsername("pre-persist-user").ifPresent(user->{
+            user.setActive(true);
+            user = this.userRepository.save(user);
+            assertFalse(user.isActive());
+        });
+
+    }
+
+    @Order(3)
+    @Test
+    void testForUpdateBySettingsAdmin() {
+        this.authenticationService.authenticate(LoginInfo.builder().username("settings.admin").password("settings.admin1234").build());
+        this.userRepository.findByUsername("pre-persist-user").ifPresent(user->{
+            user.setActive(true);
+            user = this.userRepository.save(user);
+            assertFalse(user.isActive());
+        });
+    }
+
+    @Order(4)
+    @Test
+    void testForUpdateByUserAdmin() {
+        this.authenticationService.authenticate(LoginInfo.builder().username("user.admin").password("user.admin1234").build());
+        this.userRepository.findByUsername("pre-persist-user").ifPresent(user->{
+            user.setActive(false);
+            user = this.userRepository.save(user);
+            assertFalse(user.isActive());
+        });
+
+    }
+
+    @Order(5)
+    @Test
+    void testForUpdateByUserAdminSetTrue() {
+        this.authenticationService.authenticate(LoginInfo.builder().username("user.admin").password("user.admin1234").build());
+        this.userRepository.findByUsername("pre-persist-user").ifPresent(user->{
+            user.setActive(true);
+            user = this.userRepository.save(user);
+            assertTrue(user.isActive());
+        });
+
+    }
+
+    @Test
+    @Order(6)
+    void testForSystemUpdate() {
+        Assertions.assertThrows(PrePersistException.class, ()->this.userRepository.findByUsername("system").ifPresent(this.userRepository::save));
     }
 }
