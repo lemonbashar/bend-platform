@@ -10,20 +10,25 @@ import bend.library.domain.entity.User;
 import bend.library.domain.repositories.UserRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @author lemon
  * Email lemon.bashar@gmail.com
  * Created 2/16/2020
  */
+@Log4j2
 @RequiredArgsConstructor
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
+    private static final String MESSAGE_OF_MISSING_SYSTEM_USER = "You Must need to save an user of named as system user and it's status must be active";
     private final @NonNull UserRepository userRepository;
     private final @NonNull AuthorityService authorityService;
     private final @NonNull SaltedPasswordEncoder saltedPasswordEncoder;
@@ -36,11 +41,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User systemUser() {
-        return userRepository.findByUsernameAndActive(SecurityConstants.UserConstants.SYSTEM_USER, true)
-                .orElseGet(() ->
-                        BendOptional.of(userRepository.save(new User(SecurityConstants.UserConstants.SYSTEM_USER, saltedPasswordEncoder.encode(SecurityConstants.UserConstants.SYSTEM_PASSWORD, SecurityConstants.UserConstants.SYSTEM_USER), SecurityConstants.UserConstants.SYSTEM_EMAIL, new HashSet<>(), null)))
-                                .insideOperation(user -> user.setAuthorities(authorityService.validRawAuthorities(user, SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN)))
-                                .nowReturn(userRepository::save));
+        Optional<User> systemUser = userRepository.findByUsernameAndActive(SecurityConstants.UserConstants.SYSTEM_USER, true);
+        if(systemUser.isEmpty()) {
+            log.error(MESSAGE_OF_MISSING_SYSTEM_USER);
+            throw new RuntimeException(MESSAGE_OF_MISSING_SYSTEM_USER);
+        }
+        return systemUser.get();
     }
 
     @Override
@@ -54,6 +60,6 @@ public class UserServiceImpl implements UserService {
     public User saveUser(String username, String email, String password, String... authorities) {
         return BendOptional.ofNullable(SecurityUtil.loggedInUser())
                 .ifNotPresentThenConsume(this::systemUser)
-                .map(systemUser -> userRepository.save(new User(username, saltedPasswordEncoder.encode(password, username), email, authorityService.validRawAuthorities(systemUser, authorities), systemUser))).get();
+                .map(systemUser -> userRepository.save(new User(username, saltedPasswordEncoder.encode(password, username), email, authorityService.validRawAuthorities(authorities)))).get();
     }
 }

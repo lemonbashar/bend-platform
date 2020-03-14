@@ -18,9 +18,8 @@ public interface AuthorityService {
      * but you need to save them and make sure at last you have valid authorities whose already exist on database.
      * </pre>
      *
-     * @param createdBy   createBy User
      * @param authorities raw authorities which may not exist on database.
      * @return Valid Authorities
      */
-    Set<Authority> validRawAuthorities(User createdBy, String... authorities);
+    Set<Authority> validRawAuthorities(String... authorities);
 }

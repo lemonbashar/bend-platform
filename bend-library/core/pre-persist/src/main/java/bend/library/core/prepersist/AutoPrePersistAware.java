@@ -1,7 +1,7 @@
 package bend.library.core.prepersist;
 
-import bend.library.annotation.prepersist.PrePersist;
 import bend.library.domain.entity.BaseEntity;
+import org.springframework.expression.EvaluationContext;
 
 import java.lang.annotation.Annotation;
 
@@ -14,6 +14,6 @@ import java.lang.annotation.Annotation;
  */
 
 
-public interface PrePersistAware<T extends Annotation> {
-    void aware(BaseEntity<?> baseEntity, T t);
+public interface AutoPrePersistAware<T extends Annotation> {
+    void aware(BaseEntity<?> baseEntity, T t, EvaluationContext evaluationContext);
 }

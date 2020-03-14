@@ -13,7 +13,6 @@ allprojects {
         implementation project(':bend-library:annotation:pre-persist-annotation')
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-        testImplementation project(':bend-library:core:pre-persist')
         testImplementation project(':bend-library:config:database')
         testImplementation project(':bend-library:config:database:rdbms')
         testImplementation project(':bend-library:config:security')

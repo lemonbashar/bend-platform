@@ -1,6 +1,9 @@
 package bend.library.domain.cluster.entity;
 
 import bend.framework.properties.springproperties.database.DatabaseType;
+import bend.library.annotation.prepersist.AutoActive;
+import bend.library.annotation.prepersist.AutoCreate;
+import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
 import bend.library.domain.entity.BaseEntity;
 import bend.library.domain.entity.User;
@@ -16,10 +19,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
 @PrePersist
+@AutoActive
+@AutoCreate
+@AutoUpdate
 @Table(name = "DB_CLUSTER_DATABASE_CONFIG", uniqueConstraints = @UniqueConstraint(name = "UK_DATABASE_SCHEMA_N_DATABASE_HOST_N_DATABASE_TYPE", columnNames = {"DATABASE_SCHEMA", "DATABASE_HOST", "DATABASE_TYPE"}))
 @Entity
 public class DatabaseConfig extends BaseEntity<BigInteger> implements Serializable {
@@ -50,7 +55,12 @@ public class DatabaseConfig extends BaseEntity<BigInteger> implements Serializab
     @JoinTable(name = "JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES", uniqueConstraints = @UniqueConstraint(name = "DATABASE_CONFIG_JPA_PROPERTIES_UNIQUE_KEY", columnNames = {"DATABASE_CONFIG_ID", "JPA_PROPERTIES_ID"}), joinColumns = @JoinColumn(name = "DATABASE_CONFIG_ID", referencedColumnName = "ID", nullable = false), inverseJoinColumns = @JoinColumn(name = "JPA_PROPERTIES_ID", referencedColumnName = "ID", nullable = false))
     private Set<JpaProperties> databaseProperties = new HashSet<>();
 
-    public DatabaseConfig(User createBy, User updateBy) {
-        super(createBy, updateBy);
+    public DatabaseConfig(String schema, String username, String password, String host, DatabaseType databaseType, Set<JpaProperties> databaseProperties) {
+        this.schema = schema;
+        this.username = username;
+        this.password = password;
+        this.host = host;
+        this.databaseType = databaseType;
+        this.databaseProperties = databaseProperties;
     }
 }

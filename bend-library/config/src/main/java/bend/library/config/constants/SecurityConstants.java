@@ -1,5 +1,7 @@
 package bend.library.config.constants;
 
+import java.util.Set;
+
 /**
  * @author lemon
  * Email lemon.bashar@gmail.com
@@ -7,7 +9,7 @@ package bend.library.config.constants;
  */
 public final class SecurityConstants {
     public static final class AuthorityConstants {
-        public static final String[] ROLES_FOR_ADMIN = {SingleAuth.ROLE_ADMIN, SingleAuth.ROLE_SETTINGS_ADMIN, SingleAuth.ROLE_SYSTEM_ADMIN};
+        public static final String[] ROLES_FOR_ADMIN = {SingleAuth.ROLE_ADMIN, SingleAuth.ROLE_SETTINGS_ADMIN, SingleAuth.ROLE_SYSTEM_ADMIN, SingleAuth.ROLE_USER_ADMIN};
         public static final String[] ROLES_FOR_SUPER_ADMIN = {SingleAuth.ROLE_ADMIN, SingleAuth.ROLE_SYSTEM_ADMIN};
 
         /**
@@ -20,6 +22,7 @@ public final class SecurityConstants {
             public static final String ROLE_SYSTEM_ADMIN = "ROLE_SYSTEM_ADMIN";
             public static final String ROLE_SETTINGS_ADMIN = "ROLE_SETTINGS_ADMIN";
             public static final String ROLE_USER = "ROLE_USER";
+            public static final String ROLE_USER_ADMIN = "ROLE_USER_ADMIN";
         }
 
     }

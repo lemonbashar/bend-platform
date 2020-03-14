@@ -33,5 +33,5 @@ public @interface AutoActive {
      *
      * @return SPEL OF Active-Status
      */
-    String isActive() default SpringElConstants.FALSE;
+    String isActive() default SpringElConstants.Security.IS_ADMIN_OR_SYSTEM;
 }

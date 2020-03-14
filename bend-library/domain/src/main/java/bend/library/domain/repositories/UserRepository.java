@@ -18,4 +18,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, BigInteger> {
 
     Optional<User> findByUsernameAndActive(String username, boolean activeStatus);
+
+    Optional<User> findByUsername(String username);
 }

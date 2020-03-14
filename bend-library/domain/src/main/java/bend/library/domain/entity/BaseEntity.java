@@ -1,11 +1,8 @@
 package bend.library.domain.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -19,7 +16,7 @@ import java.util.Objects;
  * Email lemon.bashar@gmail.com
  * Created 1/29/2020
  */
-@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 @MappedSuperclass
@@ -33,28 +30,14 @@ public abstract class BaseEntity<ID> {
     @JoinColumn(name = "UPDATE_BY")
     private User updateBy;
 
-    @CreationTimestamp
-    @Column(name = "CREATE_DATE", updatable = false)
+    @Column(name = "CREATE_DATE", updatable = false, nullable = false)
     private LocalDate createDate;
 
-    @UpdateTimestamp
     @Column(name = "UPDATE_DATE")
     private LocalDate updateDate;
 
     @Column(name = "ACTIVE_STATUS")
     private boolean active;
-
-    public BaseEntity() {
-        this.active = true;
-        this.createDate = LocalDate.now();
-        this.updateDate = LocalDate.now();
-    }
-
-    public BaseEntity(User createBy, User updateBy) {
-        this();
-        this.createBy = createBy;
-        this.updateBy = updateBy;
-    }
 
     public abstract ID getId();
 

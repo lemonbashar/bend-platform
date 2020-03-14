@@ -5,3 +5,8 @@ dependencyManagement {
         mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
     }
 }
+
+dependencies {
+    testImplementation project(':bend-library:config:security:jwt')
+    testImplementation project(':bend-library:core:pre-persist')
+}
