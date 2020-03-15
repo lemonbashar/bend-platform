@@ -55,7 +55,7 @@ public final class SecurityUtil {
     public static AccountInfo accountInfo() {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, auth -> (CustomUserDetails) auth.getPrincipal())
-                .ifThenMap(Objects::nonNull, userDetails -> new AccountInfo(userDetails.getUsername(), userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet())))
+                .ifThenMap(Objects::nonNull, userDetails -> new AccountInfo(userDetails.getUsername(), userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet()), true))
                 .orElse(null);
     }
 
