@@ -1,39 +1,5 @@
-HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**
-!**/src/test/**
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-out/
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
-.vscode/
-
-**/logs
-*/logs
-/logs
 # compiled output
 /dist
 /tmp
@@ -50,6 +16,8 @@ speed-measure-plugin*.json
 
 # IDEs and editors
 /.idea
+.project
+.classpath
 .c9/
 *.launch
 .settings/

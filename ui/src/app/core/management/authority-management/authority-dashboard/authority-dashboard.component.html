@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-8">
+    <h3>Authorities</h3>
+  </div>
+  <div class="col-md-4 text-right">
+    <a routerLink="/authority-dashboard/authority-create" class="btn btn-dark">Create Authority</a>
+  </div>
+</div>
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="text-large">Authority</th>
+      <th class="text-large">Create Date</th>
+      <th class="text-large">Created By</th>
+      <th class="text-large">Active Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let authority of domains ">
+      <td>{{authority.name}}</td>
+      <td>{{authority.createDate | date: "fullDate"}}</td>
+      <td>{{authority.createBy.username}}</td>
+      <td>{{authority.active?'Active':'Inactive'}}</td>
+      <td class="text-right">
+        <button class="btn btn-info">View</button>
+        <button (click)="revertActiveStatus(authority)" class="btn btn-primary">{{authority.active?'Deactivate':'Activate'}}</button>
+        <button (click)="delete(authority)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

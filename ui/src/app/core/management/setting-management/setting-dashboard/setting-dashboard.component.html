@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-8">
+    <h3>Settings</h3>
+  </div>
+  <div class="col-md-4 text-right">
+    <a routerLink="/setting-dashboard/setting-create" class="btn btn-dark">Create Setting</a>
+  </div>
+</div>
+<br>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="text-large">Setting Key</th>
+    <th class="text-large">Setting Value</th>
+    <th class="text-large">Active Status</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let setting of domains ">
+    <td>{{setting.settingKey}}</td>
+    <td>{{setting.settingValue}}</td>
+    <td>{{setting.active?'Active':'Inactive'}}</td>
+    <td class="text-right">
+      <button class="btn btn-info">View</button>
+      <button type="submit" [routerLink]="['/setting-dashboard', setting.id, 'setting-update']" class="btn btn-dark">Edit</button>
+      <button (click)="revertActiveStatus(setting)" class="btn btn-primary">{{setting.active?'Deactivate':'Activate'}}</button>
+      <button (click)="delete(setting)" class="btn btn-danger">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
