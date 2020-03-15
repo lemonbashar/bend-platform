@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'Microservice';
+  title = 'Bend-Platform';
 
   ROLE_FOR_ADMIN = ['ROLE_ADMIN'];
 }

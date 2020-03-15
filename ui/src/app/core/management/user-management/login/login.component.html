@@ -16,7 +16,7 @@
               <input type="password" class="form-control" placeholder="Enter Password" [(ngModel)]="info.password" (change)="loginFailed=false" [ngModelOptions]="{standalone: true}" id="password">
               <div  *ngIf="info.username !=null && info.password !=null && loginFailed" class="text-red">Sorry, Password mismatch or account deactivated</div>
             </div>
-            <button type="button" (click)="login()" class="btn btn-dark">Submit</button>
+            <button type="button" (click)="login()" class="btn btn-dark">Login</button>
           </fieldset>
         </form>
       </div>
