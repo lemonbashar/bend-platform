@@ -15,6 +15,7 @@ import java.util.Set;
 @Setter
 public class JwtAccountInfo extends AccountInfo {
     private String token;
+    private Long tokenLiveTime;
 
     public static JwtAccountInfoBuilder builder() {
         return new JwtAccountInfoBuilder();
@@ -30,6 +31,16 @@ public class JwtAccountInfo extends AccountInfo {
 
         public JwtAccountInfoBuilder token(String token) {
             accountInfo.setToken(token);
+            return this;
+        }
+
+        public JwtAccountInfoBuilder authenticated(boolean authenticated) {
+            accountInfo.setAuthenticated(authenticated);
+            return this;
+        }
+
+        public JwtAccountInfoBuilder tokenLiveTime(Long tokenLiveTime) {
+            accountInfo.setTokenLiveTime(tokenLiveTime);
             return this;
         }
 

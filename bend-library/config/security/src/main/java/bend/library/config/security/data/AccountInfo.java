@@ -19,4 +19,5 @@ import java.util.Set;
 public class AccountInfo {
     private String username;
     private Set<String> authorities;
+    private boolean authenticated;
 }
