@@ -25,7 +25,7 @@ public @interface AutoActive {
      *
      * @return True if annotation is applicable otherwise false.
      */
-    String isApplicable() default SpringElConstants.Entity.WHEN_CREATE;
+    String isApplicable() default SpringElConstants.TRUE;
 
     /**
      * Return SPEL of active or inactive status while active or inactive. <br/>
@@ -33,5 +33,5 @@ public @interface AutoActive {
      *
      * @return SPEL OF Active-Status
      */
-    String isActive() default SpringElConstants.Security.IS_SETTINGS_ADMIN;
+    String isActive() default SpringElConstants.Security.WHEN_CREATE_BY_DEFAULT_FALSE_IF_SETTINGS_ADMIN_TRUE__WHEN_UPDATE_IF_SETTINGS_ADMIN_THEN_DEFAULT_VALUE_OTHERWISE_FALSE;
 }

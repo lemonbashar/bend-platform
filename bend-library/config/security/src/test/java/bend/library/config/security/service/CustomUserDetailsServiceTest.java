@@ -29,7 +29,7 @@ public class CustomUserDetailsServiceTest {
     @Autowired
     private UserService userService;
 
-    private static final String USERNAME = "lemonbashar";
+    private static final String USERNAME = "system";
 
     @Test
     public void findUserDetails() {

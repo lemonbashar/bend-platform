@@ -30,7 +30,7 @@ public class UserTest {
     private static final String USERNAME = "test-username";
     private static final String PASSWORD = "test-password";
     private static final String EMAIL = "test.mail@nomail.com";
-    private static final String[] AUTHORITIES = {"ROLE_TEST_USER", "ROLE_TEST_ADMIN"};
+    private static final String[] AUTHORITIES = {"ROLE_USER", "ROLE_ADMIN"};
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -40,6 +40,7 @@ public class UserTest {
 
     @Test
     public void save() {
+
         Optional<User> optionalUser = userRepository.findByUsernameAndActive(USERNAME,true);
         optionalUser.ifPresent(user -> userRepository.deleteById(user.getId()));
         User user = new User(USERNAME, saltedPasswordEncoder.encode(USERNAME, PASSWORD), EMAIL, authorityService.validRawAuthorities(AUTHORITIES));

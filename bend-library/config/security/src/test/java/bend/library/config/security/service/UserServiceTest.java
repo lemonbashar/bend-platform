@@ -42,12 +42,6 @@ public class UserServiceTest {
         return userServiceTest;
     }
 
-    @Test
-    public void saveUser() {
-        User user = this.userRepository.findByUsername("lemon").orElseGet(()->this.userService.saveUser("lemon", "lemon@mail.com", "lemon", "ROLE_TEST_USER"));
-        assertNotNull(user);;
-    }
-
     @Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
     @Test
     public void createAdmins() {

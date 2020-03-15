@@ -30,7 +30,7 @@ import java.util.stream.Stream;
 @Getter
 @Restrictions(canFetch = SpringElConstants.Security.IS_SUPER_ADMIN, restrictedFields = "@securityService.isAnyAdmin()?{'password'}:{'password','email','authorities'}", restrictedFieldsIfErrorOccurred = {"password", "email", "authorities"})
 @PrePersist(isUpdatable = SpringElConstants.User.WHEN_USER_IS_NOT_SYSTEM)
-@AutoActive(isApplicable = "#model.getId()==null || !"+SpringElConstants.Security.IS_USER_ADMIN, isActive = SpringElConstants.Security.IS_USER_ADMIN) /*User active/inactive can only edited by Setting-admins or super admins, so only they can change active status, and for them WHEN update active status applied from actual value which they set, otherwise each time it's override by SPEL. That Means if user-info updated by non-admins then it always marked as inactive */
+@AutoActive
 @AutoUpdate
 @AutoCreate
 @Table(name = "DB_MAIN_BEND_USER")
