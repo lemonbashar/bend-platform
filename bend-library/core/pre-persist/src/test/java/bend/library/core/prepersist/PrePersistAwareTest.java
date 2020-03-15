@@ -24,6 +24,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import java.util.Optional;
 
+import static bend.library.config.constants.ProfileConstants.TestInclude.DATABASE_HIT;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -55,62 +56,4 @@ class PrePersistAwareTest {
         User savedUser = userRepository.save(new User("pre-persist-user", saltedPasswordEncoder.encode("pre1234", "pre-persist-user"), "pre@bendmail.com", authorityService.validRawAuthorities("ROLE_PRE_PERSIST")));
     }
 
-    @Order(2)
-    @Test
-    void testForUpdate() {
-        this.userRepository.findByUsername("pre-persist-user").ifPresent(this.userRepository::save);
-
-    }
-
-    @Order(2)
-    @Test
-    void testForUpdateByAnonymous() {
-        this.userRepository.findByUsername("pre-persist-user").ifPresent(user->{
-            user.setActive(true);
-            user = this.userRepository.save(user);
-            assertFalse(user.isActive());
-        });
-
-    }
-
-    @Order(3)
-    @Test
-    void testForUpdateBySettingsAdmin() {
-        this.authenticationService.authenticate(LoginInfo.builder().username("settings.admin").password("settings.admin1234").build());
-        this.userRepository.findByUsername("pre-persist-user").ifPresent(user->{
-            user.setActive(true);
-            user = this.userRepository.save(user);
-            assertFalse(user.isActive());
-        });
-    }
-
-    @Order(4)
-    @Test
-    void testForUpdateByUserAdmin() {
-        this.authenticationService.authenticate(LoginInfo.builder().username("user.admin").password("user.admin1234").build());
-        this.userRepository.findByUsername("pre-persist-user").ifPresent(user->{
-            user.setActive(false);
-            user = this.userRepository.save(user);
-            assertFalse(user.isActive());
-        });
-
-    }
-
-    @Order(5)
-    @Test
-    void testForUpdateByUserAdminSetTrue() {
-        this.authenticationService.authenticate(LoginInfo.builder().username("user.admin").password("user.admin1234").build());
-        this.userRepository.findByUsername("pre-persist-user").ifPresent(user->{
-            user.setActive(true);
-            user = this.userRepository.save(user);
-            assertTrue(user.isActive());
-        });
-
-    }
-
-    @Test
-    @Order(6)
-    void testForSystemUpdate() {
-        Assertions.assertThrows(PrePersistException.class, ()->this.userRepository.findByUsername("system").ifPresent(this.userRepository::save));
-    }
 }
