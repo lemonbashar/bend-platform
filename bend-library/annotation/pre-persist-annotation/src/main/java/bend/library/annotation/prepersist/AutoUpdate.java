@@ -28,14 +28,6 @@ public @interface AutoUpdate {
     String isApplicable() default SpringElConstants.TRUE;
 
     /**
-     * Also a SPEL for compiling and it will be return always {@link  java.time.LocalDate} instance.<br/>
-     * Example:  SPEL: java.time.LocalDate.now()
-     *
-     * @return SPEL of LocalDate
-     */
-    String updateDate() default SpringElConstants.DateTime.NOW;
-
-    /**
      * An SPEL Expression for finding update-by user-id.<br/>
      * Example: SPEL: @userService.loggedInUserIdOrSystemUserId()
      *

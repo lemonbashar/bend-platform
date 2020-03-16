@@ -1,0 +1,58 @@
+<h2>{{user.id == null? 'Create New':'Update'}} User Account</h2>
+<div class="form-group">
+  <form (ngSubmit)="save()">
+    <div class="row">
+      <div class="col-4">
+        <fieldset>
+          <div class="form-group has-success">
+            <label class="form-control-label" for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter Full Name" [(ngModel)]="user.fullName" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group has-success">
+            <label class="form-control-label" for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter Password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-4">
+        <fieldset>
+          <div class="form-group has-success">
+            <label class="form-control-label" for="username">UserName</label>
+            <input type="text" id="username" placeholder="Enter Username" [(ngModel)]="user.username" (ngModelChange)="checkUsername(user.username)" [ngModelOptions]="{standalone: true}" class="form-control" [ngClass]="user.username!=null?(!usernameExist?'is-valid':'is-invalid'):''">
+            <div *ngIf="user.username!=null && usernameExist" class="invalid-feedback">Sorry, the username already taken, please pick another one</div>
+          </div>
+          <div class="form-group has-success">
+            <label class="form-control-label" for="active">Active Status</label>
+            <input type="checkbox" id="active" [(ngModel)]="user.active" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-4">
+        <fieldset>
+          <div class="form-group has-success">
+            <label class="form-control-label" for="typeValue">Email</label>
+            <input type="text" id="typeValue" placeholder="Enter Email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+          <div class="form-group has-success">
+            <label class="form-control-label" for="authorities">Authorities</label>
+            <select id="authorities" multiple="multiple" [(ngModel)]="user.authorities" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option [ngValue]="null"></option>
+              <option *ngFor="let authority of authorities;" [ngValue]="exist(authority) >= 0? user.authorities[exist(authority)]: authority" >{{authority.name}}</option>
+            </select>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+      </div>
+      <div class="col-4 text-right">
+        <fieldset>
+          <button type="button" (click)="save()" class="btn btn-dark">{{user.id==null?'Save':'Update'}}</button>
+        </fieldset>
+      </div>
+    </div>
+  </form>
+</div>

@@ -9,6 +9,13 @@ dependencyManagement {
 allprojects {
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation project(':bend-library:config')
+        implementation project(':bend-library:config:security')
+
+        testImplementation project(':bend-library:config:security:jwt')
+        testImplementation project(':bend-library:config:database')
+        testImplementation project(':bend-library:config:database:rdbms')
+        testImplementation "org.postgresql:postgresql:$postgreVersion"
     }
 }
 

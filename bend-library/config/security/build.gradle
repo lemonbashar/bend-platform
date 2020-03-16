@@ -6,6 +6,10 @@ dependencyManagement {
     }
 }
 
+dependencies {
+    testImplementation project(':bend-library:config:security:jwt')
+}
+
 allprojects {
     dependencies {
         implementation project(':bend-library:domain')
@@ -25,5 +29,6 @@ subprojects {
 
     dependencies {
         implementation project(':bend-library:config:security')
+        testImplementation project(':bend-library:config:security')
     }
 }

@@ -1,6 +1,7 @@
 package bend.library.config.security.util;
 
 import bend.framework.base.util.BendOptional;
+import bend.library.config.constants.SecurityConstants;
 import bend.library.config.security.data.AccountInfo;
 import bend.library.config.security.data.CustomUserDetails;
 import bend.library.domain.entity.User;
@@ -54,8 +55,11 @@ public final class SecurityUtil {
     public static AccountInfo accountInfo() {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, auth -> (CustomUserDetails) auth.getPrincipal())
-                .ifThenMap(Objects::nonNull, userDetails -> new AccountInfo(userDetails.getUsername(), userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet())))
+                .ifThenMap(Objects::nonNull, userDetails -> new AccountInfo(userDetails.getUsername(), userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet()), true))
                 .orElse(null);
     }
 
+    public static boolean isSuperAdmin() {
+        return hasAnyAuthority(SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN);
+    }
 }

@@ -1,6 +1,7 @@
 package bend.library.core.prepersist;
 
 import bend.library.annotation.prepersist.PrePersist;
+import bend.library.core.prepersist.impl.PrePersistAwareImpl;
 import bend.library.domain.entity.BaseEntity;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ import java.util.Iterator;
 @Configuration
 @Aspect
 public class PrePersistAspect {
-    private final @NonNull PrePersistAware prePersistAware;
+    private final @NonNull PrePersistAwareImpl prePersistAware;
 
     @Pointcut("execution(* org.springframework.data.jpa.repository.JpaRepository.save(..))")
     public void repositorySaveCallPointcut() {

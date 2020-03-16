@@ -19,13 +19,13 @@
             <!--END-OF-COMMON_BASE-ENTITY-->
 
             <column name="USERNAME" type="VARCHAR(32)">
-                <constraints unique="true" uniqueConstraintName="UK_BEND_USER_NAME"/>
+                <constraints unique="true" uniqueConstraintName="UK_DB_MAIN_BEND_USER_USERNAME"/>
             </column>
             <column name="PASSWORD" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="EMAIL" type="VARCHAR(32)">
-                <constraints unique="true" uniqueConstraintName="UK_BEND_USER_EMAIL"/>
+                <constraints unique="true" uniqueConstraintName="UK_DB_MAIN_BEND_USER_EMAIL"/>
             </column>
         </createTable>
 

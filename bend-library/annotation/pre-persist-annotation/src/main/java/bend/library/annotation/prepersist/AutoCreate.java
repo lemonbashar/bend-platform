@@ -28,14 +28,6 @@ public @interface AutoCreate {
     String isApplicable() default SpringElConstants.TRUE;
 
     /**
-     * Also a SPEL for compiling and it will be return always {@link  java.time.LocalDate} instance.<br/>
-     * Example:  SPEL: java.time.LocalDate.now()
-     *
-     * @return SPEL of LocalDate
-     */
-    String createDate() default SpringElConstants.DateTime.NOW;
-
-    /**
      * An SPEL Expression for finding create-by user-id.<br/>
      * Example: SPEL: @userService.loggedInUserIdOrSystemUserId()
      *

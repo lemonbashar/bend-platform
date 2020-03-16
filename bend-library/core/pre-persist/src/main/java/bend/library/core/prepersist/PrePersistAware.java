@@ -3,6 +3,8 @@ package bend.library.core.prepersist;
 import bend.library.annotation.prepersist.PrePersist;
 import bend.library.domain.entity.BaseEntity;
 
+import java.lang.annotation.Annotation;
+
 /**
  * This interface make the
  *
@@ -12,6 +14,6 @@ import bend.library.domain.entity.BaseEntity;
  */
 
 
-public interface PrePersistAware {
-    void aware(BaseEntity<?> baseEntity, PrePersist prePersist);
+public interface PrePersistAware<T extends Annotation> {
+    void aware(BaseEntity<?> baseEntity, T t);
 }

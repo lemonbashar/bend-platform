@@ -2,7 +2,7 @@
 
 spring:
   profiles:
-    include: dev,postgre
+    include: dev,postgre,liquibase
 
 bend-platform:
   settings:
@@ -56,11 +56,20 @@ bend-platform:
       queue-capacity: 1000
       thread-name-prefix: spring-dev
   database:
-    host: localhost
+    host: 192.168.0.104
     schema: bend-platform-test
     username: lemon
     password: lemon
     driver: org.postgresql.Driver
+    migration:
+      active: true
+      liquibase:
+        migration-type: update
+        changelog-path: 'classpath:liquibase/test/liquibase-changelog.xml'
+        changelog-path-type: exact
+        recursive: false
+        include-files: true
+        include-directories: false
     hibernate:
       hbm2-ddl-auto: update
       dialect: org.hibernate.dialect.PostgreSQL82Dialect

@@ -13,8 +13,10 @@ import bend.library.config.security.jwt.jwt.TokenProvider;
 import bend.library.config.security.service.AuthenticationService;
 import bend.library.config.security.service.CustomUserDetailsService;
 import bend.library.config.security.service.SaltedPasswordEncoder;
+import bend.library.config.security.service.UserService;
 import bend.library.config.security.util.SecurityUtil;
 import bend.library.domain.DomainConfig;
+import bend.library.domain.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -43,6 +45,10 @@ public class JwtAuthenticationServiceTest {
     private SaltedPasswordEncoder saltedPasswordEncoder;
     @Autowired
     private TokenProvider tokenProvider;
+    @Autowired
+    private UserRepository userRepository;;
+    @Autowired
+    private UserService userService;
 
     CustomUserDetailsService customUserDetailsService;
 
