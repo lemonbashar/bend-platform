@@ -8,6 +8,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @author lemon
@@ -29,4 +30,11 @@ public abstract class AbstractFilter extends GenericFilterBean {
     }
 
     protected abstract void doFilterInternal(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException;
+
+    protected void responseError(String errorMessage, ServletRequest request, ServletResponse response) throws IOException, ServletException {
+        PrintWriter printWriter=response.getWriter();
+        printWriter.println(errorMessage);
+        printWriter.close();
+        request.getRequestDispatcher(((HttpServletRequest)request).getRequestURI()).include(request, response);
+    }
 }
