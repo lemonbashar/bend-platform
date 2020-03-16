@@ -31,6 +31,14 @@ public abstract class AbstractFilter extends GenericFilterBean {
 
     protected abstract void doFilterInternal(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException;
 
+    /**
+     * At client-end it will found on error.text
+     * @param errorMessage The message to send as error.text
+     * @param request Servlet Request
+     * @param response Servlet response
+     * @throws IOException For servlet filter level error, while acquire printWriter
+     * @throws ServletException for dispatcher level error while include
+     */
     protected void responseError(String errorMessage, ServletRequest request, ServletResponse response) throws IOException, ServletException {
         PrintWriter printWriter=response.getWriter();
         printWriter.println(errorMessage);
