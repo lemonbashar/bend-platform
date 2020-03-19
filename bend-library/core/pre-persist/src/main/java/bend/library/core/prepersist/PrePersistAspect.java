@@ -38,30 +38,30 @@ public class PrePersistAspect {
     }
 
     @Before("allPointcut()")
-    public void auditForSave(JoinPoint joinPoint) throws Throwable {
+    public void auditForSave(JoinPoint joinPoint) {
         Object obj = joinPoint.getArgs()[0];
-        if (isPrePersistable(obj))
-            prePersistAware.aware((BaseEntity) obj, obj.getClass().getAnnotation(PrePersist.class));
+        if (isPrePersistAble(obj))
+            prePersistAware.aware((BaseEntity<?>) obj, obj.getClass().getAnnotation(PrePersist.class));
     }
 
     @SuppressWarnings("unchecked")
     @Before("repositorySaveAllCallPointcut()")
-    public void auditForSaveAll(JoinPoint joinPoint) throws Throwable {
+    public void auditForSaveAll(JoinPoint joinPoint) {
         Iterable<Object> objects = (Iterable<Object>) joinPoint.getArgs()[0];
         Iterator<Object> objectIterator = objects.iterator();
         if (objectIterator.hasNext()) {
             Object obj = objectIterator.next();
-            if (isPrePersistable(obj)) {
-                prePersistAware.aware((BaseEntity) obj, obj.getClass().getAnnotation(PrePersist.class));
+            if (isPrePersistAble(obj)) {
+                prePersistAware.aware((BaseEntity<?>) obj, obj.getClass().getAnnotation(PrePersist.class));
                 while (objectIterator.hasNext()) {
                     Object obj2 = objectIterator.next();
-                    prePersistAware.aware((BaseEntity) obj2, obj2.getClass().getAnnotation(PrePersist.class));
+                    prePersistAware.aware((BaseEntity<?>) obj2, obj2.getClass().getAnnotation(PrePersist.class));
                 }
             }
         }
     }
 
-    private boolean isPrePersistable(Object obj) {
+    private boolean isPrePersistAble(Object obj) {
         return obj instanceof BaseEntity && obj.getClass().isAnnotationPresent(PrePersist.class);
     }
 }

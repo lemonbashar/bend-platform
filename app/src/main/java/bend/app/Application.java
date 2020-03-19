@@ -1,4 +1,4 @@
-package bend;
+package bend.app;
 
 import bend.library.config.PropertiesConfig;
 import bend.library.config.WebConfigurer;

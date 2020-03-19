@@ -1,6 +1,8 @@
 rootProject.name = 'bend-platform'
 
 include ':app'
+include ':gateway'
+include ':service-registry'
 include ':bend-library:annotation'
 include ':bend-library:annotation:pre-persist-annotation'
 include ':bend-library:config'

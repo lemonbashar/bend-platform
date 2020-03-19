@@ -1,6 +1,5 @@
 package bend.library.core.prepersist;
 
-import bend.library.annotation.prepersist.PrePersist;
 import bend.library.domain.entity.BaseEntity;
 
 import java.lang.annotation.Annotation;
