@@ -1,0 +1,13 @@
+
+
+bend-platform:
+  settings:
+      general:
+          name: Spring-Boot-Gateway
+spring:
+    profiles:
+        active: dev
+server:
+    port: 8788
+    servlet:
+        context-path: /bend-gateway

@@ -19,6 +19,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+	implementation project(':bend-library:config')
 }
 
 dependencyManagement {
