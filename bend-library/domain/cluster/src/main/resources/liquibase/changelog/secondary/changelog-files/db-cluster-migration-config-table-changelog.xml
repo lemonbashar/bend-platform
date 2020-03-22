@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS DB_CLUSTER_MIGRATION_CONFIG;</sql>
+        <createTable tableName="DB_CLUSTER_MIGRATION_CONFIG">
+            <column name="ID" valueSequenceNext="DB_CLUSTER_MIGRATION_CONFIG_SEQ" type="${bigInteger}">
+                <constraints primaryKey="true" primaryKeyName="PK_DB_CLUSTER_MIGRATION_CONFIG"/>
+            </column>
+            <column name="CREATE_BY" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_BY" type="${bigInteger}"/>
+            <column name="UPDATE_DATE" type="${localDate}"/>
+            <column name="ACTIVE_STATUS" type="boolean"/>
+            <!--END-OF-COMMON_BASE-ENTITY-->
+
+            <column name="MIGRATION_TYPE" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MIGRATION_PATH" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATABASE_CONFIG_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="DB_CLUSTER_MIGRATION_CONFIG"/>
+        </rollback>
+
+        <addUniqueConstraint tableName="DB_CLUSTER_MIGRATION_CONFIG" constraintName="UK_MIGRATION_TYPE_N_DATABASE_CONFIG_ID" columnNames="MIGRATION_TYPE,DATABASE_CONFIG_ID"/>
+
+        <createSequence sequenceName="DB_CLUSTER_MIGRATION_CONFIG_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="4" minValue="1" />
+
+        <addForeignKeyConstraint baseTableName="DB_CLUSTER_MIGRATION_CONFIG" baseColumnNames="CREATE_BY"
+                                 constraintName="FK_BEND_USER_2_MIGRATION_CONFIG_CREATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_CLUSTER_MIGRATION_CONFIG" baseColumnNames="UPDATE_BY"
+                                 constraintName="FK_BEND_USER_2_MIGRATION_CONFIG_UPDATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_CLUSTER_MIGRATION_CONFIG" baseColumnNames="DATABASE_CONFIG_ID"
+                                 constraintName="FK_DATABASE_CONFIG_2_MIGRATION_CONFIG_DATABASE_CONFIG_ID"
+                                 referencedTableName="DB_CLUSTER_DATABASE_CONFIG"
+                                 referencedColumnNames="ID"/>
+
+        <loadData tableName="DB_CLUSTER_MIGRATION_CONFIG" file="classpath:liquibase/data/db-cluster-migration-config/migration-config-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>
