@@ -6,5 +6,5 @@ import javax.sql.DataSource;
 import java.util.List;
 
 public interface ClusterDatabaseMigration {
-    void migrate(List<DataSource> dataSources, MigrationConfig migrationConfig);
+    void migrate(MigrationConfig migrationConfig, List<DataSource> dataSources);
 }

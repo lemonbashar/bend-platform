@@ -1,2 +1,2 @@
 ID,ACTIVE_STATUS,CREATE_BY,MIGRATION_NAME,MIGRATION_PATH,MIGRATION_PROPERTIES
-1,true,1,Liquibase-Cluster-Migration,classpath:liquibase/cluster/liquibase-cluster-changelog.xml,tag:MIGRATION_ONE context:MIGRATION_ONE
+1,true,1,Liquibase-Cluster-Migration,classpath:liquibase/update/liquibase-changelog.xml,tag:CLUSTER-DB-TAG context:CORE

@@ -9,4 +9,6 @@ public interface ClusterDatabaseRegistry {
      * @return Appropriate database name for current user.
      */
     String findAppropriateDatabase(String username);
+
+    String defaultDataSourceKey();
 }

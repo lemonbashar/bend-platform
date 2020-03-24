@@ -56,7 +56,7 @@ public class DatabaseConfig extends BaseEntity<BigInteger> implements Serializab
     private Set<JpaProperties> databaseProperties = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "MIGRATION_CONFIG")
+    @JoinColumn(name = "MIGRATION_CONFIG_ID")
     private MigrationConfig migrationConfig;
 
 

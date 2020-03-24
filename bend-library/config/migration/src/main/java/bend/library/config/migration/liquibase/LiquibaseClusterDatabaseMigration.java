@@ -24,7 +24,7 @@ public class LiquibaseClusterDatabaseMigration extends AbstractLiquibaseMigratio
     }
 
     @Override
-    public void migrate(final List<DataSource> dataSources, final MigrationConfig migrationConfig) {
+    public void migrate(final MigrationConfig migrationConfig, final List<DataSource> dataSources) {
         final LiquibaseProperties liquibaseProperties = extractProperties(migrationConfig.getMigrationProperties());
         for(DataSource dataSource: dataSources) {
             try(Connection connection=dataSource.getConnection()) {
@@ -35,10 +35,12 @@ public class LiquibaseClusterDatabaseMigration extends AbstractLiquibaseMigratio
         }
     }
 
-    private LiquibaseProperties extractProperties(String properties) {
+    private LiquibaseProperties extractProperties(final String properties) {
+        if(properties==null || properties.isEmpty() || properties.isBlank()) return new LiquibaseProperties();
         String[] props = properties.split(" ");
         LiquibaseProperties liquibaseProperties = new LiquibaseProperties();
         for(String prop: props) {
+            if(!prop.contains(":")) continue;
             String[] kv=prop.split(":");
             if(kv[0].equalsIgnoreCase("tag"))
                 liquibaseProperties.tag = kv[1];

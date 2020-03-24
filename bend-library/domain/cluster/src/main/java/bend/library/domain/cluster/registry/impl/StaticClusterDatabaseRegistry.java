@@ -24,4 +24,9 @@ public class StaticClusterDatabaseRegistry implements ClusterDatabaseRegistry {
     public String findAppropriateDatabase(String username) {
         return Objects.isNull(username) ? DATABASE_REGISTRY[INDEX_WHEN_NO_USER_FOUND] : DATABASE_REGISTRY[username.hashCode()%TOTAL_CLUSTER_DATABASE];
     }
+
+    @Override
+    public String defaultDataSourceKey() {
+        return DATABASE_REGISTRY[INDEX_WHEN_NO_USER_FOUND];
+    }
 }

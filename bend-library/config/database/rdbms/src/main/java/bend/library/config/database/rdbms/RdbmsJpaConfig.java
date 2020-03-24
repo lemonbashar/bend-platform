@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -43,7 +44,8 @@ public class RdbmsJpaConfig {
     private final @NonNull SpringProperties properties;
     private final @NonNull DatabaseMigration databaseMigration;
 
-    @Bean
+    @Primary
+    @Bean(name = BaseConstants.BASE_DATASOURCE_NAME)
     public DataSource datasource() {
         HikariDataSource hikariDataSource = new HikariDataSource();
         hikariDataSource.setUsername(properties.getDatabase().getUsername());
@@ -66,15 +68,17 @@ public class RdbmsJpaConfig {
         return hikariDataSource;
     }
 
+    @Primary
     @Bean(name = BaseConstants.BASE_TRANSACTION_NAME)
-    public PlatformTransactionManager platformTransactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
+    public PlatformTransactionManager platformTransactionManager(@Qualifier(BaseConstants.BASE_ENTITY_MANAGER_NAME) LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactoryBean.getObject());
         return transactionManager;
     }
 
+    @Primary
     @Bean(name = BaseConstants.BASE_ENTITY_MANAGER_NAME)
-    public LocalContainerEntityManagerFactoryBean localContainerEntityManager(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
+    public LocalContainerEntityManagerFactoryBean localContainerEntityManager(@Qualifier(BaseConstants.BASE_DATASOURCE_NAME) DataSource dataSource, @Qualifier(BaseConstants.BASE_JPA_VENDOR_ADAPTER) JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
         em.setPackagesToScan(properties.getDatabase().getHibernate().getAnnotatedPackages());
@@ -88,7 +92,7 @@ public class RdbmsJpaConfig {
         return em;
     }
 
-    @Bean
+    @Bean(name = BaseConstants.BASE_JPA_VENDOR_ADAPTER)
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setShowSql(properties.getDatabase().getHibernate().isShowSql());

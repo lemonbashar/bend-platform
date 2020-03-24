@@ -32,7 +32,7 @@
             <dropTable tableName="DB_CLUSTER_MIGRATION_CONFIG"/>
         </rollback>
 
-        <createSequence sequenceName="DB_CLUSTER_MIGRATION_CONFIG_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="4" minValue="1" />
+        <createSequence sequenceName="DB_CLUSTER_MIGRATION_CONFIG_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="2" minValue="1" />
 
         <addForeignKeyConstraint baseTableName="DB_CLUSTER_MIGRATION_CONFIG" baseColumnNames="CREATE_BY"
                                  constraintName="FK_BEND_USER_2_MIGRATION_CONFIG_CREATE_BY"
