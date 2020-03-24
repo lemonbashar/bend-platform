@@ -1,15 +1,9 @@
-package bend.library.config.migration;
+package bend.library.config.migration.liquibase;
 
 import bend.framework.properties.springproperties.SpringProperties;
 import bend.framework.properties.springproperties.database.migration.Migration;
 import bend.library.config.constants.ProfileConstants;
-import liquibase.Contexts;
-import liquibase.Liquibase;
-import liquibase.database.DatabaseFactory;
-import liquibase.database.jvm.JdbcConnection;
-import liquibase.exception.DatabaseException;
-import liquibase.exception.LiquibaseException;
-import liquibase.resource.ResourceAccessor;
+import bend.library.config.migration.DatabaseMigration;
 import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Configuration;
@@ -18,24 +12,13 @@ import org.springframework.context.annotation.Profile;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Log4j2
 @Profile(ProfileConstants.LIQUIBASE)
 @Configuration
-public class LiquibaseMigration implements DatabaseMigration {
-    private final @NonNull SpringProperties properties;
-    private ResourceAccessor resourceAccessor;
-
-    private Liquibase liquibase;
-
+public class LiquibaseMigration extends AbstractLiquibaseMigration implements DatabaseMigration {
     public LiquibaseMigration(@NonNull SpringProperties properties) {
-        this.properties = properties;
-        if(properties.getDatabase().getMigration().isActive()) {
-            log.info("Liquibase Migration is active");
-            this.resourceAccessor = new ClasspathResourceAccessor(getClass().getClassLoader(), properties.getDatabase().getMigration().getLiquibase());
-        }
-        else log.info("Migration is Not Active.");
+        super(properties);
     }
 
     @Override
@@ -60,13 +43,5 @@ public class LiquibaseMigration implements DatabaseMigration {
                 log.error(e);
             }
         });
-    }
-
-    private void runChangelog(final Connection connection, final String changelogPath, final String tag, final String[] contexts) throws LiquibaseException {
-        this.liquibase = new Liquibase(changelogPath, this.resourceAccessor, DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection)));
-        if(tag!=null)
-            liquibase.update(tag, (contexts==null || contexts.length<1 )?new Contexts():new Contexts(contexts));
-        else
-            liquibase.update((contexts==null || contexts.length<1 )?new Contexts():new Contexts(contexts));
     }
 }

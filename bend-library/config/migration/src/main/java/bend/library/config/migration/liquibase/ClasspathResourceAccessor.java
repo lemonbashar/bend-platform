@@ -1,4 +1,4 @@
-package bend.library.config.migration;
+package bend.library.config.migration.liquibase;
 
 import bend.framework.properties.springproperties.database.migration.Liquibase;
 import liquibase.resource.ClassLoaderResourceAccessor;

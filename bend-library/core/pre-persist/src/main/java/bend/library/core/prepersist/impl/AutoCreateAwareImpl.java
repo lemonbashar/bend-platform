@@ -1,5 +1,6 @@
 package bend.library.core.prepersist.impl;
 
+import bend.framework.base.util.BendOptional;
 import bend.library.annotation.prepersist.AutoCreate;
 import bend.library.config.el.ElEvaluator;
 import bend.library.config.security.service.UserService;
@@ -31,7 +32,8 @@ public class AutoCreateAwareImpl implements PrePersistAware<AutoCreate> {
     public void aware(BaseEntity<?> baseEntity, AutoCreate autoCreate) {
         if(!elEvaluator.evaluate(Boolean.class, autoCreate.isApplicable(), ()->false, baseEntity))
             return;
-        BigInteger uid = elEvaluator.evaluate(BigInteger.class, autoCreate.createBy(),()->userService.systemUser().getId(), baseEntity);
+        BigInteger uid = BendOptional.ofNullable(elEvaluator.evaluate(BigInteger.class, autoCreate.createBy(),()->userService.systemUser().getId(), baseEntity))
+                .orElse(userService.systemUser().getId());
         baseEntity.setCreateBy(new User(uid));
     }
 }

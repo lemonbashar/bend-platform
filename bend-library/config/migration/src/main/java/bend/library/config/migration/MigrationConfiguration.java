@@ -11,5 +11,5 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan("bend.library.config.migration")
-public class LiquibaseMigrationConfiguration {
+public class MigrationConfiguration {
 }

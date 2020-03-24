@@ -23,7 +23,7 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
+@Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
 @SpringBootTest(classes = {WebConfigurer.class, JwtSecurityConfig.class, CommonSecurityConfig.class, PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)

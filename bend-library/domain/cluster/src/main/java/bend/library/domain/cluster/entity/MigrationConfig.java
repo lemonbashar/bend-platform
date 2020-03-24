@@ -4,7 +4,6 @@ import bend.library.annotation.prepersist.AutoActive;
 import bend.library.annotation.prepersist.AutoCreate;
 import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
-import bend.library.domain.cluster.enumeretion.MigrationType;
 import bend.library.domain.entity.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +20,7 @@ import java.math.BigInteger;
 @AutoActive
 @AutoCreate
 @AutoUpdate
-@Table(name = "DB_CLUSTER_MIGRATION_CONFIG", uniqueConstraints = @UniqueConstraint(name = "UK_MIGRATION_TYPE_N_DATABASE_CONFIG_ID", columnNames = {"MIGRATION_TYPE", "DATABASE_CONFIG_ID"}))
+@Table(name = "DB_CLUSTER_MIGRATION_CONFIG")
 @Entity
 public class MigrationConfig extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -31,14 +30,21 @@ public class MigrationConfig extends BaseEntity<BigInteger> implements Serializa
     @SequenceGenerator(name = "PK_DB_CLUSTER_MIGRATION_CONFIG", sequenceName = "DB_CLUSTER_MIGRATION_CONFIG_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "MIGRATION_TYPE", nullable = false, length = 64)
-    private MigrationType migrationType;
+    @Column(name = "MIGRATION_NAME", length = 64, nullable = false)
+    private String migrationName;
 
     @Column(name = "MIGRATION_PATH", nullable = false, length = 64)
     private String migrationPath;
 
-    @JoinColumn(name = "DATABASE_CONFIG_ID")
-    @OneToOne
-    private DatabaseConfig databaseConfig;
+    /**
+     * Sometimes we need some extra data to complete migration, like iun liquibase
+     * we need tag, contexts etc, but in flyway we need nothing like tag or contexts but we need something
+     * other types of values, but here the domain is common, so we need to solve both of them requirements
+     * using this one domain. so we have one solutions we put extra values as string separated
+     *
+     * Here we put those values as key-value paired like key:value key1:value1
+     * like for liquibase properties are: tag:tagName context:contextOne context:contextTwo
+     */
+    @Column(name = "MIGRATION_PROPERTIES", length = 128)
+    private String migrationProperties;
 }

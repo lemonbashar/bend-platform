@@ -6,6 +6,14 @@ dependencyManagement {
     }
 }
 
+allprojects {
+    dependencies {
+        implementation project(':bend-library:config:security')
+        implementation project(':bend-library:domain')
+        implementation project(':bend-library:domain:cluster')
+    }
+}
+
 subprojects {
     jar {
         archivesBaseName = 'bend-library-config-database-' + project.name

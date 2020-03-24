@@ -1,4 +1,2 @@
-ID,ACTIVE_STATUS,CREATE_BY,MIGRATION_TYPE,DATABASE_CONFIG_ID,MIGRATION_PATH
-1,true,1,LIQUIBASE,1,classpath:liquibase/cluster/liquibase-cluster-changelog.xml
-2,true,1,LIQUIBASE,2,classpath:liquibase/cluster/liquibase-cluster-changelog.xml
-3,true,1,LIQUIBASE,3,classpath:liquibase/cluster/liquibase-cluster-changelog.xml
+ID,ACTIVE_STATUS,CREATE_BY,MIGRATION_NAME,MIGRATION_PATH,MIGRATION_PROPERTIES
+1,true,1,Liquibase-Cluster-Migration,classpath:liquibase/cluster/liquibase-cluster-changelog.xml,tag:MIGRATION_ONE context:MIGRATION_ONE

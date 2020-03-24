@@ -35,6 +35,9 @@
             <column name="DATABASE_TYPE" type="VARCHAR(16)">
                 <constraints nullable="false"/>
             </column>
+            <column name="MIGRATION_CONFIG_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
         <rollback>
             <dropTable tableName="DB_CLUSTER_DATABASE_CONFIG"/>
@@ -51,6 +54,10 @@
         <addForeignKeyConstraint baseTableName="DB_CLUSTER_DATABASE_CONFIG" baseColumnNames="UPDATE_BY"
                                  constraintName="FK_BEND_USER_2_DATABASE_CONFIG_UPDATE_BY"
                                  referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_CLUSTER_DATABASE_CONFIG" baseColumnNames="MIGRATION_CONFIG_ID"
+                                 constraintName="FK_MIGRATION_CONFIG_2_DATABASE_CONFIG_MIGRATION_CONFIG_ID"
+                                 referencedTableName="DB_CLUSTER_MIGRATION_CONFIG"
                                  referencedColumnNames="ID"/>
 
         <loadData tableName="DB_CLUSTER_DATABASE_CONFIG" file="classpath:liquibase/data/db-cluster-database-config/database-config-update.csv" encoding="UTF-8" separator=","/>

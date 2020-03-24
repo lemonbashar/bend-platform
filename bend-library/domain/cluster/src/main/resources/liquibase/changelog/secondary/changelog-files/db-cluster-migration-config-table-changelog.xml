@@ -20,21 +20,17 @@
             <column name="ACTIVE_STATUS" type="boolean"/>
             <!--END-OF-COMMON_BASE-ENTITY-->
 
-            <column name="MIGRATION_TYPE" type="VARCHAR(64)">
+            <column name="MIGRATION_NAME" type="VARCHAR(64)">
                 <constraints nullable="false"/>
             </column>
             <column name="MIGRATION_PATH" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="DATABASE_CONFIG_ID" type="${bigInteger}">
-                <constraints nullable="false"/>
-            </column>
+            <column name="MIGRATION_PROPERTIES" type="VARCHAR(128)"/>
         </createTable>
         <rollback>
             <dropTable tableName="DB_CLUSTER_MIGRATION_CONFIG"/>
         </rollback>
-
-        <addUniqueConstraint tableName="DB_CLUSTER_MIGRATION_CONFIG" constraintName="UK_MIGRATION_TYPE_N_DATABASE_CONFIG_ID" columnNames="MIGRATION_TYPE,DATABASE_CONFIG_ID"/>
 
         <createSequence sequenceName="DB_CLUSTER_MIGRATION_CONFIG_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="4" minValue="1" />
 
@@ -46,11 +42,6 @@
                                  constraintName="FK_BEND_USER_2_MIGRATION_CONFIG_UPDATE_BY"
                                  referencedTableName="DB_MAIN_BEND_USER"
                                  referencedColumnNames="ID"/>
-        <addForeignKeyConstraint baseTableName="DB_CLUSTER_MIGRATION_CONFIG" baseColumnNames="DATABASE_CONFIG_ID"
-                                 constraintName="FK_DATABASE_CONFIG_2_MIGRATION_CONFIG_DATABASE_CONFIG_ID"
-                                 referencedTableName="DB_CLUSTER_DATABASE_CONFIG"
-                                 referencedColumnNames="ID"/>
-
         <loadData tableName="DB_CLUSTER_MIGRATION_CONFIG" file="classpath:liquibase/data/db-cluster-migration-config/migration-config-update.csv" encoding="UTF-8" separator=","/>
     </changeSet>
 </databaseChangeLog>

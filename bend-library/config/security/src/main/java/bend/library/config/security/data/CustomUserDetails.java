@@ -3,6 +3,7 @@ package bend.library.config.security.data;
 import bend.library.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +18,7 @@ import java.util.stream.Stream;
  * Email lemon.bashar@gmail.com
  * Created 2/16/2020
  */
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class CustomUserDetails implements UserDetails {
     private BigInteger id;
@@ -28,6 +29,18 @@ public class CustomUserDetails implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private Set<? extends GrantedAuthority> authorities;
+    private String databaseLookupKey;
+
+    public CustomUserDetails(BigInteger id, String username, String password, boolean enabled, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, Set<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.authorities = authorities;
+    }
 
     public CustomUserDetails(BigInteger id, String username, String password, String... authorities) {
         this(id, username, password, true, true, true, true, Stream.of(authorities).map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));

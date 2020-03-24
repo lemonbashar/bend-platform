@@ -1,6 +1,8 @@
 package bend.library.config.constants;
 
+import java.math.BigInteger;
 import java.util.Set;
+import java.util.function.Function;
 
 /**
  * @author lemon
@@ -33,5 +35,6 @@ public final class SecurityConstants {
         public static final String SYSTEM_USER = "system";
         public static final String SYSTEM_PASSWORD = "systempassword";
         public static final String SYSTEM_EMAIL = "system@nomail.com";
+        public static final BigInteger SYSTEM_USER_ID = BigInteger.ONE;
     }
 }

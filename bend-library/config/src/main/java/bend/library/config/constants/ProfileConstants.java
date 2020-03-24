@@ -31,11 +31,11 @@ public final class ProfileConstants {
         /**
          * Indicate that tagged test will depends on database data, so we will test those data manually.
          */
-        public static final String DATABASE_HIT = "db";
+        public static final String NOT_RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY = "db";
 
         /**
          * Indicate that tagged test won't depends on database data, so we can tested them using gradle tool.
          */
-        public static final String NON_DATABASE_HIT = "ndb";
+        public static final String RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY = "ndb";
     }
 }

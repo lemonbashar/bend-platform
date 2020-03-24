@@ -4,13 +4,11 @@ import bend.library.config.PropertiesConfig;
 import bend.library.config.constants.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.exception.PrePersistException;
-import bend.library.config.security.data.LoginInfo;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.config.security.service.AuthenticationService;
 import bend.library.config.security.service.AuthorityService;
 import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.domain.DomainConfig;
-import bend.library.domain.entity.User;
 import bend.library.domain.repositories.UserRepository;
 import org.apache.catalina.security.SecurityConfig;
 import org.junit.jupiter.api.Assertions;
@@ -22,12 +20,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
+@Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
 @SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class,

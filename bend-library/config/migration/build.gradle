@@ -9,6 +9,8 @@ dependencyManagement {
 allprojects {
     dependencies {
         implementation "org.liquibase:liquibase-core:$liquibaseVersion"
+        implementation project(':bend-library:domain')
+        implementation project(':bend-library:domain:cluster')
     }
 }
 

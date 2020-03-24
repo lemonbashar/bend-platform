@@ -1,9 +1,6 @@
 package bend.library.config.security.data;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
@@ -16,6 +13,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(of = {"username", "authenticated"})
 public class AccountInfo {
     private String username;
     private Set<String> authorities;

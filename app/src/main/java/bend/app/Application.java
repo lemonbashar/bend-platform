@@ -4,7 +4,7 @@ import bend.library.config.PropertiesConfig;
 import bend.library.config.WebConfigurer;
 import bend.library.config.constants.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
-import bend.library.config.migration.LiquibaseMigrationConfiguration;
+import bend.library.config.migration.MigrationConfiguration;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.controller.ControllerConfig;
@@ -35,7 +35,7 @@ import java.util.Collection;
 
 @Log4j2
 @RequiredArgsConstructor
-@SpringBootApplication(scanBasePackageClasses = {PropertiesConfig.class, LiquibaseMigrationConfiguration.class,
+@SpringBootApplication(scanBasePackageClasses = {PropertiesConfig.class, MigrationConfiguration.class,
         RdbmsJpaConfig.class,
         PrePersistConfiguration.class,
         DomainConfig.class,

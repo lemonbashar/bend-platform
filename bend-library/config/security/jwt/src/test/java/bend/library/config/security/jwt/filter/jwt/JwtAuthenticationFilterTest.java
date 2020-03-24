@@ -3,6 +3,7 @@ package bend.library.config.security.jwt.filter.jwt;
 import bend.library.config.PropertiesConfig;
 import bend.library.config.WebConfigurer;
 import bend.library.config.constants.ProfileConstants;
+import bend.library.config.constants.SecurityConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.config.CommonSecurityConfig;
@@ -15,6 +16,7 @@ import bend.library.config.security.jwt.service.JwtAuthenticationServiceTest;
 import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.controller.rest.api.AccountControllerRest;
 import bend.library.controller.rest.constants.RestApiProvider;
+import bend.library.data.UserData;
 import bend.library.domain.DomainConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,10 +36,11 @@ import org.springframework.test.web.servlet.MvcResult;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
+@Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 @ActiveProfiles(profiles = {"test"})
 @TestPropertySource(locations = "classpath:config/application-test.yml")
 @SpringBootTest(classes = {WebConfigurer.class, JwtSecurityConfig.class, CommonSecurityConfig.class, PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class, AccountControllerRest.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -79,6 +82,15 @@ public class JwtAuthenticationFilterTest {
                 get(RestApiProvider.build(RestApiProvider.AccountApi.ACCOUNT_ROOT_API, RestApiProvider.AccountApi.CURRENT_ACCOUNT_INFO))
                         .accept(MediaType.APPLICATION_JSON_VALUE)
         ).andDo(print()).andExpect(status().is(HttpStatus.FORBIDDEN.value()));
+    }
+
+    @Test
+    void createAccount() throws Exception {
+        UserData userData = new UserData("lemon", "lemon@mail.com", "lemon1234", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
+        MvcResult mvcResult = mockMvc.perform(post(RestApiProvider.build(RestApiProvider.AccountApi.ACCOUNT_PUBLIC_ROOT_API, RestApiProvider.AccountApi.CREATE_ACCOUNT)).contentType(MediaType.APPLICATION_JSON_VALUE).content(objectMapper.writeValueAsString(userData)).accept(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print()).andExpect(status().is(HttpStatus.OK.value())).andReturn();
+        AccountInfo accountInfo = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), AccountInfo.class);
+        System.out.println(accountInfo.toString());
     }
 
 }

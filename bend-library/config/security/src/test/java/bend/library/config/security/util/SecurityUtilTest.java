@@ -18,7 +18,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
+@Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
 @SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class, JwtSecurityConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -31,5 +31,18 @@ class SecurityUtilTest {
         authenticationService.authenticate(LoginInfo.builder().username("system").password("system1234").build());
         AccountInfo accountInfo = SecurityUtil.accountInfo();
         assertEquals(accountInfo.getUsername(), "system");
+    }
+
+    @Test
+    void loggedInUsernameNull() {
+        String username = SecurityUtil.loggedInUsername();
+        System.out.println(username);
+    }
+
+    @Test
+    void loggedInUsernameNonNull() {
+        authenticationService.authenticate(LoginInfo.builder().username("system").password("system1234").build());
+        String username = SecurityUtil.loggedInUsername();
+        System.out.println(username);
     }
 }

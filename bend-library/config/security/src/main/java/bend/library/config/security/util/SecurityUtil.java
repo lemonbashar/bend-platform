@@ -26,8 +26,9 @@ public final class SecurityUtil {
     }
 
     public static boolean hasAnyAuthority(final String... authorities) {
-        Set<String> set = BendOptional.ofNullable((Object) SecurityContextHolder.getContext().getAuthentication())
-                .ifThenMap(Objects::nonNull, obj -> ((Authentication) obj).getPrincipal())
+        Set<String> set = BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+                .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
+                .ifNotThenMap(obj->obj instanceof CustomUserDetails, obj->null)
                 .ifThenMap(Objects::nonNull, principal -> ((CustomUserDetails) principal).getAuthorities())
                 .ifThenMap(Objects::nonNull, auths -> auths.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet())).get();
         if (set == null) return false;
@@ -43,9 +44,17 @@ public final class SecurityUtil {
     }
 
     public static BigInteger loggedInUserId() {
-        return BendOptional.ofNullable((Object) SecurityContextHolder.getContext().getAuthentication())
-                .ifThenMap(Objects::nonNull, obj -> ((Authentication) obj).getPrincipal())
+        return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+                .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
+                .ifNotThenMap(obj->obj instanceof CustomUserDetails, principal-> null)
                 .ifThenMap(Objects::nonNull, principal -> ((CustomUserDetails) principal).getId()).get();
+    }
+
+    public static String loggedInUsername() {
+        return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+                .ifThenMap(Objects::nonNull, Authentication::getPrincipal) /*If Exists then map with next object otherwise response null*/
+                .ifNotThenMap(obj->obj instanceof CustomUserDetails, obj->null)
+                .ifThenMap(Objects::nonNull, principal -> ((CustomUserDetails) principal).getUsername()).get();
     }
 
     public static Authentication authentication() {
@@ -54,7 +63,9 @@ public final class SecurityUtil {
 
     public static AccountInfo accountInfo() {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
-                .ifThenMap(Objects::nonNull, auth -> (CustomUserDetails) auth.getPrincipal())
+                .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
+                .ifNotThenMap(obj->obj instanceof CustomUserDetails, obj->null)
+                .ifThenMap(Objects::nonNull, principal -> (CustomUserDetails) principal)
                 .ifThenMap(Objects::nonNull, userDetails -> new AccountInfo(userDetails.getUsername(), userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet()), true))
                 .orElse(null);
     }

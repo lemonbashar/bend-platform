@@ -55,6 +55,12 @@ public class DatabaseConfig extends BaseEntity<BigInteger> implements Serializab
     @JoinTable(name = "JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES", uniqueConstraints = @UniqueConstraint(name = "DATABASE_CONFIG_JPA_PROPERTIES_UNIQUE_KEY", columnNames = {"DATABASE_CONFIG_ID", "JPA_PROPERTIES_ID"}), joinColumns = @JoinColumn(name = "DATABASE_CONFIG_ID", referencedColumnName = "ID", nullable = false), inverseJoinColumns = @JoinColumn(name = "JPA_PROPERTIES_ID", referencedColumnName = "ID", nullable = false))
     private Set<JpaProperties> databaseProperties = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "MIGRATION_CONFIG")
+    private MigrationConfig migrationConfig;
+
+
+
     public DatabaseConfig(String schema, String username, String password, String host, DatabaseType databaseType, Set<JpaProperties> databaseProperties) {
         this.schema = schema;
         this.username = username;

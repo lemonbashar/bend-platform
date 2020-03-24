@@ -13,9 +13,8 @@ dependencies {
 allprojects {
     dependencies {
         implementation project(':bend-library:domain')
-        implementation "org.springframework.boot:spring-boot-starter-web"
-        implementation 'org.springframework.boot:spring-boot-starter-security'
 
+        testImplementation project(':bend-library:data')
         testImplementation project(':bend-library:config:database')
         testImplementation project(':bend-library:config:database:rdbms')
         testRuntime "org.postgresql:postgresql:$postgreVersion"

@@ -8,7 +8,6 @@ import bend.library.config.security.SecurityConfig;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.entity.User;
 import bend.library.domain.repositories.UserRepository;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@Tag(ProfileConstants.TestInclude.DATABASE_HIT)
+@Tag(ProfileConstants.TestInclude.NOT_RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
 @SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -42,7 +41,7 @@ public class UserServiceTest {
         return userServiceTest;
     }
 
-    @Tag(ProfileConstants.TestInclude.NON_DATABASE_HIT)
+    @Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
     @Test
     public void createAdmins() {
         this.userRepository.findByUsername("system.test").orElseGet(()->this.userService.saveUser(makeUser(new User("system.test", saltedPasswordEncoder.encode("system1234", "system"), "system.test@bendmail.com", authorityService.validRawAuthorities(SecurityConstants.AuthorityConstants.SingleAuth.ROLE_SYSTEM_ADMIN)))));

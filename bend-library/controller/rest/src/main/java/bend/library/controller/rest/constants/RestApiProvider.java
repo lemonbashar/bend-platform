@@ -18,6 +18,12 @@ public class RestApiProvider {
 
     public static final class AccountApi {
         public static final String ACCOUNT_ROOT_API = APiConstants.PRIVATE_ROOT + "/account";
+        public static final String ACCOUNT_PUBLIC_ROOT_API = APiConstants.PUBLIC_ROOT + "/account";
         public static final String CURRENT_ACCOUNT_INFO = "/current-account";
+        public static final String CREATE_ACCOUNT = "/create-account";
     }
+
+    public static final String[] NEED_TO_SET_DATA_SOURCE_ROUTE_IF_MATCH = {
+            AccountApi.ACCOUNT_PUBLIC_ROOT_API + AccountApi.CREATE_ACCOUNT
+    };
 }
