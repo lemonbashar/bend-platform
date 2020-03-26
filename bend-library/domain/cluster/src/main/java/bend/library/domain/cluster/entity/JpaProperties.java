@@ -1,12 +1,7 @@
 package bend.library.domain.cluster.entity;
 
-import bend.library.annotation.prepersist.AutoActive;
-import bend.library.annotation.prepersist.AutoCreate;
-import bend.library.annotation.prepersist.AutoUpdate;
-import bend.library.annotation.prepersist.PrePersist;
+import bend.library.annotation.prepersist.SelfPrePersist;
 import bend.library.domain.cluster.enumeretion.DatabasePropertyType;
-import bend.library.domain.entity.BaseEntity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,10 +13,7 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @Setter
 @Getter
-@PrePersist
-@AutoActive
-@AutoCreate
-@AutoUpdate
+@SelfPrePersist
 @Table(name = "DB_CLUSTER_JPA_PROPERTIES", uniqueConstraints = @UniqueConstraint(name = "UK_PROPERTY_KEY_N_PROPERTY_VALUE_N_PROPERTY_TYPE", columnNames = {"PROPERTY_KEY", "PROPERTY_VALUE", "PROPERTY_TYPE"}))
 @Entity
 public class JpaProperties extends BaseEntity<BigInteger> implements Serializable {

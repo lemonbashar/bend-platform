@@ -7,7 +7,6 @@ import bend.library.config.security.jwt.constant.JwtConstants;
 import bend.library.config.security.jwt.data.JwtLogoutInfo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
@@ -81,21 +80,22 @@ public class TokenProvider {
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
                 .claim(JwtConstants.USER_IDENTITY_KEY, loginInfo.getId())
-                .signWith(SignatureAlgorithm.HS512, key)
+                .signWith(key)
                 .setExpiration(validity)
                 .compact();
     }
 
     public Authentication getAuthentication(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(key)
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(key).build()
                 .parseClaimsJws(token)
                 .getBody();
 
         String[] authorities = claims.get(AUTHORITIES_KEY).toString().split(",");
 
         CustomUserDetails principal = new CustomUserDetails(new BigInteger(claims.get(JwtConstants.USER_IDENTITY_KEY).toString()), claims.getSubject(), "", authorities);
-
+        principal.setRegistryDetectionType("BY_USERNAME");
+        principal.setRegistryDetectionValue(principal.getUsername());
         return new UsernamePasswordAuthenticationToken(principal, token, Stream.of(authorities).map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));
     }
 
@@ -109,7 +109,7 @@ public class TokenProvider {
 
     protected boolean parseValidate(String authToken) {
         try {
-            Jwts.parser().setSigningKey(key).parseClaimsJws(authToken);
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(authToken);
             return true;
         } catch (Exception e) {
             log.error(e);

@@ -15,7 +15,7 @@
 
 
     <!--All Essential's database script run-->
-    <includeAll path="classpath:liquibase/changelog/primary" relativeToChangelogFile="false"/>
+    <includeAll path="classpath:liquibase/changelog/cluster/primary" relativeToChangelogFile="false"/>
     <!--Run whose are depend's on primary scripts-->
 <!--    <includeAll path="classpath:liquibase/changelog/secondary" relativeToChangelogFile="false"/>-->
     <!--Run finally after all essentials primary and secondary while done-->

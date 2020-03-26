@@ -6,5 +6,6 @@ public enum DatabasePropertyType {
      */
     NATIVE,
     HIBERNATE,
-    JPA
+    JPA,
+    OTHER
 }

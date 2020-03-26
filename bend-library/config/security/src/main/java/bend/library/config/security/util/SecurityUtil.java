@@ -73,4 +73,23 @@ public final class SecurityUtil {
     public static boolean isSuperAdmin() {
         return hasAnyAuthority(SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN);
     }
+
+    public static CustomUserDetailsExtractor<Object> extractFromPrincipal() {
+        return extractFromPrincipal(Object.class);
+    }
+
+    public static CustomUserDetailsExtractor<String> extractStringFromPrincipal() {
+        return extractFromPrincipal(String.class);
+    }
+
+    public static CustomUserDetailsExtractor<Long> extractLongFromPrincipal() {
+        return extractFromPrincipal(Long.class);
+    }
+
+    public static <T> CustomUserDetailsExtractor<T> extractFromPrincipal(Class<T> returnType) {
+        return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+                .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
+                .ifNotThenMap(obj->obj instanceof CustomUserDetails, obj->null)
+                .ifThenMap(Objects::nonNull, principal->new CustomUserDetailsExtractor<T>((CustomUserDetails)principal, returnType)).get();
+    }
 }

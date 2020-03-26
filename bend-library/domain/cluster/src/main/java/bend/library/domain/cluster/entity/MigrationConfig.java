@@ -1,10 +1,6 @@
 package bend.library.domain.cluster.entity;
 
-import bend.library.annotation.prepersist.AutoActive;
-import bend.library.annotation.prepersist.AutoCreate;
-import bend.library.annotation.prepersist.AutoUpdate;
-import bend.library.annotation.prepersist.PrePersist;
-import bend.library.domain.entity.BaseEntity;
+import bend.library.annotation.prepersist.SelfPrePersist;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,10 +12,7 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @Setter
 @Getter
-@PrePersist
-@AutoActive
-@AutoCreate
-@AutoUpdate
+@SelfPrePersist
 @Table(name = "DB_CLUSTER_MIGRATION_CONFIG")
 @Entity
 public class MigrationConfig extends BaseEntity<BigInteger> implements Serializable {

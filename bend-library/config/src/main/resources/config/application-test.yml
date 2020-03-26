@@ -70,18 +70,18 @@ bend-platform:
         recursive: false
         include-files: true
         include-directories: false
+        contexts:
+          - core
     hibernate:
-      hbm2-ddl-auto: update
+      hbm2-ddl-auto: none
       dialect: org.hibernate.dialect.PostgreSQL82Dialect
       format-sql: true
       comments: true
       show-sql: true
       annotated-packages:
-        - bend.library.domain.entity
         - bend.library.domain.cluster.entity
     jpa:
       persistent-unit: SPRING
       repository-locations:
-        - bend.library.domain.repositories
         - bend.library.domain.cluster.repositories
     database-type: POSTGRESQL

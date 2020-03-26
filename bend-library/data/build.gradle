@@ -6,6 +6,12 @@ dependencyManagement {
     }
 }
 
+allprojects {
+    dependencies {
+        implementation "jakarta.validation:jakarta.validation-api:$jakartaValidationApi"
+    }
+}
+
 subprojects {
     jar {
         archivesBaseName = 'bend-library-core-' + project.name

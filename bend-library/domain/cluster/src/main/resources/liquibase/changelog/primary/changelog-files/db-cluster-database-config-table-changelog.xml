@@ -47,14 +47,6 @@
 
         <createSequence sequenceName="DB_CLUSTER_DATABASE_CONFIG_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="4" minValue="1" />
 
-        <addForeignKeyConstraint baseTableName="DB_CLUSTER_DATABASE_CONFIG" baseColumnNames="CREATE_BY"
-                                 constraintName="FK_BEND_USER_2_DATABASE_CONFIG_CREATE_BY"
-                                 referencedTableName="DB_MAIN_BEND_USER"
-                                 referencedColumnNames="ID"/>
-        <addForeignKeyConstraint baseTableName="DB_CLUSTER_DATABASE_CONFIG" baseColumnNames="UPDATE_BY"
-                                 constraintName="FK_BEND_USER_2_DATABASE_CONFIG_UPDATE_BY"
-                                 referencedTableName="DB_MAIN_BEND_USER"
-                                 referencedColumnNames="ID"/>
         <addForeignKeyConstraint baseTableName="DB_CLUSTER_DATABASE_CONFIG" baseColumnNames="MIGRATION_CONFIG_ID"
                                  constraintName="FK_MIGRATION_CONFIG_2_DATABASE_CONFIG_MIGRATION_CONFIG_ID"
                                  referencedTableName="DB_CLUSTER_MIGRATION_CONFIG"

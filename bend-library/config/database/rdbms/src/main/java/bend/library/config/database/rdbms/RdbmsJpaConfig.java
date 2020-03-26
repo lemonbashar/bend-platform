@@ -92,6 +92,7 @@ public class RdbmsJpaConfig {
         return em;
     }
 
+    @Primary
     @Bean(name = BaseConstants.BASE_JPA_VENDOR_ADAPTER)
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();

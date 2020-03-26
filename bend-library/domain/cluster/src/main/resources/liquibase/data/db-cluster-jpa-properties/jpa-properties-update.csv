@@ -16,8 +16,9 @@ ID,ACTIVE_STATUS,CREATE_BY,PROPERTY_KEY,PROPERTY_TYPE,PROPERTY_VALUE
 15,true,1,hibernate.cache.auto_evict_collection_cache,HIBERNATE,false
 16,true,1,hibernate.cache.use_structured_entries,HIBERNATE,false
 17,true,1,hibernate.cache.region.factory_class,HIBERNATE,org.hibernate.cache.ehcache.EhCacheRegionFactory
-18,true,1,annotatedPackages,HIBERNATE,bend.library.domain.entity:bend.library.domain.cluster.entity
-19,true,1,persistentUnit,JPA,SPRING
-20,true,1,repositoryLocations,JPA,bend.library.domain.repositories:bend.library.domain.cluster.repositories
-21,true,1,transactionManagerBeanName,JPA,bendTransactionManager
-22,true,1,entityManagerBeanName,JPA,bendEntityManager
+18,true,1,annotatedPackages,OTHER,bend.library.domain.entity
+19,true,1,persistentUnit,OTHER,ROUTE-SPRING-JPU
+20,true,1,repositoryLocations,OTHER,bend.library.domain.repositories
+21,true,1,transactionManagerBeanName,OTHER,bendTransactionManager
+22,true,1,entityManagerBeanName,OTHER,bendEntityManager
+23,true,1,databaseType,OTHER,POSTGRESQL

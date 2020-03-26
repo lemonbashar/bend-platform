@@ -1,13 +1,7 @@
 package bend.library.domain.cluster.entity;
 
 import bend.framework.properties.springproperties.database.DatabaseType;
-import bend.library.annotation.prepersist.AutoActive;
-import bend.library.annotation.prepersist.AutoCreate;
-import bend.library.annotation.prepersist.AutoUpdate;
-import bend.library.annotation.prepersist.PrePersist;
-import bend.library.domain.entity.BaseEntity;
-import bend.library.domain.entity.User;
-import lombok.AllArgsConstructor;
+import bend.library.annotation.prepersist.SelfPrePersist;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,10 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-@PrePersist
-@AutoActive
-@AutoCreate
-@AutoUpdate
+@SelfPrePersist
 @Table(name = "DB_CLUSTER_DATABASE_CONFIG", uniqueConstraints = @UniqueConstraint(name = "UK_DATABASE_SCHEMA_N_DATABASE_HOST_N_DATABASE_TYPE", columnNames = {"DATABASE_SCHEMA", "DATABASE_HOST", "DATABASE_TYPE"}))
 @Entity
 public class DatabaseConfig extends BaseEntity<BigInteger> implements Serializable {

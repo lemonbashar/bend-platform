@@ -1,5 +1,6 @@
 package bend.library.domain;
 
+import bend.library.config.constants.BaseConstants;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -16,8 +17,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan("bend.library.domain")
 @EnableJpaRepositories(
         basePackages = {"bend.library.domain.repositories"}
-        , entityManagerFactoryRef = "bendEntityManager"
-        , transactionManagerRef = "bendTransactionManager"
+        , entityManagerFactoryRef = BaseConstants.ROUTING_ENTITY_MANAGER_NAME
+        , transactionManagerRef = BaseConstants.ROUTING_TRANSACTION_NAME
 )
 public class DomainConfig {
 }

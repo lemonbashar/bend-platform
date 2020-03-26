@@ -1,14 +1,16 @@
 package bend.library.domain.cluster.registry;
 
 import bend.library.domain.cluster.entity.DatabaseConfig;
+import bend.library.domain.cluster.enumeretion.RegistryDetectionType;
 
 public interface ClusterDatabaseRegistry {
     /**
      * Find appropriate cluster database info using username.
-     * @param username username which is used for detecting appropriate database
+     * @param value value which is used for detecting appropriate database
+     * @param detectionType It's the registry detection type, cause we may have several datasource detection type, massively we use {@link RegistryDetectionType#BY_USERNAME} username detection type, where value is the username
      * @return Appropriate database name for current user.
      */
-    String findAppropriateDatabase(String username);
+    String findAppropriateDatabase(String value, RegistryDetectionType detectionType);
 
     String defaultDataSourceKey();
 }

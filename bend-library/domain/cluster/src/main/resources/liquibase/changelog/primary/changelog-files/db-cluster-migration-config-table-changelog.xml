@@ -34,14 +34,6 @@
 
         <createSequence sequenceName="DB_CLUSTER_MIGRATION_CONFIG_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="2" minValue="1" />
 
-        <addForeignKeyConstraint baseTableName="DB_CLUSTER_MIGRATION_CONFIG" baseColumnNames="CREATE_BY"
-                                 constraintName="FK_BEND_USER_2_MIGRATION_CONFIG_CREATE_BY"
-                                 referencedTableName="DB_MAIN_BEND_USER"
-                                 referencedColumnNames="ID"/>
-        <addForeignKeyConstraint baseTableName="DB_CLUSTER_MIGRATION_CONFIG" baseColumnNames="UPDATE_BY"
-                                 constraintName="FK_BEND_USER_2_MIGRATION_CONFIG_UPDATE_BY"
-                                 referencedTableName="DB_MAIN_BEND_USER"
-                                 referencedColumnNames="ID"/>
         <loadData tableName="DB_CLUSTER_MIGRATION_CONFIG" file="classpath:liquibase/data/db-cluster-migration-config/migration-config-update.csv" encoding="UTF-8" separator=","/>
     </changeSet>
 </databaseChangeLog>

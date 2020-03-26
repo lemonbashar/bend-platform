@@ -43,7 +43,7 @@ public class User extends BaseEntity<BigInteger> implements Serializable {
     @SequenceGenerator(name = "PK_DB_MAIN_BEND_USER", sequenceName = "DB_MAIN_BEND_USER_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Size(min = 5, max = 32, message = "Username length must be in between 4 ~ 32 ")
+    @Size(min = 4, max = 32, message = "Username length must be in between 4 ~ 32 ")
     @Column(name = "USERNAME", unique = true)
     private String username;
 

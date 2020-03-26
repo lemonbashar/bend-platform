@@ -4,6 +4,7 @@ import bend.library.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +30,10 @@ public class CustomUserDetails implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private Set<? extends GrantedAuthority> authorities;
-    private String databaseLookupKey;
+    @Setter
+    private String registryDetectionValue;
+    @Setter
+    private String registryDetectionType;
 
     public CustomUserDetails(BigInteger id, String username, String password, boolean enabled, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, Set<? extends GrantedAuthority> authorities) {
         this.id = id;
