@@ -1,7 +1,6 @@
-package bend.library.domain.cluster.registry;
+package bend.library.config.security.registry;
 
-import bend.library.domain.cluster.entity.DatabaseConfig;
-import bend.library.domain.cluster.enumeretion.RegistryDetectionType;
+import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
 
 public interface ClusterDatabaseRegistry {
     /**

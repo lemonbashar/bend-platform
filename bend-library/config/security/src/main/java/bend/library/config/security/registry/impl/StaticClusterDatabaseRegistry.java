@@ -1,10 +1,7 @@
-package bend.library.domain.cluster.registry.impl;
+package bend.library.config.security.registry.impl;
 
-import bend.library.domain.cluster.entity.DatabaseConfig;
-import bend.library.domain.cluster.enumeretion.RegistryDetectionType;
-import bend.library.domain.cluster.registry.ClusterDatabaseRegistry;
-import bend.library.domain.cluster.repositories.DatabaseConfigRepository;
-import lombok.NonNull;
+import bend.library.config.security.registry.ClusterDatabaseRegistry;
+import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +23,7 @@ public class StaticClusterDatabaseRegistry implements ClusterDatabaseRegistry {
     public String findAppropriateDatabase(@NotNull String value, @NotNull RegistryDetectionType detectionType) {
         switch (detectionType) {
             case BY_USERNAME:
-                return Objects.isNull(value) ? DATABASE_REGISTRY[INDEX_WHEN_NO_USER_FOUND] : DATABASE_REGISTRY[value.hashCode()%TOTAL_CLUSTER_DATABASE];
+                return Objects.isNull(value) ? DATABASE_REGISTRY[INDEX_WHEN_NO_USER_FOUND] : DATABASE_REGISTRY[Math.abs(value.hashCode())%TOTAL_CLUSTER_DATABASE];
             default:
                 return defaultDataSourceKey();
         }

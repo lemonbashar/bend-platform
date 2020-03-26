@@ -5,6 +5,7 @@ import bend.library.config.security.data.CustomUserDetails;
 import bend.library.config.security.data.LoginInfo;
 import bend.library.config.security.jwt.constant.JwtConstants;
 import bend.library.config.security.jwt.data.JwtLogoutInfo;
+import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -94,7 +95,7 @@ public class TokenProvider {
         String[] authorities = claims.get(AUTHORITIES_KEY).toString().split(",");
 
         CustomUserDetails principal = new CustomUserDetails(new BigInteger(claims.get(JwtConstants.USER_IDENTITY_KEY).toString()), claims.getSubject(), "", authorities);
-        principal.setRegistryDetectionType("BY_USERNAME");
+        principal.setRegistryDetectionType(RegistryDetectionType.BY_USERNAME);
         principal.setRegistryDetectionValue(principal.getUsername());
         return new UsernamePasswordAuthenticationToken(principal, token, Stream.of(authorities).map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));
     }

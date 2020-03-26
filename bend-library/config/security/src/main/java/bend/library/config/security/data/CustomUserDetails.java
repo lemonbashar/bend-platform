@@ -1,5 +1,6 @@
 package bend.library.config.security.data;
 
+import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
 import bend.library.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,7 +34,7 @@ public class CustomUserDetails implements UserDetails {
     @Setter
     private String registryDetectionValue;
     @Setter
-    private String registryDetectionType;
+    private RegistryDetectionType registryDetectionType;
 
     public CustomUserDetails(BigInteger id, String username, String password, boolean enabled, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, Set<? extends GrantedAuthority> authorities) {
         this.id = id;

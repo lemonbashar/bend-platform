@@ -4,12 +4,16 @@ import bend.framework.base.util.BendOptional;
 import bend.library.config.constants.SecurityConstants;
 import bend.library.config.security.data.AccountInfo;
 import bend.library.config.security.data.CustomUserDetails;
+import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
 import bend.library.domain.entity.User;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.math.BigInteger;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,13 +26,12 @@ import java.util.stream.Collectors;
 public final class SecurityUtil {
     public static boolean isAuthenticated() {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
-                .isAllTrue(Objects::nonNull, authentication -> Objects.nonNull(authentication.getPrincipal()), authentication -> authentication.getPrincipal() instanceof CustomUserDetails);
+                .isAllTrue(Objects::nonNull, authentication -> Objects.nonNull(authentication.getPrincipal()), authentication -> authentication.getPrincipal() instanceof CustomUserDetails, auth-> ((CustomUserDetails)auth.getPrincipal()).getUsername() != null);
     }
 
     public static boolean hasAnyAuthority(final String... authorities) {
         Set<String> set = BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
-                .ifNotThenMap(obj->obj instanceof CustomUserDetails, obj->null)
                 .ifThenMap(Objects::nonNull, principal -> ((CustomUserDetails) principal).getAuthorities())
                 .ifThenMap(Objects::nonNull, auths -> auths.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet())).get();
         if (set == null) return false;
@@ -46,14 +49,12 @@ public final class SecurityUtil {
     public static BigInteger loggedInUserId() {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
-                .ifNotThenMap(obj->obj instanceof CustomUserDetails, principal-> null)
                 .ifThenMap(Objects::nonNull, principal -> ((CustomUserDetails) principal).getId()).get();
     }
 
     public static String loggedInUsername() {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal) /*If Exists then map with next object otherwise response null*/
-                .ifNotThenMap(obj->obj instanceof CustomUserDetails, obj->null)
                 .ifThenMap(Objects::nonNull, principal -> ((CustomUserDetails) principal).getUsername()).get();
     }
 
@@ -64,7 +65,6 @@ public final class SecurityUtil {
     public static AccountInfo accountInfo() {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
-                .ifNotThenMap(obj->obj instanceof CustomUserDetails, obj->null)
                 .ifThenMap(Objects::nonNull, principal -> (CustomUserDetails) principal)
                 .ifThenMap(Objects::nonNull, userDetails -> new AccountInfo(userDetails.getUsername(), userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet()), true))
                 .orElse(null);
@@ -89,7 +89,24 @@ public final class SecurityUtil {
     public static <T> CustomUserDetailsExtractor<T> extractFromPrincipal(Class<T> returnType) {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
-                .ifNotThenMap(obj->obj instanceof CustomUserDetails, obj->null)
                 .ifThenMap(Objects::nonNull, principal->new CustomUserDetailsExtractor<T>((CustomUserDetails)principal, returnType)).get();
+    }
+
+    public static void updateRegistryDetection(RegistryDetectionType registryDetectionType, String registryDetectionValue) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails customUserDetails = null;
+        Object credentials = null;
+        Collection<? extends GrantedAuthority> grantedAuthorities = new HashSet<>();
+
+        if(authentication != null && authentication.getPrincipal() !=null && authentication.getPrincipal() instanceof CustomUserDetails) {
+            customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+            grantedAuthorities = authentication.getAuthorities();
+            credentials = authentication.getCredentials();
+        }
+        else customUserDetails = new CustomUserDetails();
+        customUserDetails.setRegistryDetectionType(registryDetectionType);
+        customUserDetails.setRegistryDetectionValue(registryDetectionValue);
+        SecurityContextHolder.clearContext();
+        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(customUserDetails, credentials, grantedAuthorities));
     }
 }

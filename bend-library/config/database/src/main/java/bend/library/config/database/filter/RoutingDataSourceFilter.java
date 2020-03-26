@@ -1,22 +1,15 @@
 package bend.library.config.database.filter;
 
 import bend.library.config.constants.RouteConstants;
-import bend.library.config.security.data.CustomUserDetails;
 import bend.library.config.security.filter.AbstractFilter;
 import bend.library.config.security.util.SecurityUtil;
-import bend.library.domain.cluster.enumeretion.RegistryDetectionType;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
+import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashSet;
 
 
 /**
@@ -36,22 +29,7 @@ public class RoutingDataSourceFilter extends AbstractFilter {
         final String registryDetectionValue = findHeaderValue(request, RouteConstants.HEADER_REGISTRY_DETECTION_VALUE);
         final String registryDetectionType = findHeaderValue(request, RouteConstants.HEADER_REGISTRY_DETECTION_TYPE);
         if(registryDetectionValue !=null && registryDetectionType != null) {
-            final RegistryDetectionType detectionType = RegistryDetectionType.valueOf(registryDetectionType);
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            CustomUserDetails customUserDetails = null;
-            Object credentials = null;
-            Collection<? extends GrantedAuthority> grantedAuthorities = new HashSet<>();
-
-            if(authentication != null && authentication.getPrincipal() !=null && authentication.getPrincipal() instanceof CustomUserDetails) {
-                customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-                grantedAuthorities = authentication.getAuthorities();
-                credentials = authentication.getCredentials();
-            }
-            else customUserDetails = new CustomUserDetails();
-            customUserDetails.setRegistryDetectionType(registryDetectionType);
-            customUserDetails.setRegistryDetectionValue(registryDetectionValue);
-            SecurityContextHolder.clearContext();
-            SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(customUserDetails, credentials, grantedAuthorities));
+            SecurityUtil.updateRegistryDetection(RegistryDetectionType.valueOf(registryDetectionType), registryDetectionValue);
         }
         chain.doFilter(request, response);
     }

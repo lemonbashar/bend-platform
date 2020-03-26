@@ -2,6 +2,7 @@ package bend.library.controller.rest.api.pub;
 
 import bend.framework.base.util.BendOptional;
 import bend.library.config.security.data.AccountInfo;
+import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
 import bend.library.config.security.service.UserService;
 import bend.library.config.security.util.SecurityUtil;
 import bend.library.controller.rest.constants.RestApiProvider;
