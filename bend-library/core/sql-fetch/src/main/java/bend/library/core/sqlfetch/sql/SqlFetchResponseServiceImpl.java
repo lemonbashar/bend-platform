@@ -1,6 +1,6 @@
 package bend.library.core.sqlfetch.sql;
 
-import bend.library.config.constants.SpringElConstants;
+import bend.library.constant.SpringElConstants;
 import bend.library.config.el.SpringElEvaluator;
 import bend.library.core.sqlfetch.RestrictionCheckerService;
 import bend.library.core.sqlfetch.SqlFetchService;

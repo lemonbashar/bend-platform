@@ -1,0 +1,38 @@
+
+
+bend-platform:
+  settings:
+      general:
+          name: Spring-Boot-Gateway
+spring:
+    profiles:
+        active: dev
+server:
+    port: 8788
+    servlet:
+        context-path: /bend-gateway
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+zuul:
+  ignored-services: '*'
+  prefix: /api
+  routes:
+    create-user:
+      path: /bend-main-app/api/public/account/create-account
+      service-id: bend-main-app
+      strip-prefix: false
+    current-account:
+      path: /bend-main-app/api/private/account/current-account
+      service-id: bend-main-app
+      strip-prefix: false
+    application-info:
+      path: /bend-main-app/api/public/application
+      service-id: bend-main-app
+      strip-prefix: false
+    application-licence:
+      path: /bend-main-app/api/public/application/licence
+      service-id: bend-main-app
+      strip-prefix: false

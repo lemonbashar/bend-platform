@@ -1,7 +1,7 @@
 package bend.library.annotation;
 
 
-import bend.library.config.constants.SpringElConstants;
+import bend.library.constant.SpringElConstants;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

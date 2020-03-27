@@ -1,7 +1,7 @@
 package bend.library.core.prepersist;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.config.constants.ProfileConstants;
+import bend.library.constant.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.exception.PrePersistException;
 import bend.library.config.security.jwt.JwtSecurityConfig;

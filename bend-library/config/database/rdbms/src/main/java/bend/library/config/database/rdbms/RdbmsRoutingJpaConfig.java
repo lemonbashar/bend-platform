@@ -2,8 +2,8 @@ package bend.library.config.database.rdbms;
 
 import bend.framework.properties.springproperties.SpringProperties;
 import bend.framework.properties.springproperties.database.Database;
-import bend.library.config.constants.BaseConstants;
-import bend.library.config.constants.ProfileConstants;
+import bend.library.constant.BaseConstants;
+import bend.library.constant.ProfileConstants;
 import bend.library.config.database.RoutingDataSource;
 import bend.library.config.migration.ClusterDatabaseMigration;
 import bend.library.config.security.registry.ClusterDatabaseRegistry;

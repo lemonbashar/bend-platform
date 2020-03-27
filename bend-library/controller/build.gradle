@@ -14,6 +14,7 @@ allprojects {
         implementation project(':bend-library:data')
         implementation project(':bend-library:domain')
         implementation project(':bend-library:config:security')
+        implementation project(':bend-library:constant')
 
         testImplementation project(':bend-library:config:database')
         testImplementation project(':bend-library:core')

@@ -2,7 +2,7 @@ package bend.library.config.migration.liquibase;
 
 import bend.framework.properties.springproperties.SpringProperties;
 import bend.framework.properties.springproperties.database.migration.Migration;
-import bend.library.config.constants.ProfileConstants;
+import bend.library.constant.ProfileConstants;
 import bend.library.config.migration.DatabaseMigration;
 import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;

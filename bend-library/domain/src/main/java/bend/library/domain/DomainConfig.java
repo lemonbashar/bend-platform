@@ -1,6 +1,6 @@
 package bend.library.domain;
 
-import bend.library.config.constants.BaseConstants;
+import bend.library.constant.BaseConstants;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

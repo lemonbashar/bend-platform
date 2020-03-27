@@ -1,7 +1,7 @@
 package bend.library.config.component;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.config.constants.ProfileConstants;
+import bend.library.constant.ProfileConstants;
 import bend.library.config.service.EncoderService;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

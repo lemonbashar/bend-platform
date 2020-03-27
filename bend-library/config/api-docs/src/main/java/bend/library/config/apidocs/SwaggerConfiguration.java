@@ -1,6 +1,6 @@
 package bend.library.config.apidocs;
 
-import bend.library.config.constants.ProfileConstants;
+import bend.library.constant.ProfileConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;

@@ -5,7 +5,7 @@ import bend.library.annotation.prepersist.AutoActive;
 import bend.library.annotation.prepersist.AutoCreate;
 import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
-import bend.library.config.constants.SpringElConstants;
+import bend.library.constant.SpringElConstants;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

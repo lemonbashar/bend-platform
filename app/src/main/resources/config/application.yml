@@ -3,7 +3,7 @@
 bend-platform:
   settings:
       general:
-          name: Spring-Boot-Application
+          name: Bend-Main-App
   database:
       hibernate:
           annotated-packages:
@@ -24,4 +24,9 @@ spring:
 server:
     port: 8787
     servlet:
-        context-path: /bend
+        context-path: /bend-main-app
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/

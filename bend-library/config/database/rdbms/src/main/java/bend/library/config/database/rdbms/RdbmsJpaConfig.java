@@ -1,7 +1,7 @@
 package bend.library.config.database.rdbms;
 
 import bend.framework.properties.springproperties.SpringProperties;
-import bend.library.config.constants.BaseConstants;
+import bend.library.constant.BaseConstants;
 import bend.library.config.migration.DatabaseMigration;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.NonNull;

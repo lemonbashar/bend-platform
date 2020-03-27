@@ -30,6 +30,13 @@ dependencies {
     implementation project(':bend-library:config:api-docs')
     implementation "org.postgresql:postgresql:$postgreVersion"
 
+    //implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:Hoxton.SR3'
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation 'org.springframework.boot:spring-boot-starter-security'
+}
+
+allprojects {
+    dependencies {
+        implementation project(':bend-library:constant')
+    }
 }

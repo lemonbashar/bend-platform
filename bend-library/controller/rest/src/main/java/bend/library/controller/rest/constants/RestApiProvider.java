@@ -1,7 +1,7 @@
 package bend.library.controller.rest.constants;
 
 
-import bend.library.config.constants.APiConstants;
+import bend.library.constant.APiConstants;
 
 public class RestApiProvider {
     public static String build(String... urls) {
@@ -12,7 +12,7 @@ public class RestApiProvider {
     }
 
     public static final class ApplicationApi {
-        public static final String APPLICATION_ROOT_API = APiConstants.PUBLIC_ROOT + "/application";
+        public static final String APPLICATION_PUBLIC_ROOT_API = APiConstants.PUBLIC_ROOT + "/application";
         public static final String LICENCE = "/licence";
     }
 

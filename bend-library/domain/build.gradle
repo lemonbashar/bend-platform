@@ -14,6 +14,7 @@ allprojects {
         implementation "jakarta.validation:jakarta.validation-api:$jakartaValidationApi"
         implementation project(':bend-library:annotation')
         implementation project(':bend-library:annotation:pre-persist-annotation')
+        implementation project(':bend-library:constant')
 
         testImplementation project(':bend-library:config:database')
         testImplementation project(':bend-library:config:database:rdbms')

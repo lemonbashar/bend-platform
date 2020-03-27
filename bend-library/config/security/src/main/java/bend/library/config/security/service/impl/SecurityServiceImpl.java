@@ -1,6 +1,6 @@
 package bend.library.config.security.service.impl;
 
-import bend.library.config.constants.SecurityConstants;
+import bend.library.constant.SecurityConstants;
 import bend.library.config.security.service.SecurityService;
 import bend.library.config.security.util.SecurityUtil;
 import org.springframework.stereotype.Service;

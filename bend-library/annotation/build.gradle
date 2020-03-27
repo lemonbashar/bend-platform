@@ -9,6 +9,7 @@ dependencyManagement {
 allprojects {
     dependencies {
         implementation project(':bend-library:config')
+        implementation project(':bend-library:constant')
     }
 }
 

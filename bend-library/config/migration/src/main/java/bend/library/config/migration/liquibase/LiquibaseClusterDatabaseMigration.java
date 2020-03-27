@@ -1,7 +1,7 @@
 package bend.library.config.migration.liquibase;
 
 import bend.framework.properties.springproperties.SpringProperties;
-import bend.library.config.constants.ProfileConstants;
+import bend.library.constant.ProfileConstants;
 import bend.library.config.migration.ClusterDatabaseMigration;
 import bend.library.domain.cluster.entity.MigrationConfig;
 import lombok.NonNull;

@@ -1,6 +1,6 @@
 package bend.library.config.database.filter;
 
-import bend.library.config.constants.RouteConstants;
+import bend.library.constant.RouteConstants;
 import bend.library.config.security.filter.AbstractFilter;
 import bend.library.config.security.util.SecurityUtil;
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;

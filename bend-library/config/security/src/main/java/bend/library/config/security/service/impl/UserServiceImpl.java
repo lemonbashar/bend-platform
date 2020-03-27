@@ -1,7 +1,7 @@
 package bend.library.config.security.service.impl;
 
 import bend.framework.base.util.BendOptional;
-import bend.library.config.constants.SecurityConstants;
+import bend.library.constant.SecurityConstants;
 import bend.library.config.security.service.AuthorityService;
 import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.config.security.service.UserService;

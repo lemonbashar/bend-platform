@@ -1,6 +1,6 @@
 package bend.library.config.aop;
 
-import bend.library.config.constants.ProfileConstants;
+import bend.library.constant.ProfileConstants;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

@@ -1,8 +1,8 @@
 package bend.library.config.security.service;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.config.constants.ProfileConstants;
-import bend.library.config.constants.SecurityConstants;
+import bend.library.constant.ProfileConstants;
+import bend.library.constant.SecurityConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.data.CustomUserDetails;

@@ -9,6 +9,7 @@ dependencyManagement {
 allprojects {
     dependencies {
         implementation "jakarta.validation:jakarta.validation-api:$jakartaValidationApi"
+        implementation project(':bend-library:constant')
     }
 }
 
