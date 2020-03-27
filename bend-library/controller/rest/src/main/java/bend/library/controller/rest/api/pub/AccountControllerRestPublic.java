@@ -29,6 +29,7 @@ public class AccountControllerRestPublic {
 
     @PostMapping(RestApiProvider.AccountApi.CREATE_ACCOUNT)
     public ResponseEntity<AccountInfo> createAccount(@RequestBody @Valid UserData userData) {
+        SecurityUtil.updateRegistryDetection(RegistryDetectionType.BY_USERNAME, userData.getUsername());
         return BendOptional.ofNullable(userService.saveUser(userData.getUsername(), userData.getEmail(), userData.getPassword(), userData.getAuthorities()))
                 .map(user->new AccountInfo(user.getUsername(), user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet()), false))
                 .map(ResponseUtil::of).get().response(ResponseType::post);
