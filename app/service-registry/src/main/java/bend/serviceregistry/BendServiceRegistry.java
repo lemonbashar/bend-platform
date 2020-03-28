@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
-import org.springframework.core.env.SimpleCommandLinePropertySource;
 
 import javax.annotation.PostConstruct;
 import java.net.InetAddress;
@@ -28,8 +27,6 @@ public class BendServiceRegistry {
 
     public static void main(String[] args) throws UnknownHostException {
         SpringApplication application = new SpringApplication(BendServiceRegistry.class);
-        SimpleCommandLinePropertySource propertySource = new SimpleCommandLinePropertySource(args);
-        //addDefaultProfile(application, propertySource);
         applicationContext = application.run(args);
         Environment env = applicationContext.getEnvironment();
         log.info("Access URLs:\n----------------------------------------------------------\n\t" +
@@ -38,14 +35,6 @@ public class BendServiceRegistry {
                 env.getProperty("server.port"),
                 InetAddress.getLocalHost().getHostAddress(),
                 env.getProperty("server.port"));
-    }
-
-    private static void addDefaultProfile(SpringApplication application, SimpleCommandLinePropertySource propertySource) {
-        if (!propertySource.containsProperty("spring.profiles.active") &&
-                !System.getenv().containsKey("SPRING_PROFILES_ACTIVE")) {
-
-            application.setAdditionalProfiles(ProfileConstants.DEV);
-        }
     }
 
     @PostConstruct

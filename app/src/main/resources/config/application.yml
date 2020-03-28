@@ -1,18 +1,16 @@
-
-
 bend-platform:
-  settings:
-      general:
-          name: Bend-Main-App
-  database:
-      hibernate:
-          annotated-packages:
-              - bend.library.domain.entity
-              - bend.library.domain.cluster.entity
-      jpa:
-          repository-locations:
-              - bend.library.domain.repositories
-              - bend.library.domain.cluster.repositories
+    settings:
+        general:
+            name: Bend-Main-App
+    database:
+        hibernate:
+            annotated-packages:
+                - bend.library.domain.entity
+                - bend.library.domain.cluster.entity
+        jpa:
+            repository-locations:
+                - bend.library.domain.repositories
+                - bend.library.domain.cluster.repositories
 
 spring:
     profiles:
@@ -27,6 +25,6 @@ server:
         context-path: /bend-main-app
 
 eureka:
-  client:
-    service-url:
-      default-zone: http://localhost:8761/eureka/
+    client:
+        service-url:
+            default-zone: http://localhost:8761/eureka/

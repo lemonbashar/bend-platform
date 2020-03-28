@@ -1,4 +1,3 @@
-
 bend-platform:
     database:
         database-type: POSTGRESQL

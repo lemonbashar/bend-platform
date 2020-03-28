@@ -25,6 +25,7 @@ allprojects {
 	}
 
 	ext {
+		springCloudVersion = 'Hoxton.SR3'
 		bendFrameworkVersion = '1.0.1'
 		lombokVersion = '1.18.10'
 		springBootVersion = '2.2.4.RELEASE'
@@ -38,6 +39,7 @@ allprojects {
 		jwtLatest = '0.11.0'
 		aspectJVersion = '1.9.5'
 		liquibaseVersion = '3.8.5'
+		aspectJVersion = '1.9.5'
 	}
 }
 

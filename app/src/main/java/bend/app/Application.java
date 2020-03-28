@@ -21,6 +21,7 @@ import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfig
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
@@ -35,6 +36,7 @@ import java.util.Collection;
 
 @Log4j2
 @RequiredArgsConstructor
+@EnableEurekaClient
 @SpringBootApplication(scanBasePackageClasses = {PropertiesConfig.class, MigrationConfiguration.class,
         RdbmsJpaConfig.class,
         PrePersistConfiguration.class,

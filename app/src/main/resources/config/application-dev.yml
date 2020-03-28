@@ -65,7 +65,7 @@ bend-platform:
                 migration-type: update
                 changelog-path: 'classpath:liquibase-changelog.xml'
                 changelog-path-type: migration_type
-#                changelog-path-type: exact
+                #                changelog-path-type: exact
                 recursive: false
                 include-files: true
                 include-directories: false
