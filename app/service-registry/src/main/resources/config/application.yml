@@ -6,6 +6,8 @@ bend-platform:
           name: Spring-Boot-Service-Registry
 server:
     port: 8761
+#    servlet:
+#        context-path: /bend-service-registry
 eureka:
     client:
         register-with-eureka: false

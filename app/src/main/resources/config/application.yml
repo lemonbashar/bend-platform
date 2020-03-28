@@ -5,11 +5,9 @@ bend-platform:
     database:
         hibernate:
             annotated-packages:
-                - bend.library.domain.entity
                 - bend.library.domain.cluster.entity
         jpa:
             repository-locations:
-                - bend.library.domain.repositories
                 - bend.library.domain.cluster.repositories
 
 spring:

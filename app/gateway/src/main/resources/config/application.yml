@@ -7,6 +7,8 @@ spring:
         active: dev
 server:
     port: 8788
+#    servlet:
+#        context-path: /bend-gateway
 eureka:
     client:
         service-url:
