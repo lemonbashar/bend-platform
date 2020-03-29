@@ -2,13 +2,14 @@ package bend.app;
 
 import bend.library.config.PropertiesConfig;
 import bend.library.config.WebConfigurer;
-import bend.library.constant.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.migration.MigrationConfiguration;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.jwt.JwtSecurityConfig;
+import bend.library.constant.ProfileConstants;
 import bend.library.controller.ControllerConfig;
 import bend.library.controller.rest.RestConfig;
+import bend.library.core.CoreConfig;
 import bend.library.core.prepersist.PrePersistConfiguration;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.cluster.ClusterDomainConfig;
@@ -38,7 +39,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 @EnableEurekaClient
 @SpringBootApplication(scanBasePackageClasses = {PropertiesConfig.class, MigrationConfiguration.class,
-        RdbmsJpaConfig.class,
+        RdbmsJpaConfig.class, CoreConfig.class,
         PrePersistConfiguration.class,
         DomainConfig.class,
         WebConfigurer.class,
