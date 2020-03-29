@@ -18,6 +18,7 @@ allprojects {
 
         testImplementation project(':bend-library:config:database')
         testImplementation project(':bend-library:core')
+        testImplementation project(':bend-library:core')
         testImplementation project(':bend-library:core:pre-persist')
         testImplementation project(':bend-library:annotation')
         testImplementation project(':bend-library:annotation:pre-persist-annotation')

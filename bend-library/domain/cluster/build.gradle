@@ -1,4 +1,4 @@
-plugins { id "io.spring.dependency-management"}
+plugins { id "io.spring.dependency-management" }
 
 dependencyManagement {
     imports {
@@ -8,5 +8,6 @@ dependencyManagement {
 
 dependencies {
     testImplementation project(':bend-library:config:security:jwt')
+    testImplementation project(':bend-library:core')
     testImplementation project(':bend-library:core:pre-persist')
 }

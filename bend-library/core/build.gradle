@@ -24,5 +24,9 @@ subprojects {
     jar {
         archivesBaseName = 'bend-library-core-' + project.name
     }
+
+    dependencies {
+        implementation project(':bend-library:core')
+    }
 }
 

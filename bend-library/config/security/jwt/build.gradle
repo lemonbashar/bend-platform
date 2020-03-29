@@ -7,8 +7,8 @@ dependencyManagement {
 }
 dependencies {
     implementation "io.jsonwebtoken:jjwt-api:$jwtLatest"
-    implementation "io.jsonwebtoken:jjwt-jackson:$jwtLatest", {exclude group:'io.jsonwebtoken', module:'jjwt-api'}
-    implementation "io.jsonwebtoken:jjwt-impl:$jwtLatest", {exclude group:'io.jsonwebtoken', module:'jjwt-api'}
+    implementation "io.jsonwebtoken:jjwt-jackson:$jwtLatest", { exclude group: 'io.jsonwebtoken', module: 'jjwt-api' }
+    implementation "io.jsonwebtoken:jjwt-impl:$jwtLatest", { exclude group: 'io.jsonwebtoken', module: 'jjwt-api' }
 
     testImplementation project(':bend-library:controller')
     testImplementation project(':bend-library:controller:rest')

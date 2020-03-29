@@ -22,6 +22,7 @@ dependencies {
     implementation project(':bend-library:domain')
     implementation project(':bend-library:domain:cluster')
     implementation project(':bend-library:core:pre-persist')
+    implementation project(':bend-library:core')
     implementation project(':bend-library:config:security')
     implementation project(':bend-library:config:security:jwt')
     implementation project(':bend-library:controller')
@@ -33,7 +34,6 @@ dependencies {
 
     /*Clouds*/
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    //implementation 'org.springframework.cloud:spring-cloud-starter-feign'
 }
 
 dependencyManagement {
