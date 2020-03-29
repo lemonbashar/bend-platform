@@ -10,6 +10,7 @@ public final class APiConstants {
     public static final String PUBLIC_ROOT = ROOT + "/public";
     public static final String PRIVATE_ROOT = ROOT + "/private";
     public static final String PRIVATE_ADMIN_ROOT = PRIVATE_ROOT + "/admin";
+    public static final String ACTUATOR_PATH = "/actuator";
 
     public static final class UtilityApi {
         public static final String ACCESS_DENIED_URL = PUBLIC_ROOT + "/access-denied";

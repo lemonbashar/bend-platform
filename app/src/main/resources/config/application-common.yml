@@ -1,0 +1,36 @@
+bend-platform:
+    settings:
+        general:
+            name: Bend-Main-App
+    database:
+        migration:
+            active: true
+            liquibase:
+                migration-type: update
+                changelog-path: 'classpath:liquibase-changelog.xml'
+                changelog-path-type: migration_type
+                # changelog-path-type: exact
+                recursive: false
+                include-files: true
+                include-directories: false
+
+        hibernate:
+            annotated-packages:
+                - bend.library.domain.cluster.entity
+        jpa:
+            repository-locations:
+                - bend.library.domain.cluster.repositories
+
+spring:
+    liquibase:
+        enabled: true
+    flyway:
+        enabled: false
+server:
+    servlet:
+        context-path: /bend-main-app
+info:
+    app:
+        name: Bend-Main-Application
+        description: Bend-Platform-Application[Microservice-Main-Application]. A Highly Scallable Microservice Application.
+        version: 1.0.2-microservice

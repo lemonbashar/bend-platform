@@ -25,3 +25,9 @@ eureka:
 spring:
     profiles:
         include: actuator, zuul
+
+info:
+    app:
+        name: Bend-Gateway
+        description: Bend-Platform-Application[Microservice-Gateway]. A Highly Scallable Microservice Application.
+        version: 1.0.2-microservice

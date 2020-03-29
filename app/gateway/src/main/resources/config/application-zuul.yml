@@ -18,3 +18,7 @@ zuul:
             path: /bend-main-app/public/application/licence
             service-id: bend-main-app
             strip-prefix: false
+        actuator-info:
+            path: /bend-main-app/actuator/**/*
+            service-id: bend-main-app
+            strip-prefix: false

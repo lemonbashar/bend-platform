@@ -2,6 +2,7 @@ package bend.app;
 
 import bend.library.config.PropertiesConfig;
 import bend.library.config.WebConfigurer;
+import bend.library.config.actuate.ActuateConfig;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.migration.MigrationConfiguration;
 import bend.library.config.security.SecurityConfig;
@@ -45,7 +46,7 @@ import java.util.Collection;
         WebConfigurer.class,
         SecurityConfig.class,
         ClusterDomainConfig.class,
-        JwtSecurityConfig.class, ControllerConfig.class, RestConfig.class},
+        JwtSecurityConfig.class, ControllerConfig.class, RestConfig.class, ActuateConfig.class},
         exclude = {DataSourceAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class, HibernateJpaAutoConfiguration.class, LiquibaseAutoConfiguration.class})
 public class Application {
 

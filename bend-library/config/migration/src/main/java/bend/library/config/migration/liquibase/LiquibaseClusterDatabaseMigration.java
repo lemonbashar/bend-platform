@@ -1,6 +1,7 @@
 package bend.library.config.migration.liquibase;
 
 import bend.framework.properties.springproperties.SpringProperties;
+import bend.framework.properties.springproperties.database.migration.Migration;
 import bend.library.constant.ProfileConstants;
 import bend.library.config.migration.ClusterDatabaseMigration;
 import bend.library.domain.cluster.entity.MigrationConfig;
@@ -25,6 +26,11 @@ public class LiquibaseClusterDatabaseMigration extends AbstractLiquibaseMigratio
 
     @Override
     public void migrate(final MigrationConfig migrationConfig, final List<DataSource> dataSources) {
+        final Migration migration = properties.getDatabase().getMigration();
+        if(!migration.isActive()) {
+            log.info("Database Migration is-not active, Make it active to migrate.");
+            return;
+        }
         final LiquibaseProperties liquibaseProperties = extractProperties(migrationConfig.getMigrationProperties());
         for(DataSource dataSource: dataSources) {
             try(Connection connection=dataSource.getConnection()) {

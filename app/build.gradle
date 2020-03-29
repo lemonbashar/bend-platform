@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation project(':bend-library:config:admin-actuate')
     implementation project(':bend-library:config:migration')
     implementation project(':bend-library:config:database')
     implementation project(':bend-library:config:database:rdbms')
@@ -46,7 +47,6 @@ allprojects {
     dependencies {
         implementation project(':bend-library:config')
         implementation project(':bend-library:constant')
-        implementation 'org.springframework.boot:spring-boot-starter-actuator'
         implementation 'org.springframework.boot:spring-boot-starter-web'
     }
 }

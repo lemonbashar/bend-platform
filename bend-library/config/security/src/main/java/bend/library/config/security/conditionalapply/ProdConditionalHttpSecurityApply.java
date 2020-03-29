@@ -30,7 +30,7 @@ public class ProdConditionalHttpSecurityApply implements ConditionalApply<HttpSe
                 .mvcMatchers(APiConstants.PRIVATE_ROOT + "/**").authenticated()
                 .mvcMatchers(APiConstants.PRIVATE_ADMIN_ROOT + "/**").hasAnyAuthority(ROLES_FOR_ADMIN)
                 .mvcMatchers(APiConstants.PUBLIC_ROOT + "/**").permitAll()
-                .mvcMatchers("/actuator/**").hasAnyAuthority(ROLES_FOR_SUPER_ADMIN)
+                .mvcMatchers(APiConstants.ACTUATOR_PATH + "/**").hasAnyAuthority(ROLES_FOR_SUPER_ADMIN)
                 .anyRequest().authenticated();
     }
 }
