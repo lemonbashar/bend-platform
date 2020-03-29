@@ -2,15 +2,16 @@ package bend.library.controller.rest.api.pub;
 
 import bend.library.config.PropertiesConfig;
 import bend.library.config.WebConfigurer;
-import bend.library.constant.ProfileConstants;
-import bend.library.constant.SecurityConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.config.CommonSecurityConfig;
 import bend.library.config.security.data.AccountInfo;
 import bend.library.config.security.jwt.JwtSecurityConfig;
+import bend.library.constant.ProfileConstants;
+import bend.library.constant.SecurityConstants;
 import bend.library.controller.rest.RestConfig;
 import bend.library.controller.rest.constants.RestApiProvider;
+import bend.library.core.CoreConfig;
 import bend.library.core.prepersist.PrePersistAspect;
 import bend.library.core.prepersist.PrePersistConfiguration;
 import bend.library.data.UserData;
@@ -35,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 @ActiveProfiles(profiles = {"test"})
 @TestPropertySource(locations = "classpath:config/application-test.yml")
-@SpringBootTest(classes = {WebConfigurer.class, JwtSecurityConfig.class, CommonSecurityConfig.class, PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class, RestConfig.class, PrePersistConfiguration.class, PrePersistAspect.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = {WebConfigurer.class, JwtSecurityConfig.class, CommonSecurityConfig.class, PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class, RestConfig.class, CoreConfig.class, PrePersistConfiguration.class, PrePersistAspect.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 class AccountControllerRestPublicTest {
     @Autowired
