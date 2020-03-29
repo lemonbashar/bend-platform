@@ -18,4 +18,4 @@ management:
     endpoints:
         web:
             exposure:
-                include: beans,auditevents,conditions,flyway,logfile,prometheus,scheduledtasks,metrics,health,loggers,info,env,configprops,heapdump,sessions,threaddump,shutdown,full-map
+                include: beans,auditevents,conditions,flyway,liquibase,logfile,prometheus,scheduledtasks,metrics,health,loggers,info,env,configprops,heapdump,sessions,threaddump,shutdown,full-map
