@@ -1,0 +1,26 @@
+management:
+    endpoint:
+        beans:
+            enabled: true
+        metrics:
+            enabled: true
+        info:
+            enabled: true
+        auditevents:
+            enabled: true
+        health:
+            enabled: true
+        logfile:
+            enabled: true
+    health:
+        defaults:
+            enabled: true
+    endpoints:
+        web:
+            exposure:
+                include: beans,auditevents,conditions,flyway,logfile,prometheus,scheduledtasks,metrics,health,loggers,info,env,configprops,heapdump,sessions,threaddump,shutdown,full-map
+info:
+    app:
+        name: Bend-Platform-Application
+        description: A Highly Scallable Microservice Application
+        version: 1.0.2-microservice
