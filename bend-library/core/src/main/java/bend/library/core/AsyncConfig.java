@@ -1,4 +1,4 @@
-package bend.library.config;
+package bend.library.core;
 
 import bend.framework.properties.springproperties.SpringProperties;
 import bend.library.config.exception.ExceptionHandlingAsyncTaskExecutor;
