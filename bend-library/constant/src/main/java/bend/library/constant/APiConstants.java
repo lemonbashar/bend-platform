@@ -6,7 +6,7 @@ package bend.library.constant;
  * Created 2/14/2020
  */
 public final class APiConstants {
-    public static final String ROOT = "/api";
+    private static final String ROOT = "";
     public static final String PUBLIC_ROOT = ROOT + "/public";
     public static final String PRIVATE_ROOT = ROOT + "/private";
     public static final String PRIVATE_ADMIN_ROOT = PRIVATE_ROOT + "/admin";

@@ -1,5 +1,6 @@
 package bend.gateway;
 
+import bend.gateway.config.RibbonConfig;
 import bend.library.constant.ProfileConstants;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClients;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
@@ -21,6 +23,7 @@ import java.util.Collection;
 @Log4j2
 @RequiredArgsConstructor
 @EnableEurekaClient
+//@RibbonClients(defaultConfiguration = RibbonConfig.class)
 @EnableZuulProxy
 @SpringBootApplication
 public class BendGateway {

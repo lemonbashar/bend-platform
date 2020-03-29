@@ -38,7 +38,7 @@ bend-platform:
                     - http://192.168.0.154:4200
                     - http://192.168.0.153:4200
             public-servlet-prefixes:
-                - /api/public
+                - /public
         mail:
             host: smtp.gmail.com
             port: 587

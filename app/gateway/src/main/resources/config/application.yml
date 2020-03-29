@@ -19,18 +19,18 @@ zuul:
     prefix: /api
     routes:
         create-user:
-            path: /bend-main-app/api/public/account/create-account
+            path: /bend-main-app/public/account/create-account
             service-id: bend-main-app
             strip-prefix: false
         current-account:
-            path: /bend-main-app/api/private/account/current-account
+            path: /bend-main-app/private/account/current-account
             service-id: bend-main-app
             strip-prefix: false
         application-info:
-            path: /bend-main-app/api/public/application
+            path: /bend-main-app/public/application
             service-id: bend-main-app
             strip-prefix: false
         application-licence:
-            path: /bend-main-app/api/public/application/licence
+            path: /bend-main-app/public/application/licence
             service-id: bend-main-app
             strip-prefix: false
