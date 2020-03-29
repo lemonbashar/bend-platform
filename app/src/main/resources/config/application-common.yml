@@ -4,7 +4,7 @@ bend-platform:
             name: Bend-Main-App
     database:
         migration:
-            active: true
+            active: false
             liquibase:
                 migration-type: update
                 changelog-path: 'classpath:liquibase-changelog.xml'

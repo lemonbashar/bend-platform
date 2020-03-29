@@ -1,9 +1,11 @@
-package bend.library.config.actuate.config;
+package bend.library.config.actuate.overriden;
 
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.context.annotation.Configuration;
 
-public class HealthCheck implements HealthIndicator {
+@Configuration
+public class HealthActuate implements HealthIndicator {
     @Override
     public Health health() {
         int errCode = check();
