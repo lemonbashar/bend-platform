@@ -27,8 +27,8 @@ public class InfoActuate implements InfoContributor {
         additionalProperties.put(SERVER_PORT, environment.getProperty("server.port"));
         additionalProperties.put(APPLICATION_NAME, properties.getSettings().getGeneral().getName());
         additionalProperties.put(BOOTSTRAP_APPLICATION_NAME, environment.getProperty("spring.application.name"));
-        additionalProperties.put(APPLICATION_VERSION, "V-1.0.2m");
-        additionalProperties.put("Short-Description","An Application which is aim to serve as Micro-Service App");
+        additionalProperties.put(APPLICATION_VERSION, properties.getSettings().getGeneral().getVersion());
+        additionalProperties.put("Description",properties.getSettings().getGeneral().getDescription());
         builder.withDetail("Additional-Info", additionalProperties);
     }
 }

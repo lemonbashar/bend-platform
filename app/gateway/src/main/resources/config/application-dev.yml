@@ -2,29 +2,11 @@ bend-platform:
     settings:
         general:
             name: Bend-Gateway
-        security:
-            secure-channel:
-                - dev
-                - console
-            cors:
-                allowed-clients:
-                    - http://localhost:4200
-                    - http://192.168.1.43:4200
-                    - http://192.168.0.154:4200
-                    - http://192.168.0.153:4200
-            public-servlet-prefixes:
-                - /public
-
 server:
     port: 8788
-
-eureka:
-    client:
-        service-url:
-            default-zone: http://localhost:8761/eureka/
 spring:
     profiles:
-        include: actuator, zuul
+        include: zuul
 
 info:
     app:

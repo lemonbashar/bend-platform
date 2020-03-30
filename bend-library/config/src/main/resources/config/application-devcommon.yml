@@ -1,0 +1,15 @@
+bend-platform:
+        security:
+            secure-channel:
+                - dev
+                - console
+            cors:
+                active: false
+eureka:
+    client:
+        service-url:
+            default-zone: http://localhost:8761/eureka/
+
+spring:
+    profiles:
+        include: dev

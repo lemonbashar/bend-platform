@@ -32,6 +32,7 @@ bend-platform:
                 - dev
                 - console
             cors:
+                active: true
                 allowed-clients:
                     - http://localhost:4200
                     - http://192.168.1.43:4200
@@ -71,7 +72,3 @@ bend-platform:
             max-local-heap-size: 20M
 server:
     port: 8787
-eureka:
-    client:
-        service-url:
-            default-zone: http://localhost:8761/eureka/

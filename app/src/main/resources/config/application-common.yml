@@ -2,6 +2,8 @@ bend-platform:
     settings:
         general:
             name: Bend-Main-App
+            version: V-1.0.2-Micro-Service
+            description: A Microservice Platform, which contains a service registry a gateway and some flexible pluggable applications module.
     database:
         migration:
             active: false
@@ -20,7 +22,6 @@ bend-platform:
         jpa:
             repository-locations:
                 - bend.library.domain.cluster.repositories
-
 spring:
     liquibase:
         enabled: true

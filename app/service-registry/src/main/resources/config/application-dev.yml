@@ -7,13 +7,7 @@ bend-platform:
                 - dev
                 - console
             cors:
-                allowed-clients:
-                    - http://localhost:4200
-                    - http://192.168.1.43:4200
-                    - http://192.168.0.154:4200
-                    - http://192.168.0.153:4200
-            public-servlet-prefixes:
-                - /public
+                active: false
 server:
     port: 8761
 eureka:

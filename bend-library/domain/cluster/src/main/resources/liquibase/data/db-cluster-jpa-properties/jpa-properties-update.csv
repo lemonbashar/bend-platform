@@ -7,7 +7,7 @@ ID,ACTIVE_STATUS,CREATE_BY,PROPERTY_KEY,PROPERTY_TYPE,PROPERTY_VALUE
 6,true,1,autoCommit,NATIVE,false
 7,true,1,datasourcePoolName,NATIVE,default-datasource-pool
 8,true,1,hibernate.dialect,HIBERNATE,org.hibernate.dialect.PostgreSQL82Dialect
-9,true,1,hibernate.hbm2ddl.auto,HIBERNATE,update
+9,true,1,hibernate.hbm2ddl.auto,HIBERNATE,none
 10,true,1,hibernate.use_sql_comments,HIBERNATE,false
 11,true,1,hibernate.show_sql,HIBERNATE,true
 12,true,1,hibernate.format_sql,HIBERNATE,true
