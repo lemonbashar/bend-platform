@@ -21,7 +21,7 @@ export class MiscellaneousSetupResolve implements Resolve<IMiscellaneousSetup> {
     if (id) {
       return this.miscellaneousSetupService.findOne(id).pipe(map((miscellaneousSetupRes: HttpResponse<MiscellaneousSetup>) => miscellaneousSetupRes.body));
     }
-    return of(new MiscellaneousSetup(null, null, null, null));
+    return of(new MiscellaneousSetup());
   }
 }
 

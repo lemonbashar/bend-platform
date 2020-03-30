@@ -22,7 +22,7 @@ export class SettingResolve implements Resolve<ISetting> {
     if (id) {
       return this.settingService.findOne(id).pipe(map((settingRes: HttpResponse<Setting>) => settingRes.body));
     }
-    return of(new Setting(null, null, null, null));
+    return of(new Setting());
   }
 }
 

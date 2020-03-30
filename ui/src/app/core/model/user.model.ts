@@ -1,9 +1,8 @@
 import {IAuthority} from './authority.model';
-import {AbstractAudit, IAbstractAudit} from './abstract-audit.model';
+import {BaseModel, IBaseModel} from './base-model';
 
 
-export interface IUser extends IAbstractAudit {
-  id: number;
+export interface IUser extends IBaseModel {
   username?: string;
   email?: string;
   fullName?: string;
@@ -11,15 +10,5 @@ export interface IUser extends IAbstractAudit {
   authorities?: IAuthority[];
 }
 
-export class User extends AbstractAudit implements IUser {
-  public password?: string;
-  constructor(
-    public id: number,
-    public username?: string,
-    public email?: string,
-    public fullName?: string,
-    public authorities?: IAuthority[]
-  ) {
-    super();
-  }
+export class User extends BaseModel implements IUser {
 }

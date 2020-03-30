@@ -1,13 +1,13 @@
 import {OnInit} from '@angular/core';
-import {IAbstractAudit} from '../../model/abstract-audit.model';
 import {AppUtilService} from '../../index';
 import {DialogService} from '../../service/dialog/dialog.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {BaseService} from '../../service/base.service';
 import {FieldDefinition} from '../../model/app-util.model';
 import {httpStatus} from '../../security/http/http-status';
+import {IBaseModel} from '../../model/base-model';
 
-export abstract class DashboardComponent<IDomain extends IAbstractAudit> implements OnInit {
+export abstract class DashboardComponent<IDomain extends IBaseModel> implements OnInit {
   domains: IDomain[];
 
   protected constructor(

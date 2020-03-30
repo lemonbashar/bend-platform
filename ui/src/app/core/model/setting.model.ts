@@ -1,37 +1,19 @@
-import {AbstractAudit, IAbstractAudit} from './abstract-audit.model';
+import {BaseModel, IBaseModel} from './base-model';
 
-export interface ISetting extends IAbstractAudit {
-  id?: number;
+export interface ISetting extends IBaseModel {
   settingKey?: string;
   settingValue?: string;
   dataType?: string;
 }
 
-export class Setting extends AbstractAudit implements ISetting {
-  constructor(
-    public id?: number,
-    public settingKey?: string,
-    public settingValue?: string,
-    public dataType?: string
-  ) {
-    super();
-  }
+export class Setting extends BaseModel implements ISetting {
 }
 
-export interface IMiscellaneousSetup extends IAbstractAudit {
-  id?: number;
+export interface IMiscellaneousSetup extends IBaseModel {
   typeName?: string;
   typeValue?: string;
   title?: string;
 }
 
-export class MiscellaneousSetup extends AbstractAudit implements IMiscellaneousSetup {
-  constructor(
-    public id?: number,
-    public typeName?: string,
-    public typeValue?: string,
-    public title?: string
-  ) {
-    super();
-  }
+export class MiscellaneousSetup extends BaseModel implements IMiscellaneousSetup {
 }

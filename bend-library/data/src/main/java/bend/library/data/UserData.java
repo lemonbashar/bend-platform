@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 public class UserData {
     @NotNull
     private String username;
+    private String fullName;
     @NotNull
     @Email
     private String email;

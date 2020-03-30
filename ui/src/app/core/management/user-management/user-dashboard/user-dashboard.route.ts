@@ -19,7 +19,7 @@ export class UserResolve implements Resolve<IUser> {
     if (id) {
       return this.service.findOne(id).pipe(map((userRes: HttpResponse<User>) => userRes.body));
     }
-    return of(new User(null, null, null, null, []));
+    return of(new User());
   }
 }
 

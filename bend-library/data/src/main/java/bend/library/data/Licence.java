@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Licence extends BaseData {
+public class Licence {
     private String licence;
 }

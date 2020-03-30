@@ -1,8 +1,7 @@
-import {AbstractAudit, IAbstractAudit} from './abstract-audit.model';
 import {IDomainDescription} from './domain-description.model';
+import {BaseModel, IBaseModel} from './base-model';
 
-export interface IFieldDescription extends IAbstractAudit {
-  id?: number;
+export interface IFieldDescription extends IBaseModel {
   fieldName?: string;
   fieldTitle?: string;
   dataType?: string;
@@ -10,15 +9,5 @@ export interface IFieldDescription extends IAbstractAudit {
   hasPermissionElExpression?: string;
 }
 
-export class FieldDescription extends AbstractAudit implements IFieldDescription {
-  constructor(
-    public id?: number,
-    public fieldName?: string,
-    public fieldTitle?: string,
-    public dataType?: string,
-    public domainDescription?: IDomainDescription,
-    public hasPermissionElExpression?: string
-  ) {
-    super();
-  }
+export class FieldDescription extends BaseModel implements IFieldDescription {
 }

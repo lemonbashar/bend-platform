@@ -1,10 +1,10 @@
-import {AbstractAudit, IAbstractAudit} from './abstract-audit.model';
+import {BaseModel, IBaseModel} from './base-model';
 
-export interface IAuthority extends IAbstractAudit {
+export interface IAuthority extends IBaseModel {
   name: string;
 }
 
-export class Authority extends AbstractAudit implements IAuthority {
+export class Authority extends BaseModel implements IAuthority {
   constructor(
     public name: string
   ) {
