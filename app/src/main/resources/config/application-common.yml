@@ -7,6 +7,7 @@ bend-platform:
         security:
             cors:
                 allowed-headers: [Authorization, Accept, Content-Type, Origin, Access-Control-Allow-Origin, Access-Control-Allow-Headers, X-Requested-With, Cache-Control, User-Agent, Accept-Encoding, Connection, Host]
+                exposed-headers: [Json-Web-Token, Accept, Content-Type, Origin]
     database:
         migration:
             active: false

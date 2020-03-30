@@ -1,6 +1,7 @@
 package bend.library.config.security.jwt.filter.jwt;
 
 import bend.library.config.security.filter.AbstractFilter;
+import bend.library.config.security.jwt.data.AuthenticationWithRefreshedToken;
 import bend.library.config.security.jwt.jwt.TokenProvider;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +15,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static bend.library.config.security.jwt.constant.JwtConstants.AUTHORIZATION_HEADER;
-import static bend.library.config.security.jwt.constant.JwtConstants.BEARER;
+import static bend.library.config.security.jwt.constant.JwtConstants.*;
 
 /**
  * @author lemon
@@ -39,8 +40,9 @@ public class JwtAuthenticationFilter extends AbstractFilter {
 
     protected void resolveJWT(ServletRequest request, ServletResponse response, FilterChain chain, String jwt) throws IOException, ServletException {
         if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-            Authentication authentication = tokenProvider.getAuthentication(jwt);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            AuthenticationWithRefreshedToken authentication = tokenProvider.getAuthentication(jwt);
+            ((HttpServletResponse)response).addHeader(REFRESHED_JSON_WEB_TOKEN, authentication.getRefreshedToken());
+            SecurityContextHolder.getContext().setAuthentication(authentication.getAuthentication());
         }
         chain.doFilter(request, response);
     }

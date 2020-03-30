@@ -3,8 +3,9 @@ package bend.library.config.security.jwt.jwt;
 import bend.framework.properties.springproperties.SpringProperties;
 import bend.library.config.security.data.CustomUserDetails;
 import bend.library.config.security.jwt.constant.JwtConstants;
-import bend.library.config.security.jwt.data.JwtLogoutInfo;
+import bend.library.config.security.jwt.data.AuthenticationWithRefreshedToken;
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
+import bend.library.data.JwtLogoutInfo;
 import bend.library.data.LoginInfo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -81,23 +82,28 @@ public class TokenProvider {
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
                 .claim(JwtConstants.USER_IDENTITY_KEY, loginInfo.getId())
+                .claim(JwtConstants.IS_REMEMBER_ME, loginInfo.isRememberMe())
                 .signWith(key)
                 .setExpiration(validity)
                 .compact();
     }
 
-    public Authentication getAuthentication(String token) {
+    public AuthenticationWithRefreshedToken getAuthentication(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key).build()
                 .parseClaimsJws(token)
                 .getBody();
 
         String[] authorities = claims.get(AUTHORITIES_KEY).toString().split(",");
-
+        boolean isRememberMe = Boolean.parseBoolean(claims.get(JwtConstants.IS_REMEMBER_ME).toString());
         CustomUserDetails principal = new CustomUserDetails(new BigInteger(claims.get(JwtConstants.USER_IDENTITY_KEY).toString()), claims.getSubject(), "", authorities);
         principal.setRegistryDetectionType(RegistryDetectionType.BY_USERNAME);
         principal.setRegistryDetectionValue(principal.getUsername());
-        return new UsernamePasswordAuthenticationToken(principal, token, Stream.of(authorities).map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));
+        AuthenticationWithRefreshedToken authenticationWithRefreshedToken = new AuthenticationWithRefreshedToken();
+        authenticationWithRefreshedToken.setAuthentication(new UsernamePasswordAuthenticationToken(principal, token, Stream.of(authorities).map(SimpleGrantedAuthority::new).collect(Collectors.toSet())));
+        authenticationWithRefreshedToken.setRefreshedToken(createToken(authenticationWithRefreshedToken.getAuthentication(), LoginInfo.builder().id(principal.getId()).rememberMe(isRememberMe).username(principal.getUsername()).build()));
+
+        return authenticationWithRefreshedToken;
     }
 
     public boolean validateToken(String authToken) {
