@@ -2,6 +2,9 @@ bend-platform:
     settings:
         general:
             name: Bend-Gateway
+        security:
+            cors:
+                active: false
 server:
     port: 8788
 spring:

@@ -1,6 +1,7 @@
 package bend.gateway;
 
 import bend.gateway.config.RibbonConfig;
+import bend.library.config.PropertiesConfig;
 import bend.library.constant.ProfileConstants;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -23,9 +24,8 @@ import java.util.Collection;
 @Log4j2
 @RequiredArgsConstructor
 @EnableEurekaClient
-//@RibbonClients(defaultConfiguration = RibbonConfig.class)
 @EnableZuulProxy
-@SpringBootApplication
+@SpringBootApplication(scanBasePackageClasses = {PropertiesConfig.class})
 public class BendGateway {
     public static ConfigurableApplicationContext applicationContext;
 

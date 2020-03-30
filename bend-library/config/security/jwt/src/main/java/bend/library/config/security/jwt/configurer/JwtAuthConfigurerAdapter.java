@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.filter.CorsFilter;
 
 /**
  * @author lemon
@@ -22,6 +23,6 @@ public class JwtAuthConfigurerAdapter extends SecurityConfigurerAdapter<DefaultS
 
     @Override
     public void configure(HttpSecurity builder) throws Exception {
-        builder.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        builder.addFilterAfter(jwtAuthenticationFilter, CorsFilter.class);
     }
 }

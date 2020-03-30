@@ -36,9 +36,9 @@ public class AccountControllerRestPublic {
                 .map(ResponseUtil::of).get().response(ResponseType::post);
     }
 
-    @GetMapping(RestApiProvider.AccountApi.LOGIN)
+    @PostMapping(RestApiProvider.AccountApi.LOGIN)
     public ResponseEntity<AccountInfo> login(@RequestBody @Valid final LoginInfo loginInfo) {
-        return BendOptional.ofNullable(this.authenticationService.authenticate(loginInfo).getBody())
-                .map(ResponseUtil::of).get().response(ResponseType::get);
+        return BendOptional.ofNullable(this.authenticationService.authenticate(loginInfo))
+                .map(accountResp->ResponseUtil.of(accountResp.getBody()).status(accountResp.getStatusCode()).header(accountResp.getHeaders())).get().response(ResponseType::get);
     }
 }

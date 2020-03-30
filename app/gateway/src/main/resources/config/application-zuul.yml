@@ -6,3 +6,4 @@ zuul:
             path: /bend-main-app/**/*
             service-id: bend-main-app
             strip-prefix: false
+    sensitive-headers: [Cookie, Set-Cookie]

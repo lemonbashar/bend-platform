@@ -4,6 +4,9 @@ bend-platform:
             name: Bend-Main-App
             version: V-1.0.2-Micro-Service
             description: A Microservice Platform, which contains a service registry a gateway and some flexible pluggable applications module.
+        security:
+            cors:
+                allowed-headers: [Authorization, Accept, Content-Type, Origin, Access-Control-Allow-Origin, Access-Control-Allow-Headers, X-Requested-With, Cache-Control, User-Agent, Accept-Encoding, Connection, Host]
     database:
         migration:
             active: false

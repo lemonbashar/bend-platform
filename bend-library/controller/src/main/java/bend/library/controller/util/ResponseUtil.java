@@ -8,11 +8,13 @@ import java.util.function.Function;
 
 public class ResponseUtil<T> {
     private final T body;
-    private HttpStatus httpStatus = HttpStatus.OK;
+    private HttpStatus httpStatus;
     private HttpHeaders httpHeaders;
 
     private ResponseUtil(T body) {
         this.body = body;
+        this.httpStatus = HttpStatus.OK;
+        this.httpHeaders = new HttpHeaders();
     }
 
     public static <T> ResponseUtil<T> of(T body) {
@@ -25,6 +27,16 @@ public class ResponseUtil<T> {
 
     public ResponseUtil<T> status(HttpStatus httpStatus) {
         this.httpStatus = httpStatus;
+        return this;
+    }
+
+    public ResponseUtil<T> header(HttpHeaders httpHeaders) {
+        this.httpHeaders.addAll(httpHeaders);
+        return this;
+    }
+
+    public ResponseUtil<T> header(String key, String value) {
+        this.httpHeaders.add(key, value);
         return this;
     }
 

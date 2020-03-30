@@ -21,6 +21,6 @@ public class CustomUserDetailsExtractor<T> {
     }
 
     public List<T> extract() {
-        return this.tList;
+        return this.tList.isEmpty() ? null : this.tList;
     }
 }

@@ -40,9 +40,10 @@ public class WebConfigurer implements WebMvcConfigurer {
                 .allowCredentials(this.cors.isAllowCredentials());
     }
 
+
     @Bean
     public CorsFilter corsFilter() {
-        if(!this.cors.isActive()) return null;
+        if(!this.cors.isActive()) return new CorsFilter(new UrlBasedCorsConfigurationSource());
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(this.cors.isAllowCredentials());
@@ -55,6 +56,7 @@ public class WebConfigurer implements WebMvcConfigurer {
         /*Add Methods*/
         dynamicAdder(this.cors::getAllowedMethods, config::addAllowedMethod);
 
+        dynamicAdder(this.cors::getExposedHeaders, config::addExposedHeader);
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }

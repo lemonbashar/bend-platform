@@ -89,7 +89,8 @@ public final class SecurityUtil {
     public static <T> CustomUserDetailsExtractor<T> extractFromPrincipal(Class<T> returnType) {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
-                .ifThenMap(Objects::nonNull, principal->new CustomUserDetailsExtractor<T>((CustomUserDetails)principal, returnType)).get();
+                .ifThenMap(obj->obj instanceof CustomUserDetails, obj->(CustomUserDetails)obj)
+                .ifThenMap(Objects::nonNull, principal->new CustomUserDetailsExtractor<T>(principal, returnType)).get();
     }
 
     public static void updateRegistryDetection(RegistryDetectionType registryDetectionType, String registryDetectionValue) {

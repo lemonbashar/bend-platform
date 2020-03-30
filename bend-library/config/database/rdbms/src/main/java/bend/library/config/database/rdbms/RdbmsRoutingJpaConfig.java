@@ -33,7 +33,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Log4j2
-@Profile(ProfileConstants.NOT_TEST)
 @RequiredArgsConstructor
 @Import(SpringProperties.class)
 @EnableTransactionManagement

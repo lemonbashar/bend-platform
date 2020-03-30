@@ -2,6 +2,7 @@ package bend.library.config.security.jwt;
 
 import bend.library.config.security.ConditionalApply;
 import bend.library.config.security.jwt.configurer.JwtAuthConfigurerAdapter;
+import bend.library.config.security.jwt.filter.jwt.JwtAuthenticationFilter;
 import bend.library.config.security.service.CustomUserDetailsService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
