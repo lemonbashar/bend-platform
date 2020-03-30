@@ -1,10 +1,10 @@
 package bend.library.controller.rest.api;
 
-import bend.library.config.security.data.AccountInfo;
 import bend.library.config.security.util.SecurityUtil;
 import bend.library.controller.rest.constants.RestApiProvider;
 import bend.library.controller.util.ResponseType;
 import bend.library.controller.util.ResponseUtil;
+import bend.library.data.AccountInfo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -13,6 +13,7 @@ dependencies {
 allprojects {
     dependencies {
         implementation project(':bend-library:domain')
+        implementation project(':bend-library:data')
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation 'org.springframework.boot:spring-boot-starter-security'
 

@@ -1,6 +1,6 @@
 package bend.library.config.security.jwt.data;
 
-import bend.library.config.security.data.LogoutInfo;
+import bend.library.data.LogoutInfo;
 import lombok.Getter;
 import lombok.Setter;
 

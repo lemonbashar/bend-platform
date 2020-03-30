@@ -2,23 +2,7 @@ zuul:
     ignored-services: '*'
     prefix: /api
     routes:
-        create-user:
-            path: /bend-main-app/public/account/create-account
-            service-id: bend-main-app
-            strip-prefix: false
-        current-account:
-            path: /bend-main-app/private/account/current-account
-            service-id: bend-main-app
-            strip-prefix: false
-        application-info:
-            path: /bend-main-app/public/application
-            service-id: bend-main-app
-            strip-prefix: false
-        application-licence:
-            path: /bend-main-app/public/application/licence
-            service-id: bend-main-app
-            strip-prefix: false
-        actuator-info:
-            path: /bend-main-app/actuator/**/*
+        bend-main-app:
+            path: /bend-main-app/**/*
             service-id: bend-main-app
             strip-prefix: false

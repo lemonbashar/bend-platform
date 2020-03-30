@@ -5,7 +5,6 @@ import bend.library.config.WebConfigurer;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.config.CommonSecurityConfig;
-import bend.library.config.security.data.AccountInfo;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.constant.ProfileConstants;
 import bend.library.constant.SecurityConstants;
@@ -14,6 +13,7 @@ import bend.library.controller.rest.constants.RestApiProvider;
 import bend.library.core.CoreConfig;
 import bend.library.core.prepersist.PrePersistAspect;
 import bend.library.core.prepersist.PrePersistConfiguration;
+import bend.library.data.AccountInfo;
 import bend.library.data.UserData;
 import bend.library.domain.DomainConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,7 +45,7 @@ class AccountControllerRestPublicTest {
 
     @Test
     void createAccount() throws Exception {
-        UserData userData = new UserData("lemon", "lemon@mail.com", "lemon1234", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
+        UserData userData = new UserData("lemon", "", "lemon@mail.com", "lemon1234", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
         MvcResult mvcResult = mockMvc.perform(post(RestApiProvider.build(RestApiProvider.AccountApi.ACCOUNT_PUBLIC_ROOT_API, RestApiProvider.AccountApi.CREATE_ACCOUNT)).contentType(MediaType.APPLICATION_JSON_VALUE).content(objectMapper.writeValueAsString(userData)).accept(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print()).andExpect(status().is(HttpStatus.OK.value())).andReturn();
         AccountInfo accountInfo = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), AccountInfo.class);

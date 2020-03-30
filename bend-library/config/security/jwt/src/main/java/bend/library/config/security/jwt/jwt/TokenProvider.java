@@ -2,10 +2,10 @@ package bend.library.config.security.jwt.jwt;
 
 import bend.framework.properties.springproperties.SpringProperties;
 import bend.library.config.security.data.CustomUserDetails;
-import bend.library.config.security.data.LoginInfo;
 import bend.library.config.security.jwt.constant.JwtConstants;
 import bend.library.config.security.jwt.data.JwtLogoutInfo;
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
+import bend.library.data.LoginInfo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

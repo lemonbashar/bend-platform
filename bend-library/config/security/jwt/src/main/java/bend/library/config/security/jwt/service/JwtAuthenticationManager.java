@@ -2,13 +2,13 @@ package bend.library.config.security.jwt.service;
 
 import bend.framework.base.util.BendOptional;
 import bend.library.config.security.data.CustomUserDetails;
-import bend.library.config.security.data.LoginInfo;
-import bend.library.config.security.data.LogoutInfo;
 import bend.library.config.security.jwt.data.JwtAccountInfo;
 import bend.library.config.security.jwt.data.JwtLogoutInfo;
 import bend.library.config.security.jwt.jwt.TokenProvider;
 import bend.library.config.security.service.AuthenticationManager;
 import bend.library.config.security.service.SaltedPasswordEncoder;
+import bend.library.data.LoginInfo;
+import bend.library.data.LogoutInfo;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -2,9 +2,9 @@ package bend.library.config.security.util;
 
 import bend.framework.base.util.BendOptional;
 import bend.library.constant.SecurityConstants;
-import bend.library.config.security.data.AccountInfo;
 import bend.library.config.security.data.CustomUserDetails;
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
+import bend.library.data.AccountInfo;
 import bend.library.domain.entity.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

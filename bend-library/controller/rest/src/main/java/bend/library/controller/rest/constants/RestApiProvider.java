@@ -21,6 +21,7 @@ public class RestApiProvider {
         public static final String ACCOUNT_PUBLIC_ROOT_API = APiConstants.PUBLIC_ROOT + "/account";
         public static final String CURRENT_ACCOUNT_INFO = "/current-account";
         public static final String CREATE_ACCOUNT = "/create-account";
+        public static final String LOGIN = "/login";
     }
 
     public static final String[] NEED_TO_SET_DATA_SOURCE_ROUTE_IF_MATCH = {

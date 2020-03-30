@@ -1,8 +1,8 @@
 package bend.library.config.security.service;
 
-import bend.library.config.security.data.AccountInfo;
-import bend.library.config.security.data.LoginInfo;
-import bend.library.config.security.data.LogoutInfo;
+import bend.library.data.AccountInfo;
+import bend.library.data.LoginInfo;
+import bend.library.data.LogoutInfo;
 
 /**
  * @author lemon

@@ -1,4 +1,4 @@
-package bend.library.config.security.data;
+package bend.library.data;
 
 import lombok.Getter;
 import lombok.Setter;

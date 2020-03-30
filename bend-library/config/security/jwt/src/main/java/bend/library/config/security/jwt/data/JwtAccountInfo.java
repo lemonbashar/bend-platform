@@ -1,6 +1,6 @@
 package bend.library.config.security.jwt.data;
 
-import bend.library.config.security.data.AccountInfo;
+import bend.library.data.AccountInfo;
 import lombok.Getter;
 import lombok.Setter;
 

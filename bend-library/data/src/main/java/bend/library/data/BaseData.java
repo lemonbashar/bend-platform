@@ -11,12 +11,8 @@ import java.time.format.DateTimeFormatter;
 @Getter
 @Setter
 public class BaseData<ID> {
-    private ID subject;
-    private String currentTime;
-    private LocalDate createDate;
-    private LocalDate updateDate;
-    private BigInteger createBy;
-    private BigInteger updateBy;
+    protected ID id;
+    protected String currentTime;
 
     public BaseData() {
         this.currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("DD-MMM-YYYY HH:MM:SS"));

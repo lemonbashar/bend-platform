@@ -1,8 +1,9 @@
-package bend.library.config.security.data;
+package bend.library.data;
 
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
 
 /**
@@ -12,9 +13,10 @@ import java.math.BigInteger;
  */
 @Setter
 @Getter
-public class LoginInfo {
-    private BigInteger id;
+public class LoginInfo extends BaseData<BigInteger> {
+    @NotNull
     private String username;
+    @NotNull
     private String password;
     private boolean rememberMe;
 

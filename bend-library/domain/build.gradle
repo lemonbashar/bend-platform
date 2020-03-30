@@ -17,6 +17,7 @@ allprojects {
         implementation project(':bend-library:constant')
 
         testImplementation project(':bend-library:config:database')
+        testImplementation project(':bend-library:data')
         testImplementation project(':bend-library:config:database:rdbms')
         testImplementation project(':bend-library:config:security')
         testRuntime "org.postgresql:postgresql:$postgreVersion"

@@ -1,7 +1,8 @@
-package bend.library.config.security.data;
+package bend.library.data;
 
 import lombok.*;
 
+import java.math.BigInteger;
 import java.util.Set;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(of = {"username", "authenticated"})
-public class AccountInfo {
+public class AccountInfo extends BaseData<BigInteger> {
     private String username;
     private Set<String> authorities;
     private boolean authenticated;

@@ -2,11 +2,11 @@ package bend.library.domain.cluster.service;
 
 import bend.library.config.PropertiesConfig;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
-import bend.library.config.security.data.LoginInfo;
 import bend.library.config.security.service.AuthenticationService;
 import bend.library.constant.ProfileConstants;
 import bend.library.core.CoreConfig;
 import bend.library.core.prepersist.PrePersistConfiguration;
+import bend.library.data.LoginInfo;
 import bend.library.domain.cluster.ClusterDomainConfig;
 import bend.library.domain.cluster.repositories.DatabaseConfigRepository;
 import org.junit.jupiter.api.Tag;
