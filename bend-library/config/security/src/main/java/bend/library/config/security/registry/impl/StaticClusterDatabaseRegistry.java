@@ -12,7 +12,7 @@ import java.util.Objects;
 @Service
 public class StaticClusterDatabaseRegistry implements ClusterDatabaseRegistry {
     private static final int INDEX_WHEN_NO_USER_FOUND = 0;
-    private final int TOTAL_CLUSTER_DATABASE=3;/*Now We going to use only 3 database*/
+    private final int TOTAL_CLUSTER_DATABASE = 3;/*Now We going to use only 3 database*/
     private final String[] DATABASE_REGISTRY = {
             "bend-cluster-database",
             "bend-cluster-database-north",
@@ -23,7 +23,7 @@ public class StaticClusterDatabaseRegistry implements ClusterDatabaseRegistry {
     public String findAppropriateDatabase(@NotNull String value, @NotNull RegistryDetectionType detectionType) {
         switch (detectionType) {
             case BY_USERNAME:
-                return Objects.isNull(value) ? DATABASE_REGISTRY[INDEX_WHEN_NO_USER_FOUND] : DATABASE_REGISTRY[Math.abs(value.hashCode())%TOTAL_CLUSTER_DATABASE];
+                return Objects.isNull(value) ? DATABASE_REGISTRY[INDEX_WHEN_NO_USER_FOUND] : DATABASE_REGISTRY[Math.abs(value.hashCode()) % TOTAL_CLUSTER_DATABASE];
             default:
                 return defaultDataSourceKey();
         }

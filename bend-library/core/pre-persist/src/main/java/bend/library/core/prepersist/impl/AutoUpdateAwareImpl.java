@@ -29,9 +29,9 @@ public class AutoUpdateAwareImpl implements PrePersistAware<AutoUpdate> {
 
     @Override
     public void aware(BaseEntity<?> baseEntity, AutoUpdate autoUpdate) {
-        if(!elEvaluator.evaluate(Boolean.class, autoUpdate.isApplicable(), ()->false, baseEntity))
+        if (!elEvaluator.evaluate(Boolean.class, autoUpdate.isApplicable(), () -> false, baseEntity))
             return;
-        BigInteger uid = BendOptional.ofNullable(elEvaluator.evaluate(BigInteger.class, autoUpdate.updateBy(),()->userService.systemUser().getId(), baseEntity))
+        BigInteger uid = BendOptional.ofNullable(elEvaluator.evaluate(BigInteger.class, autoUpdate.updateBy(), () -> userService.systemUser().getId(), baseEntity))
                 .orElse(userService.systemUser().getId());
         baseEntity.setUpdateBy(new User(uid));
     }

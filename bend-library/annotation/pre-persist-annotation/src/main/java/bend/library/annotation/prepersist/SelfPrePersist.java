@@ -10,6 +10,7 @@ import java.lang.annotation.Target;
 public @interface SelfPrePersist {
     /**
      * This value represents that object should call bend.library.cluster.BaseEntity.prePersist() or not
+     *
      * @return boolean
      */
     boolean value() default true;

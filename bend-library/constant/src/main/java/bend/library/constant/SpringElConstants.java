@@ -24,6 +24,6 @@ public final class SpringElConstants {
     }
 
     public static final class Entity {
-        public static final String WHEN_CREATE="#model.getId()==null";
+        public static final String WHEN_CREATE = "#model.getId()==null";
     }
 }

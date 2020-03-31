@@ -9,7 +9,7 @@ export class AuthorityService extends BaseService<IAuthority> {
   constructor(
     http: HttpClient
   ) {
-    super('authority', http);
+    super('/authority', http);
     this.DEFAULT_URL = this.PRIVATE_ADMIN_URL;
   }
 }

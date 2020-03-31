@@ -8,11 +8,10 @@ import org.springframework.http.ResponseEntity;
 import java.util.Objects;
 
 public class ResponseType<T> {
+    private static final ResponseEntity<?> empty = new ResponseEntity<>(HttpStatus.NOT_FOUND);
     private final BendOptional<T> body;
     private final HttpStatus httpStatus;
     private final HttpHeaders httpHeaders;
-
-    private static final ResponseEntity<?> empty = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     @SuppressWarnings("unchecked")
     public ResponseType(T body, HttpStatus httpStatus, HttpHeaders httpHeaders) {

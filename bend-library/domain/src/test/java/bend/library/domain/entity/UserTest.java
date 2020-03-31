@@ -1,11 +1,11 @@
 package bend.library.domain.entity;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.constant.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.service.AuthorityService;
 import bend.library.config.security.service.SaltedPasswordEncoder;
+import bend.library.constant.ProfileConstants;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.repositories.UserRepository;
 import org.junit.jupiter.api.Tag;
@@ -41,7 +41,7 @@ public class UserTest {
     @Test
     public void save() {
 
-        Optional<User> optionalUser = userRepository.findByUsernameAndActive(USERNAME,true);
+        Optional<User> optionalUser = userRepository.findByUsernameAndActive(USERNAME, true);
         optionalUser.ifPresent(user -> userRepository.deleteById(user.getId()));
         User user = new User(USERNAME, saltedPasswordEncoder.encode(USERNAME, PASSWORD), EMAIL, authorityService.validRawAuthorities(AUTHORITIES));
         user.setActive(true);

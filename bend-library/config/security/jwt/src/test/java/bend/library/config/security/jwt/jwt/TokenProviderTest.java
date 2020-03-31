@@ -2,11 +2,11 @@ package bend.library.config.security.jwt.jwt;
 
 import bend.library.config.PropertiesConfig;
 import bend.library.config.WebConfigurer;
-import bend.library.constant.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.config.CommonSecurityConfig;
 import bend.library.config.security.jwt.JwtSecurityConfig;
+import bend.library.constant.ProfileConstants;
 import bend.library.data.LoginInfo;
 import bend.library.domain.DomainConfig;
 import org.junit.jupiter.api.BeforeEach;

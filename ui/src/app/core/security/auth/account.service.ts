@@ -11,7 +11,7 @@ export class AccountService extends BaseService<IUser> {
     constructor(
       http: HttpClient
     ) {
-      super('account', http);
+      super('/account', http);
     }
 
     /*Cause Here we need to request on public url*/
@@ -20,7 +20,7 @@ export class AccountService extends BaseService<IUser> {
     }
 
     login(info: IUserInfo): Observable<HttpResponse<IAccountInfo>> {
-        return this.http.post<IAccountInfo>(this.PUBLIC_URL + '/login-jwt', info, { observe: 'response' });
+        return this.http.post<IAccountInfo>(this.PUBLIC_URL + '/login', info, { observe: 'response' });
     }
 
     logout(info: ILogoutInfo): Observable<HttpResponse<Map<string, object>>> {

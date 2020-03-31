@@ -3,8 +3,8 @@ package bend.library.config.database;
 import bend.framework.base.util.BendOptional;
 import bend.library.config.security.data.CustomUserDetails;
 import bend.library.config.security.registry.ClusterDatabaseRegistry;
-import bend.library.config.security.util.SecurityUtil;
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
+import bend.library.config.security.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
@@ -17,10 +17,10 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
     @Override
     protected Object determineCurrentLookupKey() {
         return BendOptional.ofNullable(SecurityUtil.extractFromPrincipal())
-                .ifThenMap(Objects::nonNull, efp->efp
-                .and(CustomUserDetails::getRegistryDetectionType)
-                .and(CustomUserDetails::getRegistryDetectionValue).extract())
-                .ifThenMap(Objects::nonNull, list->determineLookupKey((RegistryDetectionType)list.get(0), list.get(1).toString())).get();
+                .ifThenMap(Objects::nonNull, efp -> efp
+                        .and(CustomUserDetails::getRegistryDetectionType)
+                        .and(CustomUserDetails::getRegistryDetectionValue).extract())
+                .ifThenMap(Objects::nonNull, list -> determineLookupKey((RegistryDetectionType) list.get(0), list.get(1).toString())).get();
     }
 
     private Object determineLookupKey(final RegistryDetectionType registryDetectionType, final String registryDetectionValue) {

@@ -6,10 +6,10 @@ public interface IBendResponse {
     /**
      * Http Status
      */
-     BendStatus status();
+    BendStatus status();
 
     /**
      * @return Data-type, like it may Bend-Response/Data-Response/Extra-Response so we need to detect it from UI
      */
-     List<String> dataTypes();
+    List<String> dataTypes();
 }

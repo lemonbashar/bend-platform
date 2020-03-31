@@ -2,7 +2,6 @@ package bend.library.config.security.data;
 
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
 import bend.library.domain.entity.User;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

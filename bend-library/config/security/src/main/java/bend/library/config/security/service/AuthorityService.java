@@ -1,7 +1,6 @@
 package bend.library.config.security.service;
 
 import bend.library.domain.entity.Authority;
-import bend.library.domain.entity.User;
 
 import java.util.Set;
 

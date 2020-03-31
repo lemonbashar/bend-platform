@@ -12,9 +12,9 @@ export abstract class AbstractBaseService {
     private BASE_URL: string,
     protected http: HttpClient
   ) {
-    this.PRIVATE_URL = environment.API_URL + 'api/private/' + this.BASE_URL;
-    this.PRIVATE_ADMIN_URL = environment.API_URL + 'api/private/admin/' + this.BASE_URL;
-    this.PUBLIC_URL = environment.API_URL + 'api/public/' + this.BASE_URL;
+    this.PRIVATE_URL = environment.API_URL + '/private' + this.BASE_URL;
+    this.PRIVATE_ADMIN_URL = environment.API_URL + '/private/admin' + this.BASE_URL;
+    this.PUBLIC_URL = environment.API_URL + '/public' + this.BASE_URL;
     this.DEFAULT_URL = this.PRIVATE_URL;
   }
 }

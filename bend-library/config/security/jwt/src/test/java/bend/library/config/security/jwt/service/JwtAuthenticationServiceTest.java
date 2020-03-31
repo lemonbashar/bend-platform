@@ -1,8 +1,6 @@
 package bend.library.config.security.jwt.service;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.constant.ProfileConstants;
-import bend.library.constant.SecurityConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.data.CustomUserDetails;
@@ -13,6 +11,8 @@ import bend.library.config.security.service.CustomUserDetailsService;
 import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.config.security.service.UserService;
 import bend.library.config.security.util.SecurityUtil;
+import bend.library.constant.ProfileConstants;
+import bend.library.constant.SecurityConstants;
 import bend.library.data.AccountInfo;
 import bend.library.data.LoginInfo;
 import bend.library.domain.DomainConfig;
@@ -40,21 +40,19 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, JwtSecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @Configuration
 public class JwtAuthenticationServiceTest {
+    private static final String USERNAME = "lemon";
+    private static final String PASSWORD = "lemon1234";
+    CustomUserDetailsService customUserDetailsService;
     private AuthenticationService authenticationService;
+    ;
     @Autowired
     private SaltedPasswordEncoder saltedPasswordEncoder;
     @Autowired
     private TokenProvider tokenProvider;
     @Autowired
-    private UserRepository userRepository;;
+    private UserRepository userRepository;
     @Autowired
     private UserService userService;
-
-    CustomUserDetailsService customUserDetailsService;
-
-    private static final String USERNAME = "lemon";
-    private static final String PASSWORD = "lemon1234";
-
     private LoginInfo loginInfo;
 
     public JwtAuthenticationServiceTest beanWire(SaltedPasswordEncoder saltedPasswordEncoder, TokenProvider tokenProvider) {

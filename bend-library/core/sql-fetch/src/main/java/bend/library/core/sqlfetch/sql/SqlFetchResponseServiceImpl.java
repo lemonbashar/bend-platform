@@ -1,7 +1,7 @@
 package bend.library.core.sqlfetch.sql;
 
-import bend.library.constant.SpringElConstants;
 import bend.library.config.el.SpringElEvaluator;
+import bend.library.constant.SpringElConstants;
 import bend.library.core.sqlfetch.RestrictionCheckerService;
 import bend.library.core.sqlfetch.SqlFetchService;
 import bend.library.data.fetch.fetch.FetchResponse;
@@ -44,12 +44,12 @@ public class SqlFetchResponseServiceImpl implements SqlFetchService {
                 fetchDefinition.getParameters()
                         .forEach(item -> {
                             if (item.getValue().startsWith(SpringElConstants.SPEL_PREFIX))
-                                query.setParameter(item.getName(), springElEvaluator.evaluate(Object.class, item.getValue().substring(SpringElConstants.SPEL_PREFIX.length()), ()->null, null));
+                                query.setParameter(item.getName(), springElEvaluator.evaluate(Object.class, item.getValue().substring(SpringElConstants.SPEL_PREFIX.length()), () -> null, null));
                             else query.setParameter(item.getName(), item.getValue());
                         });
             }
             response.setData(query.getResultList());
-        }catch (Exception e) {
+        } catch (Exception e) {
             log.error(e);
             throw new SecurityException(e);
         }

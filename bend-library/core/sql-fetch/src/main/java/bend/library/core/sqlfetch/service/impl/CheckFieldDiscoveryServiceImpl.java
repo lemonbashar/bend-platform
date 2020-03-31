@@ -27,7 +27,7 @@ public class CheckFieldDiscoveryServiceImpl implements CheckFieldDiscoveryServic
         if (field == null) return false;
         if (SecurityUtil.isSuperAdmin()) return true;
         if (!field.isAnnotationPresent(Discoverable.class)) return false;
-        return springElEvaluator.evaluate(Boolean.class, field.getAnnotation(Discoverable.class).allowCheckExistence(), ()->false, null);
+        return springElEvaluator.evaluate(Boolean.class, field.getAnnotation(Discoverable.class).allowCheckExistence(), () -> false, null);
     }
 
     @Override
@@ -36,6 +36,6 @@ public class CheckFieldDiscoveryServiceImpl implements CheckFieldDiscoveryServic
         if (field == null) return false;
         if (SecurityUtil.isSuperAdmin()) return true;
         if (!field.isAnnotationPresent(Discoverable.class)) return false;
-        return springElEvaluator.evaluate(Boolean.class, field.getAnnotation(Discoverable.class).allowEdit(), ()->false, null);
+        return springElEvaluator.evaluate(Boolean.class, field.getAnnotation(Discoverable.class).allowEdit(), () -> false, null);
     }
 }

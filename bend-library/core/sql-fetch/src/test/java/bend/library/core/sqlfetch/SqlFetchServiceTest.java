@@ -1,10 +1,10 @@
 package bend.library.core.sqlfetch;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.constant.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.service.AuthenticationService;
+import bend.library.constant.ProfileConstants;
 import bend.library.data.LoginInfo;
 import bend.library.data.fetch.fetch.FetchResponse;
 import bend.library.data.fetch.fetch.SqlFetchDefinition;
@@ -17,7 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
@@ -31,7 +32,7 @@ class SqlFetchServiceTest {
     @Test
     void fetchUserSqlRestrictedError() {
         authenticationService.authenticate(LoginInfo.builder().username("system").password("system1234").build());
-        Assertions.assertThrows(SecurityException.class, ()->{
+        Assertions.assertThrows(SecurityException.class, () -> {
             SqlFetchDefinition fetchDefinition = SqlFetchDefinition.builder().alias("model")
                     .columns(new String[]{"model.username", "model.createBy", "model.id", "model.updateBy"})
                     .condition("model.id<10")
@@ -40,7 +41,7 @@ class SqlFetchServiceTest {
             fetchDefinition.setKey("User-Domain");
             fetchDefinition.setDomain("User");
 
-            FetchResponse fetchResponse =  sqlFetchService.fetch(fetchDefinition);
+            FetchResponse fetchResponse = sqlFetchService.fetch(fetchDefinition);
 
             System.out.println(fetchResponse.getData());
         });
@@ -57,7 +58,7 @@ class SqlFetchServiceTest {
         fetchDefinition.setKey("User-Domain");
         fetchDefinition.setDomain("User");
 
-        FetchResponse fetchResponse =  sqlFetchService.fetch(fetchDefinition);
+        FetchResponse fetchResponse = sqlFetchService.fetch(fetchDefinition);
         assertNotNull(fetchResponse);
         assertNotNull(fetchResponse.getData());
         System.out.println(fetchResponse.getData());

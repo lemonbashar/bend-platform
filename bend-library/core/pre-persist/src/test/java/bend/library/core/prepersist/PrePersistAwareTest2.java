@@ -1,13 +1,13 @@
 package bend.library.core.prepersist;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.constant.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.exception.PrePersistException;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.config.security.service.AuthenticationService;
 import bend.library.config.security.service.AuthorityService;
 import bend.library.config.security.service.SaltedPasswordEncoder;
+import bend.library.constant.ProfileConstants;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.repositories.UserRepository;
 import org.apache.catalina.security.SecurityConfig;
@@ -20,9 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 @Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
@@ -30,6 +27,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         bend.library.config.security.SecurityConfig.class, JwtSecurityConfig.class,
         DomainConfig.class, PrePersistConfiguration.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class PrePersistAwareTest2 {
+    private static final String systemUser = "system";
+    private static final String systemPassword = "system1234";
     @Autowired
     private AuthenticationService authenticationService;
     @Autowired
@@ -39,12 +38,9 @@ class PrePersistAwareTest2 {
     @Autowired
     private SaltedPasswordEncoder saltedPasswordEncoder;
 
-    private static final String systemUser = "system";
-    private static final String systemPassword = "system1234";
-
     @Test
     @Order(6)
     void testForSystemUpdate() {
-        Assertions.assertThrows(PrePersistException.class, ()->this.userRepository.findByUsername("system").ifPresent(this.userRepository::save));
+        Assertions.assertThrows(PrePersistException.class, () -> this.userRepository.findByUsername("system").ifPresent(this.userRepository::save));
     }
 }

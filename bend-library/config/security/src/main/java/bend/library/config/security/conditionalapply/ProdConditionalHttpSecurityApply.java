@@ -1,8 +1,8 @@
 package bend.library.config.security.conditionalapply;
 
+import bend.library.config.security.ConditionalApply;
 import bend.library.constant.APiConstants;
 import bend.library.constant.ProfileConstants;
-import bend.library.config.security.ConditionalApply;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Service;

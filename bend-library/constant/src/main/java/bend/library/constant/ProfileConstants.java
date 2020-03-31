@@ -26,6 +26,7 @@ public final class ProfileConstants {
     public static final String PROD_SECURE = "prod-secure";
     public static final String API_DOCS = "api-docs";
     public static final String LIQUIBASE = "liquibase";
+    public static final String ZUUL = "zuul";
 
     public static final class TestInclude {
         /**

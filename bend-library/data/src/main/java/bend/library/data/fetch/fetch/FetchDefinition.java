@@ -1,6 +1,7 @@
 package bend.library.data.fetch.fetch;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Setter
 @Getter

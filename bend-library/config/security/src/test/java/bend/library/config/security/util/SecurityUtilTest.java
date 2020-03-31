@@ -1,11 +1,11 @@
 package bend.library.config.security.util;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.constant.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.config.security.service.AuthenticationService;
+import bend.library.constant.ProfileConstants;
 import bend.library.data.AccountInfo;
 import bend.library.data.LoginInfo;
 import bend.library.domain.DomainConfig;

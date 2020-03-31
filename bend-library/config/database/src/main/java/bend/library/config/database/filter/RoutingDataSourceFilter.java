@@ -1,9 +1,9 @@
 package bend.library.config.database.filter;
 
-import bend.library.constant.RouteConstants;
 import bend.library.config.security.filter.AbstractFilter;
-import bend.library.config.security.util.SecurityUtil;
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
+import bend.library.config.security.util.SecurityUtil;
+import bend.library.constant.RouteConstants;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -28,7 +28,7 @@ public class RoutingDataSourceFilter extends AbstractFilter {
     protected void doFilterInternal(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         final String registryDetectionValue = findHeaderValue(request, RouteConstants.HEADER_REGISTRY_DETECTION_VALUE);
         final String registryDetectionType = findHeaderValue(request, RouteConstants.HEADER_REGISTRY_DETECTION_TYPE);
-        if(registryDetectionValue !=null && registryDetectionType != null) {
+        if (registryDetectionValue != null && registryDetectionType != null) {
             SecurityUtil.updateRegistryDetection(RegistryDetectionType.valueOf(registryDetectionType), registryDetectionValue);
         }
         chain.doFilter(request, response);

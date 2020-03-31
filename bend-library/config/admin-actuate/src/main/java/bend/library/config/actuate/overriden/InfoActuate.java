@@ -16,7 +16,7 @@ import java.util.Map;
 public class InfoActuate implements InfoContributor {
     private static final String SERVER_PORT = "Server-Port";
     private static final String APPLICATION_NAME = "Application-Name";
-    private static final String BOOTSTRAP_APPLICATION_NAME = "Bootstrap-"+APPLICATION_NAME;
+    private static final String BOOTSTRAP_APPLICATION_NAME = "Bootstrap-" + APPLICATION_NAME;
     private static final String APPLICATION_VERSION = "Application-Version";
     private final @NonNull SpringProperties properties;
     private final @NonNull Environment environment;
@@ -28,7 +28,7 @@ public class InfoActuate implements InfoContributor {
         additionalProperties.put(APPLICATION_NAME, properties.getSettings().getGeneral().getName());
         additionalProperties.put(BOOTSTRAP_APPLICATION_NAME, environment.getProperty("spring.application.name"));
         additionalProperties.put(APPLICATION_VERSION, properties.getSettings().getGeneral().getVersion());
-        additionalProperties.put("Description",properties.getSettings().getGeneral().getDescription());
+        additionalProperties.put("Description", properties.getSettings().getGeneral().getDescription());
         builder.withDetail("Additional-Info", additionalProperties);
     }
 }

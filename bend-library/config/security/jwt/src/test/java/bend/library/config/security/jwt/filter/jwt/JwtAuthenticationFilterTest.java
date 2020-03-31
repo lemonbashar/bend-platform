@@ -2,8 +2,6 @@ package bend.library.config.security.jwt.filter.jwt;
 
 import bend.library.config.PropertiesConfig;
 import bend.library.config.WebConfigurer;
-import bend.library.constant.ProfileConstants;
-import bend.library.constant.SecurityConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.config.CommonSecurityConfig;
@@ -12,6 +10,8 @@ import bend.library.config.security.jwt.constant.JwtConstants;
 import bend.library.config.security.jwt.jwt.TokenProvider;
 import bend.library.config.security.jwt.service.JwtAuthenticationServiceTest;
 import bend.library.config.security.service.SaltedPasswordEncoder;
+import bend.library.constant.ProfileConstants;
+import bend.library.constant.SecurityConstants;
 import bend.library.controller.rest.api.AccountControllerRest;
 import bend.library.controller.rest.constants.RestApiProvider;
 import bend.library.data.AccountInfo;

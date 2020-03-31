@@ -42,11 +42,10 @@ import static bend.library.config.security.jwt.constant.JwtConstants.AUTHORITIES
 @RequiredArgsConstructor
 @Service
 public class TokenProvider {
+    protected final SpringProperties properties;
     protected Key key;
     protected long tokenValidityInMilliseconds;
     protected long tokenValidityInMillisecondsForRememberMe;
-
-    protected final SpringProperties properties;
 
     @PostConstruct
     public void init() {

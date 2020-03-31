@@ -2,7 +2,6 @@ package bend.library.config.migration.liquibase;
 
 import bend.framework.properties.springproperties.database.migration.Liquibase;
 import liquibase.resource.ClassLoaderResourceAccessor;
-import liquibase.resource.CompositeResourceAccessor;
 import liquibase.resource.FileSystemResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import lombok.NonNull;
@@ -45,24 +44,24 @@ public class ClasspathResourceAccessor implements ResourceAccessor {
 
     @Override
     public Set<InputStream> getResourcesAsStream(String path) throws IOException {
-        log.warn("Migrating started for "+path);
+        log.warn("Migrating started for " + path);
         return getAccessor(path).getResourcesAsStream(extractFilePath(path));
     }
 
     @Override
     public Set<String> list(String relativeTo, String path, boolean includeFiles, boolean includeDirectories, boolean recursive) throws IOException {
-        log.warn("Started Migrating at Directory "+path+" ");
+        log.warn("Started Migrating at Directory " + path + " ");
         return getAccessor(path).list(relativeTo, extractFilePath(path), includeFiles, includeDirectories, liquibase.isRecursiveInclude());
     }
 
     protected String extractFilePath(String path) {
-        return path.startsWith(CLASSPATH)?path.substring(CLASSPATH.length()): (path.startsWith(FILEPATH)?path.substring(FILEPATH.length()):path);
+        return path.startsWith(CLASSPATH) ? path.substring(CLASSPATH.length()) : (path.startsWith(FILEPATH) ? path.substring(FILEPATH.length()) : path);
     }
 
     protected ResourceAccessor getAccessor(String path) {
-        if(path.startsWith(CLASSPATH))
+        if (path.startsWith(CLASSPATH))
             return this.classpathAccessor;
-        else if(path.startsWith(FILEPATH))
+        else if (path.startsWith(FILEPATH))
             return this.fileAccessor;
         else
             return this.otherAccessor;

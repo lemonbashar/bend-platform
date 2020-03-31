@@ -45,7 +45,7 @@ public class PrePersistAspect {
         Object obj = joinPoint.getArgs()[0];
         if (isPrePersistAble(obj))
             prePersistAware.aware((BaseEntity<?>) obj, obj.getClass().getAnnotation(PrePersist.class));
-        else if(obj.getClass().isAnnotationPresent(SelfPrePersist.class)) {
+        else if (obj.getClass().isAnnotationPresent(SelfPrePersist.class)) {
             try {
                 obj.getClass().getMethod("prePersist").invoke(obj);
             } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -67,8 +67,7 @@ public class PrePersistAspect {
                     Object obj2 = objectIterator.next();
                     prePersistAware.aware((BaseEntity<?>) obj2, obj2.getClass().getAnnotation(PrePersist.class));
                 }
-            }
-            else if(obj.getClass().isAnnotationPresent(SelfPrePersist.class)) {
+            } else if (obj.getClass().isAnnotationPresent(SelfPrePersist.class)) {
                 try {
                     obj.getClass().getMethod("prePersist").invoke(obj);
                     while (objectIterator.hasNext()) {

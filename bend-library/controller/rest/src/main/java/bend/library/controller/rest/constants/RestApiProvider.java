@@ -4,6 +4,10 @@ package bend.library.controller.rest.constants;
 import bend.library.constant.APiConstants;
 
 public class RestApiProvider {
+    public static final String[] NEED_TO_SET_DATA_SOURCE_ROUTE_IF_MATCH = {
+            AccountApi.ACCOUNT_PUBLIC_ROOT_API + AccountApi.CREATE_ACCOUNT
+    };
+
     public static String build(String... urls) {
         StringBuilder builder = new StringBuilder(urls[0]);
         for (int i = 1; i < urls.length; i++)
@@ -23,8 +27,4 @@ public class RestApiProvider {
         public static final String CREATE_ACCOUNT = "/create-account";
         public static final String LOGIN = "/login";
     }
-
-    public static final String[] NEED_TO_SET_DATA_SOURCE_ROUTE_IF_MATCH = {
-            AccountApi.ACCOUNT_PUBLIC_ROOT_API + AccountApi.CREATE_ACCOUNT
-    };
 }

@@ -31,25 +31,24 @@ public class PrePersistAwareImpl implements PrePersistAware<PrePersist> {
 
     @Override
     public void aware(BaseEntity<?> baseEntity, PrePersist prePersist) {
-        if(!elEvaluator.evaluate(Boolean.class, prePersist.isUpdatable(), ()->false, baseEntity)) {
-            throw new PrePersistException("Sorry! The model "+baseEntity.getClass().getName()+" is Not Updatable for current context/user actor.");
+        if (!elEvaluator.evaluate(Boolean.class, prePersist.isUpdatable(), () -> false, baseEntity)) {
+            throw new PrePersistException("Sorry! The model " + baseEntity.getClass().getName() + " is Not Updatable for current context/user actor.");
         }
-        if(!elEvaluator.evaluate(Boolean.class, prePersist.isApplicable(), ()->false, baseEntity ))
+        if (!elEvaluator.evaluate(Boolean.class, prePersist.isApplicable(), () -> false, baseEntity))
             return;
-        if(baseEntity.getClass().isAnnotationPresent(AutoActive.class)) {
+        if (baseEntity.getClass().isAnnotationPresent(AutoActive.class)) {
             AutoActive autoActive = baseEntity.getClass().getAnnotation(AutoActive.class);
-            if(elEvaluator.evaluate(Boolean.class, autoActive.isApplicable(), ()->false, baseEntity))
-                baseEntity.setActive(elEvaluator.evaluate(Boolean.class, autoActive.isActive(), ()->false, baseEntity));
+            if (elEvaluator.evaluate(Boolean.class, autoActive.isApplicable(), () -> false, baseEntity))
+                baseEntity.setActive(elEvaluator.evaluate(Boolean.class, autoActive.isActive(), () -> false, baseEntity));
         }
-        if(baseEntity.getId()==null) {
+        if (baseEntity.getId() == null) {
             baseEntity.setCreateDate(LocalDate.now());
-            if(baseEntity.getClass().isAnnotationPresent(AutoCreate.class))
+            if (baseEntity.getClass().isAnnotationPresent(AutoCreate.class))
                 autoCreatePrePersistAware.aware(baseEntity, baseEntity.getClass().getAnnotation(AutoCreate.class));
-        }
-        else {
+        } else {
             baseEntity.setUpdateDate(LocalDate.now());
-            if(baseEntity.getClass().isAnnotationPresent(AutoUpdate.class))
-            updateAutoPrePersistAware.aware(baseEntity, baseEntity.getClass().getAnnotation(AutoUpdate.class));
+            if (baseEntity.getClass().isAnnotationPresent(AutoUpdate.class))
+                updateAutoPrePersistAware.aware(baseEntity, baseEntity.getClass().getAnnotation(AutoUpdate.class));
         }
     }
 }

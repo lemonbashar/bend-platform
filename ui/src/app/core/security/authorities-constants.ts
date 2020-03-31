@@ -8,7 +8,7 @@ export class AuthoritiesConstants {
   }
 
   superAdmin(): string[] {
-    return [authorities.ROLE_ADMIN, authorities.ROLE_SUPER_ADMIN];
+    return [authorities.ROLE_ADMIN, authorities.ROLE_SYSTEM_ADMIN];
   }
 
   settingAdmin(): string[] {
@@ -23,7 +23,7 @@ export class AuthoritiesConstants {
 export const authorities = {
   ROLE_USER: 'ROLE_USER',
   ROLE_ADMIN: 'ROLE_ADMIN',
-  ROLE_SUPER_ADMIN: 'ROLE_SUPER_ADMIN',
+  ROLE_SYSTEM_ADMIN: 'ROLE_SYSTEM_ADMIN',
   ROLE_SETTING_ADMIN: 'ROLE_SETTING_ADMIN',
   ROLE_USER_ADMIN: 'ROLE_USER_ADMIN'
 };

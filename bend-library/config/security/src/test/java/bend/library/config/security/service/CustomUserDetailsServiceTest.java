@@ -1,11 +1,11 @@
 package bend.library.config.security.service;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.constant.ProfileConstants;
-import bend.library.constant.SecurityConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.data.CustomUserDetails;
+import bend.library.constant.ProfileConstants;
+import bend.library.constant.SecurityConstants;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.repositories.UserRepository;
 import org.junit.jupiter.api.Tag;
@@ -22,14 +22,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestPropertySource(locations = "classpath:config/application-test.yml")
 @SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class CustomUserDetailsServiceTest {
+    private static final String USERNAME = "system";
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
-
-    private static final String USERNAME = "system";
 
     @Test
     public void findUserDetails() {

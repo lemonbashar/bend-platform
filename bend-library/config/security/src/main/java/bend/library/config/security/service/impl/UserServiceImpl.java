@@ -1,21 +1,19 @@
 package bend.library.config.security.service.impl;
 
 import bend.framework.base.util.BendOptional;
-import bend.library.constant.SecurityConstants;
 import bend.library.config.security.service.AuthorityService;
 import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.config.security.service.UserService;
 import bend.library.config.security.util.SecurityUtil;
+import bend.library.constant.SecurityConstants;
 import bend.library.domain.entity.User;
 import bend.library.domain.repositories.UserRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -42,7 +40,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User systemUser() {
         Optional<User> systemUser = userRepository.findByUsernameAndActive(SecurityConstants.UserConstants.SYSTEM_USER, true);
-        if(systemUser.isEmpty()) {
+        if (systemUser.isEmpty()) {
             log.error(MESSAGE_OF_MISSING_SYSTEM_USER);
             throw new RuntimeException(MESSAGE_OF_MISSING_SYSTEM_USER);
         }

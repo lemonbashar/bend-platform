@@ -15,7 +15,7 @@ public class CustomUserDetailsExtractor<T> {
     }
 
     public CustomUserDetailsExtractor<T> and(Function<CustomUserDetails, T> function) {
-        if(this.customUserDetails == null) return this;
+        if (this.customUserDetails == null) return this;
         this.tList.add(function.apply(this.customUserDetails));
         return this;
     }

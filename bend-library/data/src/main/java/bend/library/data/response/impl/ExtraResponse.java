@@ -5,7 +5,7 @@ import bend.library.data.response.IExtraResponse;
 import lombok.Getter;
 
 @Getter
-public class ExtraResponse<Extra,Data> extends DataResponse<Data> implements IExtraResponse<Extra,Data> {
+public class ExtraResponse<Extra, Data> extends DataResponse<Data> implements IExtraResponse<Extra, Data> {
     private final Extra extra;
 
     public ExtraResponse(Data data, Extra extra) {

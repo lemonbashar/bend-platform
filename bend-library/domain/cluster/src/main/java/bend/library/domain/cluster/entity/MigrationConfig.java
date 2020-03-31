@@ -34,7 +34,7 @@ public class MigrationConfig extends BaseEntity<BigInteger> implements Serializa
      * we need tag, contexts etc, but in flyway we need nothing like tag or contexts but we need something
      * other types of values, but here the domain is common, so we need to solve both of them requirements
      * using this one domain. so we have one solutions we put extra values as string separated
-     *
+     * <p>
      * Here we put those values as key-value paired like key:value key1:value1
      * like for liquibase properties are: tag:tagName context:contextOne context:contextTwo
      */

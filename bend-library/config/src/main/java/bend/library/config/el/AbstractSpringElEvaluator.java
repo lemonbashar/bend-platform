@@ -14,10 +14,9 @@ import java.util.function.Supplier;
 @SuppressWarnings("WeakerAccess")
 @Log4j2
 public abstract class AbstractSpringElEvaluator implements SpringElEvaluator {
+    private static final String ROOT_VARIABLE_NAMAE = "model";
     protected final @NonNull ExpressionParser expressionParser;
     protected final @NonNull BeanResolver beanResolver;
-
-    private static final String ROOT_VARIABLE_NAMAE = "model";
 
     public AbstractSpringElEvaluator(ExpressionParser expressionParser, BeanResolver beanResolver) {
         this.expressionParser = expressionParser;
@@ -60,7 +59,7 @@ public abstract class AbstractSpringElEvaluator implements SpringElEvaluator {
         return context;
     }
 
-    protected  <T> T evaluate(Class<T> clazz, String expression, Supplier<T> ifErrorOccurred, EvaluationContext context) {
+    protected <T> T evaluate(Class<T> clazz, String expression, Supplier<T> ifErrorOccurred, EvaluationContext context) {
         try {
             Expression parsedExpression = expressionParser.parseExpression(expression);
             return parsedExpression.getValue(context, clazz);

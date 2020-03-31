@@ -1,6 +1,6 @@
 export const commonResource = {
-  HOST_URL: 'http://localhost:2343/',
-  CONTEXT: 'bend/'
+  HOST_URL: 'http://localhost:8788',
+  CONTEXT: '/api/bend-main-app'
 };
 
 export const environment = {

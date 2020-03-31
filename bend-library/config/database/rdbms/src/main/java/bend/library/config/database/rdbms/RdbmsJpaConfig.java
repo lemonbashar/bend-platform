@@ -1,11 +1,9 @@
 package bend.library.config.database.rdbms;
 
 import bend.framework.properties.springproperties.SpringProperties;
-import bend.library.constant.BaseConstants;
 import bend.library.config.migration.DatabaseMigration;
+import bend.library.constant.BaseConstants;
 import com.zaxxer.hikari.HikariDataSource;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +33,18 @@ import java.util.Properties;
  */
 
 @Log4j2
-@RequiredArgsConstructor
 @Primary
 @Import(SpringProperties.class)
 @EnableTransactionManagement
 @Configuration
 public class RdbmsJpaConfig {
-    private final @NonNull SpringProperties properties;
-    private final @NonNull DatabaseMigration databaseMigration;
+    private final SpringProperties properties;
+    private final DatabaseMigration databaseMigration;
+
+    public RdbmsJpaConfig(SpringProperties properties, @Autowired(required = false) DatabaseMigration databaseMigration) {
+        this.properties = properties;
+        this.databaseMigration = databaseMigration;
+    }
 
     @Primary
     @Bean(name = BaseConstants.BASE_DATASOURCE_NAME)
@@ -59,11 +61,10 @@ public class RdbmsJpaConfig {
         hikariDataSource.setAutoCommit(properties.getDatabase().isAutoCommit());
         hikariDataSource.setPoolName(properties.getDatabase().getDatasourcePoolName());
         log.info("A Datasource connection pool for: " + properties.getDatabase().jdbcUrl() + " has been created");
-        if(databaseMigration!=null) {
+        if (databaseMigration != null) {
             log.info("Migration profile(Liquibase/Flyway) is active, and starting migration...");
             databaseMigration.migrate(hikariDataSource);
-        }
-        else
+        } else
             log.info("Migration profile(Liquibase/Flyway) is not active. Cant not started migration");
         return hikariDataSource;
     }

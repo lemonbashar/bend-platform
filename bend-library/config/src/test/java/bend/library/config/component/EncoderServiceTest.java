@@ -1,8 +1,8 @@
 package bend.library.config.component;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.constant.ProfileConstants;
 import bend.library.config.service.EncoderService;
+import bend.library.constant.ProfileConstants;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

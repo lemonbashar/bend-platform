@@ -51,11 +51,10 @@ public abstract class BaseEntity<ID> {
     }
 
     public void prePersist() {
-        if(getId() == null) {
+        if (getId() == null) {
             setCreateBy(BigInteger.ONE);
             setCreateDate(LocalDate.now());
-        }
-        else {
+        } else {
             setUpdateBy(BigInteger.ONE);
             setUpdateDate(LocalDate.now());
         }

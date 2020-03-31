@@ -1,14 +1,13 @@
 package bend.library.config.security.conditionalapply;
 
+import bend.library.config.security.ConditionalApply;
 import bend.library.constant.APiConstants;
 import bend.library.constant.ProfileConstants;
-import bend.library.config.security.ConditionalApply;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Service;
 
 import static bend.library.constant.SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN;
-import static bend.library.constant.SecurityConstants.AuthorityConstants.ROLES_FOR_SUPER_ADMIN;
 
 /**
  * @author lemon

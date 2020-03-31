@@ -2,7 +2,6 @@ package bend.library.config.security.service.impl;
 
 import bend.library.config.security.service.AuthorityService;
 import bend.library.domain.entity.Authority;
-import bend.library.domain.entity.User;
 import bend.library.domain.repositories.AuthorityRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

@@ -21,8 +21,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class FullMapActuatorInformation {
     private static final String endpointStart = "/actuator/full-map/";
     private static final String PATH_METRICS = "metrics";
-    private Map<String, Feature> features = new ConcurrentHashMap<>();
     private final @NonNull ApplicationContext application;
+    private Map<String, Feature> features = new ConcurrentHashMap<>();
 
     @PostConstruct
     public void fullMapActuatorInformation() {

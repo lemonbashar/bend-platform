@@ -51,7 +51,6 @@ public class DatabaseConfig extends BaseEntity<BigInteger> implements Serializab
     private MigrationConfig migrationConfig;
 
 
-
     public DatabaseConfig(String schema, String username, String password, String host, DatabaseType databaseType, Set<JpaProperties> databaseProperties) {
         this.schema = schema;
         this.username = username;

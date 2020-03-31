@@ -5,7 +5,6 @@ import bend.library.config.security.jwt.data.AuthenticationWithRefreshedToken;
 import bend.library.config.security.jwt.jwt.TokenProvider;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -30,6 +29,16 @@ import static bend.library.config.security.jwt.constant.JwtConstants.*;
 public class JwtAuthenticationFilter extends AbstractFilter {
     protected final @NonNull TokenProvider tokenProvider;
 
+    public static String resolveToken(HttpServletRequest httpServletRequest) {
+        return resolveBearer(AbstractFilter.findHeaderValue(httpServletRequest, AUTHORIZATION_HEADER));
+    }
+
+    public static String resolveBearer(String headerWithBearer) {
+        if (StringUtils.hasText(headerWithBearer) && headerWithBearer.startsWith(BEARER)) {
+            return headerWithBearer.substring(BEARER.length());
+        }
+        return null;
+    }
 
     @Override
     protected void doFilterInternal(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -41,20 +50,9 @@ public class JwtAuthenticationFilter extends AbstractFilter {
     protected void resolveJWT(ServletRequest request, ServletResponse response, FilterChain chain, String jwt) throws IOException, ServletException {
         if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
             AuthenticationWithRefreshedToken authentication = tokenProvider.getAuthentication(jwt);
-            ((HttpServletResponse)response).addHeader(REFRESHED_JSON_WEB_TOKEN, authentication.getRefreshedToken());
+            ((HttpServletResponse) response).addHeader(REFRESHED_JSON_WEB_TOKEN, authentication.getRefreshedToken());
             SecurityContextHolder.getContext().setAuthentication(authentication.getAuthentication());
         }
         chain.doFilter(request, response);
-    }
-
-    public static String resolveToken(HttpServletRequest httpServletRequest) {
-        return resolveBearer(AbstractFilter.findHeaderValue(httpServletRequest, AUTHORIZATION_HEADER));
-    }
-
-    public static String resolveBearer(String headerWithBearer) {
-        if (StringUtils.hasText(headerWithBearer) && headerWithBearer.startsWith(BEARER)) {
-            return headerWithBearer.substring(BEARER.length());
-        }
-        return null;
     }
 }

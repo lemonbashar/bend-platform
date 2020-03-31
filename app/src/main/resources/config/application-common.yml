@@ -6,8 +6,7 @@ bend-platform:
             description: A Microservice Platform, which contains a service registry a gateway and some flexible pluggable applications module.
         security:
             cors:
-                allowed-headers: [Authorization, Accept, Content-Type, Origin, Access-Control-Allow-Origin, Access-Control-Allow-Headers, X-Requested-With, Cache-Control, User-Agent, Accept-Encoding, Connection, Host]
-                exposed-headers: [Json-Web-Token, Accept, Content-Type, Origin]
+                active: false
     database:
         migration:
             active: false

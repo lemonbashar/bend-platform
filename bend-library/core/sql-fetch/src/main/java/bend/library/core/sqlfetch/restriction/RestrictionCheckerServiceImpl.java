@@ -80,7 +80,7 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
     private ValidateResult hasPermissionToFullyFetch(final Class clazz, Map<Class, Boolean> validateHistory) throws ClassNotFoundException {
         if (clazz.isAnnotationPresent(Restrictions.class)) {
             Restrictions restrictions = (Restrictions) clazz.getAnnotation(Restrictions.class);
-            boolean canFetch = springElEvaluator.evaluate(Boolean.class, restrictions.canFetch(), ()->false, null);
+            boolean canFetch = springElEvaluator.evaluate(Boolean.class, restrictions.canFetch(), () -> false, null);
 
             String[] fields = springElEvaluator.evaluate(String[].class, restrictions.restrictedFields(), restrictions::restrictedFieldsIfErrorOccurred, null);
             if (!canFetch || fields.length > 0) {
@@ -124,7 +124,7 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
             return false;
         if (clazz.isAnnotationPresent(Restrictions.class)) {
             Restrictions restrictions = (Restrictions) clazz.getAnnotation(Restrictions.class);
-            if (!springElEvaluator.evaluate(Boolean.class, restrictions.canFetch(), ()->false, null)) {
+            if (!springElEvaluator.evaluate(Boolean.class, restrictions.canFetch(), () -> false, null)) {
                 permissionHistoryToSelectionFetch.put(clazz, false);
                 throw new SecurityException("The Entity Class:" + clazz.getSimpleName() + " has no permission to fetch for current user");
             }

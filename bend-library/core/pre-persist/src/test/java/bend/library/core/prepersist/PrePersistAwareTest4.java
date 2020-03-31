@@ -1,12 +1,12 @@
 package bend.library.core.prepersist;
 
 import bend.library.config.PropertiesConfig;
-import bend.library.constant.ProfileConstants;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.config.security.service.AuthenticationService;
 import bend.library.config.security.service.AuthorityService;
 import bend.library.config.security.service.SaltedPasswordEncoder;
+import bend.library.constant.ProfileConstants;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.repositories.UserRepository;
 import org.apache.catalina.security.SecurityConfig;
@@ -26,6 +26,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
         bend.library.config.security.SecurityConfig.class, JwtSecurityConfig.class,
         DomainConfig.class, PrePersistConfiguration.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class PrePersistAwareTest4 {
+    private static final String systemUser = "system";
+    private static final String systemPassword = "system1234";
     @Autowired
     private AuthenticationService authenticationService;
     @Autowired
@@ -35,16 +37,13 @@ class PrePersistAwareTest4 {
     @Autowired
     private SaltedPasswordEncoder saltedPasswordEncoder;
 
-    private static final String systemUser = "system";
-    private static final String systemPassword = "system1234";
-
     @Test
     void testForUpdateByAnonymous() throws InterruptedException {
-        this.userRepository.findByUsername("admin").ifPresent(user->{
+        this.userRepository.findByUsername("admin").ifPresent(user -> {
             user.setActive(true);
             this.userRepository.save(user);
         });
-        this.userRepository.findByUsername("admin").ifPresent(user->assertFalse(user.isActive()));
+        this.userRepository.findByUsername("admin").ifPresent(user -> assertFalse(user.isActive()));
     }
 
 }

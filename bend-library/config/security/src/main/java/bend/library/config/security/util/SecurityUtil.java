@@ -1,9 +1,9 @@
 package bend.library.config.security.util;
 
 import bend.framework.base.util.BendOptional;
-import bend.library.constant.SecurityConstants;
 import bend.library.config.security.data.CustomUserDetails;
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
+import bend.library.constant.SecurityConstants;
 import bend.library.data.AccountInfo;
 import bend.library.domain.entity.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public final class SecurityUtil {
     public static boolean isAuthenticated() {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
-                .isAllTrue(Objects::nonNull, authentication -> Objects.nonNull(authentication.getPrincipal()), authentication -> authentication.getPrincipal() instanceof CustomUserDetails, auth-> ((CustomUserDetails)auth.getPrincipal()).getUsername() != null);
+                .isAllTrue(Objects::nonNull, authentication -> Objects.nonNull(authentication.getPrincipal()), authentication -> authentication.getPrincipal() instanceof CustomUserDetails, auth -> ((CustomUserDetails) auth.getPrincipal()).getUsername() != null);
     }
 
     public static boolean hasAnyAuthority(final String... authorities) {
@@ -89,8 +89,8 @@ public final class SecurityUtil {
     public static <T> CustomUserDetailsExtractor<T> extractFromPrincipal(Class<T> returnType) {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
-                .ifThenMap(obj->obj instanceof CustomUserDetails, obj->(CustomUserDetails)obj)
-                .ifThenMap(Objects::nonNull, principal->new CustomUserDetailsExtractor<T>(principal, returnType)).get();
+                .ifThenMap(obj -> obj instanceof CustomUserDetails, obj -> (CustomUserDetails) obj)
+                .ifThenMap(Objects::nonNull, principal -> new CustomUserDetailsExtractor<T>(principal, returnType)).get();
     }
 
     public static void updateRegistryDetection(RegistryDetectionType registryDetectionType, String registryDetectionValue) {
@@ -99,12 +99,11 @@ public final class SecurityUtil {
         Object credentials = null;
         Collection<? extends GrantedAuthority> grantedAuthorities = new HashSet<>();
 
-        if(authentication != null && authentication.getPrincipal() !=null && authentication.getPrincipal() instanceof CustomUserDetails) {
+        if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CustomUserDetails) {
             customUserDetails = (CustomUserDetails) authentication.getPrincipal();
             grantedAuthorities = authentication.getAuthorities();
             credentials = authentication.getCredentials();
-        }
-        else customUserDetails = new CustomUserDetails();
+        } else customUserDetails = new CustomUserDetails();
         customUserDetails.setRegistryDetectionType(registryDetectionType);
         customUserDetails.setRegistryDetectionValue(registryDetectionValue);
         SecurityContextHolder.clearContext();

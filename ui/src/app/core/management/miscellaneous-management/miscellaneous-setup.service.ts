@@ -9,7 +9,7 @@ export class MiscellaneousSetupService extends BaseService<IMiscellaneousSetup> 
   constructor(
     http: HttpClient
   ) {
-    super('miscellaneous-setup', http);
+    super('/miscellaneous-setup', http);
     this.DEFAULT_URL = this.PRIVATE_ADMIN_URL;
   }
 
