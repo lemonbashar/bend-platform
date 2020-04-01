@@ -1,5 +1,5 @@
 <div class="row">
-  <div *hasAnyAuthority="auth.userAdmin()" class="col-3">
+  <div *bendHasAnyAuthority="auth.userAdmin()" class="col-3">
     <div class="card text-white bg-dark mb-3">
       <div class="card-header">Create and Edit User & Authorities</div>
       <div class="card-body">
@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-  <div *hasAnyAuthority="auth.settingAdmin()" class="col-3">
+  <div *bendHasAnyAuthority="auth.settingAdmin()" class="col-3">
     <div class="card text-white bg-dark mb-3">
       <div class="card-header">Create & Edit Setting</div>
       <div class="card-body">

@@ -1,9 +1,9 @@
 import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
 import {AuthenticationService} from '../auth/authentication-service';
 
-/*@Directive({
+@Directive({
   selector: '[bendHasAnyAuthority]'
-})*/
+})
 export class BendHasAnyAuthorityDirective {
   private authorities: string[];
 
@@ -14,7 +14,7 @@ export class BendHasAnyAuthorityDirective {
   }
 
   @Input()
-  set hasAnyAuthority(value: string | string[]) {
+  set bendHasAnyAuthority(value: string | string[]) {
     this.authorities = typeof value === 'string' ? [value] : value;
     this.updateView();
     this.authenticationService.getAuthenticationState().subscribe(info => this.updateView());

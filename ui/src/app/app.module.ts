@@ -43,6 +43,8 @@ const BASE_COMPONENT = [
   AuthorityDashboardComponent
 ];
 
+// const DIRECTIVES = [HasAnyAuthorityDirective, IsAuthenticatedDirective];
+
 const CORE_COMPONENT = [...LAYOUT_COMPONENT, ...BASE_COMPONENT, ...DIALOG_COMPONENT];
 
 @NgModule({

@@ -7,13 +7,13 @@
 
   <div class="collapse navbar-collapse" id="navbarColor01" [ngbCollapse]="isNavbarCollapsed">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" *hasAnyAuthority="auth.allAdmin()">
+      <li class="nav-item active" *bendHasAnyAuthority="auth.allAdmin()">
         <a class="nav-link" routerLink="management-dashboard">Settings</a>
       </li>
-      <li class="nav-item" *isAuthenticated="'NO'">
+      <li class="nav-item" *bendIsAuthenticated="'NO'">
         <a class="nav-link" href="#" routerLink="/login">Login</a>
       </li>
-      <li class="nav-item" *isAuthenticated="'YES'">
+      <li class="nav-item" *bendIsAuthenticated="'YES'">
         <a class="nav-link" href="#" (click)="logout()">Logout</a>
       </li>
     </ul>
