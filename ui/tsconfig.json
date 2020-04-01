@@ -19,10 +19,6 @@
       "dom"
     ],
     "paths": {
-      "bend-core": [
-        "dist/bend-core/bend-core",
-        "dist/bend-core"
-      ]
     }
   },
   "angularCompilerOptions": {
