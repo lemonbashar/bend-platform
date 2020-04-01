@@ -1,11 +1,6 @@
 import {OnInit} from '@angular/core';
-import {AppUtilService} from '../../index';
-import {DialogService} from '../../service/dialog/dialog.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {BaseService} from '../../service/base.service';
-import {FieldDefinition} from '../../model/app-util.model';
-import {httpStatus} from '../../security/http/http-status';
-import {IBaseModel} from '../../model/base-model';
+import {AppUtilService, BaseService, DialogService, FieldDefinition, httpStatus, IBaseModel} from 'bend-core';
 
 export abstract class DashboardComponent<IDomain extends IBaseModel> implements OnInit {
   domains: IDomain[];

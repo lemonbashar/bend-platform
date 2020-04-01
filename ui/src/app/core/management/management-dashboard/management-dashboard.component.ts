@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthoritiesConstants} from '../..';
+import {AuthoritiesConstants} from 'bend-core';
 
 @Component({
   selector: 'app-setting-dashboard',

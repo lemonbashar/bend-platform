@@ -1,8 +1,8 @@
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {IMiscellaneousSetup} from '../..';
-import {BaseService} from '../../service/base.service';
 import {Observable} from 'rxjs';
+import {BaseService} from 'bend-core';
 
 @Injectable({ providedIn: 'root' })
 export class MiscellaneousSetupService extends BaseService<IMiscellaneousSetup> {

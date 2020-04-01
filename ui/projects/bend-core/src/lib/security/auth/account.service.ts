@@ -3,7 +3,7 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {IAccountInfo, ILogoutInfo, IUserInfo} from '../../model/account.model';
 import {IUser} from '../../model/user.model';
-import {BaseService} from '../../../../../../src/app/core/service/base.service';
+import {BaseService} from '../../service/base.service';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService extends BaseService<IUser> {

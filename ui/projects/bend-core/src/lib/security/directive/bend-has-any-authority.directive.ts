@@ -1,9 +1,9 @@
 import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
 import {AuthenticationService} from '../auth/authentication-service';
 
-@Directive({
+/*@Directive({
   selector: '[bendHasAnyAuthority]'
-})
+})*/
 export class BendHasAnyAuthorityDirective {
   private authorities: string[];
 

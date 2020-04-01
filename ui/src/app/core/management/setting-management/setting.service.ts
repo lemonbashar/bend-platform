@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {BaseService} from '../../service/base.service';
 import {HttpClient} from '@angular/common/http';
 import {ISetting} from '../..';
+import {BaseService} from 'bend-core';
 
 @Injectable({ providedIn: 'root' })
 export class SettingService extends BaseService<ISetting> {

@@ -1,9 +1,7 @@
 import { Component} from '@angular/core';
-import {Authority, IAuthority} from '../../../model/authority.model';
 import {AuthorityService} from '../authority.service';
-import {DialogService} from '../../../service/dialog/dialog.service';
 import {DashboardComponent} from '../../../view/component/dashboard.component';
-import {AppUtilService} from '../../..';
+import {AppUtilService, DialogService, IAuthority} from 'bend-core';
 
 @Component({
   selector: 'app-authority-dashboard',

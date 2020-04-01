@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from '../../core/security/auth/authentication-service';
-import {AuthoritiesConstants} from '../../core';
-import {ILogoutRule, LogoutInfo} from '../../core/model/account.model';
+import {AuthenticationService, AuthoritiesConstants, ILogoutRule, LogoutInfo} from 'bend-core';
 
 @Component({
   selector: 'app-navbar',

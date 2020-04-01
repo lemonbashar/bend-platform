@@ -5,9 +5,9 @@ import {AuthenticationService} from '../auth/authentication-service';
 /*If Passed NO Tag that means it check for not authenticated*/
 /*ALL OTHER TAG ARE MENTIONED AS YES TAG*/
 
-@Directive({
+/*@Directive({
   selector: '[bendIsAuthenticated]'
-})
+})*/
 export class BendIsAuthenticatedDirective {
   constructor(private templateRef: TemplateRef<any>,
               private viewContainerRef: ViewContainerRef,

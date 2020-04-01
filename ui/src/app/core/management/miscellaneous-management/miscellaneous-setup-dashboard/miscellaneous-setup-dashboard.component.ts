@@ -1,8 +1,8 @@
 import { Component} from '@angular/core';
-import {AppUtilService, IMiscellaneousSetup} from '../../..';
 import {MiscellaneousSetupService} from '../miscellaneous-setup.service';
-import {DialogService} from '../../../service/dialog/dialog.service';
 import {DashboardComponent} from '../../../view/component/dashboard.component';
+import {IMiscellaneousSetup} from '../../..';
+import {AppUtilService, DialogService} from 'bend-core';
 
 @Component({
   selector: 'app-miscellaneous-setup',

@@ -1,7 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {IAuthority} from '../../model/authority.model';
-import {BaseService} from '../../service/base.service';
+import {BaseService, IAuthority} from 'bend-core';
 
 
 @Injectable({ providedIn: 'root' })

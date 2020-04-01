@@ -29,23 +29,23 @@ export class BaseService<D> extends AbstractBaseService {
     http: HttpClient
   ) {super(BASE_URL, http); }
 
-  save(user: D): Observable<HttpResponse<Map<string, object>>> {
+  public save(user: D): Observable<HttpResponse<Map<string, object>>> {
     return this.http.post<Map<string, object>>(this.DEFAULT_URL, user, {observe: 'response'});
   }
 
-  update(user: D): Observable<HttpResponse<Map<string, object>>> {
+  public update(user: D): Observable<HttpResponse<Map<string, object>>> {
     return this.http.put<Map<string, object>>(this.DEFAULT_URL, user, {observe: 'response'});
   }
 
-  fetchAll(): Observable<HttpResponse<D[]>> {
+  public fetchAll(): Observable<HttpResponse<D[]>> {
     return this.http.get<D[]>(this.DEFAULT_URL, {observe: 'response'});
   }
 
-  delete(id: number | string): Observable<HttpResponse<Map<string, object>>> {
+  public delete(id: number | string): Observable<HttpResponse<Map<string, object>>> {
     return this.http.delete<Map<string, object>>(this.DEFAULT_URL + `/${id}`, {observe: 'response'});
   }
 
-  findOne(id: number | string): Observable<HttpResponse<D>> {
+  public findOne(id: number | string): Observable<HttpResponse<D>> {
     return this.http.get<D>(this.DEFAULT_URL + `/${id}`, {observe: 'response'});
   }
 }

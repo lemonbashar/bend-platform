@@ -2,8 +2,7 @@ import { Component} from '@angular/core';
 import {ISetting} from '../../../model/setting.model';
 import {DashboardComponent} from '../../../view/component/dashboard.component';
 import {SettingService} from '../setting.service';
-import {AppUtilService} from '../../..';
-import {DialogService} from '../../../service/dialog/dialog.service';
+import {AppUtilService, DialogService} from 'bend-core';
 
 @Component({
   selector: 'app-settings',

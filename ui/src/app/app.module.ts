@@ -6,13 +6,9 @@ import { NavbarComponent } from './layout';
 import { FooterComponent } from './layout';
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import {NgbCollapseModule} from '@ng-bootstrap/ng-bootstrap';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { HasAnyAuthorityDirective} from './core';
+import { HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { LoginComponent } from './core/management/user-management';
-import {IsAuthenticatedDirective} from './core';
-import {CookieService} from 'ngx-cookie-service';
-import {RequestTokenInterceptor} from './core';
 import { UserCreateComponent } from './core/management/user-management';
 import { UserDetailComponent } from './core/management/user-management';
 import { UserProfileComponent } from './core/management/user-management/user-profile/user-profile.component';
@@ -27,18 +23,12 @@ import {ManagementDashboardComponent} from './core/management/management-dashboa
 import { MiscellaneousSetupDetailComponent } from './core/management/miscellaneous-management/miscellaneous-setup-detail/miscellaneous-setup-detail.component';
 import { SettingCreateComponent } from './core/management/setting-management/setting-create/setting-create.component';
 import { DashboardViewDirective } from './core/view/directive/dashboard-view.directive';
-// @ts-ignore
 import {BendCoreModule} from 'bend-core';
 
 const LAYOUT_COMPONENT = [
   NavbarComponent,
   FooterComponent,
   DashboardComponent
-];
-
-const DIRECTIVE_COMPONENT = [
-  HasAnyAuthorityDirective,
-  IsAuthenticatedDirective
 ];
 
 const DIALOG_COMPONENT = [SimpleDialogComponent];
@@ -53,7 +43,7 @@ const BASE_COMPONENT = [
   AuthorityDashboardComponent
 ];
 
-const CORE_COMPONENT = [...LAYOUT_COMPONENT, ...DIRECTIVE_COMPONENT, ...BASE_COMPONENT, ...DIALOG_COMPONENT];
+const CORE_COMPONENT = [...LAYOUT_COMPONENT, ...BASE_COMPONENT, ...DIALOG_COMPONENT];
 
 @NgModule({
   declarations: [
@@ -73,14 +63,6 @@ const CORE_COMPONENT = [...LAYOUT_COMPONENT, ...DIRECTIVE_COMPONENT, ...BASE_COM
     HttpClientModule,
     FormsModule,
     BendCoreModule
-  ],
-  providers: [
-    CookieService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RequestTokenInterceptor,
-      multi: true
-    }
   ],
   bootstrap: [AppComponent]
 })

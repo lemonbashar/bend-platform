@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AccountService, configUserSettings} from '../../../index';
 import {Router} from '@angular/router';
-import {AppUtilService} from '../../../index';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {AuthenticationService} from '../../../security/auth/authentication-service';
-import {IUserInfo, UserInfo} from '../../../model/account.model';
-import {DialogService} from '../../../service/dialog/dialog.service';
+import {AccountService, AppUtilService, AuthenticationService, DialogService, IUserInfo, UserInfo} from 'bend-core';
+import {configUserSettings} from '../../..';
 
 @Component({
   selector: 'app-login',

@@ -1,7 +1,6 @@
-import {AuthoritiesConstants} from '../../..';
 import {Routes} from '@angular/router';
-import {RouterActivateInterceptor} from '../../../security/route/router-activate.interceptor';
 import {AuthorityCreateComponent} from '../authority-create/authority-create.component';
+import {AuthoritiesConstants, RouterActivateInterceptor} from 'bend-core';
 
 const auth = new AuthoritiesConstants();
 

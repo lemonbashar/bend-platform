@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthorityService} from '../../authority-management/authority.service';
-import {IAuthority} from '../../../model/authority.model';
-import {AccountService, AppUtilService, configUserSettings, IUser, User} from '../../..';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {httpStatus} from '../../../security/http/http-status';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DialogService} from '../../../service/dialog/dialog.service';
+import {AccountService, AppUtilService, DialogService, httpStatus, IAuthority, IUser} from 'bend-core';
+import {configUserSettings} from '../../..';
 
 @Component({
   selector: 'app-user-create',

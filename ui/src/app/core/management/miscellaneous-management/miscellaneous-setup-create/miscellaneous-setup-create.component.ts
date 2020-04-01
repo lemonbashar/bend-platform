@@ -3,8 +3,7 @@ import {IMiscellaneousSetup, MiscellaneousSetup} from '../../..';
 import {MiscellaneousSetupService} from '../miscellaneous-setup.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
-import {httpStatus} from '../../../security/http/http-status';
-import {DialogService} from '../../../service/dialog/dialog.service';
+import {DialogService, httpStatus} from 'bend-core';
 
 @Component({
   selector: 'app-miscellaneous-setup-create',

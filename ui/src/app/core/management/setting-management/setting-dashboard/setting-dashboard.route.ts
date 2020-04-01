@@ -1,12 +1,12 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes} from '@angular/router';
-import {RouterActivateInterceptor} from '../../../security/route/router-activate.interceptor';
-import {AuthoritiesConstants, ISetting, Setting} from '../../..';
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {HttpResponse} from '@angular/common/http';
 import {SettingDashboardComponent} from './setting-dashboard.component';
 import {SettingService} from '../setting.service';
+import {AuthoritiesConstants, RouterActivateInterceptor} from 'bend-core';
+import {ISetting, Setting} from '../../..';
 
 
 const auth = new AuthoritiesConstants();

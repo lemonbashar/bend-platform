@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {DashboardComponent} from '../../../view/component/dashboard.component';
-import {AccountService, AppUtilService, IUser, User} from '../../..';
-import {DialogService} from '../../../service/dialog/dialog.service';
+import {AccountService, AppUtilService, DialogService, IUser} from 'bend-core';
 
 @Component({
   selector: 'app-user-dashboard',

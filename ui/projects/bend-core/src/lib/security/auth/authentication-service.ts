@@ -86,8 +86,8 @@ export class AuthenticationService {
 
   hasAnyAuthority(authorities: string[]) {
     const grantedAuthorities: string[] = this.authorities();
-    for (let i = 0; i < authorities.length; i++) {
-      if (grantedAuthorities.includes(authorities[i])) { return true; }
+    for (const auth of authorities) {
+      if (grantedAuthorities.includes(auth)) { return true; }
     }
     return false;
   }

@@ -1,11 +1,10 @@
-import {AccountService, AuthoritiesConstants, IUser, User} from '../../..';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes} from '@angular/router';
-import {RouterActivateInterceptor} from '../../../security/route/router-activate.interceptor';
 import {UserCreateComponent} from '..';
 import {Observable, of} from 'rxjs';
 import {HttpResponse} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
+import {AccountService, AuthoritiesConstants, IUser, RouterActivateInterceptor, User} from 'bend-core';
 
 const auth = new AuthoritiesConstants();
 

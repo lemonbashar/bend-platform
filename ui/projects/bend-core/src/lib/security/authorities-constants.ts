@@ -1,5 +1,13 @@
 import {Injectable} from '@angular/core';
 
+export const authorities = {
+  ROLE_USER: 'ROLE_USER',
+  ROLE_ADMIN: 'ROLE_ADMIN',
+  ROLE_SYSTEM_ADMIN: 'ROLE_SYSTEM_ADMIN',
+  ROLE_SETTINGS_ADMIN: 'ROLE_SETTINGS_ADMIN',
+  ROLE_USER_ADMIN: 'ROLE_USER_ADMIN'
+};
+
 @Injectable({ providedIn: 'root' })
 export class AuthoritiesConstants {
 
@@ -19,11 +27,3 @@ export class AuthoritiesConstants {
     return [...this.superAdmin(), authorities.ROLE_USER_ADMIN];
   }
 }
-
-export const authorities = {
-  ROLE_USER: 'ROLE_USER',
-  ROLE_ADMIN: 'ROLE_ADMIN',
-  ROLE_SYSTEM_ADMIN: 'ROLE_SYSTEM_ADMIN',
-  ROLE_SETTINGS_ADMIN: 'ROLE_SETTINGS_ADMIN',
-  ROLE_USER_ADMIN: 'ROLE_USER_ADMIN'
-};

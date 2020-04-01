@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Authority, IAuthority} from '../../../model/authority.model';
-import {AppUtilService, AuthoritiesConstants, configUserSettings} from '../../..';
 import {AuthorityService} from '../authority.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {DialogService} from '../../../service/dialog/dialog.service';
-import {httpStatus} from '../../../security/http/http-status';
+import {AppUtilService, Authority, DialogService, httpStatus, IAuthority} from 'bend-core';
 
 @Component({
   selector: 'app-authority-create',

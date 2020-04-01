@@ -22,3 +22,9 @@ Run `ng test bend-core` to execute the unit tests via [Karma](https://karma-runn
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+#BUILD AND USE
+    ng build bend-core --prod
+    ng lint bend-core

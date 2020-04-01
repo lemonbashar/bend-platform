@@ -1,4 +1,4 @@
-import {BaseModel, IBaseModel} from './base-model';
+import {BaseModel, IBaseModel} from 'bend-core';
 
 export interface ISetting extends IBaseModel {
   settingKey?: string;

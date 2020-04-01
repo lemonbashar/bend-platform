@@ -1,12 +1,12 @@
-import {AuthoritiesConstants, IMiscellaneousSetup, MiscellaneousSetup} from '../../..';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes} from '@angular/router';
-import {RouterActivateInterceptor} from '../../../security/route/router-activate.interceptor';
 import {MiscellaneousSetupCreateComponent} from '../miscellaneous-setup-create/miscellaneous-setup-create.component';
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {HttpResponse} from '@angular/common/http';
 import {MiscellaneousSetupService} from '../miscellaneous-setup.service';
+import {AuthoritiesConstants, RouterActivateInterceptor} from 'bend-core';
+import {IMiscellaneousSetup, MiscellaneousSetup} from '../../..';
 
 const auth = new AuthoritiesConstants();
 
