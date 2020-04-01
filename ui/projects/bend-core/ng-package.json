@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/bend-core",
+  "dest": "../../node_modules/bend-core",
   "lib": {
     "entryFile": "src/public-api.ts"
   }
