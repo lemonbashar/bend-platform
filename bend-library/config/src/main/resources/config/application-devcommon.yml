@@ -6,7 +6,7 @@ bend-platform:
                 - console
             cors:
                 active: false
-                allowed-clients: [http://localhost:4200]
+                allowed-clients: [http://localhost:4200, http://localhost:8080]
                 allowed-headers: [Authorization, Accept, Content-Type, Origin, Access-Control-Allow-Origin, Access-Control-Allow-Headers, X-Requested-With, Cache-Control, User-Agent, Accept-Encoding, Connection, Host]
                 exposed-headers: [Json-Web-Token, Refreshed-Json-Web-Token, Accept, Content-Type, Origin]
 eureka:

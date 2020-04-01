@@ -21,7 +21,6 @@ export class AuthenticationService {
     this.authService.login(info)
       .subscribe((res: HttpResponse<IAccountInfo>) => {
           this.accountInfo = res.body;
-          console.log(res.body);
           this.saveToCookie(this.accountInfo);
           this.authenticationState.next(this.accountInfo);
        } , (res: HttpErrorResponse) => {

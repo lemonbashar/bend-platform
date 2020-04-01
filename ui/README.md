@@ -64,3 +64,7 @@ Download from git
   </tbody>
 </table>
 
+
+#TO-TOMCAT
+    ng build --base-href /ui/ --prod
+    now put the ui on tomcat's webapp dir
