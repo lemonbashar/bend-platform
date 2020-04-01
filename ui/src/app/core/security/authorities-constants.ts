@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
 export class AuthoritiesConstants {
 
   allAdmin(): string[] {
-    return [...this.superAdmin(), authorities.ROLE_SETTING_ADMIN, authorities.ROLE_USER_ADMIN];
+    return [...this.superAdmin(), authorities.ROLE_SETTINGS_ADMIN, authorities.ROLE_USER_ADMIN];
   }
 
   superAdmin(): string[] {
@@ -12,7 +12,7 @@ export class AuthoritiesConstants {
   }
 
   settingAdmin(): string[] {
-    return [...this.superAdmin(), authorities.ROLE_SETTING_ADMIN];
+    return [...this.superAdmin(), authorities.ROLE_SETTINGS_ADMIN];
   }
 
   userAdmin(): string[] {
@@ -24,6 +24,6 @@ export const authorities = {
   ROLE_USER: 'ROLE_USER',
   ROLE_ADMIN: 'ROLE_ADMIN',
   ROLE_SYSTEM_ADMIN: 'ROLE_SYSTEM_ADMIN',
-  ROLE_SETTING_ADMIN: 'ROLE_SETTING_ADMIN',
+  ROLE_SETTINGS_ADMIN: 'ROLE_SETTINGS_ADMIN',
   ROLE_USER_ADMIN: 'ROLE_USER_ADMIN'
 };

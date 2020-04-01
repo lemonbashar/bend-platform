@@ -6,16 +6,23 @@ dependencyManagement {
     }
 }
 
+dependencies {
+    implementation "bend.framework:bend-reflex:$bendFrameworkVersion"
+    implementation project(':bend-library:annotation:pre-persist-annotation')
+}
+
 allprojects {
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation project(':bend-library:config')
         implementation project(':bend-library:config:security')
         implementation project(':bend-library:constant')
+        implementation project(':bend-library:annotation')
+        implementation project(':bend-library:data')
+        implementation project(':bend-library:domain')
 
         testImplementation project(':bend-library:config:security:jwt')
         testImplementation project(':bend-library:config:database')
-        testImplementation project(':bend-library:data')
         testImplementation project(':bend-library:config:database:rdbms')
         testImplementation "org.postgresql:postgresql:$postgreVersion"
     }

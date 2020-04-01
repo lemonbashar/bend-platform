@@ -7,7 +7,6 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation project(':bend-library:domain')
     implementation project(':bend-library:annotation:pre-persist-annotation')
 }
 

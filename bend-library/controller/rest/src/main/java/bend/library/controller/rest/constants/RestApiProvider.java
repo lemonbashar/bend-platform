@@ -27,4 +27,10 @@ public class RestApiProvider {
         public static final String CREATE_ACCOUNT = "/create-account";
         public static final String LOGIN = "/login";
     }
+
+    public static class AppUtilApi {
+        public static final String APP_UTIL_ROOT_API = APiConstants.PRIVATE_ROOT + "/app-util";
+        public static final String APP_UTIL_PUBLIC_ROOT_API = APiConstants.PUBLIC_ROOT + "/app-util";
+        public static final String SINGLE_FIELD_EXISTENCE_CHECK = "/single-field-existence-check/{table}/{field}/{value}";
+    }
 }

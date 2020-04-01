@@ -7,6 +7,9 @@ bend-platform:
         security:
             cors:
                 active: false
+        utility:
+            sql-fetch:
+                domain-packages: [bend.library.domain.entity, bend.library.domain.cluster.entity]
     database:
         migration:
             active: false
