@@ -161,6 +161,474 @@
           }
         }
       }
+    },
+    "bend-main-ui": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/bend-main-ui",
+      "sourceRoot": "projects/bend-main-ui/src",
+      "prefix": "main",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/bend-main-ui",
+            "index": "projects/bend-main-ui/src/index.html",
+            "main": "projects/bend-main-ui/src/main.ts",
+            "polyfills": "projects/bend-main-ui/src/polyfills.ts",
+            "tsConfig": "projects/bend-main-ui/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/bend-main-ui/src/favicon.ico",
+              "projects/bend-main-ui/src/assets"
+            ],
+            "styles": [
+              "projects/bend-main-ui/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/bend-main-ui/src/environments/environment.ts",
+                  "with": "projects/bend-main-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bend-main-ui:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bend-main-ui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bend-main-ui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bend-main-ui/src/test.ts",
+            "polyfills": "projects/bend-main-ui/src/polyfills.ts",
+            "tsConfig": "projects/bend-main-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/bend-main-ui/karma.conf.js",
+            "assets": [
+              "projects/bend-main-ui/src/favicon.ico",
+              "projects/bend-main-ui/src/assets"
+            ],
+            "styles": [
+              "projects/bend-main-ui/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/bend-main-ui/tsconfig.app.json",
+              "projects/bend-main-ui/tsconfig.spec.json",
+              "projects/bend-main-ui/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/bend-main-ui/e2e/protractor.conf.js",
+            "devServerTarget": "bend-main-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bend-main-ui:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "bend-ficket-ui": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/bend-ficket-ui",
+      "sourceRoot": "projects/bend-ficket-ui/src",
+      "prefix": "ficket",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/bend-ficket-ui",
+            "index": "projects/bend-ficket-ui/src/index.html",
+            "main": "projects/bend-ficket-ui/src/main.ts",
+            "polyfills": "projects/bend-ficket-ui/src/polyfills.ts",
+            "tsConfig": "projects/bend-ficket-ui/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/bend-ficket-ui/src/favicon.ico",
+              "projects/bend-ficket-ui/src/assets"
+            ],
+            "styles": [
+              "projects/bend-ficket-ui/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/bend-ficket-ui/src/environments/environment.ts",
+                  "with": "projects/bend-ficket-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bend-ficket-ui:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bend-ficket-ui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bend-ficket-ui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bend-ficket-ui/src/test.ts",
+            "polyfills": "projects/bend-ficket-ui/src/polyfills.ts",
+            "tsConfig": "projects/bend-ficket-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/bend-ficket-ui/karma.conf.js",
+            "assets": [
+              "projects/bend-ficket-ui/src/favicon.ico",
+              "projects/bend-ficket-ui/src/assets"
+            ],
+            "styles": [
+              "projects/bend-ficket-ui/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/bend-ficket-ui/tsconfig.app.json",
+              "projects/bend-ficket-ui/tsconfig.spec.json",
+              "projects/bend-ficket-ui/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/bend-ficket-ui/e2e/protractor.conf.js",
+            "devServerTarget": "bend-ficket-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bend-ficket-ui:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "bend-futel-ui": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/bend-futel-ui",
+      "sourceRoot": "projects/bend-futel-ui/src",
+      "prefix": "futel",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/bend-futel-ui",
+            "index": "projects/bend-futel-ui/src/index.html",
+            "main": "projects/bend-futel-ui/src/main.ts",
+            "polyfills": "projects/bend-futel-ui/src/polyfills.ts",
+            "tsConfig": "projects/bend-futel-ui/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/bend-futel-ui/src/favicon.ico",
+              "projects/bend-futel-ui/src/assets"
+            ],
+            "styles": [
+              "projects/bend-futel-ui/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/bend-futel-ui/src/environments/environment.ts",
+                  "with": "projects/bend-futel-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bend-futel-ui:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bend-futel-ui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bend-futel-ui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bend-futel-ui/src/test.ts",
+            "polyfills": "projects/bend-futel-ui/src/polyfills.ts",
+            "tsConfig": "projects/bend-futel-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/bend-futel-ui/karma.conf.js",
+            "assets": [
+              "projects/bend-futel-ui/src/favicon.ico",
+              "projects/bend-futel-ui/src/assets"
+            ],
+            "styles": [
+              "projects/bend-futel-ui/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/bend-futel-ui/tsconfig.app.json",
+              "projects/bend-futel-ui/tsconfig.spec.json",
+              "projects/bend-futel-ui/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/bend-futel-ui/e2e/protractor.conf.js",
+            "devServerTarget": "bend-futel-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bend-futel-ui:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "bend-fwish-ui": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/bend-fwish-ui",
+      "sourceRoot": "projects/bend-fwish-ui/src",
+      "prefix": "fwish",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/bend-fwish-ui",
+            "index": "projects/bend-fwish-ui/src/index.html",
+            "main": "projects/bend-fwish-ui/src/main.ts",
+            "polyfills": "projects/bend-fwish-ui/src/polyfills.ts",
+            "tsConfig": "projects/bend-fwish-ui/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/bend-fwish-ui/src/favicon.ico",
+              "projects/bend-fwish-ui/src/assets"
+            ],
+            "styles": [
+              "projects/bend-fwish-ui/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/bend-fwish-ui/src/environments/environment.ts",
+                  "with": "projects/bend-fwish-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bend-fwish-ui:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bend-fwish-ui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bend-fwish-ui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bend-fwish-ui/src/test.ts",
+            "polyfills": "projects/bend-fwish-ui/src/polyfills.ts",
+            "tsConfig": "projects/bend-fwish-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/bend-fwish-ui/karma.conf.js",
+            "assets": [
+              "projects/bend-fwish-ui/src/favicon.ico",
+              "projects/bend-fwish-ui/src/assets"
+            ],
+            "styles": [
+              "projects/bend-fwish-ui/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/bend-fwish-ui/tsconfig.app.json",
+              "projects/bend-fwish-ui/tsconfig.spec.json",
+              "projects/bend-fwish-ui/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/bend-fwish-ui/e2e/protractor.conf.js",
+            "devServerTarget": "bend-fwish-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bend-fwish-ui:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "ui",
