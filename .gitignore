@@ -36,6 +36,7 @@ out/
 /logs
 # compiled output
 /dist
+*/dist
 /tmp
 /out-tsc
 # Only exists if Bazel was run
@@ -43,6 +44,7 @@ out/
 
 # dependencies
 /node_modules
+*/node_modules
 
 # profiling files
 chrome-profiler-events*.json

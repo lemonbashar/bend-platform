@@ -2,6 +2,8 @@
  * Public API Surface of bend-core
  */
 
-export * from './lib/bend-core.service';
-export * from './lib/bend-core.component';
+export * from './lib/service/base.service';
+export * from './lib/service/app-util-service';
+export * from './lib/service/dialog/dialog.service';
+export * from './lib/service/fetch/sql-fetch-definition.service';
 export * from './lib/bend-core.module';

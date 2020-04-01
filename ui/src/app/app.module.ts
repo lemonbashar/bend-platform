@@ -27,6 +27,8 @@ import {ManagementDashboardComponent} from './core/management/management-dashboa
 import { MiscellaneousSetupDetailComponent } from './core/management/miscellaneous-management/miscellaneous-setup-detail/miscellaneous-setup-detail.component';
 import { SettingCreateComponent } from './core/management/setting-management/setting-create/setting-create.component';
 import { DashboardViewDirective } from './core/view/directive/dashboard-view.directive';
+// @ts-ignore
+import {BendCoreModule} from 'bend-core';
 
 const LAYOUT_COMPONENT = [
   NavbarComponent,
@@ -69,7 +71,8 @@ const CORE_COMPONENT = [...LAYOUT_COMPONENT, ...DIRECTIVE_COMPONENT, ...BASE_COM
     AppRoutingModule,
     NgbCollapseModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BendCoreModule
   ],
   providers: [
     CookieService,
