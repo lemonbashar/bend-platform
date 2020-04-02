@@ -124,36 +124,36 @@
     },
     "bend-core": {
       "projectType": "library",
-      "root": "projects/bend-core",
-      "sourceRoot": "projects/bend-core/src",
+      "root": "projects/library/bend-core",
+      "sourceRoot": "projects/library/bend-core/src",
       "prefix": "bend",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/bend-core/tsconfig.lib.json",
-            "project": "projects/bend-core/ng-package.json"
+            "tsConfig": "projects/library/bend-core/tsconfig.lib.json",
+            "project": "projects/library/bend-core/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/bend-core/tsconfig.lib.prod.json"
+              "tsConfig": "projects/library/bend-core/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/bend-core/src/test.ts",
-            "tsConfig": "projects/bend-core/tsconfig.spec.json",
-            "karmaConfig": "projects/bend-core/karma.conf.js"
+            "main": "projects/library/bend-core/src/test.ts",
+            "tsConfig": "projects/library/bend-core/tsconfig.spec.json",
+            "karmaConfig": "projects/library/bend-core/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/bend-core/tsconfig.lib.json",
-              "projects/bend-core/tsconfig.spec.json"
+              "projects/library/bend-core/tsconfig.lib.json",
+              "projects/library/bend-core/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -626,6 +626,46 @@
             "production": {
               "devServerTarget": "bend-fwish-ui:serve:production"
             }
+          }
+        }
+      }
+    },
+    "bend-core-ui": {
+      "projectType": "library",
+      "root": "projects/bend-core-ui",
+      "sourceRoot": "projects/bend-core-ui/src",
+      "prefix": "bend",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/bend-core-ui/tsconfig.lib.json",
+            "project": "projects/bend-core-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/bend-core-ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bend-core-ui/src/test.ts",
+            "tsConfig": "projects/bend-core-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/bend-core-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/bend-core-ui/tsconfig.lib.json",
+              "projects/bend-core-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

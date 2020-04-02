@@ -14,6 +14,7 @@ export * from './lib/model/fetch/fetch-definition.model';
 export * from './lib/model/fetch/fetch-response.model';
 export * from './lib/service/base.service';
 export * from './lib/service/app-util-service';
+export * from './lib/service/console/console.service';
 export * from './lib/service/fetch/sql-fetch-definition.service';
 export * from './lib/security/auth/account.service';
 export * from './lib/security/auth/authentication-service';
