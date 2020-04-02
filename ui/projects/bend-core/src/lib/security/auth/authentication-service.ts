@@ -38,6 +38,10 @@ export class AuthenticationService {
     localStorage.setItem(environment.cache.AUTHORITIES, JSON.stringify(accountInfo.authorities));
   }
 
+  refreshToken(token: string) {
+    localStorage.setItem(environment.cache.TOKEN, token);
+  }
+
   retrieveCookie(): IAccountInfo {
     const cookie = localStorage.getItem(environment.cache.ACCOUNT_INFO);
     if (cookie == null || cookie.length < 1) { return null; }

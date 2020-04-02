@@ -12,6 +12,9 @@ export const environment = {
     TOKEN: 'TOKEN',
     AUTHENTICATION_STATE: 'AUTHENTICATION_STATE',
     AUTHORITIES: 'AUTHORITIES'
+  },
+  jwt: {
+    JSON_WEB_TOKEN: 'Json-Web-Token',
+    REFRESHED_JSON_WEB_TOKEN: 'Refreshed-Json-Web-Token'
   }
-
 };

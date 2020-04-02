@@ -16,6 +16,9 @@
       <li class="nav-item" *bendIsAuthenticated="'YES'">
         <a class="nav-link" href="#" (click)="logout()">Logout</a>
       </li>
+      <li class="nav-item" *bendHasAnyAuthority="auth.allAdmin()">
+        <a class="nav-link" routerLink="app-info-dashboard">App-Info</a>
+      </li>
     </ul>
   </div>
 </nav>

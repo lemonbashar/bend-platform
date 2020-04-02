@@ -6,6 +6,7 @@ export abstract class AbstractBaseService {
   protected PRIVATE_URL: string;
   protected PRIVATE_ADMIN_URL: string;
   protected PUBLIC_URL: string;
+  protected ACTUAL_URL: string;
   protected DEFAULT_URL: string;
 
   protected constructor(
@@ -19,6 +20,7 @@ export abstract class AbstractBaseService {
     this.PRIVATE_URL = this.BASE_API_URL + '/private' + this.BASE_URL;
     this.PRIVATE_ADMIN_URL = this.BASE_API_URL + '/private/admin' + this.BASE_URL;
     this.PUBLIC_URL = this.BASE_API_URL + '/public' + this.BASE_URL;
+    this.ACTUAL_URL = this.BASE_API_URL + this.BASE_URL;
     this.DEFAULT_URL = this.PRIVATE_URL;
   }
 }

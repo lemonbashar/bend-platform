@@ -1,7 +1,9 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {AuthenticationService} from '../../auth/authentication-service';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
+import {tap} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class RequestTokenInterceptor implements HttpInterceptor {
@@ -17,6 +19,18 @@ export class RequestTokenInterceptor implements HttpInterceptor {
         }
       });
     }
-    return next.handle(req);
+    return next.handle(req).pipe(tap(evt => {
+      if (evt instanceof HttpResponse) {
+        const REF_JWT_TOKEN = evt.headers.get(environment.jwt.REFRESHED_JSON_WEB_TOKEN);
+        if (REF_JWT_TOKEN == null) {
+          const JWT_TOKEN = evt.headers.get(environment.jwt.JSON_WEB_TOKEN);
+          if (JWT_TOKEN != null) {
+            this.authenticationService.refreshToken(JWT_TOKEN);
+          }
+        } else {
+          this.authenticationService.refreshToken(REF_JWT_TOKEN);
+        }
+      }
+    }));
   }
 }
