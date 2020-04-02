@@ -172,7 +172,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bend-main-ui",
+            "outputPath": "dist/bend-main-ui/mui",
             "index": "projects/bend-main-ui/src/index.html",
             "main": "projects/bend-main-ui/src/main.ts",
             "polyfills": "projects/bend-main-ui/src/polyfills.ts",
@@ -289,7 +289,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bend-ficket-ui",
+            "outputPath": "dist/bend-ficket-ui/fkui",
             "index": "projects/bend-ficket-ui/src/index.html",
             "main": "projects/bend-ficket-ui/src/main.ts",
             "polyfills": "projects/bend-ficket-ui/src/polyfills.ts",
@@ -406,7 +406,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bend-futel-ui",
+            "outputPath": "dist/bend-futel-ui/ftui",
             "index": "projects/bend-futel-ui/src/index.html",
             "main": "projects/bend-futel-ui/src/main.ts",
             "polyfills": "projects/bend-futel-ui/src/polyfills.ts",
@@ -523,7 +523,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bend-fwish-ui",
+            "outputPath": "dist/bend-fwish-ui/fwui",
             "index": "projects/bend-fwish-ui/src/index.html",
             "main": "projects/bend-fwish-ui/src/main.ts",
             "polyfills": "projects/bend-fwish-ui/src/polyfills.ts",

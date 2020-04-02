@@ -68,3 +68,8 @@ Download from git
 #TO-TOMCAT
     ng build --base-href /ui/ --prod
     now put the ui on tomcat's webapp dir
+
+The Module :ui is for testing purpose and 
+other modules are for production development purpose.
+
+The main ui base-url should be mui so it will build as also in dir mui
