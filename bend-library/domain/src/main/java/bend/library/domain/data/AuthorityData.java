@@ -1,5 +1,6 @@
-package bend.library.data;
+package bend.library.domain.data;
 
+import bend.library.data.BaseData;
 import lombok.Getter;
 import lombok.Setter;
 

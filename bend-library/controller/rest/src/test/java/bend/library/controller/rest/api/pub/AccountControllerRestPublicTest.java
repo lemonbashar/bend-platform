@@ -14,8 +14,8 @@ import bend.library.core.CoreConfig;
 import bend.library.core.prepersist.PrePersistAspect;
 import bend.library.core.prepersist.PrePersistConfiguration;
 import bend.library.data.AccountInfo;
-import bend.library.data.UserData;
 import bend.library.domain.DomainConfig;
+import bend.library.domain.data.UserCrudData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -45,7 +45,7 @@ class AccountControllerRestPublicTest {
 
     @Test
     void createAccount() throws Exception {
-        UserData userData = new UserData("lemon", "", "lemon@mail.com", "lemon1234", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
+        UserCrudData userData = new UserCrudData("lemon", "", "lemon@mail.com", "lemon1234", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
         MvcResult mvcResult = mockMvc.perform(post(RestApiProvider.build(RestApiProvider.AccountApi.ACCOUNT_PUBLIC_ROOT_API, RestApiProvider.AccountApi.CREATE_ACCOUNT)).contentType(MediaType.APPLICATION_JSON_VALUE).content(objectMapper.writeValueAsString(userData)).accept(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print()).andExpect(status().is(HttpStatus.OK.value())).andReturn();
         AccountInfo accountInfo = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), AccountInfo.class);

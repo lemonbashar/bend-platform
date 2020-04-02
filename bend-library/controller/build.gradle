@@ -9,6 +9,7 @@ dependencyManagement {
 allprojects {
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation "jakarta.validation:jakarta.validation-api:$jakartaValidationApi"
         implementation project(':bend-library:config')
         implementation project(':bend-library:data')

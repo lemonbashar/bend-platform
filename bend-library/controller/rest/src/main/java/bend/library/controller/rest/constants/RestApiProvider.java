@@ -2,6 +2,8 @@ package bend.library.controller.rest.constants;
 
 
 import bend.library.constant.APiConstants;
+import lombok.Generated;
+import lombok.Value;
 
 public class RestApiProvider {
     public static final String[] NEED_TO_SET_DATA_SOURCE_ROUTE_IF_MATCH = {
@@ -32,5 +34,9 @@ public class RestApiProvider {
         public static final String APP_UTIL_ROOT_API = APiConstants.PRIVATE_ROOT + "/app-util";
         public static final String APP_UTIL_PUBLIC_ROOT_API = APiConstants.PUBLIC_ROOT + "/app-util";
         public static final String SINGLE_FIELD_EXISTENCE_CHECK = "/single-field-existence-check/{table}/{field}/{value}";
+    }
+
+    public static class UserApi {
+        public static final String USER_PRIVATE_ROOT_API = APiConstants.PRIVATE_ROOT + "/user";
     }
 }

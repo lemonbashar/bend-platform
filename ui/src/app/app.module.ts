@@ -24,7 +24,8 @@ import { MiscellaneousSetupDetailComponent } from './core/management/miscellaneo
 import { SettingCreateComponent } from './core/management/setting-management/setting-create/setting-create.component';
 import { DashboardViewDirective } from './core/view/directive/dashboard-view.directive';
 import {BendCoreModule} from 'bend-core';
-import {AppInfoDashboardComponent} from "./core/management/app-info-dashboard/app-info-dashboard.component";
+import {AppInfoDashboardComponent} from './core/management/app-info-dashboard/app-info-dashboard.component';
+import {DynamicUiExtendedComponent} from "./core/view/dynamic-ui/dynamic-ui-extended.component";
 
 const LAYOUT_COMPONENT = [
   NavbarComponent,
@@ -58,7 +59,7 @@ const CORE_COMPONENT = [...LAYOUT_COMPONENT, ...BASE_COMPONENT, ...DIALOG_COMPON
     MiscellaneousSetupCreateComponent,
     MiscellaneousSetupDetailComponent,
     SettingCreateComponent,
-    DashboardViewDirective
+    DashboardViewDirective, DynamicUiExtendedComponent
   ],
   imports: [
     BrowserModule,

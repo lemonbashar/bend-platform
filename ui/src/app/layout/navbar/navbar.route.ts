@@ -3,6 +3,7 @@ import {LoginComponent} from '../../core/management/user-management';
 import {ManagementDashboardComponent} from '../../core/management/management-dashboard/management-dashboard.component';
 import {AuthoritiesConstants, RouterActivateInterceptor} from 'bend-core';
 import {AppInfoDashboardComponent} from "../../core/management/app-info-dashboard/app-info-dashboard.component";
+import {DynamicUiExtendedComponent} from "../../core/view/dynamic-ui/dynamic-ui-extended.component";
 
 const auth = new AuthoritiesConstants();
 
@@ -26,5 +27,9 @@ export const navbarRoute: Routes = [
       authorities: [...auth.allAdmin()]
     },
     canActivate: [RouterActivateInterceptor]
+  },
+  {
+    path: 'dynamic-ui-load',
+    component: DynamicUiExtendedComponent
   }
 ];

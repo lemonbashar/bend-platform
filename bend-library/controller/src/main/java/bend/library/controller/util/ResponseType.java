@@ -24,7 +24,15 @@ public class ResponseType<T> {
         return response();
     }
 
+    public ResponseEntity<T> put() {
+        return response();
+    }
+
     public ResponseEntity<T> get() {
+        return response();
+    }
+
+    public ResponseEntity<T> delete() {
         return response();
     }
 

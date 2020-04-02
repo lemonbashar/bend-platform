@@ -15,4 +15,8 @@ public final class APiConstants {
     public static final class UtilityApi {
         public static final String ACCESS_DENIED_URL = PUBLIC_ROOT + "/access-denied";
     }
+
+    public static class ParameterApi {
+        public static final String ONE_PARAM_ID = "/{id}";
+    }
 }

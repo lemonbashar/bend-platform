@@ -7,6 +7,8 @@ import bend.library.annotation.prepersist.AutoCreate;
 import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
 import bend.library.constant.SpringElConstants;
+import bend.library.data.crud.BaseCrudData;
+import bend.library.domain.data.UserCrudData;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -76,5 +78,10 @@ public class User extends BaseEntity<BigInteger> implements Serializable {
         this.password = password;
         this.email = email;
         this.authorities = authorities;
+    }
+
+    @Override
+    public UserCrudData toData() {
+        return new UserCrudData(super.toData(), username, email, authorities);
     }
 }
