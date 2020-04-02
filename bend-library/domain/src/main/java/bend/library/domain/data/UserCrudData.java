@@ -35,8 +35,8 @@ public class UserCrudData extends BaseCrudData {
         this(user.getId(), user.getCreateDate(), user.getUpdateDate(), user.getCreateBy(), user.getUpdateBy(), user.getUsername(), user.getEmail(), user.getAuthorities());
     }
 
-    public UserCrudData(BigInteger bigInteger, @NotNull String username, @NotNull @Email String email) {
-        super(bigInteger);
+    public UserCrudData(BigInteger id, @NotNull String username, @NotNull @Email String email) {
+        super(id);
         this.username = username;
         this.email = email;
     }

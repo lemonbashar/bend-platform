@@ -24,5 +24,3 @@ export * from './lib/security/http/http-status';
 export * from './lib/security/http/interceptor/request-token-interceptor';
 export * from './lib/security/route/router-activate.interceptor';
 export * from './lib/bend-core.module';
-export * from './lib/bend-core.component';
-export * from './lib/bend-core.service';

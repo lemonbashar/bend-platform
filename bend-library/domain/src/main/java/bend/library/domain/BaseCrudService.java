@@ -1,6 +1,7 @@
 package bend.library.domain;
 
 import bend.library.data.crud.BaseCrudData;
+import bend.library.data.crud.BaseCrudeViewData;
 import bend.library.domain.entity.BaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ public interface BaseCrudService< CrudData extends BaseCrudData, Domain extends 
 
     CrudData findOne(BigInteger id);
 
-    Page<CrudData> findAll(Pageable pageable);
+    Page<BaseCrudeViewData> findAll(Pageable pageable);
 
     boolean delete(BigInteger id);
 }

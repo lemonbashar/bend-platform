@@ -2,6 +2,7 @@ package bend.library.controller.rest.api.crud;
 
 import bend.library.controller.CrudController;
 import bend.library.controller.rest.constants.RestApiProvider;
+import bend.library.data.crud.BaseCrudeViewData;
 import bend.library.data.response.IBendResponse;
 import bend.library.data.response.IDataResponse;
 import bend.library.data.response.impl.DataResponse;
@@ -48,7 +49,7 @@ public class UserCrudController extends CrudController<UserCrudData, User> {
 
     @PreAuthorize("@securityService.isSuperAdmin()")
     @Override
-    public ResponseEntity<PageableDataResponse<List<UserCrudData>>> findAll(Pageable pageable) {
+    public ResponseEntity<PageableDataResponse<List<BaseCrudeViewData>>> findAll(Pageable pageable) {
         return super.findAll(pageable);
     }
 

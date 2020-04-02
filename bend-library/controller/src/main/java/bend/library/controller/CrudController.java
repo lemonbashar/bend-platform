@@ -5,6 +5,7 @@ import bend.library.constant.APiConstants;
 import bend.library.controller.util.ResponseType;
 import bend.library.controller.util.ResponseUtil;
 import bend.library.data.crud.BaseCrudData;
+import bend.library.data.crud.BaseCrudeViewData;
 import bend.library.data.response.BendStatus;
 import bend.library.data.response.IBendResponse;
 import bend.library.data.response.IDataResponse;
@@ -54,7 +55,7 @@ public class CrudController<CrudData extends BaseCrudData, Domain extends BaseEn
 
     @GetMapping
     @Override
-    public ResponseEntity<PageableDataResponse<List<CrudData>>> findAll(Pageable pageable) {
+    public ResponseEntity<PageableDataResponse<List<BaseCrudeViewData>>> findAll(Pageable pageable) {
         return BendOptional.ofNullable(this.baseCrudService.findAll(pageable))
                 .map(fetched -> new PageableDataResponse<>(fetched.getContent(), BendStatus.SUCCESS, fetched.getTotalPages(), fetched.getTotalElements()))
                 .map(ResponseUtil::of).get().response(ResponseType::get);

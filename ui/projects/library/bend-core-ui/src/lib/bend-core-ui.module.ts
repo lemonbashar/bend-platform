@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { BendCoreUiComponent } from './bend-core-ui.component';
+import {BendCoreModule} from 'bend-core';
 
 
 
 @NgModule({
-  declarations: [BendCoreUiComponent],
+  declarations: [],
   imports: [
+    BendCoreModule
   ],
-  exports: [BendCoreUiComponent]
+  exports: []
 })
 export class BendCoreUiModule { }

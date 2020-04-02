@@ -1,5 +1,6 @@
 package bend.library.domain.repositories;
 
+import bend.library.data.crud.BaseCrudeViewData;
 import bend.library.domain.data.UserCrudData;
 import bend.library.domain.entity.User;
 import org.springframework.data.domain.Page;
@@ -26,8 +27,8 @@ public interface UserRepository extends JpaRepository<User, BigInteger> {
 
     Optional<User> findByUsername(String username);
 
-    @Query("SELECT new bend.library.domain.data.UserCrudData(model.id, model.username, model.password) FROM User model")
-    Page<UserCrudData> findAllPageable(Pageable pageable);
+    @Query("SELECT new bend.library.data.crud.BaseCrudeViewData(model.id, model.active, model.username, model.email) FROM User model")
+    Page<BaseCrudeViewData> findAllPageable(Pageable pageable);
 
     @Query("SELECT model FROM User model WHERE model.id =:userId")
     Optional<User> findOneById(@Param("userId") BigInteger userId);

@@ -1,5 +1,6 @@
 package bend.library.domain.service;
 
+import bend.library.data.crud.BaseCrudeViewData;
 import bend.library.domain.AbstractBaseCrudService;
 import bend.library.domain.data.UserCrudData;
 import bend.library.domain.entity.User;
@@ -26,7 +27,7 @@ public class UserCrudService extends AbstractBaseCrudService<UserCrudData, User>
     }
 
     @Override
-    public Page<UserCrudData> findAll(Pageable pageable) {
+    public Page<BaseCrudeViewData> findAll(Pageable pageable) {
         return ((UserRepository)this.repository).findAllPageable(pageable);
     }
 }

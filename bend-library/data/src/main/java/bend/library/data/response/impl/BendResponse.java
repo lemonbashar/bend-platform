@@ -4,11 +4,14 @@ import bend.library.data.response.BendStatus;
 import bend.library.data.response.IBendResponse;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 public class BendResponse implements IBendResponse {
+    protected final String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("DD-MMM-YYYY HH:MM:SS"));
     final private BendStatus status;
     private final List<String> dataTypes;
 
