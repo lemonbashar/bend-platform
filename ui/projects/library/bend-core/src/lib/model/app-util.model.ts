@@ -1,16 +1,8 @@
-export interface IFieldDefinition {
-  id?: number | string;
-  domainName?: string;
-  fieldName?: string;
-  value?: string;
-}
+import {BaseData} from './base-data';
 
-export class FieldDefinition implements IFieldDefinition {
-  constructor(
-    public id?: number | string,
-    public domainName?: string,
-    public fieldName?: string,
-    public value?: string
-  ) {}
+export class FieldDefinition extends BaseData {
+  public domainName?: string;
+  public fieldName?: string;
+  public value?: string;
 }
 

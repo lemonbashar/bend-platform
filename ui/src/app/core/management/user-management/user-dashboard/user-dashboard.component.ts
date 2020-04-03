@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
 import {DashboardComponent} from '../../../view/component/dashboard.component';
-import {AccountService, AppUtilService, DialogService, IUser} from 'bend-core';
+import {AccountService, AppUtilService, ConsoleService, UserCrudData} from 'bend-core';
 
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.component.html'
 })
-export class UserDashboardComponent extends DashboardComponent<IUser> {
+export class UserDashboardComponent extends DashboardComponent<UserCrudData, UserCrudData> {
 
-  constructor(service: AccountService, appUtilService: AppUtilService, dialog: DialogService) {
+  constructor(service: AccountService, appUtilService: AppUtilService, dialog: ConsoleService) {
     super(service, appUtilService, dialog, 'User');
   }
 }

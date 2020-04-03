@@ -1,4 +1,4 @@
-export interface IAccountInfo {
+export class AccountInfo {
   username?: string;
   authenticated?: boolean;
   authorities?: string[];
@@ -6,13 +6,13 @@ export interface IAccountInfo {
   tokenLiveTime?: number;
 }
 
-export interface IUserInfo {
+export class UserInfo {
   username?: string;
   rememberMe?: boolean;
   password?: string;
 }
 
-export enum ILogoutRule {
+export enum LogoutRule {
   ALL_SESSION,
   CURRENT_SESSION,
   RATHER_THAN_CURRENT_SESSION,
@@ -20,32 +20,7 @@ export enum ILogoutRule {
   CURRENT_IP
 }
 
-export interface ILogoutInfo {
-  token?: string;
-  logoutRule?: ILogoutRule;
-}
-
-export class AccountInfo implements IAccountInfo {
-  constructor(
-    public username?: string,
-    public authenticated?: boolean,
-    public authorities?: string[],
-    public token?: string,
-    public tokenLiveTime?: number
-  ) {}
-}
-
-export class UserInfo implements IUserInfo {
-  constructor(
-    public username?: string,
-    public rememberMe?: boolean,
-    public password?: string
-  ) {}
-}
-
-export class LogoutInfo implements ILogoutInfo {
-  constructor(
-    public token?: string,
-    public logoutRule?: ILogoutRule
-  ) {}
+export class LogoutInfo {
+  public token?: string;
+  public logoutRule?: LogoutRule;
 }

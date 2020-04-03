@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService, AuthoritiesConstants, ILogoutRule, LogoutInfo} from 'bend-core';
+import {AuthenticationService, AuthoritiesConstants, LogoutRule, LogoutInfo} from 'bend-core';
 
 @Component({
   selector: 'app-navbar',
@@ -23,6 +23,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authenticationService.deleteCookie();
-    this.authenticationService.logout(new LogoutInfo(null, ILogoutRule.ALL_SESSION));
+    this.authenticationService.logout(new LogoutInfo());
   }
 }

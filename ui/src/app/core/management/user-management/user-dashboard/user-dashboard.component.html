@@ -10,7 +10,6 @@
 <table class="table table-striped">
   <thead>
   <tr>
-    <th class="text-large">Full Name</th>
     <th class="text-large">Username</th>
     <th class="text-large">Email</th>
     <th class="text-large">Active Status</th>
@@ -19,9 +18,8 @@
   </thead>
   <tbody>
   <tr *ngFor="let user of domains ">
-    <td>{{user.fullName}}</td>
-    <td>{{user.username}}</td>
-    <td>{{user.email}}</td>
+    <td>{{user.primary}}</td>
+    <td>{{user.secondary}}</td>
     <td>{{user.active?'Active':'Inactive'}}</td>
     <td class="text-right">
       <button class="btn btn-info">View</button>

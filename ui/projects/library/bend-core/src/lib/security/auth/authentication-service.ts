@@ -2,14 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {AccountService} from './account.service';
-import {IAccountInfo, ILogoutInfo, IUserInfo} from '../../model/account.model';
+import {AccountInfo, LogoutInfo, UserInfo} from '../../model/account.model';
 import {ConsoleService} from '../../service/console/console.service';
 import {environment} from '../../environments/environment';
 // noinspection TypeScriptPreferShortImport
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  private accountInfo: IAccountInfo;
+  private accountInfo: AccountInfo;
   private authenticationState = new Subject<any>();
 
   constructor(
@@ -17,9 +17,9 @@ export class AuthenticationService {
     private consoleService: ConsoleService
   ) {}
 
-  authenticate(info: IUserInfo) {
+  authenticate(info: UserInfo) {
     this.authService.login(info)
-      .subscribe((res: HttpResponse<IAccountInfo>) => {
+      .subscribe((res: HttpResponse<AccountInfo>) => {
           this.accountInfo = res.body;
           this.saveToCookie(this.accountInfo);
           this.authenticationState.next(this.accountInfo);
@@ -31,7 +31,7 @@ export class AuthenticationService {
       );
   }
 
-  private saveToCookie(accountInfo: IAccountInfo) {
+  private saveToCookie(accountInfo: AccountInfo) {
     localStorage.setItem(environment.cache.ACCOUNT_INFO, JSON.stringify(accountInfo));
     localStorage.setItem(environment.cache.AUTHENTICATION_STATE, JSON.stringify(accountInfo.authenticated));
     localStorage.setItem(environment.cache.TOKEN, accountInfo.token);
@@ -42,7 +42,7 @@ export class AuthenticationService {
     localStorage.setItem(environment.cache.TOKEN, token);
   }
 
-  retrieveCookie(): IAccountInfo {
+  retrieveCookie(): AccountInfo {
     const cookie = localStorage.getItem(environment.cache.ACCOUNT_INFO);
     if (cookie == null || cookie.length < 1) { return null; }
     return this.accountInfo = JSON.parse(cookie );
@@ -76,15 +76,10 @@ export class AuthenticationService {
     this.authenticationState.next(null);
   }
 
-  logout(info: ILogoutInfo) {
-    this.authService.logout(info)
-      .subscribe((res: HttpResponse<Map<string, object>>) => {
-          this.deleteCookie();
-          this.authenticationState.next(null);
-        } , (res: HttpErrorResponse) => {
-          this.consoleService.error('Error During Logout', res);
-        }
-      );
+  logout(info: LogoutInfo) {
+    this.deleteCookie();
+    this.authenticationState.next(null);
+    this.consoleService.message('Logout Success of User' + info.logoutRule);
   }
 
   hasAnyAuthority(authorities: string[]) {

@@ -1,14 +1,14 @@
 import {OnInit} from '@angular/core';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {AppUtilService, BaseService, DialogService, FieldDefinition, httpStatus, IBaseModel} from 'bend-core';
+import {DataResponse, BaseCrudViewData, BaseCrudData, AppUtilService, BaseService, ConsoleService, FieldDefinition, httpStatus, BaseData} from 'bend-core';
 
-export abstract class DashboardComponent<IDomain extends IBaseModel> implements OnInit {
-  domains: IDomain[];
+export abstract class DashboardComponent<Crud extends BaseCrudData, IDomain extends BaseData> implements OnInit {
+  domains: BaseCrudViewData[];
 
   protected constructor(
-    protected service: BaseService<IDomain>,
+    protected service: BaseService<Crud, IDomain>,
     protected appUtilService: AppUtilService,
-    protected dialog: DialogService,
+    protected dialog: ConsoleService,
     protected domainName: string
   ) { }
 
@@ -18,35 +18,16 @@ export abstract class DashboardComponent<IDomain extends IBaseModel> implements 
 
   protected fetchAll() {
     this.service.fetchAll()
-      .subscribe((res: HttpResponse<IDomain[]>) => {
-        this.domains = res.body;
+      .subscribe((res: HttpResponse<DataResponse<BaseCrudViewData[]>>) => {
+        this.domains = res.body.data;
       }, (error: HttpErrorResponse) => {
         this.dialog.message('Error During Fetch');
       });
   }
 
   revertActiveStatus(domain: IDomain) {
-    this.appUtilService.updateAll([new FieldDefinition(domain.id, this.domainName, 'active', String(!domain.active))])
-      .subscribe((res: HttpResponse<Map<string, object>>) => {
-        if (res.status === httpStatus.OK) {
-          domain.active = !domain.active;
-        }
-      }, (error: HttpErrorResponse) => {
-        this.dialog.error('Error-Occurred During Batch Update', error);
-      });
   }
 
   delete(domain: IDomain) {
-    this.service.delete(domain.id)
-      .subscribe((res: HttpResponse<Map<string, object>>) => {
-        if (res.status === httpStatus.OK) {
-          this.dialog.message('Delete Success');
-          this.domains.splice(this.domains.indexOf(domain), 1);
-        } else {
-          this.dialog.message('Delete Error');
-        }
-      }, (error: HttpErrorResponse) => {
-        this.dialog.error('Error During Delete user', error);
-      });
   }
 }

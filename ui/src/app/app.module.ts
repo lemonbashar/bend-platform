@@ -16,16 +16,11 @@ import {SimpleDialogComponent} from './core/dialog/simple-dialog';
 import { UserDashboardComponent } from './core/management/user-management/user-dashboard/user-dashboard.component';
 import { AuthorityDashboardComponent } from './core/management/authority-management/authority-dashboard/authority-dashboard.component';
 import { AuthorityCreateComponent } from './core/management/authority-management/authority-create/authority-create.component';
-import {SettingDashboardComponent} from './core/management/setting-management/setting-dashboard/setting-dashboard.component';
-import { MiscellaneousSetupDashboardComponent } from './core/management/miscellaneous-management/miscellaneous-setup-dashboard/miscellaneous-setup-dashboard.component';
-import { MiscellaneousSetupCreateComponent } from './core/management/miscellaneous-management/miscellaneous-setup-create/miscellaneous-setup-create.component';
 import {ManagementDashboardComponent} from './core/management/management-dashboard/management-dashboard.component';
-import { MiscellaneousSetupDetailComponent } from './core/management/miscellaneous-management/miscellaneous-setup-detail/miscellaneous-setup-detail.component';
-import { SettingCreateComponent } from './core/management/setting-management/setting-create/setting-create.component';
 import { DashboardViewDirective } from './core/view/directive/dashboard-view.directive';
 import {BendCoreModule} from 'bend-core';
 import {AppInfoDashboardComponent} from './core/management/app-info-dashboard/app-info-dashboard.component';
-import {DynamicUiExtendedComponent} from "./core/view/dynamic-ui/dynamic-ui-extended.component";
+import {DynamicUiExtendedComponent} from './core/view/dynamic-ui/dynamic-ui-extended.component';
 
 const LAYOUT_COMPONENT = [
   NavbarComponent,
@@ -37,7 +32,6 @@ const DIALOG_COMPONENT = [SimpleDialogComponent];
 const BASE_COMPONENT = [
   LoginComponent,
   UserCreateComponent,
-  SettingDashboardComponent,
   ManagementDashboardComponent,
   AppInfoDashboardComponent,
   UserDetailComponent,
@@ -55,10 +49,6 @@ const CORE_COMPONENT = [...LAYOUT_COMPONENT, ...BASE_COMPONENT, ...DIALOG_COMPON
     AppComponent,
     ...CORE_COMPONENT,
     AuthorityCreateComponent,
-    MiscellaneousSetupDashboardComponent,
-    MiscellaneousSetupCreateComponent,
-    MiscellaneousSetupDetailComponent,
-    SettingCreateComponent,
     DashboardViewDirective, DynamicUiExtendedComponent
   ],
   imports: [

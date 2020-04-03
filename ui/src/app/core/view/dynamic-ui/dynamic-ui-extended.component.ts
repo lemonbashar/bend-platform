@@ -6,7 +6,7 @@ import {DynamicUiComponent} from './dynamic-ui.component';
   templateUrl: './dynamic-ui.component.html',
   styleUrls: ['./dynamic-ui.component.css']
 })
-export class DynamicUiExtendedComponent extends DynamicUiComponent implements OnInit{
+export class DynamicUiExtendedComponent extends DynamicUiComponent implements OnInit {
 
 
   ngOnInit(): void {

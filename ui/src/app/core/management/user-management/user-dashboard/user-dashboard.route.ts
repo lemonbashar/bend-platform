@@ -4,21 +4,21 @@ import {Observable, of} from 'rxjs';
 import {HttpResponse} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
-import {AccountService, AuthoritiesConstants, IUser, RouterActivateInterceptor, User} from 'bend-core';
+import {AccountService, AuthoritiesConstants, UserCrudData, RouterActivateInterceptor, DataResponse} from 'bend-core';
 
 const auth = new AuthoritiesConstants();
 
 @Injectable({ providedIn: 'root' })
-export class UserResolve implements Resolve<IUser> {
+export class UserResolve implements Resolve<UserCrudData> {
   constructor(
     private service: AccountService
   ) {}
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IUser> | Promise<IUser> | IUser {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserCrudData> | Promise<UserCrudData> | UserCrudData {
     const id = route.params.id ? route.params.id : null;
     if (id) {
-      return this.service.findOne(id).pipe(map((userRes: HttpResponse<User>) => userRes.body));
+      return this.service.findOne(id).pipe(map((userRes: HttpResponse<DataResponse<UserCrudData>>) => userRes.body.data));
     }
-    return of(new User());
+    return of(new UserCrudData());
   }
 }
 

@@ -1,19 +1,13 @@
-import {BaseModel, IBaseModel} from 'bend-core';
+import {BaseData} from 'bend-core';
+import {BaseCrudData} from 'bend-core';
 
-export interface ISetting extends IBaseModel {
+export class Setting extends BaseCrudData {
   settingKey?: string;
   settingValue?: string;
   dataType?: string;
 }
-
-export class Setting extends BaseModel implements ISetting {
-}
-
-export interface IMiscellaneousSetup extends IBaseModel {
+export class MiscellaneousSetup extends BaseCrudData {
   typeName?: string;
   typeValue?: string;
   title?: string;
-}
-
-export class MiscellaneousSetup extends BaseModel implements IMiscellaneousSetup {
 }

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {IAccountInfo, ILogoutInfo, IUserInfo} from '../../model/account.model';
-import {IUser} from '../../model/user.model';
+import {AccountInfo, LogoutInfo, UserInfo} from '../../model/account.model';
+import {UserCrudData} from '../../model/user.data';
 import {BaseService} from '../../service/base.service';
+import {BendResponse} from '../../model/crud/response/bend-response.model';
 
 @Injectable({ providedIn: 'root' })
-export class AccountService extends BaseService<IUser> {
+export class AccountService extends BaseService<UserCrudData, UserCrudData> {
     constructor(
       http: HttpClient
     ) {
@@ -14,15 +15,11 @@ export class AccountService extends BaseService<IUser> {
     }
 
     /*Cause Here we need to request on public url*/
-    save(user: IUser): Observable<HttpResponse<Map<string, object>>> {
-      return this.http.post<Map<string, object>>(this.PUBLIC_URL, user, {observe: 'response'});
+    save(user: UserCrudData): Observable<HttpResponse<BendResponse>> {
+      return this.http.post<BendResponse>(this.PUBLIC_URL, user, {observe: 'response'});
     }
 
-    login(info: IUserInfo): Observable<HttpResponse<IAccountInfo>> {
-        return this.http.post<IAccountInfo>(this.PUBLIC_URL + '/login', info, { observe: 'response' });
-    }
-
-    logout(info: ILogoutInfo): Observable<HttpResponse<Map<string, object>>> {
-        return this.http.post<Map<string, object>>(this.PUBLIC_URL + '/logout', info, {observe: 'response' });
+    login(info: UserInfo): Observable<HttpResponse<AccountInfo>> {
+        return this.http.post<AccountInfo>(this.PUBLIC_URL + '/login', info, { observe: 'response' });
     }
 }

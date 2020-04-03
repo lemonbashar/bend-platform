@@ -1,6 +1,10 @@
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../environments/environment';
+import {BendResponse} from '../model/crud/response/bend-response.model';
+import {BaseCrudData, BaseCrudViewData} from '../model/crud/base-crud.data';
+import {DataResponse} from '../model/crud/response/data-response.model';
+import {BaseData} from '../model/base-data';
 
 export abstract class AbstractBaseService {
   protected PRIVATE_URL: string;
@@ -25,30 +29,30 @@ export abstract class AbstractBaseService {
   }
 }
 
-export class BaseService<D> extends AbstractBaseService {
+export class BaseService<R extends BaseCrudData, Domain extends BaseData> extends AbstractBaseService {
   constructor(
     BASE_URL: string,
     http: HttpClient
   ) {super(BASE_URL, http); }
 
-  public save(user: D): Observable<HttpResponse<Map<string, object>>> {
-    return this.http.post<Map<string, object>>(this.DEFAULT_URL, user, {observe: 'response'});
+  public save(baseData: Domain): Observable<HttpResponse<BendResponse>> {
+    return this.http.post<BendResponse>(this.DEFAULT_URL, baseData, {observe: 'response'});
   }
 
-  public update(user: D): Observable<HttpResponse<Map<string, object>>> {
-    return this.http.put<Map<string, object>>(this.DEFAULT_URL, user, {observe: 'response'});
+  public update(baseData: Domain): Observable<HttpResponse<BendResponse>> {
+    return this.http.put<BendResponse>(this.DEFAULT_URL, baseData, {observe: 'response'});
   }
 
-  public fetchAll(): Observable<HttpResponse<D[]>> {
-    return this.http.get<D[]>(this.DEFAULT_URL, {observe: 'response'});
+  public fetchAll(): Observable<HttpResponse<DataResponse<BaseCrudViewData[]>>> {
+    return this.http.get<DataResponse<BaseCrudViewData[]>>(this.DEFAULT_URL, {observe: 'response'});
   }
 
-  public delete(id: number | string): Observable<HttpResponse<Map<string, object>>> {
-    return this.http.delete<Map<string, object>>(this.DEFAULT_URL + `/${id}`, {observe: 'response'});
+  public delete(id: number): Observable<HttpResponse<BendResponse>> {
+    return this.http.delete<BendResponse>(this.DEFAULT_URL + `/${id}`, {observe: 'response'});
   }
 
-  public findOne(id: number | string): Observable<HttpResponse<D>> {
-    return this.http.get<D>(this.DEFAULT_URL + `/${id}`, {observe: 'response'});
+  public findOne(id: number | string): Observable<HttpResponse<DataResponse<R>>> {
+    return this.http.get<DataResponse<R>>(this.DEFAULT_URL + `/${id}`, {observe: 'response'});
   }
 }
 

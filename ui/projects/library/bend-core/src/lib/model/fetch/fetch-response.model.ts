@@ -6,19 +6,9 @@ export enum FetchResponseType {
 export enum FetchResponseDataType {
   NUMBER, STRING
 }
-
-export interface IFetchResponse {
+export class FetchResponse {
   key: string;
   fetchResponseType: FetchResponseType;
   fetchResponseDataType: FetchResponseDataType;
   data: any;
-}
-
-export class FetchResponse implements IFetchResponse {
-  public key: string;
-  public fetchResponseType: FetchResponseType;
-  public fetchResponseDataType: FetchResponseDataType;
-  public data: any;
-
-  constructor() {}
 }

@@ -6,7 +6,7 @@
         <fieldset>
           <div class="form-group has-success">
             <label class="form-control-label" for="fullName">Full Name</label>
-            <input type="text" id="fullName" placeholder="Enter Full Name" [(ngModel)]="user.fullName" [ngModelOptions]="{standalone: true}" class="form-control">
+            <input type="text" id="fullName" placeholder="Enter Full Name" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" class="form-control">
           </div>
           <div class="form-group has-success">
             <label class="form-control-label" for="password">Password</label>
@@ -37,7 +37,7 @@
             <label class="form-control-label" for="authorities">Authorities</label>
             <select id="authorities" multiple="multiple" [(ngModel)]="user.authorities" [ngModelOptions]="{standalone: true}" class="form-control">
               <option [ngValue]="null"></option>
-              <option *ngFor="let authority of authorities;" [ngValue]="exist(authority) >= 0? user.authorities[exist(authority)]: authority" >{{authority.name}}</option>
+              <option *ngFor="let authority of authorities;" [ngValue]="exist(authority) >= 0? user.authorities[exist(authority)]: authority" >{{authority.primary}}</option>
             </select>
           </div>
         </fieldset>

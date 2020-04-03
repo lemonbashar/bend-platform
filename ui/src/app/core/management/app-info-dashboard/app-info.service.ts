@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {BaseService} from 'bend-core';
 
 @Injectable({ providedIn: 'root' })
-export class AppInfoService extends BaseService<any> {
+export class AppInfoService extends BaseService<any, any> {
   constructor(
     http: HttpClient
   ) {

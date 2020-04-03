@@ -1,15 +1,15 @@
 import { Component} from '@angular/core';
 import {AuthorityService} from '../authority.service';
 import {DashboardComponent} from '../../../view/component/dashboard.component';
-import {AppUtilService, DialogService, IAuthority} from 'bend-core';
+import {AppUtilService, ConsoleService, AuthorityData} from 'bend-core';
 
 @Component({
   selector: 'app-authority-dashboard',
   templateUrl: './authority-dashboard.component.html'
 })
-export class AuthorityDashboardComponent extends DashboardComponent<IAuthority> {
+export class AuthorityDashboardComponent extends DashboardComponent<AuthorityData, AuthorityData> {
 
-  constructor(service: AuthorityService, appUtilService: AppUtilService, dialog: DialogService) {
+  constructor(service: AuthorityService, appUtilService: AppUtilService, dialog: ConsoleService) {
     super(service, appUtilService, dialog, 'Authority');
   }
 }

@@ -7,9 +7,7 @@ import {FooterComponent, NavbarComponent} from './layout';
 import {navbarRoute} from './layout/navbar/navbar.route';
 import {managementDashboardRoute} from './core/management/management-dashboard/management-dashboard.route';
 import {authorityDashboardRoute} from './core/management/authority-management/authority-dashboard/authority-dashboard.route';
-import {miscellaneousSetupDashboardRoute} from './core/management/miscellaneous-management/miscellaneous-setup-dashboard/miscellaneous-setup-dashboard.route';
 import {userDashboardRoute} from './core/management/user-management/user-dashboard/user-dashboard.route';
-import {settingDashboardRoute} from './core/management/setting-management/setting-dashboard/setting-dashboard.route';
 import {appInfoDashboardRoute} from './core/management/app-info-dashboard/app-info-dashboard.route';
 
 const OUTLET_NAVBAR = environment.outlet.NAVBAR;
@@ -17,7 +15,7 @@ const OUTLET_FOOTER = environment.outlet.FOOTER;
 const DEBUG_ENABLED = environment.DEBUG_ENABLE;
 
 const LAYOUT_ROUTES = [ ...dashboardRoute, ...navbarRoute, ...appInfoDashboardRoute]; /*Register all routing there*/
-const SETTING_ROUTES = [...managementDashboardRoute, ...authorityDashboardRoute, ...miscellaneousSetupDashboardRoute, ...settingDashboardRoute]; /*Register all routing there*/
+const SETTING_ROUTES = [...managementDashboardRoute, ...authorityDashboardRoute]; /*Register all routing there*/
 const USER_ROUTES = [...userDashboardRoute]; /*Register all routing there*/
 
 @NgModule({
