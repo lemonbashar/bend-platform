@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  DEBUG_ENABLE: true,
+  outlet: {
+    NAVBAR: 'navbar',
+    FOOTER: 'footer',
+    CONTAINER_CONTAINER: 'container',
+    CONTAINER_STRAIGHT: 'straight',
+    CONTAINER_FLUID: 'container-fluid',
+  }
 };
 
 /*

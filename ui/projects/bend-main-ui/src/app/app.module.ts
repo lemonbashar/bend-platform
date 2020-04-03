@@ -3,14 +3,47 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {HttpClientModule} from '@angular/common/http';
+import {BendCoreModule} from 'bend-core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MenubarModule} from 'primeng/menubar';
+import {ButtonModule} from 'primeng/button';
+import {BmuDashboardComponent} from './layout/dashboard/bmu-dashboard.component';
+import {BmuFooterComponent, BmuNavbarComponent} from './layout';
+import {InputTextModule} from 'primeng/inputtext';
+import {CommonModule} from '@angular/common';
+import {TabViewModule} from 'primeng/tabview';
+import {CodeHighlighterModule} from 'primeng/codehighlighter';
 
+const THIRD_PARTIES_MODULE = [BrowserModule, HttpClientModule,
+  BrowserAnimationsModule,
+  MenubarModule,
+  InputTextModule,
+  ButtonModule,
+  CommonModule,
+  MenubarModule,
+  InputTextModule,
+  ButtonModule,
+  TabViewModule,
+  CodeHighlighterModule
+];
+const INTERNAL_MODULE = [AppRoutingModule];
+const LIBRARY_MODULE = [BendCoreModule];
+
+const APP_MAIN_COMPONENT = [AppComponent];
+const LAYOUT_COMPONENT = [BmuDashboardComponent, BmuFooterComponent, BmuNavbarComponent];
+
+const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT];
+
+// noinspection AngularInvalidImportedOrDeclaredSymbol
 @NgModule({
   declarations: [
-    AppComponent
+    ...ALL_COMPONENTS
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    ...THIRD_PARTIES_MODULE,
+    ...INTERNAL_MODULE,
+    ...LIBRARY_MODULE
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,6 @@
+<p-menubar [model]="items">
+  <label for="id-bmu-layout-nav-bar"></label>
+  <input id="id-bmu-layout-nav-bar" type="text" pInputText placeholder="Search">
+  <button *bendIsAuthenticated="'NO'" pButton label="Login" icon="pi pi-user"></button>
+  <button *bendIsAuthenticated="'YES'" pButton label="Logout" icon="pi pi-power-off"></button>
+</p-menubar>
