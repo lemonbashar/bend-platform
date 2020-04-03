@@ -1,9 +1,12 @@
 export class AccountInfo {
-  username?: string;
-  authenticated?: boolean;
-  authorities?: string[];
-  token?: string;
-  tokenLiveTime?: number;
+  constructor(
+    public username?: string,
+    public authenticated?: boolean,
+    public authorities?: string[],
+    public token?: string,
+    public tokenLiveTime?: number
+  ) {
+  }
 }
 
 export class UserInfo {
