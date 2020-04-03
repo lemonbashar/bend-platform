@@ -1,6 +1,6 @@
 import {OnInit} from '@angular/core';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {DataResponse, BaseCrudViewData, BaseCrudData, AppUtilService, BaseService, ConsoleService, FieldDefinition, httpStatus, BaseData} from 'bend-core';
+import {DataResponse, BaseCrudViewData, BaseCrudData, AppUtilService, BaseService, ConsoleService, BaseData} from 'bend-core';
 
 export abstract class DashboardComponent<Crud extends BaseCrudData, IDomain extends BaseData> implements OnInit {
   domains: BaseCrudViewData[];
@@ -26,8 +26,10 @@ export abstract class DashboardComponent<Crud extends BaseCrudData, IDomain exte
   }
 
   revertActiveStatus(domain: IDomain) {
+    this.dialog.message('KLJLL');
   }
 
   delete(domain: IDomain) {
+    this.dialog.message('KLJLL');
   }
 }

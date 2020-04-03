@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {DashboardComponent} from '../../../view/component/dashboard.component';
 import {AccountService, AppUtilService, ConsoleService, UserCrudData} from 'bend-core';
+import {UserCrudService} from "../user-crud.service";
 
 @Component({
   selector: 'app-user-dashboard',
@@ -8,7 +9,7 @@ import {AccountService, AppUtilService, ConsoleService, UserCrudData} from 'bend
 })
 export class UserDashboardComponent extends DashboardComponent<UserCrudData, UserCrudData> {
 
-  constructor(service: AccountService, appUtilService: AppUtilService, dialog: ConsoleService) {
+  constructor(service: UserCrudService, appUtilService: AppUtilService, dialog: ConsoleService) {
     super(service, appUtilService, dialog, 'User');
   }
 }

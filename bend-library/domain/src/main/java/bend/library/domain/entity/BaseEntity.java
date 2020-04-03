@@ -58,6 +58,6 @@ public abstract class BaseEntity<ID> {
     }
 
     public BaseCrudData toData() {
-        return new BaseCrudData((BigInteger) getId(), createDate, updateDate, Objects.isNull(createBy)?null:createBy.getUsername(), Objects.isNull(updateBy)?null: createBy.getUsername());
+        return new BaseCrudData((BigInteger) getId(), isActive(), createDate, updateDate, Objects.isNull(createBy)?null:createBy.getUsername(), Objects.isNull(updateBy)?null: createBy.getUsername());
     }
 }
