@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {UserCrudData, BaseService, AuthorityData} from 'bend-core';
+import {UserCrudData, BaseService, AuthorityCrudData} from 'bend-core';
 
 
 @Injectable({ providedIn: 'root' })

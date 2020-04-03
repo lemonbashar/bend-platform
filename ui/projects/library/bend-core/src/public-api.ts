@@ -4,8 +4,8 @@
 
 export * from './lib/security/authorities-constants';
 export * from './lib/model/account.model';
-export * from './lib/model/app-util.model';
-export * from './lib/model/authority.data';
+export * from './lib/model/fetch/field-definition.model';
+export * from './lib/model/authority-crud.data';
 export * from './lib/model/base-data';
 export * from './lib/model/fetch/domain-description.model';
 export * from './lib/model/fetch/field-description.model';

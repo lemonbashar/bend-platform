@@ -12,7 +12,7 @@ import {
   DataResponse,
   httpStatus,
   UserCrudData,
-  AuthorityData
+  AuthorityCrudData
 } from 'bend-core';
 import {configUserSettings} from '../../..';
 

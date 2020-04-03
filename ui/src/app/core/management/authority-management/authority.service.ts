@@ -1,10 +1,10 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {BaseService, AuthorityData} from 'bend-core';
+import {BaseService, AuthorityCrudData} from 'bend-core';
 
 
 @Injectable({ providedIn: 'root' })
-export class AuthorityService extends BaseService<AuthorityData, AuthorityData> {
+export class AuthorityService extends BaseService<AuthorityCrudData, AuthorityCrudData> {
   constructor(
     http: HttpClient
   ) {

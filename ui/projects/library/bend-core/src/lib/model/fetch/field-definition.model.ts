@@ -1,4 +1,4 @@
-import {BaseData} from './base-data';
+import {BaseData} from '../base-data';
 
 export class FieldDefinition extends BaseData {
   public domainName?: string;

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthorityService} from '../authority.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {AppUtilService, AuthorityData, BendResponse, BendStatus, ConsoleService, httpStatus} from 'bend-core';
+import {AppUtilService, AuthorityCrudData, BendResponse, BendStatus, ConsoleService, httpStatus} from 'bend-core';
 
 @Component({
   selector: 'app-authority-create',
@@ -10,7 +10,7 @@ import {AppUtilService, AuthorityData, BendResponse, BendStatus, ConsoleService,
 })
 export class AuthorityCreateComponent implements OnInit {
 
-  authority: AuthorityData;
+  authority: AuthorityCrudData;
   authorityExist: boolean;
 
   constructor(
@@ -21,7 +21,7 @@ export class AuthorityCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authority = new AuthorityData();
+    this.authority = new AuthorityCrudData();
   }
 
   checkAuthorityName(name: string) {
