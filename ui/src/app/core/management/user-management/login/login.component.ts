@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {AccountService, AppUtilService, AuthenticationService, ConsoleService, UserInfo} from 'bend-core';
+import {AccountService, AppUtilService, AuthenticationService, ConsoleService, LoginInfo} from 'bend-core';
 import {configUserSettings} from '../../..';
 
 @Component({
@@ -10,7 +10,7 @@ import {configUserSettings} from '../../..';
 })
 export class LoginComponent implements OnInit {
 
-  iUserInfo: UserInfo;
+  loginInfo: LoginInfo;
   usernameExist: boolean;
   loginFailed = null;
 
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.info = new UserInfo();
+    this.info = new LoginInfo();
     this.usernameExist = null;
   }
 
@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
 
 
   get info() {
-    return this.iUserInfo;
+    return this.loginInfo;
   }
 
-  set info(info: UserInfo) {
-    this.iUserInfo = info;
+  set info(info: LoginInfo) {
+    this.loginInfo = info;
   }
 
   checkUsername(username: string) {

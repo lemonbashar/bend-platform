@@ -9,7 +9,7 @@ export class AccountInfo {
   }
 }
 
-export class UserInfo {
+export class LoginInfo {
   username?: string;
   rememberMe?: boolean;
   password?: string;

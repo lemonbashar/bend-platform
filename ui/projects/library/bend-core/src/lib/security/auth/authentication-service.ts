@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {AccountService} from './account.service';
-import {AccountInfo, LogoutInfo, UserInfo} from '../../model/account.model';
+import {AccountInfo, LogoutInfo, LoginInfo} from '../../model/account.model';
 import {ConsoleService} from '../../service/console/console.service';
 import {environment} from '../../environments/environment';
 // noinspection TypeScriptPreferShortImport
@@ -17,7 +17,7 @@ export class AuthenticationService {
     private consoleService: ConsoleService
   ) {}
 
-  authenticate(info: UserInfo) {
+  authenticate(info: LoginInfo) {
     this.authService.login(info)
       .subscribe((res: HttpResponse<AccountInfo>) => {
           this.accountInfo = res.body;
