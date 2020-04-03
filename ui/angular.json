@@ -180,7 +180,9 @@
             "aot": true,
             "assets": [
               "projects/bend-main-ui/src/favicon.ico",
-              "projects/bend-main-ui/src/assets"
+              "projects/bend-main-ui/src/assets",
+              "projects/bend-main-ui/src/WEB-INF/",
+              "projects/bend-main-ui/src/META-INF/"
             ],
             "styles": [
               "projects/bend-main-ui/src/styles.css"
@@ -297,7 +299,9 @@
             "aot": true,
             "assets": [
               "projects/bend-ficket-ui/src/favicon.ico",
-              "projects/bend-ficket-ui/src/assets"
+              "projects/bend-ficket-ui/src/assets",
+              "projects/bend-ficket-ui/src/WEB-INF/",
+              "projects/bend-ficket-ui/src/META-INF/"
             ],
             "styles": [
               "projects/bend-ficket-ui/src/styles.css"
@@ -414,7 +418,9 @@
             "aot": true,
             "assets": [
               "projects/bend-futel-ui/src/favicon.ico",
-              "projects/bend-futel-ui/src/assets"
+              "projects/bend-futel-ui/src/assets",
+              "projects/bend-futel-ui/src/WEB-INF/",
+              "projects/bend-futel-ui/src/META-INF/"
             ],
             "styles": [
               "projects/bend-futel-ui/src/styles.css"
@@ -531,7 +537,10 @@
             "aot": true,
             "assets": [
               "projects/bend-fwish-ui/src/favicon.ico",
-              "projects/bend-fwish-ui/src/assets"
+              "projects/bend-fwish-ui/src/assets",
+              "projects/bend-fwish-ui/src/WEB-INF/",
+              "projects/bend-fwish-ui/src/META-INF/"
+
             ],
             "styles": [
               "projects/bend-fwish-ui/src/styles.css"

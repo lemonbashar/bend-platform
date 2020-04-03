@@ -5,6 +5,7 @@ import {BendResponse} from '../model/crud/response/bend-response.model';
 import {BaseCrudData, BaseCrudViewData} from '../model/crud/base-crud.data';
 import {DataResponse} from '../model/crud/response/data-response.model';
 import {BaseData} from '../model/base-data';
+import {Page} from '../model/crud/page-request.data';
 
 export abstract class AbstractBaseService {
   protected PRIVATE_URL: string;
@@ -43,7 +44,7 @@ export class BaseService<R extends BaseCrudData, Domain extends BaseData> extend
     return this.http.put<BendResponse>(this.DEFAULT_URL, baseData, {observe: 'response'});
   }
 
-  public fetchAll(): Observable<HttpResponse<DataResponse<BaseCrudViewData[]>>> {
+  public fetchAll(page?: Page): Observable<HttpResponse<DataResponse<BaseCrudViewData[]>>> {
     return this.http.get<DataResponse<BaseCrudViewData[]>>(this.DEFAULT_URL, {observe: 'response'});
   }
 

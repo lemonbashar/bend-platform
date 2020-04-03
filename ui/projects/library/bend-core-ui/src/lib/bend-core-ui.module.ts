@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import {BendCoreModule} from 'bend-core';
+import {TableModule} from 'primeng';
+import {DataViewComponent} from './data/data-view/data-view.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [DataViewComponent],
   imports: [
-    BendCoreModule
+    BendCoreModule,
+    TableModule
   ],
-  exports: []
+  exports: [DataViewComponent]
 })
 export class BendCoreUiModule { }

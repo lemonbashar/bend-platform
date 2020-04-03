@@ -1,1 +1,18 @@
-<p>data-view works!</p>
+<p-table [value]="data">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Primary</th>
+      <th>Secondary</th>
+      <th>Active</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-dat>
+    <tr>
+      <td>{{dat.id}}</td>
+      <td>{{dat.primary}}</td>
+      <td>{{dat.secondary}}</td>
+      <td>{{dat.active}}</td>
+    </tr>
+  </ng-template>
+</p-table>
