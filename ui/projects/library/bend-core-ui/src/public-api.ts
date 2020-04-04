@@ -3,4 +3,4 @@
  */
 
 export * from './lib/bend-core-ui.module';
-export * from './lib/data/data-view/data-view.component';
+export * from './lib/dialog/login-dialog/bend-login-dialog.component';

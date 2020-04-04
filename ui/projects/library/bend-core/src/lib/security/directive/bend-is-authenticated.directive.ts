@@ -1,5 +1,6 @@
 import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
-import {AuthenticationService} from '../auth/authentication-service';
+import {BendAuthenticationService} from '../auth/bend-authentication-service';
+
 
 /*If Passed Empty or YES Tag that means it check for authenticated*/
 /*If Passed NO Tag that means it check for not authenticated*/
@@ -11,7 +12,7 @@ import {AuthenticationService} from '../auth/authentication-service';
 export class BendIsAuthenticatedDirective {
   constructor(private templateRef: TemplateRef<any>,
               private viewContainerRef: ViewContainerRef,
-              private authenticationService: AuthenticationService
+              private authenticationService: BendAuthenticationService
   ) {
   }
 

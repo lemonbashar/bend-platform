@@ -1,12 +1,12 @@
 import {Injectable, isDevMode} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {AuthenticationService} from '../auth/authentication-service';
+import {BendAuthenticationService} from '../auth/bend-authentication-service';
 
 @Injectable({ providedIn: 'root' })
 export class RouterActivateInterceptor implements CanActivate {
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: BendAuthenticationService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Promise<boolean> {

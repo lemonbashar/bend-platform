@@ -1,8 +1,8 @@
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {FieldDefinition} from '../model/fetch/field-definition.model';
 import {AbstractBaseService} from './base.service';
+import {FieldDefinition} from '../model/fetch/field-definition.model';
 
 @Injectable({ providedIn: 'root' })
 export class AppUtilService extends AbstractBaseService {

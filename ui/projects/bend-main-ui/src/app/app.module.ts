@@ -14,10 +14,11 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CommonModule} from '@angular/common';
 import {TabViewModule} from 'primeng/tabview';
 import {CodeHighlighterModule} from 'primeng/codehighlighter';
-import { BmuLoginDialogComponent } from './view/login-dialog/bmu-login-dialog.component';
 import {FormsModule} from '@angular/forms';
-import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
 import {DialogModule} from 'primeng/dialog';
+import {BendCoreUiModule} from 'bend-core-ui';
+import {ToastModule} from 'primeng/toast';
 
 
 const PRIME_NG_MODULES = [
@@ -32,32 +33,34 @@ const PRIME_NG_MODULES = [
   TabViewModule,
   CodeHighlighterModule,
   DynamicDialogModule,
-  DialogModule
+  DialogModule,
+  ToastModule
 ];
 const THIRD_PARTIES_MODULE = [BrowserModule, HttpClientModule,
   ...PRIME_NG_MODULES,
   FormsModule
 ];
 const INTERNAL_MODULE = [AppRoutingModule];
-const LIBRARY_MODULE = [BendCoreModule];
+const LIBRARY_MODULE = [BendCoreModule, BendCoreUiModule];
 
 const APP_MAIN_COMPONENT = [AppComponent];
 const LAYOUT_COMPONENT = [BmuDashboardComponent, BmuFooterComponent, BmuNavbarComponent];
 
-const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT];
+const INHERITED_COMPONENT = [];
+
+const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT, ...INHERITED_COMPONENT];
 
 @NgModule({
   declarations: [
-    ...ALL_COMPONENTS,
-    BmuLoginDialogComponent
+    ...ALL_COMPONENTS
   ],
   imports: [
     ...THIRD_PARTIES_MODULE,
     ...INTERNAL_MODULE,
     ...LIBRARY_MODULE
   ],
-  providers: [],
-  entryComponents: [BmuLoginDialogComponent],
+  providers: [DialogService],
+  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

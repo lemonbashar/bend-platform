@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {AccountService} from './account.service';
+import {BendAccountService} from './bend-account.service';
+import {AbstractAuthenticationService} from './abstract-authentication-service';
 import {ConsoleService} from '../../service/console/console.service';
 import {BendToastService} from '../../service/message/bend-toast.service';
-import {AbstractAuthenticationService} from './abstract-authentication-service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthenticationService extends AbstractAuthenticationService {
+export class BendAuthenticationService extends AbstractAuthenticationService {
   constructor(
-    accountService: AccountService,
+    accountService: BendAccountService,
     consoleService: ConsoleService,
     toastService: BendToastService
   ) {

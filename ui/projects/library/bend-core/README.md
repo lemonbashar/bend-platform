@@ -29,6 +29,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     ng build bend-core --prod
     ng lint bend-core
     
+# To resolve Module import and package import
     cd dist/bend-core
     npm pack
     cd ../..

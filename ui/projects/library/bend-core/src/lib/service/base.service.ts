@@ -1,10 +1,10 @@
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../environments/environment';
-import {BendResponse} from '../model/crud/response/bend-response.model';
 import {BaseCrudData, BaseCrudViewData} from '../model/crud/base-crud.data';
-import {DataResponse} from '../model/crud/response/data-response.model';
 import {BaseData} from '../model/base-data';
+import {BendResponse} from '../model/crud/response/bend-response.model';
+import {DataResponse} from '../model/crud/response/data-response.model';
 import {Page} from '../model/crud/page-request.data';
 
 export abstract class AbstractBaseService {

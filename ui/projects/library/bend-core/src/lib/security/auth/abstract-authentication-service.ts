@@ -1,14 +1,32 @@
-import {AccountInfo, LoginInfo, LogoutInfo} from '../../model/account.model';
 import {Observable, Subject} from 'rxjs';
-import {AccountService} from './account.service';
-import {ConsoleService} from '../../service/console/console.service';
-import {BendToastService} from '../../service/message/bend-toast.service';
+import {BendAccountService} from './bend-account.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {ConsoleService} from '../../service/console/console.service';
+import {AccountInfo, LoginInfo, LogoutInfo} from '../../model/account.model';
+import {BendToastService} from '../../service/message/bend-toast.service';
 import {httpStatus} from '../http/http-status';
 
+export interface IAuthenticationCallback {
+  authenticationState(isAuthenticated: boolean, message?: string, error?: HttpErrorResponse): void;
+}
+
+export class ConsoleAuthenticationCallback implements IAuthenticationCallback {
+  constructor(
+    private consoleService: ConsoleService
+  ) {
+  }
+  authenticationState(isAuthenticated: boolean, message?: string, error?: HttpErrorResponse): void {
+    if (error == null) {
+      this.consoleService.message(message);
+    } else {
+      this.consoleService.error(message, error);
+    }
+  }
+}
+
 export interface AbstractAuthenticationService {
-  authenticate(info: LoginInfo);
+  authenticate(info: LoginInfo, callback?: IAuthenticationCallback);
 
   refreshToken(token: string);
 
@@ -20,7 +38,7 @@ export interface AbstractAuthenticationService {
 
   authorities(): string[];
 
-  getAuthenticationState(): Observable<any>;
+  getAuthenticationState(): Observable<AccountInfo>;
 
   logout(info: LogoutInfo);
 
@@ -29,24 +47,40 @@ export interface AbstractAuthenticationService {
 
 export abstract class AbstractAuthenticationService implements AbstractAuthenticationService {
   protected accountInfo: AccountInfo;
-  protected authenticationState = new Subject<any>();
+  protected authenticationState = new Subject<AccountInfo>();
+  SUCCESS_MESSAGE = 'Authenticated Successfully';
+  FAILURE_MESSAGE = 'Error Occurred During Authentication';
 
   constructor(
-    private accountService: AccountService,
+    private accountService: BendAccountService,
     private consoleService: ConsoleService,
     protected toastService: BendToastService
   ) {}
 
-  authenticate(info: LoginInfo) {
+  authenticate(info: LoginInfo, callback: IAuthenticationCallback) {
+    if (callback == null) {
+      callback = new ConsoleAuthenticationCallback(this.consoleService);
+    }
     this.accountService.login(info)
       .subscribe((res: HttpResponse<AccountInfo>) => {
+        if (res.status === httpStatus.OK) {
           this.accountInfo = res.body;
-          this.saveToCookie(this.accountInfo);
-          this.authenticationState.next(this.accountInfo);
+          if (this.accountInfo != null && this.accountInfo.authenticated ) {
+            this.saveToCookie(this.accountInfo);
+            this.authenticationState.next(this.accountInfo);
+            callback.authenticationState(true, this.SUCCESS_MESSAGE);
+          } else {
+            this.authenticationState.next(null);
+            callback.authenticationState(false, this.FAILURE_MESSAGE);
+          }
+        } else {
+          this.authenticationState.next(null);
+          callback.authenticationState(false, this.FAILURE_MESSAGE);
+        }
         } , (res: HttpErrorResponse) => {
-          this.consoleService.error('Error during Authenticate', res);
           this.deleteCookie();
           this.authenticationState.next(null);
+          callback.authenticationState(false, this.FAILURE_MESSAGE);
         }
       );
   }
@@ -103,12 +137,12 @@ export abstract class AbstractAuthenticationService implements AbstractAuthentic
     return JSON.parse(authorities);
   }
 
-  getAuthenticationState(): Observable<any> {
+  getAuthenticationState(): Observable<AccountInfo> {
     return this.authenticationState.asObservable();
   }
 
   protected deleteCookie() {
-    this.deleteCookieByKey(environment.cookies.TOKEN)
+    this.deleteCookieByKey(environment.cookies.TOKEN);
     this.deleteCookieByKey(environment.cookies.AUTHORITIES);
     this.deleteCookieByKey(environment.cookies.ACCOUNT_INFO);
     this.deleteCookieByKey(environment.cookies.AUTHENTICATION_STATE);

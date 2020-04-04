@@ -1,16 +1,17 @@
+/*
 import {Injectable} from '@angular/core';
-import {AccountService} from './account.service';
-import {ConsoleService} from '../../service/console/console.service';
-import {BendToastService} from '../../service/message/bend-toast.service';
-import {AbstractAuthenticationService} from './abstract-authentication-service';
+import {BendAccountService} from './bend-account.service';
+import {AbstractAuthenticationService, IAuthenticationCallback} from './abstract-authentication-service';
 import {CookieService} from 'ngx-cookie-service';
 import {environment} from '../../environments/environment';
+import {ConsoleService} from '../../service/console/console.service';
+import {BendToastService} from '../../service/message/bend-toast.service';
 import {LoginInfo} from '../../model/account.model';
 
 @Injectable({ providedIn: 'root' })
-export class CookieAuthenticationService extends AbstractAuthenticationService {
+export class BendCookieAuthenticationService extends AbstractAuthenticationService {
   constructor(
-    accountService: AccountService,
+    accountService: BendAccountService,
     consoleService: ConsoleService,
     toastService: BendToastService,
     protected cookieService: CookieService
@@ -18,9 +19,9 @@ export class CookieAuthenticationService extends AbstractAuthenticationService {
     super(accountService, consoleService, toastService);
   }
 
-  authenticate(info: LoginInfo) {
+  authenticate(info: LoginInfo, callback?: IAuthenticationCallback) {
     this.saveToLocalStorage(environment.cookies.TOKEN_LIFETIME, JSON.stringify(info.rememberMe ? environment.cookies.lifetime.TOKEN_LIFETIME_FOR_REMEMBER_ME : environment.cookies.lifetime.TOKEN_LIFETIME));
-    super.authenticate(info);
+    super.authenticate(info, callback);
   }
 
   refreshToken(token: string) {
@@ -54,3 +55,4 @@ export class CookieAuthenticationService extends AbstractAuthenticationService {
     }
   }
 }
+*/

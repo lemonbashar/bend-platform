@@ -1,14 +1,14 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {AuthenticationService} from '../../auth/authentication-service';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {tap} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
+import {BendAuthenticationService} from '../../auth/bend-authentication-service';
 
 @Injectable()
 export class RequestTokenInterceptor implements HttpInterceptor {
   constructor(
-    private authenticationService: AuthenticationService
+    private authenticationService: BendAuthenticationService
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

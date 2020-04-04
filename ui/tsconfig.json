@@ -19,6 +19,14 @@
       "dom"
     ],
     "paths": {
+      "bend-core": [
+        "dist/bend-core/bend-core",
+        "dist/bend-core"
+      ],
+      "bend-core-ui": [
+        "dist/bend-core-ui/bend-core-ui",
+        "dist/bend-core-ui"
+      ]
     }
   },
   "angularCompilerOptions": {

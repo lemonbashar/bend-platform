@@ -1,5 +1,5 @@
 import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
-import {AuthenticationService} from '../auth/authentication-service';
+import {BendAuthenticationService} from '../auth/bend-authentication-service';
 
 @Directive({
   selector: '[bendHasAnyAuthority]'
@@ -9,7 +9,7 @@ export class BendHasAnyAuthorityDirective {
 
   constructor(private templateRef: TemplateRef<any>,
               private viewContainerRef: ViewContainerRef,
-              private authenticationService: AuthenticationService
+              private authenticationService: BendAuthenticationService
   ) {
   }
 
