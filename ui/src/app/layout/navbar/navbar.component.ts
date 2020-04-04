@@ -22,7 +22,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.authenticationService.deleteCookie();
     this.authenticationService.logout(new LogoutInfo());
   }
 }

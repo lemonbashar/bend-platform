@@ -1,23 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService, AuthoritiesConstants, LogoutRule, LogoutInfo} from 'bend-core';
+import {AuthenticationService, AuthoritiesConstants, LogoutInfo} from 'bend-core';
 import {MenuItem} from 'primeng/api';
-import {environment} from 'bend-core';
+import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
+import {BmuLoginDialogComponent} from '../../view/login-dialog/bmu-login-dialog.component';
 
 @Component({
   selector: 'main-navbar',
-  templateUrl: './bmu-navbar.component.html'
+  templateUrl: './bmu-navbar.component.html',
+  providers: [DialogService]
 })
 export class BmuNavbarComponent implements OnInit {
   items: MenuItem[];
+  loginDialogRef: DynamicDialogRef;
   constructor(
     private authenticationService: AuthenticationService,
-    public auth: AuthoritiesConstants
+    public auth: AuthoritiesConstants,
+    public dialogService: DialogService
   ) { }
 
   ngOnInit() {
-    console.log('<><><><><><><><><><><><><>');
-    console.log(environment.cookies.lifetime.TOKEN_LIFETIME_FOR_REMEMBER_ME);
-    console.log('<><><><><><><><><><><><><>');
     this.items = [
       {
         label: 'Bend-Platform',
@@ -39,7 +40,8 @@ export class BmuNavbarComponent implements OnInit {
     ];
   }
 
-  toggleNavbar() {
+  login() {
+    this.loginDialogRef = this.dialogService.open(BmuLoginDialogComponent, {header: 'Login to Bend-Platform', width: '60%', closeOnEscape: true, closable: true, dismissableMask: true});
   }
 
   logout() {

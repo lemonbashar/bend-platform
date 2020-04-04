@@ -1,0 +1,16 @@
+<div>
+  <div class="ui-g-12">
+    <label for="id-bmu-view-login-dialog-username">Username</label>
+    <input class="ui-g-12" id="id-bmu-view-login-dialog-username" [(ngModel)]="loginInfo.username" type="text" pInputText />
+  </div>
+  <div class="ui-g-12">
+    <label for="id-bmu-view-login-dialog-password">Password</label>
+    <input class="ui-g-12" id="id-bmu-view-login-dialog-password" [(ngModel)]="loginInfo.password" type="password" pInputText />
+  </div>
+  <div class="ui-g-12">
+    <div class="element-right">
+      <button pButton label="Cancel" icon="fa fa-times-circle"></button>
+      <button pButton label="Login" icon="fa fa-check-circle"></button>
+    </div>
+  </div>
+</div>

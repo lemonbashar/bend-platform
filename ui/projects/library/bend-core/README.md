@@ -28,3 +28,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 #BUILD AND USE
     ng build bend-core --prod
     ng lint bend-core
+    
+    cd dist/bend-core
+    npm pack
+    cd ../..
+    npm install ./dist/bend-core/bend-core-0.0.1.tgz

@@ -14,8 +14,13 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CommonModule} from '@angular/common';
 import {TabViewModule} from 'primeng/tabview';
 import {CodeHighlighterModule} from 'primeng/codehighlighter';
+import { BmuLoginDialogComponent } from './view/login-dialog/bmu-login-dialog.component';
+import {FormsModule} from '@angular/forms';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DialogModule} from 'primeng/dialog';
 
-const THIRD_PARTIES_MODULE = [BrowserModule, HttpClientModule,
+
+const PRIME_NG_MODULES = [
   BrowserAnimationsModule,
   MenubarModule,
   InputTextModule,
@@ -25,7 +30,13 @@ const THIRD_PARTIES_MODULE = [BrowserModule, HttpClientModule,
   InputTextModule,
   ButtonModule,
   TabViewModule,
-  CodeHighlighterModule
+  CodeHighlighterModule,
+  DynamicDialogModule,
+  DialogModule
+];
+const THIRD_PARTIES_MODULE = [BrowserModule, HttpClientModule,
+  ...PRIME_NG_MODULES,
+  FormsModule
 ];
 const INTERNAL_MODULE = [AppRoutingModule];
 const LIBRARY_MODULE = [BendCoreModule];
@@ -35,10 +46,10 @@ const LAYOUT_COMPONENT = [BmuDashboardComponent, BmuFooterComponent, BmuNavbarCo
 
 const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT];
 
-// noinspection AngularInvalidImportedOrDeclaredSymbol
 @NgModule({
   declarations: [
-    ...ALL_COMPONENTS
+    ...ALL_COMPONENTS,
+    BmuLoginDialogComponent
   ],
   imports: [
     ...THIRD_PARTIES_MODULE,
@@ -46,6 +57,7 @@ const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT];
     ...LIBRARY_MODULE
   ],
   providers: [],
+  entryComponents: [BmuLoginDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
