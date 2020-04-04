@@ -39,7 +39,7 @@ export class BmuNavbarComponent implements OnInit {
   }
 
   login() {
-    this.dialogService.open(BendLoginDialogComponent, {header: 'Login to Bend-Platform', width: '60%', closeOnEscape: true, closable: true, dismissableMask: true});
+    this.dialogService.open(BendLoginDialogComponent, {header: 'Login to Bend-Platform', width: '60%', closeOnEscape: false, closable: false, dismissableMask: false});
   }
 
   logout() {
