@@ -4,18 +4,22 @@ export const commonResource = {
 };
 
 export const environment = {
-  production: false,
+  production: true,
   API_URL: commonResource.HOST_URL + commonResource.CONTEXT,
   DEBUG_ENABLE : true,
-  outlet: {
-    NAVBAR: 'navbar',
-    FOOTER: 'footer'
-  },
   cookies: {
     ACCOUNT_INFO: 'ACCOUNT_INFO',
     TOKEN: 'TOKEN',
     AUTHENTICATION_STATE: 'AUTHENTICATION_STATE',
-    AUTHORITIES: 'AUTHORITIES'
+    AUTHORITIES: 'AUTHORITIES',
+    lifetime: {
+      TOKEN_LIFETIME: 900,
+      TOKEN_LIFETIME_FOR_REMEMBER_ME: 1800
+    },
+    TOKEN_LIFETIME: 'TOKEN_LIFETIME'
+  },
+  jwt: {
+    JSON_WEB_TOKEN: 'Json-Web-Token',
+    REFRESHED_JSON_WEB_TOKEN: 'Refreshed-Json-Web-Token'
   }
-
 };

@@ -3,6 +3,12 @@ import { Location } from '@angular/common';
 import {Router} from '@angular/router';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
+export enum LogLevel {
+  CONSOLE,
+  TOAST,
+  MESSAGE
+}
+
 @Injectable({ providedIn: 'root' })
 export class ConsoleService {
   constructor(
@@ -11,8 +17,14 @@ export class ConsoleService {
   ) {
   }
 
-  message(message: string): ConsoleService {
-    console.log(message);
+  message(message: string, logLevel: LogLevel = LogLevel.CONSOLE): ConsoleService {
+    switch (logLevel) {
+      case LogLevel.CONSOLE:
+        console.log(message);
+        return this;
+      default:
+        console.log(message);
+    }
     return this;
   }
 
@@ -21,9 +33,11 @@ export class ConsoleService {
     return this;
   }
 
-  error(errMessage: string, error: HttpErrorResponse): ConsoleService {
+  error(errMessage: string, error?: HttpErrorResponse): ConsoleService {
     console.error(errMessage);
-    console.error('Detailed Message:' + error.error.message);
+    if (error) {
+      console.error('Error Occurred:' + error.error.message);
+    }
     return this;
   }
 

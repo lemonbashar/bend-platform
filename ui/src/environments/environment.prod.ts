@@ -11,7 +11,7 @@ export const environment = {
     NAVBAR: 'navbar',
     FOOTER: 'footer'
   },
-  cache: {
+  cookies: {
     ACCOUNT_INFO: 'ACCOUNT_INFO',
     TOKEN: 'TOKEN',
     AUTHENTICATION_STATE: 'AUTHENTICATION_STATE',

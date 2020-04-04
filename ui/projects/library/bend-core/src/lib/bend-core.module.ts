@@ -6,15 +6,17 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {BendHasAnyAuthorityDirective} from './security/directive/bend-has-any-authority.directive';
 import {BendIsAuthenticatedDirective} from './security/directive/bend-is-authenticated.directive';
+import {CookieService} from 'ngx-cookie-service';
 
 const DIRECTIVES = [BendHasAnyAuthorityDirective, BendIsAuthenticatedDirective];
 
 @NgModule({
   declarations: [...DIRECTIVES],
   imports: [CommonModule,
-    HttpClientModule, BrowserModule, FormsModule
+    HttpClientModule, BrowserModule, FormsModule,
   ],
   providers: [
+    CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestTokenInterceptor,

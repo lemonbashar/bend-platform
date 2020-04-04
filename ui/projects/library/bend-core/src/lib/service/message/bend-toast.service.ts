@@ -9,8 +9,13 @@ export class BendToastService {
   ) {
   }
 
-  make(message: string, timeout?: number) {
+  make(message: string, timeout?: number): BendToastService {
     console.log(message);
+    return this;
+  }
+
+  makeError(message: string, timeout?: number, error?: HttpErrorResponse): BendToastService {
+    console.error(message);
     return this;
   }
 }

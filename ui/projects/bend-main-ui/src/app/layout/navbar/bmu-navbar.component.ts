@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService, AuthoritiesConstants, LogoutRule, LogoutInfo} from 'bend-core';
 import {MenuItem} from 'primeng/api';
+import {environment} from 'bend-core';
 
 @Component({
   selector: 'main-navbar',
@@ -14,6 +15,9 @@ export class BmuNavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('<><><><><><><><><><><><><>');
+    console.log(environment.cookies.lifetime.TOKEN_LIFETIME_FOR_REMEMBER_ME);
+    console.log('<><><><><><><><><><><><><>');
     this.items = [
       {
         label: 'Bend-Platform',
@@ -39,7 +43,6 @@ export class BmuNavbarComponent implements OnInit {
   }
 
   logout() {
-    this.authenticationService.deleteCookie();
     this.authenticationService.logout(new LogoutInfo());
   }
 }

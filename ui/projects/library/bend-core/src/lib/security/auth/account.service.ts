@@ -22,4 +22,8 @@ export class AccountService extends BaseService<UserCrudData, UserCrudData> {
     login(info: LoginInfo): Observable<HttpResponse<AccountInfo>> {
         return this.http.post<AccountInfo>(this.PUBLIC_URL + '/login', info, { observe: 'response' });
     }
+
+    accountInfo(): Observable<HttpResponse<AccountInfo>> {
+      return this.http.get<AccountInfo>( this.PRIVATE_URL + '/current-account', {observe: 'response'});
+    }
 }

@@ -7,11 +7,16 @@ export const environment = {
   production: true,
   API_URL: commonResource.HOST_URL + commonResource.CONTEXT,
   DEBUG_ENABLE : true,
-  cache: {
+  cookies: {
     ACCOUNT_INFO: 'ACCOUNT_INFO',
     TOKEN: 'TOKEN',
     AUTHENTICATION_STATE: 'AUTHENTICATION_STATE',
-    AUTHORITIES: 'AUTHORITIES'
+    AUTHORITIES: 'AUTHORITIES',
+    lifetime: {
+      TOKEN_LIFETIME: 3600000,
+      TOKEN_LIFETIME_FOR_REMEMBER_ME: 7200000
+    },
+    TOKEN_LIFETIME: 'TOKEN_LIFETIME'
   },
   jwt: {
     JSON_WEB_TOKEN: 'Json-Web-Token',
