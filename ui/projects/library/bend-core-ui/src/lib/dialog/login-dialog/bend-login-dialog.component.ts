@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {HttpErrorResponse} from '@angular/common/http';
-import {MessageService} from 'primeng/api';
 import {BendAuthenticationService, IAuthenticationCallback, LoginInfo} from 'bend-core';
+import {BendToastService} from '../../message/bend-toast.service';
 
 
 export class AuthState implements IAuthenticationCallback {
 
   constructor(
     private ref: DynamicDialogRef,
-    private messageService: MessageService
+    private toastService: BendToastService
   ) {
   }
 
   authenticationState(isAuthenticated: boolean, message?: string, error?: HttpErrorResponse): void {
     if (isAuthenticated) {
-      this.messageService.add({severity: 'info', summary: 'Message', detail: 'Authentication Success'});
+      this.toastService.info('Authentication Success');
       this.ref.close();
     } else {
-      this.messageService.add({severity: 'error', summary: 'Message', detail: 'Authentication Failed'});
+      this.toastService.error('Authentication Failed');
     }
   }
 }
@@ -34,7 +34,7 @@ export class BendLoginDialogComponent implements OnInit {
     private authenticationService: BendAuthenticationService,
     private ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private messageService: MessageService
+    private toastService: BendToastService
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class BendLoginDialogComponent implements OnInit {
   }
 
   login() {
-    this.authenticationService.authenticate(this.loginInfo, new AuthState(this.ref, this.messageService));
+    this.authenticationService.authenticate(this.loginInfo, new AuthState(this.ref, this.toastService));
   }
 
   cancel() {

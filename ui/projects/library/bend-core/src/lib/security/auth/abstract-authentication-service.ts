@@ -4,7 +4,6 @@ import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {ConsoleService} from '../../service/console/console.service';
 import {AccountInfo, LoginInfo, LogoutInfo} from '../../model/account.model';
-import {BendToastService} from '../../service/message/bend-toast.service';
 import {httpStatus} from '../http/http-status';
 
 export interface IAuthenticationCallback {
@@ -53,8 +52,7 @@ export abstract class AbstractAuthenticationService implements AbstractAuthentic
 
   constructor(
     private accountService: BendAccountService,
-    private consoleService: ConsoleService,
-    protected toastService: BendToastService
+    private consoleService: ConsoleService
   ) {}
 
   authenticate(info: LoginInfo, callback: IAuthenticationCallback) {
@@ -112,7 +110,7 @@ export abstract class AbstractAuthenticationService implements AbstractAuthentic
           this.consoleService.error('No Account Info Found');
         }
       }, (err: HttpErrorResponse) => {
-        this.toastService.makeError('Error Occurred During Account Fetch', null, err);
+        this.consoleService.error('Error Occurred During Account Fetch', err);
       });
     }
     this.accountInfo = JSON.parse(cookie );

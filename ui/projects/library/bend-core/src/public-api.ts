@@ -37,7 +37,6 @@ export * from './lib/security/directive/bend-has-any-authority.directive';
 export * from './lib/service/base.service';
 export * from './lib/service/app-util-service';
 export * from './lib/service/fetch/sql-fetch-definition.service';
-export * from './lib/service/message/bend-toast.service';
 export * from './lib/service/console/console.service';
 
 export * from './lib/bend-core.module';

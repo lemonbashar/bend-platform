@@ -32,6 +32,7 @@ const THIRD_PARTIES_MODULES = [...PRIME_NG_MODULES, BrowserModule, FormsModule];
 const LIBRARY_MODULE = [BendCoreModule];
 
 const COMPONENTS = [BendLoginDialogComponent];
+const ENTRY_COMPONENTS = [BendLoginDialogComponent];
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -41,6 +42,6 @@ const COMPONENTS = [BendLoginDialogComponent];
   ],
   providers: [MessageService],
   exports: [],
-  entryComponents: [...COMPONENTS]
+  entryComponents: [...ENTRY_COMPONENTS]
 })
 export class BendCoreUiModule { }
