@@ -1,5 +1,6 @@
 package bend.library.domain.service;
 
+import bend.library.data.crud.BaseCrudData;
 import bend.library.data.crud.BaseCrudeViewData;
 import bend.library.domain.AbstractBaseCrudService;
 import bend.library.domain.data.UserCrudData;
@@ -22,6 +23,16 @@ public class UserCrudService extends AbstractBaseCrudService<UserCrudData, User>
     }
 
     @Override
+    public BaseCrudData save(User user) {
+        throw new SecurityException("Intentionally Not Implemented, force to bypass the request to UserService.");
+    }
+
+    @Override
+    public BaseCrudData update(User user) {
+        throw new SecurityException("Intentionally Not Implemented, force to bypass the request to UserService.");
+    }
+
+    @Override
     public UserCrudData findOne(BigInteger id) {
         return ((UserRepository)this.repository).findOneById(id).map(User::toData).orElse(null);
     }
@@ -29,5 +40,11 @@ public class UserCrudService extends AbstractBaseCrudService<UserCrudData, User>
     @Override
     public Page<BaseCrudeViewData> findAll(Pageable pageable) {
         return ((UserRepository)this.repository).findAllPageable(pageable);
+    }
+
+    @Override
+    public boolean delete(BigInteger id) {
+        // return super.delete(id);
+        throw new SecurityException("Intentionally Not Implemented, force to inactive the user instead of delete.");
     }
 }

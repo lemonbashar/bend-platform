@@ -17,8 +17,8 @@ public class SaltedPasswordEncoderImpl implements bend.library.config.security.s
     private final @NonNull PasswordEncoder passwordEncoder;
     private final @NonNull SpringProperties properties;
 
-    public String encode(String password, String salt) {
-        return this.passwordEncoder.encode(properties.getSettings().getSecurity().getSecretKey() + password + salt);
+    public String encode(String password, String usernameSalt) {
+        return this.passwordEncoder.encode(properties.getSettings().getSecurity().getSecretKey() + password + usernameSalt);
     }
 
     public boolean matches(String rawPassword, String salt, String encodedPassword) {

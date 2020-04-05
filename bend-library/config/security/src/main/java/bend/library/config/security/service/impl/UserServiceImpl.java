@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(User user) {
         return BendOptional.ofNullable(userRepository.save(user))
+                .ifThenConsume(usr-> usr.getPassword()!=null && !usr.getPassword().isEmpty() && !usr.getPassword().isBlank(), usr -> usr.setPassword(saltedPasswordEncoder.encode(usr.getPassword(), usr.getUsername())))
                 .mustTrue(Objects::nonNull)
                 .get();
     }

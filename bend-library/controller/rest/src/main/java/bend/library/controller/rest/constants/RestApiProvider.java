@@ -31,9 +31,10 @@ public class RestApiProvider {
     }
 
     public static class AppUtilApi {
-        public static final String APP_UTIL_ROOT_API = APiConstants.PRIVATE_ROOT + "/app-util";
+        public static final String APP_UTIL_PRIVATE_ROOT_API = APiConstants.PRIVATE_ROOT + "/app-util";
         public static final String APP_UTIL_PUBLIC_ROOT_API = APiConstants.PUBLIC_ROOT + "/app-util";
         public static final String SINGLE_FIELD_EXISTENCE_CHECK = "/single-field-existence-check/{table}/{field}/{value}";
+        public static final String FIELD_EDIT = "/field-edit";
     }
 
     public static class UserApi {
