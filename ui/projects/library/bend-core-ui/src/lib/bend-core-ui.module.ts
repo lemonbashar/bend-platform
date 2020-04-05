@@ -17,9 +17,6 @@ import {MessageService} from 'primeng/api';
 
 const PRIME_NG_MODULES = [
   BrowserAnimationsModule,
-  MenubarModule,
-  InputTextModule,
-  ButtonModule,
   CommonModule,
   MenubarModule,
   InputTextModule,
