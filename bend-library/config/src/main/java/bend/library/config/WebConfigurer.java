@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.Ordered;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -25,7 +26,7 @@ import java.util.function.Supplier;
 * */
 @EnableWebMvc
 @Configuration
-@ConditionalOnProperty(value = "bend-platform.settings.security.cors.active", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(value = "bend-platform.settings.security.cors.active", havingValue = "false", matchIfMissing = false)
 public class WebConfigurer implements WebMvcConfigurer {
     private final Cors cors;
 

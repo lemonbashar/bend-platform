@@ -16,7 +16,8 @@ public final class APiConstants {
         public static final String ACCESS_DENIED_URL = PUBLIC_ROOT + "/access-denied";
     }
 
-    public static class ParameterApi {
+    public static class CrudControllerApi {
         public static final String ONE_PARAM_ID = "/{id}";
+        public static final String FLEXIBLE = "/flexible";
     }
 }

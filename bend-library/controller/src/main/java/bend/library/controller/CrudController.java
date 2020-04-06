@@ -6,6 +6,7 @@ import bend.library.controller.util.ResponseType;
 import bend.library.controller.util.ResponseUtil;
 import bend.library.data.crud.BaseCrudData;
 import bend.library.data.crud.BaseCrudeViewData;
+import bend.library.data.crud.BaseFlexibleCrudeViewData;
 import bend.library.data.response.BendStatus;
 import bend.library.data.response.IBendResponse;
 import bend.library.data.response.IDataResponse;
@@ -24,6 +25,8 @@ import javax.validation.Valid;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
+
+import static bend.library.constant.APiConstants.CrudControllerApi.ONE_PARAM_ID;
 
 @RequiredArgsConstructor
 public class CrudController<CrudData extends BaseCrudData, Domain extends BaseEntity<BigInteger>> extends AbstractCrudController<CrudData, Domain> {
@@ -45,7 +48,7 @@ public class CrudController<CrudData extends BaseCrudData, Domain extends BaseEn
                 .map(ResponseUtil::of).get().response(ResponseType::put);
     }
 
-    @GetMapping(APiConstants.ParameterApi.ONE_PARAM_ID)
+    @GetMapping(ONE_PARAM_ID)
     @Override
     public ResponseEntity<? extends IDataResponse<CrudData>> findOne(@PathVariable BigInteger id) {
         return BendOptional.ofNullable(this.baseCrudService.findOne(id))
@@ -61,7 +64,14 @@ public class CrudController<CrudData extends BaseCrudData, Domain extends BaseEn
                 .map(ResponseUtil::of).get().response(ResponseType::get);
     }
 
-    @DeleteMapping(APiConstants.ParameterApi.ONE_PARAM_ID)
+    @GetMapping(APiConstants.CrudControllerApi.FLEXIBLE)
+    @Override
+    public ResponseEntity<PageableDataResponse<BaseFlexibleCrudeViewData>> findAllFlexible(Pageable pageable) {
+        return BendOptional.ofNullable(this.baseCrudService.findAllFlexible(pageable))
+                .map(ResponseUtil::of).get().response(ResponseType::get);
+    }
+
+    @DeleteMapping(ONE_PARAM_ID)
     @Override
     public ResponseEntity<? extends IBendResponse> delete(@PathVariable BigInteger id) {
         return BendOptional.ofNullable(this.baseCrudService.delete(id))

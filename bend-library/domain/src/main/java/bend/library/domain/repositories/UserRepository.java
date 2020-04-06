@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -32,4 +33,10 @@ public interface UserRepository extends JpaRepository<User, BigInteger> {
 
     @Query("SELECT model FROM User model WHERE model.id =:userId")
     Optional<User> findOneById(@Param("userId") BigInteger userId);
+
+    @Query(value = "SELECT DMBU.USERNAME, DMBU.EMAIL, DMBU.ACTIVE_STATUS, CB.USERNAME CREATE_BY, UB.USERNAME UPDATE_BY\n" +
+            "FROM DB_MAIN_BEND_USER DMBU\n" +
+            "LEFT JOIN DB_MAIN_BEND_USER CB ON DMBU.CREATE_BY = CB.ID\n" +
+            "LEFT JOIN DB_MAIN_BEND_USER UB ON DMBU.UPDATE_BY = UB.ID", nativeQuery = true)
+    Page<Object> findAllFlexible(Pageable pageable);
 }

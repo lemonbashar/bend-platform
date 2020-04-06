@@ -18,7 +18,7 @@ import java.util.List;
 
 @Log4j2
 @Profile(ProfileConstants.LIQUIBASE)
-@ConditionalOnProperty(value = "bend-platform.database.migration.active", havingValue = "true")
+@ConditionalOnProperty(value = "bend-platform.database.migration.active", havingValue = "false", matchIfMissing = false)
 @Configuration
 public class LiquibaseClusterDatabaseMigration extends AbstractLiquibaseMigration implements ClusterDatabaseMigration {
     public LiquibaseClusterDatabaseMigration(@NonNull SpringProperties properties) {

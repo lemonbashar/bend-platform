@@ -32,11 +32,7 @@ bend-platform:
                 - dev
                 - console
             cors:
-                allowed-clients:
-                    - http://localhost:4200
-                    - http://192.168.1.43:4200
-                    - http://192.168.0.154:4200
-                    - http://192.168.0.153:4200
+                active: false
             public-servlet-prefixes:
                 - /api/public
         mail:
@@ -62,8 +58,9 @@ bend-platform:
         password: lemon
         driver: org.postgresql.Driver
         migration:
-            active: true
+            active: false
             liquibase:
+                active: false
                 migration-type: update
                 changelog-path: 'classpath:liquibase/test/liquibase-changelog.xml'
                 changelog-path-type: exact

@@ -6,6 +6,8 @@ import bend.library.controller.util.ResponseUtil;
 import bend.library.core.dao.AppUtilJdbcDao;
 import bend.library.core.discovery.CheckFieldDiscoveryService;
 import bend.library.data.fetch.FieldDefinition;
+import bend.library.data.response.BendStatus;
+import bend.library.data.response.impl.DataResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -39,7 +41,7 @@ public class AppUtilController {
      */
     @Transactional(rollbackFor = {Exception.class})
     @PostMapping(RestApiProvider.AppUtilApi.FIELD_EDIT)
-    public ResponseEntity<Map<String, Object>> fieldEdit(@RequestBody List<FieldDefinition> fieldDefinitions) throws Exception {
+    public ResponseEntity<DataResponse<Map<String, Object>>> fieldEdit(@RequestBody List<FieldDefinition> fieldDefinitions) throws Exception {
         Map<String, Object> feedback = new HashMap<>();
         HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
         for (FieldDefinition fieldDefinition : fieldDefinitions) {
@@ -58,6 +60,6 @@ public class AppUtilController {
                 throw new Exception(e);
             }
         }
-        return ResponseUtil.of(feedback).status(httpStatus).response(ResponseType::post);
+        return ResponseUtil.of(new DataResponse<>(httpStatus.equals(HttpStatus.OK)? BendStatus.SUCCESS: BendStatus.FAILURE, feedback)).status(httpStatus).response(ResponseType::post);
     }
 }
