@@ -21,8 +21,7 @@ import {BendCoreUiModule} from 'bend-core-ui';
 import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
 import {TableModule} from 'primeng/table';
-import {BmuAbstractListViewComponent} from './view/bmu-abstract-list-view.component';
-import {BmuProfileDashboardComponent} from './view/profile-dashboard/bmu-profile-dashboard.component';
+import { BmuUserViewComponent } from './view/crud/user-view/bmu-user-view.component';
 
 
 const PRIME_NG_MODULES = [
@@ -48,7 +47,7 @@ const LIBRARY_MODULE = [BendCoreModule, BendCoreUiModule];
 const APP_MAIN_COMPONENT = [AppComponent];
 const LAYOUT_COMPONENT = [BmuDashboardComponent, BmuFooterComponent, BmuNavbarComponent];
 
-const VIEW_COMPONENT = [BmuAbstractListViewComponent, BmuProfileDashboardComponent];
+const VIEW_COMPONENT = [BmuUserViewComponent];
 
 const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT, ...VIEW_COMPONENT];
 

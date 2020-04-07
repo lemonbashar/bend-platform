@@ -20,12 +20,12 @@ export abstract class AbstractBendFlexibleCompilerService {
         return this.returnFromBool(index, values);
       }
     }
-    return '';
+    return 'N/A';
   }
 
   private valueByDataType(objValue: any, dataType: string): string {
     if (objValue == null) {
-      return '';
+      return 'N/A';
     }
     switch (dataType) {
       case FlexibleDataTypes.STRING:
@@ -35,16 +35,16 @@ export abstract class AbstractBendFlexibleCompilerService {
 
   protected returnFromAnd(index: FlexibleIndex, values: any[]): any {
     let output = '';
-    for (const indexValue in index.flexibleRule.fromIndices) {
+    for (const indexValue of index.flexibleRule.fromIndices) {
       output += this.AND_SEPARATOR + this.valueByDataType(values[indexValue], index.flexibleRule.indicesDataTypes[indexValue]);
     }
     return output;
   }
 
   protected returnFromOr(index: FlexibleIndex, values: any[]) {
-    for (const indexValue in index.flexibleRule.fromIndices) {
+    for (const indexValue of index.flexibleRule.fromIndices) {
       if (values[indexValue] != null) {
-        return this.valueByDataType(values[indexValue], index.flexibleRule.indicesDataTypes[indexValue]);
+        return values[indexValue] ; /*this.valueByDataType(values[indexValue], index.flexibleRule.indicesDataTypes[indexValue]);*/
       }
     }
     return '';
@@ -52,7 +52,7 @@ export abstract class AbstractBendFlexibleCompilerService {
 
   protected returnFromBool(index: FlexibleIndex, values: any[]): any {
     const indexTop = index.flexibleRule.fromIndices[0];
-    if (Boolean(values[indexTop]) === true) {
+    if (String(values[indexTop]).toUpperCase() === 'TRUE') {
       return index.flexibleRule.referenceValues[0];
     } else {
       return index.flexibleRule.referenceValues[1];

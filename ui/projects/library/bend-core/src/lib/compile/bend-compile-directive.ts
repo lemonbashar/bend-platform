@@ -49,7 +49,7 @@ export class BendCompileDirective implements OnChanges {
 
   updateProperties() {
     // tslint:disable-next-line:forin
-    for (const prop in this.compileContext) {
+    for (const prop of this.compileContext) {
       this.compRef.instance[prop] = this.compileContext[prop];
     }
   }

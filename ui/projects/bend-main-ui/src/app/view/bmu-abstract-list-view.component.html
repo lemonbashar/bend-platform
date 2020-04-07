@@ -1,6 +1,5 @@
 <div *ngIf="load">
-  <p-table [columns]="crudData.data.columns" [responsive]="true" [value]="crudData.data.values" [alwaysShowPaginator]="false" [lazy]="true" [paginator]="true" (onPage)="onPage($event)" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
-           currentPageReportTemplate="Showing {{pageCount + 1}} to {{crudData.totalPages}} of {{crudData.totalPages}} Pages">
+  <p-table [columns]="crudData.data.columns" [responsive]="true" [value]="crudData.data.values" [lazy]="true" [paginator]="true" [rows]="pageSize" [showCurrentPageReport]="true" [(first)]="pageCount">
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th *ngFor="let col of columns">

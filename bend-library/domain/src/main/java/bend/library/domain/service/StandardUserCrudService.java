@@ -19,7 +19,7 @@ public class StandardUserCrudService extends UserCrudService {
     private static final FlexibleIndex[] FLEXIBLE_INDICES ={
       FlexibleIndex.of(0),
       FlexibleIndex.of(1),
-      FlexibleIndex.ofDynamic(2, FlexibleRule.bool(1, "Active", "Inactive")),
+      FlexibleIndex.ofDynamic(2, FlexibleRule.bool(2, "Active", "Inactive")),
       FlexibleIndex.ofDynamic(3, FlexibleRule.or(3,4))
     };
     @Autowired

@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {OnInit} from '@angular/core';
 import {
-  AppUtilService,
-  BaseFlexibleCrudViewData, BendAccountService, BendAuthenticationService,
-  BendFlexibleCompilerService,
+  AppUtilService, BaseCrudData, BaseData,
+  BaseFlexibleCrudViewData, BaseService, BendFlexibleCompilerService,
   BendStatus,
   BendStatusText,
   ConsoleService,
@@ -14,33 +13,22 @@ import {
 } from 'bend-core';
 import {BendToastService} from 'bend-core-ui';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {BmuUserCrudService} from '../service/bmu-user-crud.service';
 
-@Component({
-  selector: 'main-profile-dashboard',
-  templateUrl: './bmu-abstract-list-view.component.html'
-})
-// export class BmuAbstractListViewComponent<R extends BaseCrudData, Domain extends BaseData> implements OnInit {
-export class BmuAbstractListViewComponent implements OnInit {
+export class BmuAbstractListViewComponent<R extends BaseCrudData, Domain extends BaseData> implements OnInit {
   crudData: PageableDataResponse<BaseFlexibleCrudViewData>;
   private SUCCESS = 'Active Status Changed Successfully';
   private FAILED = 'Active Status Change Failed';
   private domainName: string;
-  first = 0;
   pageSize = 2;
-  rows = this.pageSize;
   pageCount = 0;
   load = false;
-  cols = 4;
 
   constructor(
-    // private crudService: BaseService<R, Domain>,
-    private crudService: BmuUserCrudService,
+    private crudService: BaseService<R, Domain>,
     private toastService: BendToastService,
     private consoleService: ConsoleService,
     private appUtilService: AppUtilService,
-    private compiler: BendFlexibleCompilerService,
-    private authenticationService: BendAuthenticationService
+    private compiler: BendFlexibleCompilerService
   ) { }
 
   ngOnInit(): void {
@@ -48,13 +36,11 @@ export class BmuAbstractListViewComponent implements OnInit {
     this.fetchAll();
   }
 
-  private fetchAll() {
-    console.log(this.authenticationService.currentToken());
+  protected fetchAll() {
     this.crudService.fetchAllFlexible({page: this.pageCount, size: this.pageSize}).subscribe((res: HttpResponse<PageableDataResponse<BaseFlexibleCrudViewData>>) => {
       if (res.status === httpStatus.OK && res.body.status.toString() === BendStatusText.SUCCESS) {
         this.crudData = res.body;
         this.load = true;
-        console.log(this.crudData);
       } else {
         this.consoleService.error('Crud Data Fetch Problem');
       }
@@ -87,7 +73,6 @@ export class BmuAbstractListViewComponent implements OnInit {
   prev() {
     this.pageCount --;
     this.reshape();
-    this.first = this.first - this.rows;
     this.fetchAll();
   }
 
@@ -97,14 +82,12 @@ export class BmuAbstractListViewComponent implements OnInit {
 
   reset() {
     this.pageCount = 0;
-    this.first = 0;
     this.fetchAll();
   }
 
   next() {
     this.pageCount ++;
     this.reshape();
-    this.first = this.first + this.rows;
     this.fetchAll();
   }
 
@@ -116,15 +99,15 @@ export class BmuAbstractListViewComponent implements OnInit {
     console.log(event);
   }
 
-  private reshape() {
-    /*if (this.pageCount < 0) {
+  protected reshape() {
+    if (this.pageCount < 0) {
       this.pageCount = 0;
     } else if (this.pageCount > this.crudData.totalPages) {
       this.pageCount = this.crudData.totalPages;
-    }*/
+    }
   }
 
-  private emptyData(): PageableDataResponse<BaseFlexibleCrudViewData> {
+  protected emptyData(): PageableDataResponse<BaseFlexibleCrudViewData> {
     const data = new BaseFlexibleCrudViewData();
     data.columns = [];
     data.indexes = [];
