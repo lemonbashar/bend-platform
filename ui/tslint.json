@@ -72,8 +72,8 @@
       true,
       "single"
     ],
-    "forin": true,
-    "prefer-for-of": false,
+    "forin": false,
+    "prefer-for-of": true,
     "trailing-comma": false,
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,

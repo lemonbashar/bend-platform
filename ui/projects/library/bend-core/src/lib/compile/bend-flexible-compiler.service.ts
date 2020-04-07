@@ -1,12 +1,13 @@
 import {
   FlexibleDataTypes,
   FlexibleIndex,
-  FlexibleRuleNameTexts
+  FlexibleRuleNameTexts, FlexibleRulePolicyTexts
 } from '../model/crud/base-flexible-crud.data';
 import {Injectable} from '@angular/core';
 
 export abstract class AbstractBendFlexibleCompilerService {
   AND_SEPARATOR = ' - ';
+  private GLOBAL_DEFAULT_VALUE = 'N/A';
 
   compile(index: FlexibleIndex, values: any[]): any {
     if (!index.dynamic) {
@@ -20,12 +21,12 @@ export abstract class AbstractBendFlexibleCompilerService {
         return this.returnFromBool(index, values);
       }
     }
-    return 'N/A';
+    return this.GLOBAL_DEFAULT_VALUE;
   }
 
   private valueByDataType(objValue: any, dataType: string): string {
     if (objValue == null) {
-      return 'N/A';
+      return this.GLOBAL_DEFAULT_VALUE;
     }
     switch (dataType) {
       case FlexibleDataTypes.STRING:
@@ -42,21 +43,36 @@ export abstract class AbstractBendFlexibleCompilerService {
   }
 
   protected returnFromOr(index: FlexibleIndex, values: any[]) {
-    for (const indexValue of index.flexibleRule.fromIndices) {
-      if (values[indexValue] != null) {
-        return values[indexValue] ; /*this.valueByDataType(values[indexValue], index.flexibleRule.indicesDataTypes[indexValue]);*/
-      }
+    switch (index.flexibleRule.rulePolicy.toString()) {
+      case FlexibleRulePolicyTexts.CHECKED_BY_NULL:
+        return this.basedOnNull(index, values);
     }
-    return '';
+    return this.GLOBAL_DEFAULT_VALUE;
   }
 
   protected returnFromBool(index: FlexibleIndex, values: any[]): any {
     const indexTop = index.flexibleRule.fromIndices[0];
     if (String(values[indexTop]).toUpperCase() === 'TRUE') {
-      return index.flexibleRule.referenceValues[0];
+      return this.valueByDataType(index.flexibleRule.referenceValues[0], this.getByIndex(index.flexibleRule.indicesDataTypes, 0));
     } else {
-      return index.flexibleRule.referenceValues[1];
+      return this.valueByDataType(index.flexibleRule.referenceValues[1], this.getByIndex(index.flexibleRule.indicesDataTypes, 1));
     }
+  }
+
+  private getByIndex(indicesDataTypes: string[], index: number): string {
+    if (indicesDataTypes == null || indicesDataTypes.length <= index) {
+      return FlexibleDataTypes.STRING;
+    }
+    return indicesDataTypes[index];
+  }
+
+  private basedOnNull(index: FlexibleIndex, values: any[]): any {
+    for (const indexValue of index.flexibleRule.fromIndices) {
+      if (values[indexValue] != null) {
+        return this.valueByDataType(values[indexValue], this.getByIndex(index.flexibleRule.indicesDataTypes, indexValue));
+      }
+    }
+    return this.GLOBAL_DEFAULT_VALUE;
   }
 }
 

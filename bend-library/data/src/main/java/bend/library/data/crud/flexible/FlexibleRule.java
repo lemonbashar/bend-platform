@@ -23,7 +23,7 @@ public class FlexibleRule {
      * @return Flexible And rule
      */
     public static FlexibleRule and(int ...fromIndex) {
-        return new FlexibleRule(DataConstants.FlexibleRuleConstants.AND, fromIndex, null);
+        return new FlexibleRule(DataConstants.FlexibleRuleConstants.AND, fromIndex, new String[]{DataConstants.DataType.STRING, DataConstants.DataType.STRING});
     }
 
     /**
@@ -33,7 +33,7 @@ public class FlexibleRule {
      * @return Flexible Boolean Rule
      */
     public static FlexibleRule bool(int index, String valueWhenTrue, String valueWhenFalse) {
-        FlexibleRule flexibleRule = new FlexibleRule(DataConstants.FlexibleRuleConstants.BOOL, new int[]{index}, null );
+        FlexibleRule flexibleRule = new FlexibleRule(DataConstants.FlexibleRuleConstants.BOOL, new int[]{index}, new String[]{DataConstants.DataType.STRING, DataConstants.DataType.STRING} );
         flexibleRule.referenceValues = new String[]{valueWhenTrue, valueWhenFalse};
         return flexibleRule;
     }
