@@ -24,8 +24,8 @@ bend-platform:
                 jwt:
                     secret: ZDc4MzUyZjZjOGM2MTkzNjE1N2JjOTc0MzhiNGFkMGNlNTA0MzQ0YTJkMTVhM2JkMjI5NGIwM2Y4OGU4NjIxM2JmNTA4ZTg3YjI3ZDJiZGQwYzNmZmJhN2NjYTQ1NTllODNmOTJjOWNhODkzNDI1ZDFmYzkzMWEzYWYyMGZhNjA=
                     base64-secret: ZDc4MzUyZjZjOGM2MTkzNjE1N2JjOTc0MzhiNGFkMGNlNTA0MzQ0YTJkMTVhM2JkMjI5NGIwM2Y4OGU4NjIxM2JmNTA4ZTg3YjI3ZDJiZGQwYzNmZmJhN2NjYTQ1NTllODNmOTJjOWNhODkzNDI1ZDFmYzkzMWEzYWYyMGZhNjA=
-                    token-validity-in-seconds: 3600000
-                    token-validity-in-seconds-for-remember-me: 7200000
+                    token-validity-in-seconds: 900
+                    token-validity-in-seconds-for-remember-me: 1800
                     token-store-database:
 
             secure-channel: [dev, console]
