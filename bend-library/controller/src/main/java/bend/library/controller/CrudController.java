@@ -6,7 +6,7 @@ import bend.library.controller.util.ResponseType;
 import bend.library.controller.util.ResponseUtil;
 import bend.library.data.crud.BaseCrudData;
 import bend.library.data.crud.BaseCrudeViewData;
-import bend.library.data.crud.BaseFlexibleCrudeViewData;
+import bend.library.data.crud.flexible.BaseFlexibleCrudeViewData;
 import bend.library.data.response.BendStatus;
 import bend.library.data.response.IBendResponse;
 import bend.library.data.response.IDataResponse;

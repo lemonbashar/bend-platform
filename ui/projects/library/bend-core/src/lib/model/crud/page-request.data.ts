@@ -4,4 +4,8 @@ export class Page {
     public size?: number
   ) {
   }
+
+  public static defaultPage(): Page {
+    return new Page(0, 20);
+  }
 }

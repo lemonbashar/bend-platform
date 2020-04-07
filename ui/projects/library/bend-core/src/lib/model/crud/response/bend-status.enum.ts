@@ -3,3 +3,9 @@ export enum BendStatus {
   FAILURE,
   FORBIDDEN
 }
+
+export const BendStatusText = {
+  SUCCESS: 'SUCCESS',
+  FAILURE: 'FAILURE',
+  FORBIDDEN: 'FORBIDDEN'
+};

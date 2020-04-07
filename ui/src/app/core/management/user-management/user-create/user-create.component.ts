@@ -12,7 +12,7 @@ import {
   DataResponse,
   httpStatus,
   UserCrudData,
-  AuthorityCrudData
+  AuthorityCrudData, BendStatusText
 } from 'bend-core';
 import {configUserSettings} from '../../..';
 
@@ -56,7 +56,7 @@ export class UserCreateComponent implements OnInit {
     if (this.user.id != null) {
       this.accountService.update(this.user)
         .subscribe((res: HttpResponse<BendResponse>) => {
-          if (res.body.status === BendStatus.SUCCESS) {
+          if (res.body.status.toString() === BendStatusText.SUCCESS) {
             this.messageShow('User Successfully Updated', true);
           } else {
             this.messageShow('Error During Update User', false);

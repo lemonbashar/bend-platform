@@ -4,8 +4,10 @@ import {environment} from '../environments/environment';
 import {BaseCrudData, BaseCrudViewData} from '../model/crud/base-crud.data';
 import {BaseData} from '../model/base-data';
 import {BendResponse} from '../model/crud/response/bend-response.model';
-import {DataResponse} from '../model/crud/response/data-response.model';
+import {DataResponse, PageableDataResponse} from '../model/crud/response/data-response.model';
 import {Page} from '../model/crud/page-request.data';
+import {createRequestOption} from './util/create-request-option.util';
+import {BaseFlexibleCrudViewData} from '../model/crud/base-flexible-crud.data';
 
 export abstract class AbstractBaseService {
   protected PRIVATE_URL: string;
@@ -44,16 +46,22 @@ export class BaseService<R extends BaseCrudData, Domain extends BaseData> extend
     return this.http.put<BendResponse>(this.DEFAULT_URL, baseData, {observe: 'response'});
   }
 
-  public fetchAll(page?: Page): Observable<HttpResponse<DataResponse<BaseCrudViewData[]>>> {
-    return this.http.get<DataResponse<BaseCrudViewData[]>>(this.DEFAULT_URL, {observe: 'response'});
+  public fetchAll(page?: Page): Observable<HttpResponse<PageableDataResponse<BaseCrudViewData[]>>> {
+    const options = createRequestOption(page);
+    return this.http.get<PageableDataResponse<BaseCrudViewData[]>>(this.DEFAULT_URL, {params: options, observe: 'response'});
+  }
+
+  public fetchAllFlexible(page?: Page): Observable<HttpResponse<DataResponse<BaseFlexibleCrudViewData>>> {
+    const options = createRequestOption(page);
+    return this.http.get<DataResponse<BaseFlexibleCrudViewData>>(`${this.DEFAULT_URL}/flexible`, {params: options, observe: 'response'});
   }
 
   public delete(id: number): Observable<HttpResponse<BendResponse>> {
-    return this.http.delete<BendResponse>(this.DEFAULT_URL + `/${id}`, {observe: 'response'});
+    return this.http.delete<BendResponse>(`${this.DEFAULT_URL}/${id}`, {observe: 'response'});
   }
 
   public findOne(id: number | string): Observable<HttpResponse<DataResponse<R>>> {
-    return this.http.get<DataResponse<R>>(this.DEFAULT_URL + `/${id}`, {observe: 'response'});
+    return this.http.get<DataResponse<R>>( `${this.DEFAULT_URL}/${id}`, {observe: 'response'});
   }
 }
 

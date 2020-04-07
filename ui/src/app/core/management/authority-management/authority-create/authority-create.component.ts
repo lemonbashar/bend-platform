@@ -2,7 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {AuthorityService} from '../authority.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {AppUtilService, AuthorityCrudData, BendResponse, BendStatus, ConsoleService, httpStatus} from 'bend-core';
+import {
+  AppUtilService,
+  AuthorityCrudData,
+  BendResponse,
+  BendStatus,
+  BendStatusText,
+  ConsoleService,
+  httpStatus
+} from 'bend-core';
 
 @Component({
   selector: 'app-authority-create',
@@ -40,7 +48,7 @@ export class AuthorityCreateComponent implements OnInit {
   saveAuthority() {
     this.authorityService.save(this.authority)
       .subscribe((res: HttpResponse<BendResponse>) => {
-        if (res.body.status === BendStatus.SUCCESS) {
+        if (res.body.status.toString() === BendStatusText.SUCCESS) {
           this.consoleService.message('Authority Successfully Saved').goTo(['/management-dashboard/authority-dashboard']);
         } else {this.consoleService.message('Error During Save Authority'); }
       }, (error: HttpErrorResponse) => {

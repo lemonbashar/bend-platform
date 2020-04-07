@@ -93,6 +93,7 @@ export abstract class AbstractAuthenticationService implements AbstractAuthentic
   }
 
   refreshToken(token: string) {
+    this.deleteCookieByKey(environment.cookies.TOKEN);
     this.saveCookieByKey(environment.cookies.TOKEN, token);
   }
 

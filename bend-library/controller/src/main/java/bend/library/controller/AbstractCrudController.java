@@ -2,7 +2,7 @@ package bend.library.controller;
 
 import bend.library.data.crud.BaseCrudData;
 import bend.library.data.crud.BaseCrudeViewData;
-import bend.library.data.crud.BaseFlexibleCrudeViewData;
+import bend.library.data.crud.flexible.BaseFlexibleCrudeViewData;
 import bend.library.data.response.IBendResponse;
 import bend.library.data.response.IDataResponse;
 import bend.library.domain.entity.BaseEntity;
@@ -21,6 +21,7 @@ public abstract class AbstractCrudController<CrudData extends BaseCrudData, Doma
     public abstract ResponseEntity<? extends IBendResponse> save(Domain domain);
     public abstract ResponseEntity<? extends IBendResponse> update(Domain domain);
     public abstract ResponseEntity<? extends IDataResponse<CrudData>> findOne(BigInteger id);
+    @Deprecated
     public abstract ResponseEntity<? extends IDataResponse<List<BaseCrudeViewData>>> findAll(Pageable pageable);
     public abstract ResponseEntity<? extends IDataResponse<BaseFlexibleCrudeViewData>> findAllFlexible(Pageable pageable);
     public abstract ResponseEntity<? extends IBendResponse> delete(BigInteger id);

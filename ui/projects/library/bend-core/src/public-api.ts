@@ -10,6 +10,7 @@ export * from './lib/model/authority-crud.data';
 export * from './lib/model/account.model';
 
 export * from './lib/model/crud/base-crud.data';
+export * from './lib/model/crud/base-flexible-crud.data';
 export * from './lib/model/crud/page-request.data';
 export * from './lib/model/crud/response/bend-status.enum';
 export * from './lib/model/crud/response/bend-response.model';
@@ -34,9 +35,12 @@ export * from './lib/security/directive/bend-is-authenticated.directive';
 export * from './lib/security/directive/bend-has-any-authority.directive';
 
 
+export * from './lib/service/util/create-request-option.util';
 export * from './lib/service/base.service';
 export * from './lib/service/app-util-service';
 export * from './lib/service/fetch/sql-fetch-definition.service';
 export * from './lib/service/console/console.service';
+
+export * from './lib/compile/bend-flexible-compiler.service';
 
 export * from './lib/bend-core.module';

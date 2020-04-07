@@ -14,6 +14,5 @@ export class BmuDashboardComponent implements OnInit {
     const today = new Date();
     today.setMinutes(today.getMinutes() + 30);
   }
-
 }
 

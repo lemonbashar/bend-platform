@@ -26,7 +26,7 @@ public class UserRepositoryTest {
 
     @Test
     public void findAllFlexible() {
-        Page<Object> collection = userRepository.findAllFlexible(PageRequest.of(0, 6));
+        Page<Object[]> collection = userRepository.findAllFlexible(PageRequest.of(0, 6));
         assertNotNull(collection);
         assertNotNull(collection.getContent());
         assertNotNull(collection.getContent().get(0));

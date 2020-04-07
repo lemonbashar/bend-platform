@@ -34,6 +34,15 @@ export class BmuNavbarComponent implements OnInit {
             ]
           }
         ]
+      },
+      {
+        label: 'Administration',
+        items: [
+          {
+            label: 'User Management',
+            routerLink: 'user-mgt'
+          }
+        ]
       }
     ];
   }

@@ -21,14 +21,9 @@ export class RequestTokenInterceptor implements HttpInterceptor {
     }
     return next.handle(req).pipe(tap(evt => {
       if (evt instanceof HttpResponse) {
-        const REF_JWT_TOKEN = evt.headers.get(environment.jwt.REFRESHED_JSON_WEB_TOKEN);
-        if (REF_JWT_TOKEN == null) {
-          const JWT_TOKEN = evt.headers.get(environment.jwt.JSON_WEB_TOKEN);
-          if (JWT_TOKEN != null) {
-            this.authenticationService.refreshToken(JWT_TOKEN);
-          }
-        } else {
-          this.authenticationService.refreshToken(REF_JWT_TOKEN);
+        const JWT_TOKEN = evt.headers.get(environment.jwt.REFRESHED_JSON_WEB_TOKEN);
+        if (JWT_TOKEN != null) {
+          this.authenticationService.refreshToken(JWT_TOKEN);
         }
       }
     }));
