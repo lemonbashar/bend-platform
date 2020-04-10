@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthoritiesConstants, BendAuthenticationService, LogoutInfo} from 'bend-core';
-import {MenuItem} from 'primeng/api';
-import {DialogService} from 'primeng/dynamicdialog';
+import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {BendLoginDialogComponent} from 'bend-core-ui';
 
 @Component({
@@ -9,7 +8,8 @@ import {BendLoginDialogComponent} from 'bend-core-ui';
   templateUrl: './bmu-navbar.component.html'
 })
 export class BmuNavbarComponent implements OnInit {
-  items: MenuItem[];
+  isNavbarCollapsed: boolean;
+  private dialogRef: DynamicDialogRef;
   constructor(
     private authenticationService: BendAuthenticationService,
     public auth: AuthoritiesConstants,
@@ -17,38 +17,18 @@ export class BmuNavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.items = [
-      {
-        label: 'Bend-Platform',
-        items: [
-          {
-            label: 'Ficket-App', /*Ficket Web-App Page*/
-            items: [
-              {label: 'Ficket-Settings'}, /*Ficket settings mgt from Bend-Main*/
-            ]
-          },
-          {
-            label: 'Futel-App', /*Futel Web-App Page*/
-            items: [
-              {label: 'Futel-Settings'}, /*Ficket settings mgt from Bend-Main*/
-            ]
-          }
-        ]
-      },
-      {
-        label: 'Administration',
-        items: [
-          {
-            label: 'User Management',
-            routerLink: 'user-mgt'
-          }
-        ]
-      }
-    ];
+    this.isNavbarCollapsed = true;
+  }
+
+  toggleNavbar() {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }
 
   login() {
-    this.dialogService.open(BendLoginDialogComponent, {header: 'Login to Bend-Platform', width: '60%', closeOnEscape: false, closable: false, dismissableMask: false});
+    if (this.dialogRef != null) {
+      this.dialogRef.close();
+    }
+    this.dialogRef = this.dialogService.open(BendLoginDialogComponent, {header: 'Login to Bend-Platform', width: '60%', closeOnEscape: false, closable: false, dismissableMask: false});
   }
 
   logout() {
