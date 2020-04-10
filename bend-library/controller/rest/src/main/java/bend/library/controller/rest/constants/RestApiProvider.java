@@ -37,7 +37,11 @@ public class RestApiProvider {
         public static final String FIELD_EDIT = "/field-edit";
     }
 
-    public static class UserApi {
+    public static final class UserApi {
         public static final String USER_PRIVATE_ROOT_API = APiConstants.PRIVATE_ROOT + "/user";
+    }
+
+    public static final class SqlFetchApi {
+        public static final String SQL_FETCH_PRIVATE_ROOT = APiConstants.PRIVATE_ROOT + "/sql-fetch";
     }
 }

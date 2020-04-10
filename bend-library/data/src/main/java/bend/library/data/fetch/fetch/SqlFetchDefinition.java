@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -37,6 +38,7 @@ import java.util.List;
 public class SqlFetchDefinition extends FetchDefinition {
     private String[] columns;
     private String condition;
+    @NotNull
     private String alias = "model";
     private SqlJoin[] joins;
     private String orderBy;

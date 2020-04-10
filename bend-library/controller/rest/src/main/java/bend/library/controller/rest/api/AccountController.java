@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(RestApiProvider.AccountApi.ACCOUNT_ROOT_API)
-public class AccountControllerRest {
+public class AccountController {
     @GetMapping(RestApiProvider.AccountApi.CURRENT_ACCOUNT_INFO)
     public ResponseEntity<AccountInfo> currentAccount() {
         return ResponseUtil.of(SecurityUtil.accountInfo()).response(ResponseType::get);

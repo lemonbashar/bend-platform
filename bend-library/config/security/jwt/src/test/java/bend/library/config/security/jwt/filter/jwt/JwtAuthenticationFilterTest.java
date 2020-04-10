@@ -12,7 +12,7 @@ import bend.library.config.security.jwt.service.JwtAuthenticationServiceTest;
 import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.constant.ProfileConstants;
 import bend.library.constant.SecurityConstants;
-import bend.library.controller.rest.api.AccountControllerRest;
+import bend.library.controller.rest.api.AccountController;
 import bend.library.controller.rest.constants.RestApiProvider;
 import bend.library.data.AccountInfo;
 import bend.library.data.JwtAccountInfo;
@@ -43,7 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 @ActiveProfiles(profiles = {"test"})
 @TestPropertySource(locations = "classpath:config/application-test.yml")
-@SpringBootTest(classes = {WebConfigurer.class, JwtSecurityConfig.class, CommonSecurityConfig.class, PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class, AccountControllerRest.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = {WebConfigurer.class, JwtSecurityConfig.class, CommonSecurityConfig.class, PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class, AccountController.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 public class JwtAuthenticationFilterTest {
     @Autowired
@@ -86,7 +86,7 @@ public class JwtAuthenticationFilterTest {
 
     @Test
     void createAccount() throws Exception {
-        UserCrudData userData = new UserCrudData("lemon", "", "lemon@mail.com", "lemon1234", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
+        UserCrudData userData = new UserCrudData("lemon", "lemon@mail.com", "lemon1234", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
         MvcResult mvcResult = mockMvc.perform(post(RestApiProvider.build(RestApiProvider.AccountApi.ACCOUNT_PUBLIC_ROOT_API, RestApiProvider.AccountApi.CREATE_ACCOUNT)).contentType(MediaType.APPLICATION_JSON_VALUE).content(objectMapper.writeValueAsString(userData)).accept(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print()).andExpect(status().is(HttpStatus.OK.value())).andReturn();
         AccountInfo accountInfo = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), AccountInfo.class);
