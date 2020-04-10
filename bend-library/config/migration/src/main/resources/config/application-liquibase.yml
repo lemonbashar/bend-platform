@@ -1,7 +1,6 @@
 bend-platform:
     database:
         migration:
-            active: true
             liquibase:
                 migration-type: update
                 changelog-path: 'classpath:postgresql/liquibase-changelog.xml'

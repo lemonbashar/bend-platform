@@ -1,0 +1,67 @@
+#Enabled All Facilities for development, Testing & Debugging
+
+spring:
+    profiles:
+        include: testcommon, liquibase, mysql
+
+bend-platform:
+    settings:
+        security:
+            secret-key: ZDc4MzUyZjZjOGM2MTkzNjE1N2JjOTc0MzhiNGFkMGNlNTA0MzQ0YTJkMTVhM2JkMjI5NGIwM2Y4OGU4NjIxM2JmNTA4ZTg3YjI3ZDJiZGQwYzNmZmJhN2NjYTQ1NTllODNmOTJjOWNhODkzNDI1ZDFmYzkzMWEzYWYyMGZhNjA=
+            session-live-time: 20F
+            account:
+                password:
+                    recoverable: true
+                    recovery-timeout-minutes: 5
+                    recovery-code-length: 8
+            authentication:
+                maximum-live-session-count: 5
+                maximum-login-limit-in-day: 20
+                maximum-live-session-from-same-ip: 3
+                maximum-login-limit-in-month: 140
+                maximum-request-per-session: 2000
+                maximum-live-session-in-one-ip: 6
+                jwt:
+                    secret: ZDc4MzUyZjZjOGM2MTkzNjE1N2JjOTc0MzhiNGFkMGNlNTA0MzQ0YTJkMTVhM2JkMjI5NGIwM2Y4OGU4NjIxM2JmNTA4ZTg3YjI3ZDJiZGQwYzNmZmJhN2NjYTQ1NTllODNmOTJjOWNhODkzNDI1ZDFmYzkzMWEzYWYyMGZhNjA=
+                    base64-secret: ZDc4MzUyZjZjOGM2MTkzNjE1N2JjOTc0MzhiNGFkMGNlNTA0MzQ0YTJkMTVhM2JkMjI5NGIwM2Y4OGU4NjIxM2JmNTA4ZTg3YjI3ZDJiZGQwYzNmZmJhN2NjYTQ1NTllODNmOTJjOWNhODkzNDI1ZDFmYzkzMWEzYWYyMGZhNjA=
+                    token-validity-in-seconds: 900
+                    token-validity-in-seconds-for-remember-me: 1800
+                    token-store-database:
+
+            secure-channel: [dev, console]
+            public-servlet-prefixes:
+                - /public
+        mail:
+            host: smtp.gmail.com
+            port: 587
+            username: springboottest420@gmail.com
+            password: springboottest42kblkbl
+            protocol: smtp
+            debug: true
+            smtp:
+                auth: true
+                starttls-enable: true
+                ssl-trust: smtp.gmail.com
+        async:
+            core-pool-size: 8
+            max-pool-size: 50
+            queue-capacity: 1000
+            thread-name-prefix: spring-dev
+    database:
+        maximum-active-connection-size: 200
+        max-idle-connection-size: 100
+        min-idle-connection-size: 20
+        migration:
+            active: false
+        hibernate:
+            hbm2-ddl-auto: none
+            format-sql: true
+            comments: true
+            show-sql: true
+        jpa:
+            persistent-unit: BEND-PU
+    cache:
+        eh-cache:
+            max-local-heap-size: 20M
+server:
+    port: 8787
