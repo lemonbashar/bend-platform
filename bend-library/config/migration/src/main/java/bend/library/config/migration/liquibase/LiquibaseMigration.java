@@ -31,10 +31,6 @@ public class LiquibaseMigration extends AbstractLiquibaseMigration implements Da
     @Override
     public void migrate(List<DataSource> dataSources) {
         final Migration migration = properties.getDatabase().getMigration();
-        if (!migration.isActive()) {
-            log.info("Database Migration is-not active, Make it active to migrate.");
-            return;
-        }
         dataSources.forEach(dataSource -> {
             try (final Connection connection = dataSource.getConnection()) {
                 runChangelog(connection, migration.getLiquibase().changelogPath(), migration.getLiquibase().getTag(), migration.getLiquibase().getContexts());

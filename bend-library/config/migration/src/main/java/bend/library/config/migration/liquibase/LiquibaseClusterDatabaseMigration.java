@@ -28,10 +28,6 @@ public class LiquibaseClusterDatabaseMigration extends AbstractLiquibaseMigratio
     @Override
     public void migrate(final MigrationConfig migrationConfig, final List<DataSource> dataSources) {
         final Migration migration = properties.getDatabase().getMigration();
-        if (!migration.isActive()) {
-            log.info("Database Migration is-not active, Make it active to migrate.");
-            return;
-        }
         final LiquibaseProperties liquibaseProperties = extractProperties(migrationConfig.getMigrationProperties());
         for (DataSource dataSource : dataSources) {
             try (Connection connection = dataSource.getConnection()) {

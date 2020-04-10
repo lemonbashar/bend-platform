@@ -2,7 +2,7 @@
 
 spring:
     profiles:
-        include: testcommon, liquibase, mysql
+        include: testcommon, liquibase, postgre
 
 bend-platform:
     settings:

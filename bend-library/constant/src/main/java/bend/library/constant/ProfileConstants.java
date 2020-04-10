@@ -39,4 +39,9 @@ public final class ProfileConstants {
          */
         public static final String RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY = "ndb";
     }
+
+    public static final class Database {
+        public static final String POSTGRE = "postgre";
+        public static final String MYSQL = "mysql";
+    }
 }

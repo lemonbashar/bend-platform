@@ -2,6 +2,7 @@ package bend.library.config.security.registry.impl;
 
 import bend.library.config.security.registry.ClusterDatabaseRegistry;
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
+import bend.library.constant.ProfileConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @RequiredArgsConstructor
-@Profile("postgresql")
+@Profile(ProfileConstants.Database.POSTGRE)
 @Service
 public class StaticClusterDatabaseRegistry implements ClusterDatabaseRegistry {
     private static final int INDEX_WHEN_NO_USER_FOUND = 0;
@@ -21,6 +22,7 @@ public class StaticClusterDatabaseRegistry implements ClusterDatabaseRegistry {
             "bend-cluster-database-west"
     };
 
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     public String findAppropriateDatabase(@NotNull String value, @NotNull RegistryDetectionType detectionType) {
         switch (detectionType) {

@@ -1,0 +1,10 @@
+bend-platform:
+    database:
+        migration:
+            liquibase:
+                migration-type: update
+                changelog-path: 'classpath:liquibase/update/postgresql/liquibase-changelog.xml'
+                changelog-path-type: exact
+                recursive: false
+                include-files: true
+                include-directories: false

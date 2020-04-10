@@ -11,6 +11,8 @@ bend-platform:
             sql-fetch:
                 domain-packages: [bend.library.domain.entity, bend.library.domain.cluster.entity]
     database:
+        migration:
+            active: true
         hibernate:
             annotated-packages:
                 - bend.library.domain.cluster.entity
