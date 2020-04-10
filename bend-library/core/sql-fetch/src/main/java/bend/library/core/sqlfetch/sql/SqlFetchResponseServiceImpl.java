@@ -1,6 +1,7 @@
 package bend.library.core.sqlfetch.sql;
 
 import bend.library.config.el.SpringElEvaluator;
+import bend.library.constant.BaseConstants;
 import bend.library.constant.SpringElConstants;
 import bend.library.core.sqlfetch.RestrictionCheckerService;
 import bend.library.core.sqlfetch.SqlFetchService;
@@ -24,7 +25,7 @@ public class SqlFetchResponseServiceImpl implements SqlFetchService {
     private final @NonNull SpringElEvaluator springElEvaluator;
     private final @NonNull RestrictionCheckerService restrictionCheckerService;
 
-    @PersistenceContext
+    @PersistenceContext(unitName = BaseConstants.ROUTING_JPA_UNIT)
     private EntityManager entityManager;
 
     @Override

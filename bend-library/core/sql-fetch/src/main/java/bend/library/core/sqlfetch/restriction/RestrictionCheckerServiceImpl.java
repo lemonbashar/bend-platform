@@ -2,15 +2,14 @@ package bend.library.core.sqlfetch.restriction;
 
 import bend.framework.datastructure.collection.Stack;
 import bend.framework.datastructure.collection.impl.StackImpl;
-import bend.framework.properties.springproperties.SpringProperties;
 import bend.framework.reflex.ClassAccess;
 import bend.framework.reflex.FieldAccessor;
 import bend.framework.reflex.impl.ForceFieldAccessor;
 import bend.library.annotation.Restrictions;
 import bend.library.config.el.SpringElEvaluator;
+import bend.library.core.discovery.ClassDiscovery;
 import bend.library.core.sqlfetch.RestrictionCheckerService;
 import bend.library.core.sqlfetch.enumeretion.ValidateResult;
-import bend.library.core.sqlfetch.service.ClassDiscovery;
 import bend.library.data.fetch.fetch.SqlFetchDefinition;
 import bend.library.data.fetch.fetch.SqlJoin;
 import lombok.NonNull;
@@ -29,13 +28,12 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Service
 public class RestrictionCheckerServiceImpl implements RestrictionCheckerService {
-    private final @NonNull SpringProperties properties;
     private final @NonNull SpringElEvaluator springElEvaluator;
     private final @NonNull ClassDiscovery classDiscovery;
 
     @Override
     public boolean isAllow(final SqlFetchDefinition fetchDefinition) throws ClassNotFoundException {
-        Class clazz = classDiscovery.findClass(properties.getDatabase().getHibernate().getAnnotatedPackages(), fetchDefinition.getDomain());
+        Class<?> clazz = classDiscovery.findClass(fetchDefinition.getDomain());
         if (clazz == null) {
             throw new SecurityException("Sorry Your provided sql contain a data-model named[" + fetchDefinition.getDomain() + "] , which doesn't exist");
         }
@@ -45,8 +43,8 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
                 dependentAliasJoinMap.computeIfAbsent(sqlJoin.getDependentAlias(), k -> new ArrayList<>()).add(sqlJoin);
             }
         }
-        Map<Class, Boolean> permissionHistoryToSelectionFetch = new HashMap<>();
-        Map<Class, Boolean> permissionHistoryToFullyFetch = new HashMap<>();
+        Map<Class<?>, Boolean> permissionHistoryToSelectionFetch = new HashMap<>();
+        Map<Class<?>, Boolean> permissionHistoryToFullyFetch = new HashMap<>();
         Map<String, List<String>> aliasSelectColumnMap = new HashMap<>();
         for (String selectColumn : fetchDefinition.getColumns()) {
             String[] split = selectColumn.split("\\.");
@@ -65,7 +63,7 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
         return validateSqlModelClasses(clazz, dependentAliasJoinMap, aliasSelectColumnMap, fetchDefinition, permissionHistoryToSelectionFetch, permissionHistoryToFullyFetch);
     }
 
-    private void validateFullDomainAliasRequest(final Class clazz, Map<Class, Boolean> validateHistory, String alias) throws ClassNotFoundException {
+    private void validateFullDomainAliasRequest(final Class<?> clazz, Map<Class<?>, Boolean> validateHistory, String alias) throws ClassNotFoundException {
         if (validateHistory.containsKey(clazz) && !validateHistory.get(clazz))
             throw new SecurityException("The Sql contains an alias named:[" + alias + "] Which have some restricted field, or recursive restricted field so you can't fetch the full model rather then fetch without restricted fields.");
         ValidateResult val = hasPermissionToFullyFetch(clazz, validateHistory);
@@ -77,9 +75,9 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
         }
     }
 
-    private ValidateResult hasPermissionToFullyFetch(final Class clazz, Map<Class, Boolean> validateHistory) throws ClassNotFoundException {
+    private ValidateResult hasPermissionToFullyFetch(final Class<?> clazz, Map<Class<?>, Boolean> validateHistory) throws ClassNotFoundException {
         if (clazz.isAnnotationPresent(Restrictions.class)) {
-            Restrictions restrictions = (Restrictions) clazz.getAnnotation(Restrictions.class);
+            Restrictions restrictions = clazz.getAnnotation(Restrictions.class);
             boolean canFetch = springElEvaluator.evaluate(Boolean.class, restrictions.canFetch(), () -> false, null);
 
             String[] fields = springElEvaluator.evaluate(String[].class, restrictions.restrictedFields(), restrictions::restrictedFieldsIfErrorOccurred, null);
@@ -89,7 +87,7 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
             }
         }
         for (Field field : ClassAccess.getAllFields(clazz)) {
-            Class fClass = null;
+            Class<?> fClass = null;
             if (isListTypeRelation(field)) {
                 FieldAccessor fieldAccessor = new ForceFieldAccessor(field);
                 fClass = resolveClass(fieldAccessor.actualTypeParameters()[0].getTypeName());
@@ -107,7 +105,7 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
         return ValidateResult.NO_ERROR;
     }
 
-    private boolean validateSqlModelClasses(final Class clazz, Map<String, List<SqlJoin>> dependentAliasJoinMap, Map<String, List<String>> aliasSelectColumnMap, final SqlFetchDefinition fetchDefinition, Map<Class, Boolean> permissionHistoryToSelectionFetch, Map<Class, Boolean> permissionHistoryToFullFetch) throws ClassNotFoundException {
+    private boolean validateSqlModelClasses(final Class<?> clazz, Map<String, List<SqlJoin>> dependentAliasJoinMap, Map<String, List<String>> aliasSelectColumnMap, final SqlFetchDefinition fetchDefinition, Map<Class<?>, Boolean> permissionHistoryToSelectionFetch, Map<Class<?>, Boolean> permissionHistoryToFullFetch) throws ClassNotFoundException {
         for (String alias : aliasSelectColumnMap.keySet()) {
             if (!validateSqlModelClass(findClassFromAlias(clazz, alias, fetchDefinition.getAlias(), dependentAliasJoinMap), aliasSelectColumnMap.get(alias), permissionHistoryToSelectionFetch, permissionHistoryToFullFetch)) {
                 permissionHistoryToSelectionFetch.put(clazz, false);
@@ -118,12 +116,13 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
         return true;
     }
 
-    private boolean validateSqlModelClass(final Class clazz, List<String> selectionColumns, final Map<Class, Boolean> permissionHistoryToSelectionFetch, Map<Class, Boolean> permissionHistoryToFullyFetch) throws ClassNotFoundException {
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    private boolean validateSqlModelClass(final Class<?> clazz, List<String> selectionColumns, final Map<Class<?>, Boolean> permissionHistoryToSelectionFetch, Map<Class<?>, Boolean> permissionHistoryToFullyFetch) throws ClassNotFoundException {
         String[] restrictedFields = null;
         if (permissionHistoryToSelectionFetch.containsKey(clazz) && !permissionHistoryToSelectionFetch.get(clazz))
             return false;
         if (clazz.isAnnotationPresent(Restrictions.class)) {
-            Restrictions restrictions = (Restrictions) clazz.getAnnotation(Restrictions.class);
+            Restrictions restrictions = clazz.getAnnotation(Restrictions.class);
             if (!springElEvaluator.evaluate(Boolean.class, restrictions.canFetch(), () -> false, null)) {
                 permissionHistoryToSelectionFetch.put(clazz, false);
                 throw new SecurityException("The Entity Class:" + clazz.getSimpleName() + " has no permission to fetch for current user");
@@ -131,12 +130,12 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
             restrictedFields = springElEvaluator.evaluate(String[].class, restrictions.restrictedFields(), restrictions::restrictedFieldsIfErrorOccurred, null);
         }
 
-        Map<Class, List<String>> nextProvidedColumnMap = new HashMap<>();
+        Map<Class<?>, List<String>> nextProvidedColumnMap = new HashMap<>();
         for (String selectionColumn : selectionColumns) {
             String[] selectColumnsSplit = selectionColumn.split("\\.");
 
             Field field = ClassAccess.getField(clazz, selectColumnsSplit[0]);
-            Class fieldClass = null;
+            Class<?> fieldClass = null;
             if (isListTypeRelation(field)) {
                 FieldAccessor fieldAccessor = new ForceFieldAccessor(field);
                 fieldClass = resolveClass(fieldAccessor.actualTypeParameters()[0].getTypeName());
@@ -160,7 +159,7 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
                 throw new SecurityException("Sorry about your SQL ORM, here you provide, " + selectionColumn + " for model targeting:" + clazz.getSimpleName() + " Where it doesn't contain relation name:" + selectColumnsSplit[0]);
         }
 
-        for (Class nextProvidedClass : nextProvidedColumnMap.keySet()) {
+        for (Class<?> nextProvidedClass : nextProvidedColumnMap.keySet()) {
             if (!validateSqlModelClass(nextProvidedClass, nextProvidedColumnMap.get(nextProvidedClass), permissionHistoryToSelectionFetch, permissionHistoryToFullyFetch)) {
                 permissionHistoryToSelectionFetch.put(nextProvidedClass, false);
                 return false;
@@ -175,7 +174,7 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
         return false;
     }
 
-    private Class findClassFromAlias(final Class rootClazz, String aliasName, String rootAlias, Map<String, List<SqlJoin>> dependentAliasJoinMap) throws ClassNotFoundException {
+    private Class<?> findClassFromAlias(final Class<?> rootClazz, String aliasName, String rootAlias, Map<String, List<SqlJoin>> dependentAliasJoinMap) throws ClassNotFoundException {
         if (aliasName.equalsIgnoreCase(rootAlias))
             return rootClazz;
         SqlJoin desiredSqlJoin = findSqlJoinFromMap(dependentAliasJoinMap, aliasName);
@@ -192,7 +191,7 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
             desiredSqlJoin = sqlJoin;
         } while (true);
 
-        Class searchClass = rootClazz;
+        Class<?> searchClass = rootClazz;
         while (!stack.isEmpty()) {
             SqlJoin sqlJoin = stack.pop();
             Field field = ClassAccess.getField(searchClass, sqlJoin.getRelationName());
@@ -214,7 +213,7 @@ public class RestrictionCheckerServiceImpl implements RestrictionCheckerService 
         return field.isAnnotationPresent(ManyToOne.class);
     }
 
-    private Class resolveClass(String typeName) throws ClassNotFoundException {
+    private Class<?> resolveClass(String typeName) throws ClassNotFoundException {
         return Class.forName(typeName);
     }
 

@@ -5,6 +5,7 @@ import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.service.AuthenticationService;
 import bend.library.constant.ProfileConstants;
+import bend.library.core.CoreConfig;
 import bend.library.data.LoginInfo;
 import bend.library.data.fetch.fetch.FetchResponse;
 import bend.library.data.fetch.fetch.SqlFetchDefinition;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations = "classpath:config/application-test.yml")
-@SpringBootTest(classes = {PropertiesConfig.class, SqlFetchConfiguration.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = {PropertiesConfig.class, SqlFetchConfiguration.class, RdbmsJpaConfig.class, SecurityConfig.class, DomainConfig.class, CoreConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class SqlFetchServiceTest {
     @Autowired
     private SqlFetchService sqlFetchService;

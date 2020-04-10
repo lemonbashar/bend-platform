@@ -8,14 +8,15 @@ import java.util.function.Function;
 
 public class CustomUserDetailsExtractor<T> {
     private final CustomUserDetails customUserDetails;
-    private final List<T> tList = new ArrayList<>();
+    private final List<T> tList;
 
     public CustomUserDetailsExtractor(final CustomUserDetails customUserDetails, final Class<T> returnType) {
         this.customUserDetails = customUserDetails;
+        this.tList = new ArrayList<>();
     }
 
     public CustomUserDetailsExtractor<T> and(Function<CustomUserDetails, T> function) {
-        if (this.customUserDetails == null) return this;
+        if (this.customUserDetails == null || function.apply(this.customUserDetails) == null) return this;
         this.tList.add(function.apply(this.customUserDetails));
         return this;
     }
