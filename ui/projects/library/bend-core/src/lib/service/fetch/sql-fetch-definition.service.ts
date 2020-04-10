@@ -9,6 +9,6 @@ export class SqlFetchDefinitionService extends BaseFetchService<ISqlFetchDefinit
   constructor(
     http: HttpClient
   ) {
-    super('sql-fetch-definition', http);
+    super('/sql-fetch', http);
   }
 }
