@@ -1,5 +1,5 @@
-@import "lux/bootstrap.min.css";
-@import "lux/app-main.css";
+@import "cosmo/bootstrap.min.css";
+/*@import "lux/app-main.css";*/
 .card {
   position: relative;
   display: flex;
