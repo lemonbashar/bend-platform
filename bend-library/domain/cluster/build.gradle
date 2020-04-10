@@ -9,5 +9,6 @@ dependencyManagement {
 dependencies {
     testImplementation project(':bend-library:config:security:jwt')
     testImplementation project(':bend-library:core')
+    testImplementation project(':bend-library:domain')
     testImplementation project(':bend-library:core:pre-persist')
 }

@@ -10,15 +10,15 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @RequiredArgsConstructor
-@Profile("postgresql")
+@Profile("mysql")
 @Service
-public class StaticClusterDatabaseRegistry implements ClusterDatabaseRegistry {
+public class StaticClusterMysqlDatabaseRegistry implements ClusterDatabaseRegistry {
     private static final int INDEX_WHEN_NO_USER_FOUND = 0;
     private final int TOTAL_CLUSTER_DATABASE = 3;/*Now We going to use only 3 database*/
     private final String[] DATABASE_REGISTRY = {
-            "bend-cluster-database",
-            "bend-cluster-database-north",
-            "bend-cluster-database-west"
+            "bend_cluster_database",
+            "bend_cluster_database_north",
+            "bend_cluster_database_west"
     };
 
     @Override

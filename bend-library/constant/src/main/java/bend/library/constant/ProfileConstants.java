@@ -8,8 +8,6 @@ package bend.library.constant;
 public final class ProfileConstants {
     public static final String TEST = "test";
     public static final String TEST_USER = "tu";
-    public static final String NOT_TEST = "!test";
-    public static final String NOT_TEST_USER = "!tu";
     /**
      * Profile Development with no security applied
      */
