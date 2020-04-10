@@ -12,7 +12,7 @@ bend-platform:
                 domain-packages: [bend.library.domain.entity, bend.library.domain.cluster.entity]
     database:
         migration:
-            active: true
+            active: false
         hibernate:
             annotated-packages:
                 - bend.library.domain.cluster.entity

@@ -11,10 +11,11 @@ import {
   httpStatus,
   PageableDataResponse
 } from 'bend-core';
-import {BendToastService} from 'bend-core-ui';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {BendToastService} from '../message/bend-toast.service';
+import {BendUiModel} from '../ui-model/bend-ui-model';
 
-export class BmuAbstractListViewComponent<R extends BaseCrudData, Domain extends BaseData> implements OnInit {
+export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extends BaseData> implements OnInit {
   crudData: PageableDataResponse<BaseFlexibleCrudViewData>;
   private SUCCESS = 'Active Status Changed Successfully';
   private FAILED = 'Active Status Change Failed';
@@ -28,7 +29,8 @@ export class BmuAbstractListViewComponent<R extends BaseCrudData, Domain extends
     private toastService: BendToastService,
     private consoleService: ConsoleService,
     private appUtilService: AppUtilService,
-    private compiler: BendFlexibleCompilerService
+    private compiler: BendFlexibleCompilerService,
+    public uiModel: BendUiModel
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class BmuAbstractListViewComponent<R extends BaseCrudData, Domain extends
     this.crudService.fetchAllFlexible({page: this.pageCount, size: this.pageSize}).subscribe((res: HttpResponse<PageableDataResponse<BaseFlexibleCrudViewData>>) => {
       if (res.status === httpStatus.OK && res.body.status.toString() === BendStatusText.SUCCESS) {
         this.crudData = res.body;
+        this.crudData.data.columns.push(this.uiModel.tableStructure.actionColumn.title);
         this.load = true;
       } else {
         this.consoleService.error('Crud Data Fetch Problem');

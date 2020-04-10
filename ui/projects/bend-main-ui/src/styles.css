@@ -4,10 +4,10 @@
   float: right;
 }
 
-.left-gap {
-  margin-left: 30px;
+.element-zero-padding {
+  padding: 0 0 0 0;
 }
 
-.center-align {
+.element-center {
   text-align: center;
 }

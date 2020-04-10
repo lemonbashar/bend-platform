@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {BmuAbstractListViewComponent} from '../../bmu-abstract-list-view.component';
-import {AppUtilService, BaseService, BendFlexibleCompilerService, ConsoleService, UserCrudData} from 'bend-core';
-import {BendToastService} from 'bend-core-ui';
+import {AppUtilService, BendFlexibleCompilerService, ConsoleService, UserCrudData} from 'bend-core';
+import {BendAbstractListViewComponent, BendToastService} from 'bend-core-ui';
 import {BmuUserCrudService} from '../../../service/bmu-user-crud.service';
+import {bendUserUiModel} from './user-view-model';
 
 @Component({
   selector: 'main-profile-dashboard',
   templateUrl: '../../bmu-abstract-list-view.component.html'
 })
-export class BmuUserViewComponent extends BmuAbstractListViewComponent<UserCrudData, UserCrudData> implements OnInit {
+export class BmuUserViewComponent extends BendAbstractListViewComponent<UserCrudData, UserCrudData> implements OnInit {
 
   constructor(
     crudService: BmuUserCrudService,
@@ -17,7 +17,7 @@ export class BmuUserViewComponent extends BmuAbstractListViewComponent<UserCrudD
     appUtilService: AppUtilService,
     compiler: BendFlexibleCompilerService
   ) {
-    super(crudService, toastService, consoleService, appUtilService, compiler);
+    super(crudService, toastService, consoleService, appUtilService, compiler, bendUserUiModel);
   }
 
   ngOnInit(): void {
