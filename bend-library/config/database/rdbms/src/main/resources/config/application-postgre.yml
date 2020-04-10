@@ -2,7 +2,7 @@ bend-platform:
     database:
         database-type: POSTGRESQL
         host: localhost
-        schema: bend-platform
+        schema: bend_platform
         username: lemon
         password: lemon
         driver: org.postgresql.Driver

@@ -24,13 +24,10 @@ class DatabaseConfigServiceTest {
     @Autowired
     private DatabaseConfigService databaseConfigService;
     @Autowired
-    private AuthenticationService authenticationService;
-    @Autowired
     private DatabaseConfigRepository databaseConfigRepository;
 
     @Test
     void createDatabaseConfig() {
-        this.authenticationService.authenticate(LoginInfo.builder().username("system").password("system1234").build());
         databaseConfigRepository.findBySchema("bend-cluster-database").ifPresent(databaseConfigRepository::delete);
         databaseConfigRepository.findBySchema("bend-cluster-database-north").ifPresent(databaseConfigRepository::delete);
         databaseConfigRepository.findBySchema("bend-cluster-database-west").ifPresent(databaseConfigRepository::delete);

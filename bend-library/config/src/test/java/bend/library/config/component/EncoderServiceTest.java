@@ -30,4 +30,8 @@ class EncoderServiceTest {
         assertEquals(text, decoded);
     }
 
+    @Test
+    void encodePassword() {
+        System.out.println(this.encoderService.encode("lemon123!@#LEMON"));
+    }
 }

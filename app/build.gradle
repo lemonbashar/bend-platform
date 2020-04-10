@@ -29,7 +29,6 @@ dependencies {
     implementation project(':bend-library:controller')
     implementation project(':bend-library:controller:rest')
     implementation project(':bend-library:config:api-docs')
-    implementation "org.postgresql:postgresql:$postgreVersion"
 
     implementation 'org.springframework.boot:spring-boot-starter-security'
 

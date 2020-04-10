@@ -26,7 +26,6 @@ allprojects {
         testImplementation project(':bend-library:annotation:pre-persist-annotation')
         testImplementation project(':bend-library:config:database:rdbms')
         testImplementation project(':bend-library:config:security:jwt')
-        testRuntimeOnly "org.postgresql:postgresql:$postgreVersion"
     }
 }
 

@@ -22,9 +22,9 @@ public class ClasspathResourceAccessor implements ResourceAccessor {
     private static final String FILEPATH = "file:";
     private final @NonNull ClassLoader classLoader;
     private final Liquibase liquibase;
-    private ResourceAccessor classpathAccessor;
-    private ResourceAccessor fileAccessor;
-    private ResourceAccessor otherAccessor;
+    private final ResourceAccessor classpathAccessor;
+    private final ResourceAccessor fileAccessor;
+    private final ResourceAccessor otherAccessor;
 
     public ClasspathResourceAccessor(@NonNull ClassLoader classLoader, Liquibase liquibase) {
         this.classLoader = classLoader;
@@ -32,14 +32,6 @@ public class ClasspathResourceAccessor implements ResourceAccessor {
         this.classpathAccessor = new ClassLoaderResourceAccessor(classLoader);
         this.fileAccessor = new FileSystemResourceAccessor();
         this.otherAccessor = this.classpathAccessor;
-    }
-
-    public ClasspathResourceAccessor(@NonNull ClassLoader classLoader, Liquibase liquibase, ResourceAccessor otherAccessor) {
-        this.classLoader = classLoader;
-        this.liquibase = liquibase;
-        this.classpathAccessor = new ClassLoaderResourceAccessor(classLoader);
-        this.fileAccessor = new FileSystemResourceAccessor();
-        this.otherAccessor = otherAccessor;
     }
 
     @Override

@@ -33,7 +33,5 @@
         </rollback>
 
         <createSequence sequenceName="DB_CLUSTER_MIGRATION_CONFIG_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="2" minValue="1" />
-
-        <loadData tableName="DB_CLUSTER_MIGRATION_CONFIG" file="classpath:liquibase/data/db-cluster-migration-config/migration-config-update.csv" encoding="UTF-8" separator=","/>
     </changeSet>
 </databaseChangeLog>

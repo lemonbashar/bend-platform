@@ -5,3 +5,8 @@ dependencyManagement {
         mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
     }
 }
+
+dependencies {
+    runtimeOnly "org.postgresql:postgresql:$postgreVersion"
+    runtimeOnly "mysql:mysql-connector-java:$mysqlVersion"
+}

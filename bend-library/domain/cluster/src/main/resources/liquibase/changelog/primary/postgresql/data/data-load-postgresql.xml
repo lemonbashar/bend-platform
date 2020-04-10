@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet context="core" author="bend" id="1">
+        <loadData tableName="DB_CLUSTER_MIGRATION_CONFIG" file="classpath:liquibase/data/db-cluster-migration-config/migration-config-update.csv" encoding="UTF-8" separator=","/>
+        <loadData tableName="DB_CLUSTER_DATABASE_CONFIG" file="classpath:liquibase/data/db-cluster-database-config/database-config-update.csv" encoding="UTF-8" separator=","/>
+        <loadData tableName="DB_CLUSTER_JPA_PROPERTIES" file="classpath:liquibase/data/db-cluster-jpa-properties/jpa-properties-update.csv" encoding="UTF-8" separator=","/>
+        <loadData tableName="JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES" file="classpath:liquibase/data/jt-db-cluster-database-config-x-db-cluster-jpa-properties-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>

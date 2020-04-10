@@ -20,7 +20,6 @@ allprojects {
         testImplementation project(':bend-library:data')
         testImplementation project(':bend-library:config:database')
         testImplementation project(':bend-library:config:database:rdbms')
-        testRuntime "org.postgresql:postgresql:$postgreVersion"
     }
 }
 

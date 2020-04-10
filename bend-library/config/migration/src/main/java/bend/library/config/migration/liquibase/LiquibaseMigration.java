@@ -16,7 +16,7 @@ import java.util.List;
 
 @Log4j2
 @Profile(ProfileConstants.LIQUIBASE)
-@ConditionalOnProperty(value = "bend-platform.database.migration.active", havingValue = "false")
+@ConditionalOnProperty(value = "bend-platform.database.migration.active")
 @Configuration
 public class LiquibaseMigration extends AbstractLiquibaseMigration implements DatabaseMigration {
     public LiquibaseMigration(@NonNull SpringProperties properties) {

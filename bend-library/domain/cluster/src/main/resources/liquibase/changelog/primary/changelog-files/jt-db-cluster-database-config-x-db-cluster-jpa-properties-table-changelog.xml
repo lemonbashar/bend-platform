@@ -18,8 +18,5 @@
         <rollback>
             <dropTable tableName="JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES"/>
         </rollback>
-
-
-        <loadData tableName="JT_DB_CLUSTER_DATABASE_CONFIG_X_DB_CLUSTER_JPA_PROPERTIES" file="classpath:liquibase/data/jt-db-cluster-database-config-x-db-cluster-jpa-properties-update.csv" encoding="UTF-8" separator=","/>
     </changeSet>
 </databaseChangeLog>

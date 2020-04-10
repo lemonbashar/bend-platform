@@ -36,6 +36,7 @@ allprojects {
 		javaxServletVersion = '4.0.1'
 		swaggerUiVersion = '2.6.1'
 		postgreVersion = '42.2.2'
+		mysqlVersion = '8.0.19'
 		jwtLatest = '0.11.0'
 		aspectJVersion = '1.9.5'
 		liquibaseVersion = '3.8.5'

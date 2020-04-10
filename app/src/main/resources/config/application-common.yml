@@ -11,17 +11,6 @@ bend-platform:
             sql-fetch:
                 domain-packages: [bend.library.domain.entity, bend.library.domain.cluster.entity]
     database:
-        migration:
-            active: false
-            liquibase:
-                migration-type: update
-                changelog-path: 'classpath:liquibase-changelog.xml'
-                changelog-path-type: migration_type
-                # changelog-path-type: exact
-                recursive: false
-                include-files: true
-                include-directories: false
-
         hibernate:
             annotated-packages:
                 - bend.library.domain.cluster.entity
@@ -33,6 +22,8 @@ spring:
         enabled: true
     flyway:
         enabled: false
+    profiles:
+        include: actuator, api-docs
 server:
     servlet:
         context-path: /bend-main-app

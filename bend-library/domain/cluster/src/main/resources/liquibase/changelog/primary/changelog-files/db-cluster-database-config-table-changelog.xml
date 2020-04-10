@@ -51,7 +51,5 @@
                                  constraintName="FK_MIGRATION_CONFIG_2_DATABASE_CONFIG_MIGRATION_CONFIG_ID"
                                  referencedTableName="DB_CLUSTER_MIGRATION_CONFIG"
                                  referencedColumnNames="ID"/>
-
-        <loadData tableName="DB_CLUSTER_DATABASE_CONFIG" file="classpath:liquibase/data/db-cluster-database-config/database-config-update.csv" encoding="UTF-8" separator=","/>
     </changeSet>
 </databaseChangeLog>

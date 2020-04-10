@@ -7,4 +7,5 @@
     <include file="classpath:liquibase/changelog/primary/changelog-files/db-cluster-database-config-table-changelog.xml"/>
     <include file="classpath:liquibase/changelog/primary/changelog-files/db-cluster-jpa-properties-table-changelog.xml"/>
     <include file="classpath:liquibase/changelog/primary/changelog-files/jt-db-cluster-database-config-x-db-cluster-jpa-properties-table-changelog.xml"/>
+    <include file="classpath:liquibase/changelog/primary/mysql/data/data-load-mysql.xml"/>
 </databaseChangeLog>

@@ -1,0 +1,15 @@
+bend-platform:
+    database:
+        migration:
+            liquibase:
+                migration-type: update
+                changelog-path: 'classpath:mysql/liquibase-changelog.xml'
+                changelog-path-type: migration_type
+        database-type: MYSQL
+        host: localhost
+        schema: bend_platform
+        username: lemon
+        password: lemon123!@#LEMON
+        driver: com.mysql.jdbc.Driver
+        hibernate:
+            dialect: org.hibernate.dialect.MySQL57InnoDBDialect
