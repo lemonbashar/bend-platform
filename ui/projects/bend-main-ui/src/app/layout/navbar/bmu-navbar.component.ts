@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthoritiesConstants, BendAuthenticationService, LogoutInfo} from 'bend-core';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
-import {BendLoginDialogComponent} from 'bend-core-ui';
+import {BendLoginDialogComponent, BendToastService} from 'bend-core-ui';
 
 @Component({
   selector: 'main-navbar',
@@ -13,7 +13,8 @@ export class BmuNavbarComponent implements OnInit {
   constructor(
     private authenticationService: BendAuthenticationService,
     public auth: AuthoritiesConstants,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private bendToastService: BendToastService
   ) { }
 
   ngOnInit() {
@@ -33,5 +34,6 @@ export class BmuNavbarComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout(new LogoutInfo());
+    this.bendToastService.info('Logged Out');
   }
 }
