@@ -30,7 +30,7 @@ export class RouterActivateInterceptor implements CanActivate {
     const authorize = this.authenticationService.hasAnyAuthority(authorities);
     if (!authorize) {
       if (isDevMode()) {
-        console.error('User has not any of required authorities: ' + authorities);
+        console.error('User doesn\'t have any of required authorities: ' + authorities);
       } else {
         this.router.navigate(['accessdenied']);
       }

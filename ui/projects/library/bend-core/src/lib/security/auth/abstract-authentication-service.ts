@@ -153,7 +153,7 @@ export abstract class AbstractAuthenticationService implements AbstractAuthentic
     this.consoleService.message('Logout Success of User' + info.logoutRule);
   }
 
-  hasAnyAuthority(authorities: string[]) {
+  hasAnyAuthority(authorities: string[]): boolean {
     const grantedAuthorities: string[] = this.authorities();
     for (const auth of authorities) {
       if (grantedAuthorities.includes(auth)) { return true; }
