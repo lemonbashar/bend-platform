@@ -10,6 +10,7 @@ import {BendLoginDialogComponent, BendToastService} from 'bend-core-ui';
 export class BmuNavbarComponent implements OnInit {
   isNavbarCollapsed: boolean;
   private dialogRef: DynamicDialogRef;
+  public isAccountDropdownCollapsed: boolean;
   constructor(
     private authenticationService: BendAuthenticationService,
     public auth: AuthoritiesConstants,
@@ -19,6 +20,7 @@ export class BmuNavbarComponent implements OnInit {
 
   ngOnInit() {
     this.isNavbarCollapsed = true;
+    this.isAccountDropdownCollapsed = true;
   }
 
   toggleNavbar() {
@@ -35,5 +37,9 @@ export class BmuNavbarComponent implements OnInit {
   logout() {
     this.authenticationService.logout(new LogoutInfo());
     this.bendToastService.info('Logged Out');
+  }
+
+  toggleAccountDropdown() {
+    this.isAccountDropdownCollapsed = ! this.isAccountDropdownCollapsed;
   }
 }

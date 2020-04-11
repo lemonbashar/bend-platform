@@ -4,10 +4,12 @@ import {BmuFooterComponent, BmuNavbarComponent} from './layout';
 import {BmuDashboardComponent} from './layout/dashboard/bmu-dashboard.component';
 import {environment} from '../environments/environment';
 import {bmuNavbarRoute} from './layout/navbar/bmu-navbar.route';
+import {bmuSettingDashboardRoute} from './view/dashboard/bmu-setting-dashboard/bmu-setting-dashborad.route';
 
 const NAVBAR_LAYOUT_ROUTE = [...bmuNavbarRoute];
+const DASHBOARD_ROUTE = [...bmuSettingDashboardRoute];
 
-const routes: Routes = [...NAVBAR_LAYOUT_ROUTE];
+const routes: Routes = [...NAVBAR_LAYOUT_ROUTE, ...DASHBOARD_ROUTE];
 
 @NgModule({
   imports: [
