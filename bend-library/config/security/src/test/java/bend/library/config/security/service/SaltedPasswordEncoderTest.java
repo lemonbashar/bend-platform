@@ -25,8 +25,11 @@ class SaltedPasswordEncoderTest {
     @Test
     void encode() {
         System.out.println("SYSTEM:" + saltedPasswordEncoder.encode(SYSTEM_USER_PASSWORD, SYSTEM_USER_SALT));
+        System.out.println("SYSTEM:" + saltedPasswordEncoder.encode("system123", SYSTEM_USER_SALT));
         System.out.println("ADMIN:" + saltedPasswordEncoder.encode("admin1234", "admin"));
         System.out.println("USER_ADMIN:" + saltedPasswordEncoder.encode("user.admin1234", "user.admin"));
         System.out.println("SETTINGS_ADMIN:" + saltedPasswordEncoder.encode("settings.admin1234", "settings.admin"));
     }
+
+
 }

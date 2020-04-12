@@ -6,14 +6,12 @@
 
   <div class="collapse navbar-collapse" id="id-bmu-layout-nav-bar-list" [ngbCollapse]="isNavbarCollapsed">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" *bendHasAnyAuthority="auth.allAdmin()">
-        <a class="nav-link" routerLink="setting-dashboard">Settings</a>
-      </li>
     </ul>
     <div class="btn-group" *bendIsAuthenticated="'YES'" role="group">
       <button id="id-layout-navbar-account-dropdown-collapsable" (click)="toggleAccountDropdown()" type="button" class="btn btn-primary dropdown-toggle" data-toggle="accountMenuDropdown" aria-haspopup="true" aria-expanded="false"></button>
       <div class="dropdown-menu" [ngbCollapse]="isAccountDropdownCollapsed" aria-labelledby="id-layout-navbar-account-dropdown-collapsable">
-        <a class="dropdown-item" href="#">Profile</a>
+        <a class="dropdown-item text-link" (click)="go(['account-profile'])" >Profile</a>
+        <a *bendHasAnyAuthority="auth.superAdmin()" (click)="go(['setting-dashboard'])" class="dropdown-item text-link" >Settings</a>
       </div>
     </div>
     <form class="form-inline my-2 my-lg-0">

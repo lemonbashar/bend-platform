@@ -51,7 +51,7 @@ public class User extends BaseEntity<BigInteger> implements Serializable {
     @Column(name = "USERNAME", unique = true)
     private String username;
 
-    @Column(name = "PASSWORD", unique = true, length = 255, nullable = false)/*TODO: USE SALT TO UNIQUE THE PASSWORD*/
+    @Column(name = "PASSWORD", unique = true, length = 1024, nullable = false)/*TODO: USE SALT TO UNIQUE THE PASSWORD*/
     private String password;
 
     @Email

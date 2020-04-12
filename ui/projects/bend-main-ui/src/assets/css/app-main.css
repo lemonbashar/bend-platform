@@ -17,3 +17,7 @@
 .text-large {
   font-size: large
 }
+
+.text-link {
+  cursor: pointer;
+}

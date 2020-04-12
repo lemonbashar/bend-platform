@@ -9,6 +9,7 @@ import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
+import {HttpClientModule} from '@angular/common/http';
 
 const PRIME_NG_MODULES = [
   DynamicDialogModule,
@@ -28,7 +29,8 @@ const ENTRY_COMPONENTS = [BendLoginDialogComponent];
   declarations: [...COMPONENTS],
   imports: [
     ...LIBRARY_MODULE,
-    ...THIRD_PARTIES_MODULES
+    ...THIRD_PARTIES_MODULES,
+    HttpClientModule
   ],
   providers: [MessageService],
   exports: [],

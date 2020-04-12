@@ -19,6 +19,6 @@ public class CommonSecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y, new SecureRandom());
+        return new BCryptPasswordEncoder();
     }
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthoritiesConstants, BendAuthenticationService, LogoutInfo} from 'bend-core';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {BendLoginDialogComponent, BendToastService} from 'bend-core-ui';
+import {NavigationExtras, Router} from '@angular/router';
 
 @Component({
   selector: 'main-navbar',
@@ -15,7 +16,8 @@ export class BmuNavbarComponent implements OnInit {
     private authenticationService: BendAuthenticationService,
     public auth: AuthoritiesConstants,
     private dialogService: DialogService,
-    private bendToastService: BendToastService
+    private bendToastService: BendToastService,
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -36,10 +38,20 @@ export class BmuNavbarComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout(new LogoutInfo());
-    this.bendToastService.info('Logged Out');
+    this.bendToastService.infoBottomCenter('Logged Out');
   }
 
   toggleAccountDropdown() {
     this.isAccountDropdownCollapsed = ! this.isAccountDropdownCollapsed;
+  }
+
+  go(routerLink: string[], extras?: NavigationExtras) {
+    this.collapseAll();
+    this.route.navigate(routerLink, extras);
+  }
+
+  private collapseAll(): void {
+    this.isAccountDropdownCollapsed = true;
+    this.isNavbarCollapsed = true;
   }
 }
