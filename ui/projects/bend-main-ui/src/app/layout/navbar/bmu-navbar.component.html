@@ -12,6 +12,7 @@
       <div class="dropdown-menu" [ngbCollapse]="isAccountDropdownCollapsed" aria-labelledby="id-layout-navbar-account-dropdown-collapsable">
         <a class="dropdown-item text-link" (click)="go(['account-profile'])" >Profile</a>
         <a *bendHasAnyAuthority="auth.superAdmin()" (click)="go(['setting-dashboard'])" class="dropdown-item text-link" >Settings</a>
+        <a *bendHasAnyAuthority="auth.superAdmin()" (click)="go(['terminal-runner'])" class="dropdown-item text-link" >Terminal</a>
       </div>
     </div>
     <form class="form-inline my-2 my-lg-0">
