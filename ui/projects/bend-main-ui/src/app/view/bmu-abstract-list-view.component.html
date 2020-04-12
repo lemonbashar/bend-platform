@@ -15,8 +15,8 @@
       <td>
         <div class="row-cols-3">
           <button class="col-sm-4 btn btn-secondary"><i class="fa fa-eye"></i> {{uiModel.tableStructure.actionColumn.actionViewName}}</button>
-          <button class="col-sm-4 btn btn-primary"><i class="fa fa-pen"></i> {{uiModel.tableStructure.actionColumn.actionEditName}}</button>
-          <button class="col-sm-4 btn btn-danger"><i class="fa fa-trash"></i> {{uiModel.tableStructure.actionColumn.actionDeleteName}}</button>
+          <button [disabled]="uiModel.name == 'User' && rows[uiModel.tableStructure.actionColumn.actionDisableIndex] == 'system'" class="col-sm-4 btn btn-primary"><i class="fa fa-pen"></i> {{uiModel.tableStructure.actionColumn.actionEditName}}</button>
+          <button [disabled]="uiModel.name == 'User' && rows[uiModel.tableStructure.actionColumn.actionDisableIndex] == 'system'" class="col-sm-4 btn btn-danger"><i class="fa fa-trash"></i> {{uiModel.tableStructure.actionColumn.actionDeleteName}}</button>
         </div>
       </td>
     </tr>

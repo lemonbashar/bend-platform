@@ -17,4 +17,5 @@ export class ActionColumn {
   actionViewName = 'View';
   actionEditName = 'Edit';
   actionDeleteName = 'Delete';
+  actionDisableIndex = 0;
 }
