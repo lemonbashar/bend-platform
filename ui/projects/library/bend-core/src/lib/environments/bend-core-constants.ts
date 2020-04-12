@@ -3,7 +3,7 @@ export const commonResource = {
   CONTEXT: '/api/bend-main-app'
 };
 
-export const environment = {
+export const BendCoreConstants = {
   production: true,
   API_URL: commonResource.HOST_URL + commonResource.CONTEXT,
   DEBUG_ENABLE : true,

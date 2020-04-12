@@ -18,6 +18,7 @@ export class BmuUserViewComponent extends BendAbstractListViewComponent<UserCrud
     compiler: BendFlexibleCompilerService
   ) {
     super(crudService, toastService, consoleService, appUtilService, compiler, bendUserUiModel);
+    this.pageSize = 20;
   }
 
   ngOnInit(): void {

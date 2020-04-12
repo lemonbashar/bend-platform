@@ -1,6 +1,7 @@
 import {Routes} from '@angular/router';
 import {AuthoritiesConstants, RouterActivateInterceptor} from 'bend-core';
 import {BmuSettingDashboardComponent} from '../../view/dashboard/bmu-setting-dashboard/bmu-setting-dashboard.component';
+import {environment} from '../../../environments/environment';
 
 const auth = new AuthoritiesConstants();
 

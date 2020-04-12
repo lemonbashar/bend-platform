@@ -1,10 +1,10 @@
 import {Observable, Subject} from 'rxjs';
 import {BendAccountService} from './bend-account.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {environment} from '../../environments/environment';
 import {ConsoleService} from '../../service/console/console.service';
 import {AccountInfo, LoginInfo, LogoutInfo} from '../../model/account.model';
 import {httpStatus} from '../http/http-status';
+import {BendCoreConstants} from '../../environments/bend-core-constants';
 
 export interface IAuthenticationCallback {
   authenticationState(isAuthenticated: boolean, message?: string, error?: HttpErrorResponse): void;
@@ -84,21 +84,21 @@ export abstract class AbstractAuthenticationService implements AbstractAuthentic
   }
 
   protected saveToCookie(accountInfo: AccountInfo) {
-    this.saveCookieByKey(environment.cookies.AUTHENTICATION_STATE, JSON.stringify(accountInfo.authenticated));
-    this.saveCookieByKey(environment.cookies.TOKEN, accountInfo.token);
-    this.saveCookieByKey(environment.cookies.AUTHORITIES, JSON.stringify(accountInfo.authorities));
+    this.saveCookieByKey(BendCoreConstants.cookies.AUTHENTICATION_STATE, JSON.stringify(accountInfo.authenticated));
+    this.saveCookieByKey(BendCoreConstants.cookies.TOKEN, accountInfo.token);
+    this.saveCookieByKey(BendCoreConstants.cookies.AUTHORITIES, JSON.stringify(accountInfo.authorities));
     accountInfo.token = null;
     accountInfo.authorities = [];
-    this.saveCookieByKey(environment.cookies.ACCOUNT_INFO, JSON.stringify(accountInfo));
+    this.saveCookieByKey(BendCoreConstants.cookies.ACCOUNT_INFO, JSON.stringify(accountInfo));
   }
 
   refreshToken(token: string) {
-    this.deleteCookieByKey(environment.cookies.TOKEN);
-    this.saveCookieByKey(environment.cookies.TOKEN, token);
+    this.deleteCookieByKey(BendCoreConstants.cookies.TOKEN);
+    this.saveCookieByKey(BendCoreConstants.cookies.TOKEN, token);
   }
 
   retrieveAccountInfo(): Observable<AccountInfo> {
-    const cookie = this.retrieveCookieByKey(environment.cookies.ACCOUNT_INFO);
+    const cookie = this.retrieveCookieByKey(BendCoreConstants.cookies.ACCOUNT_INFO);
     if (cookie == null || cookie.length < 1) {
       this.accountService.accountInfo().subscribe((resp: HttpResponse<AccountInfo>) => {
         if (resp.status === httpStatus.OK) {
@@ -121,17 +121,17 @@ export abstract class AbstractAuthenticationService implements AbstractAuthentic
   }
 
   isAuthenticated(): boolean {
-    const cookie = this.retrieveCookieByKey(environment.cookies.AUTHENTICATION_STATE);
+    const cookie = this.retrieveCookieByKey(BendCoreConstants.cookies.AUTHENTICATION_STATE);
     if (cookie == null || cookie.length < 1 ) { return false; }
     return JSON.parse(cookie);
   }
 
   currentToken(): string {
-    return this.retrieveCookieByKey(environment.cookies.TOKEN);
+    return this.retrieveCookieByKey(BendCoreConstants.cookies.TOKEN);
   }
 
   authorities(): string[] {
-    const authorities = this.retrieveCookieByKey(environment.cookies.AUTHORITIES);
+    const authorities = this.retrieveCookieByKey(BendCoreConstants.cookies.AUTHORITIES);
     if (authorities == null || authorities.length < 1) { return []; }
     return JSON.parse(authorities);
   }
@@ -141,10 +141,10 @@ export abstract class AbstractAuthenticationService implements AbstractAuthentic
   }
 
   protected deleteCookie() {
-    this.deleteCookieByKey(environment.cookies.TOKEN);
-    this.deleteCookieByKey(environment.cookies.AUTHORITIES);
-    this.deleteCookieByKey(environment.cookies.ACCOUNT_INFO);
-    this.deleteCookieByKey(environment.cookies.AUTHENTICATION_STATE);
+    this.deleteCookieByKey(BendCoreConstants.cookies.TOKEN);
+    this.deleteCookieByKey(BendCoreConstants.cookies.AUTHORITIES);
+    this.deleteCookieByKey(BendCoreConstants.cookies.ACCOUNT_INFO);
+    this.deleteCookieByKey(BendCoreConstants.cookies.AUTHENTICATION_STATE);
   }
 
   logout(info: LogoutInfo) {

@@ -1,6 +1,5 @@
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '../environments/environment';
 import {BaseCrudData, BaseCrudViewData} from '../model/crud/base-crud.data';
 import {BaseData} from '../model/base-data';
 import {BendResponse} from '../model/crud/response/bend-response.model';
@@ -8,6 +7,7 @@ import {DataResponse, PageableDataResponse} from '../model/crud/response/data-re
 import {Page} from '../model/crud/page-request.data';
 import {createRequestOption} from './util/create-request-option.util';
 import {BaseFlexibleCrudViewData} from '../model/crud/base-flexible-crud.data';
+import {BendCoreConstants} from '../environments/bend-core-constants';
 
 export abstract class AbstractBaseService {
   protected PRIVATE_URL: string;
@@ -22,7 +22,7 @@ export abstract class AbstractBaseService {
     private readonly BASE_API_URL?: string
   ) {
     if (this.BASE_API_URL == null || this.BASE_API_URL.length < 1) {
-      this.BASE_API_URL = environment.API_URL;
+      this.BASE_API_URL = BendCoreConstants.API_URL;
     }
     this.PRIVATE_URL = this.BASE_API_URL + '/private' + this.BASE_URL;
     this.PRIVATE_ADMIN_URL = this.BASE_API_URL + '/private/admin' + this.BASE_URL;

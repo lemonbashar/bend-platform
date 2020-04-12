@@ -2,8 +2,6 @@
  * Public API Surface of bend-core
  */
 
-export * from './lib/environments/environment';
-
 export * from './lib/model/base-data';
 export * from './lib/model/user.data';
 export * from './lib/model/authority-crud.data';
