@@ -1,14 +1,2 @@
 /* You can add global styles to this file, and also import other style files */
-@import "assets/css/app-main.css";
-
-.element-right {
-  float: right;
-}
-
-.element-zero-padding {
-  padding: 0 0 0 0;
-}
-
-.element-center {
-  text-align: center;
-}
+@import "../../common-css/app-main.css";

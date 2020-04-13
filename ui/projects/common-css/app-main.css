@@ -17,3 +17,17 @@
 .text-link {
   cursor: pointer;
 }
+
+/*ELEMENT-STYLES*/
+
+.element-right {
+  float: right;
+}
+
+.element-zero-padding {
+  padding: 0 0 0 0;
+}
+
+.element-center {
+  text-align: center;
+}
