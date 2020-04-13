@@ -79,6 +79,10 @@
                 {
                   "replace": "projects/bend-main-ui/src/environments/environment.ts",
                   "with": "projects/bend-main-ui/src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "projects/bend-main-ui/src/index.html",
+                  "with": "projects/bend-main-ui/src/index.prod.html"
                 }
               ],
               "optimization": true,
