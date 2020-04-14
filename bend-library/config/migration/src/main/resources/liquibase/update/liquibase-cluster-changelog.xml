@@ -13,9 +13,13 @@
     <property name="localDate" value="date" dbms="postgresql"/>
     <property name="localDate" value="timestamp" dbms="mysql,mssql,oracle"/>
 
+    <property name="long" value="int" dbms="postgresql"/>
+    <property name="long" value="long" dbms="mysql"/>
+
 
     <!--All Essential's database script run-->
     <includeAll path="classpath:liquibase/changelog/cluster/primary" relativeToChangelogFile="false"/>
+    <includeAll path="classpath:liquibase/changelog/cluster/secondary" relativeToChangelogFile="false"/>
     <!--Run whose are depend's on primary scripts-->
 <!--    <includeAll path="classpath:liquibase/changelog/secondary" relativeToChangelogFile="false"/>-->
     <!--Run finally after all essentials primary and secondary while done-->

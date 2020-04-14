@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS DB_PLACE_THANA;</sql>
+        <createTable tableName="DB_PLACE_THANA">
+            <column name="ID" valueSequenceNext="DB_PLACE_THANA_SEQ" type="${bigInteger}">
+                <constraints primaryKey="true" primaryKeyName="PK_DB_PLACE_THANA"/>
+            </column>
+            <column name="CREATE_BY" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_BY" type="${bigInteger}"/>
+            <column name="UPDATE_DATE" type="${localDate}"/>
+            <column name="ACTIVE_STATUS" type="boolean"/>
+            <!--END-OF-COMMON_BASE-ENTITY-->
+
+            <column name="NAME" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DISTRICT_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="DB_PLACE_THANA"/>
+        </rollback>
+
+        <createSequence sequenceName="DB_PLACE_THANA_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="6" minValue="1" />
+
+        <addForeignKeyConstraint baseTableName="DB_PLACE_THANA" baseColumnNames="CREATE_BY"
+                                 constraintName="FK_BEND_USER_2_THANA_CREATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_PLACE_THANA" baseColumnNames="UPDATE_BY"
+                                 constraintName="FK_BEND_USER_2_THANA_UPDATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_PLACE_THANA" baseColumnNames="DISTRICT_ID"
+                                 constraintName="FK_DISTRICT_2_THANA_DISTRICT_ID"
+                                 referencedTableName="DB_PLACE_DISTRICT"
+                                 referencedColumnNames="ID"/>
+
+        <loadData tableName="DB_PLACE_THANA" file="classpath:liquibase/data/db-place-thana/thana-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>

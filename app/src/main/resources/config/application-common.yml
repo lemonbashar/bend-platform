@@ -9,10 +9,10 @@ bend-platform:
                 active: false
         utility:
             sql-fetch:
-                domain-packages: [bend.library.domain.entity, bend.library.domain.cluster.entity]
+                domain-packages: [bend.library.domain.entity, bend.library.domain.cluster.entity, bend.library.domain.place.entity]
     database:
         migration:
-            active: false
+            active: true
         hibernate:
             annotated-packages:
                 - bend.library.domain.cluster.entity

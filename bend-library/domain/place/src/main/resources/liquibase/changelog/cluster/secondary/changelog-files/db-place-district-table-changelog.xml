@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS DB_PLACE_DISTRICT;</sql>
+        <createTable tableName="DB_PLACE_DISTRICT">
+            <column name="ID" valueSequenceNext="DB_PLACE_DISTRICT_SEQ" type="${bigInteger}">
+                <constraints primaryKey="true" primaryKeyName="PK_DB_PLACE_DISTRICT"/>
+            </column>
+            <column name="CREATE_BY" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_BY" type="${bigInteger}"/>
+            <column name="UPDATE_DATE" type="${localDate}"/>
+            <column name="ACTIVE_STATUS" type="boolean"/>
+            <!--END-OF-COMMON_BASE-ENTITY-->
+
+            <column name="NAME" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DIVISION_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="DB_PLACE_DISTRICT"/>
+        </rollback>
+
+        <createSequence sequenceName="DB_PLACE_DISTRICT_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="65" minValue="1" />
+
+        <addForeignKeyConstraint baseTableName="DB_PLACE_DISTRICT" baseColumnNames="CREATE_BY"
+                                 constraintName="FK_BEND_USER_2_DISTRICT_CREATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_PLACE_DISTRICT" baseColumnNames="UPDATE_BY"
+                                 constraintName="FK_BEND_USER_2_DISTRICT_UPDATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_PLACE_DISTRICT" baseColumnNames="DIVISION_ID"
+                                 constraintName="FK_DIVISION_2_DISTRICT_DIVISION_ID"
+                                 referencedTableName="DB_PLACE_DIVISION"
+                                 referencedColumnNames="ID"/>
+        <loadData tableName="DB_PLACE_DISTRICT" file="classpath:liquibase/data/db-place-district/district-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>

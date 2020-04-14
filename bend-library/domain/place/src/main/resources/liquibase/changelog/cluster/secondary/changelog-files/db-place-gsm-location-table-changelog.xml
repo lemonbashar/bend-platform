@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS DB_PLACE_GSM_LOCATION;</sql>
+        <createTable tableName="DB_PLACE_GSM_LOCATION">
+            <column name="ID" valueSequenceNext="DB_PLACE_GSM_LOCATION_SEQ" type="${bigInteger}">
+                <constraints primaryKey="true" primaryKeyName="PK_DB_PLACE_GSM_LOCATION"/>
+            </column>
+            <column name="CREATE_BY" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_BY" type="${bigInteger}"/>
+            <column name="UPDATE_DATE" type="${localDate}"/>
+            <column name="ACTIVE_STATUS" type="boolean"/>
+            <!--END-OF-COMMON_BASE-ENTITY-->
+
+            <column name="LATITUDE" type="${long}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LONGITUDE" type="${long}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="APTITUDE" type="${long}"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="DB_PLACE_GSM_LOCATION"/>
+        </rollback>
+
+        <createSequence sequenceName="DB_PLACE_GSM_LOCATION_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="6" minValue="1" />
+
+        <addForeignKeyConstraint baseTableName="DB_PLACE_GSM_LOCATION" baseColumnNames="CREATE_BY"
+                                 constraintName="FK_BEND_USER_2_GSM_LOCATION_CREATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_PLACE_GSM_LOCATION" baseColumnNames="UPDATE_BY"
+                                 constraintName="FK_BEND_USER_2_GSM_LOCATION_UPDATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <loadData tableName="DB_PLACE_GSM_LOCATION" file="classpath:liquibase/data/db-place-gsm-location/gsm-location-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>
