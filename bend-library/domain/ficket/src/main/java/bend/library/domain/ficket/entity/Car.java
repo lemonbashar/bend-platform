@@ -5,7 +5,6 @@ import bend.library.annotation.prepersist.AutoActive;
 import bend.library.annotation.prepersist.AutoCreate;
 import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
-import bend.library.constant.SpringElConstants;
 import bend.library.domain.entity.BaseEntity;
 import bend.library.domain.ficket.enumeretion.CarType;
 import lombok.Getter;
@@ -19,7 +18,7 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @Setter
 @Getter
-@PrePersist(isUpdatable = SpringElConstants.User.WHEN_USER_IS_NOT_SYSTEM)
+@PrePersist
 @AutoActive
 @AutoUpdate
 @AutoCreate
