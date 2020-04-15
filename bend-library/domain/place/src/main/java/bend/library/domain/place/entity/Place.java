@@ -31,7 +31,7 @@ public class Place extends BaseEntity<BigInteger> implements Serializable {
     @SequenceGenerator(name = "PK_DB_PLACE_PLACE", sequenceName = "DB_PLACE_PLACE_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", length = 32)
     private String name;
 
     @JoinColumn(name = "THANA_ID")

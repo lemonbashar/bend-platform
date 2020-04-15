@@ -31,7 +31,7 @@ public class Thana extends BaseEntity<BigInteger> implements Serializable {
     @SequenceGenerator(name = "PK_DB_PLACE_THANA", sequenceName = "DB_PLACE_THANA_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", length = 32)
     private String name;
 
     @ManyToOne

@@ -31,7 +31,7 @@ public class TravelAgencies extends BaseEntity<BigInteger> implements Serializab
     @SequenceGenerator(name = "PK_DB_FICKET_TRAVEL_AGENCIES", sequenceName = "DB_FICKET_TRAVEL_AGENCIES_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "AGENCY_NAME")
+    @Column(name = "AGENCY_NAME", length = 32)
     private String agencyName;
 
     @OneToOne

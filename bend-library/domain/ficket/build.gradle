@@ -13,4 +13,5 @@ dependencies {
     testImplementation project(':bend-library:core:pre-persist')
 
     implementation project(':bend-library:domain')
+    implementation project(':bend-library:domain:place')
 }

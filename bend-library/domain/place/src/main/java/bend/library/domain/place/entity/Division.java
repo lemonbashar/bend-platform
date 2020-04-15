@@ -31,6 +31,6 @@ public class Division extends BaseEntity<BigInteger> implements Serializable {
     @SequenceGenerator(name = "PK_DB_PLACE_DIVISION", sequenceName = "DB_PLACE_DIVISION_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", length = 32)
     private String name;
 }
