@@ -8,4 +8,6 @@
     <include file="classpath:liquibase/changelog/cluster/secondary/changelog-files/db-place-thana-table-changelog.xml"/>
     <include file="classpath:liquibase/changelog/cluster/secondary/changelog-files/db-place-gsm-location-table-changelog.xml"/>
     <include file="classpath:liquibase/changelog/cluster/secondary/changelog-files/db-place-place-table-changelog.xml"/>
+
+    <includeAll path="classpath:liquibase/changelog/cluster/depends-on-place" relativeToChangelogFile="false"/>
 </databaseChangeLog>

@@ -31,13 +31,13 @@ public class CarConfig  extends BaseEntity<BigInteger> implements Serializable {
     @SequenceGenerator(name = "PK_DB_FICKET_CAR_CONFIG", sequenceName = "DB_FICKET_CAR_CONFIG_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "TICKET_PRICE")
+    @Column(name = "TICKET_PRICE", nullable = false)
     private Double ticketPrice;
 
     @ManyToMany
-    @JoinTable(name = "JT_DB_FICKET_CAR_CONFIG_X_DB_FICKET_RIDE_CONFIG")
+    @JoinTable(name = "JT_DB_FICKET_CAR_CONFIG_X_DB_FICKET_RIDE_CONFIG", uniqueConstraints = @UniqueConstraint(name = "CAR_CONFIG_ID_RIDE_CONFIG_ID_UNIQUE_KEY", columnNames = {"CAR_CONFIG_ID", "RIDE_CONFIG_ID"}), joinColumns = @JoinColumn(name = "CAR_CONFIG_ID", referencedColumnName = "ID", nullable = false), inverseJoinColumns = @JoinColumn(name = "RIDE_CONFIG_ID", referencedColumnName = "ID", nullable = false))
     private Set<RideConfig> rideConfigs;
 
-    @Column(name = "TOTAL_SEAT")
+    @Column(name = "TOTAL_SEAT", nullable = false)
     private Integer totalSeat;
 }

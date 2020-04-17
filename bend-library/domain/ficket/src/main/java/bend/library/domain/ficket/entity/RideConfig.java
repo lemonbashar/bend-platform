@@ -32,15 +32,27 @@ public class RideConfig  extends BaseEntity<BigInteger> implements Serializable 
     @SequenceGenerator(name = "PK_DB_FICKET_RIDE_CONFIG", sequenceName = "DB_FICKET_RIDE_CONFIG_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "START_TIME")
+    @Column(name = "NAME", length = 64, nullable = false)
+    private String name;
+
+    @Column(name = "DESCRIPTION", length = 1024, nullable = false)
+    private String description;
+
+    @Column(name = "START_TIME", nullable = false)
     private LocalTime startTime;
 
-    @Column(name = "FROM_PLACE")
+    @Column(name = "FROM_PLACE_ID", nullable = false)
     private Place fromPlace;
 
-    @Column(name = "REACH_TIME")
+    @Column(name = "REACH_TIME", nullable = false)
     private LocalTime reachTime;
 
-    @Column(name = "TO_PLACE")
+    @Column(name = "TO_PLACE_ID", nullable = false)
     private Place toPlace;
+
+    /**
+     * Time factor describe that, the car time to start and reach may be later or sooner than timeFactor
+     */
+    @Column(name = "TIME_FACTOR", nullable = false)
+    private LocalTime timeFactor;
 }

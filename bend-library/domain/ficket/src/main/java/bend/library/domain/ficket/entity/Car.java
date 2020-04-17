@@ -32,23 +32,23 @@ public class Car  extends BaseEntity<BigInteger> implements Serializable {
     @SequenceGenerator(name = "PK_DB_FICKET_CAR", sequenceName = "DB_FICKET_CAR_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "NAME", length = 64)
+    @Column(name = "NAME", length = 64, nullable = false)
     private String name;
 
     @Column(name = "LICENCE", length = 32)
     private String licence;
 
-    @Column(name = "NUMBER_PLATE", length = 32)
+    @Column(name = "NUMBER_PLATE", length = 32, nullable = false)
     private String numberPlate;
 
-    @Column(name = "CAR_TYPE", length = 32)
+    @Column(name = "CAR_TYPE", length = 16, nullable = false)
     @Enumerated(EnumType.STRING)
     private CarType carType;
     @ManyToOne
-    @JoinColumn(name = "TRAVEL_AGENCIES_ID")
-    private TravelAgencies travelAgencies;
+    @JoinColumn(name = "TRAVEL_AGENCY_ID", nullable = false)
+    private TravelAgency travelAgency;
 
     @ManyToOne
-    @JoinColumn(name = "CAR_CONFIG_ID")
+    @JoinColumn(name = "CAR_CONFIG_ID", nullable = false)
     private CarConfig carConfig;
 }

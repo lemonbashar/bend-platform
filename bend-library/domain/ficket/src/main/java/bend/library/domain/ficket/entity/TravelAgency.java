@@ -20,9 +20,9 @@ import java.math.BigInteger;
 @AutoActive
 @AutoUpdate
 @AutoCreate
-@Table(name = "DB_FICKET_TRAVEL_AGENCIES")
+@Table(name = "DB_FICKET_TRAVEL_AGENCY")
 @Entity
-public class TravelAgencies extends BaseEntity<BigInteger> implements Serializable {
+public class TravelAgency extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -30,7 +30,7 @@ public class TravelAgencies extends BaseEntity<BigInteger> implements Serializab
     @SequenceGenerator(name = "PK_DB_FICKET_TRAVEL_AGENCIES", sequenceName = "DB_FICKET_TRAVEL_AGENCIES_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "AGENCY_NAME", length = 32)
+    @Column(name = "AGENCY_NAME", length = 32, nullable = false)
     private String agencyName;
 
     @OneToOne

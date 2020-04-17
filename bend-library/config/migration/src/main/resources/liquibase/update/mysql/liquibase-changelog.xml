@@ -8,10 +8,16 @@
     <property name="now" value="sysdate" dbms="oracle"/>
 
     <property name="bigInteger" value="bigint" dbms="mysql,mssql,oracle"/>
-    <property name="bigInteger" value="numeric(19,2)" dbms="postgresql"/>
+    <property name="bigInteger" value="numeric(19,0)" dbms="postgresql"/>
 
     <property name="localDate" value="date" dbms="postgresql"/>
     <property name="localDate" value="timestamp" dbms="mysql,mssql,oracle"/>
+
+    <property name="doubleType" value="number(12,2)" dbms="mssql,oracle"/>
+    <property name="doubleType" value="numeric(12,2)" dbms="mysql,postgresql"/>
+
+    <property name="localTime" value="time" dbms="postgresql,mysql"/>
+    <property name="localTime" value="datetime" dbms="mssql,oracle"/>
 
     <!--All Essential's database script run-->
     <includeAll path="classpath:liquibase/changelog/primary/mysql" relativeToChangelogFile="false"/>

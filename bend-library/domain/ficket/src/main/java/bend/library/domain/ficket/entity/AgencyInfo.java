@@ -31,6 +31,6 @@ public class AgencyInfo  extends BaseEntity<BigInteger> implements Serializable 
     @SequenceGenerator(name = "PK_DB_FICKET_AGENCY_INFO", sequenceName = "DB_FICKET_AGENCY_INFO_SEQ", allocationSize = 1)
     private BigInteger id;
 
-    @Column(name = "HEAD_QUARTER")
+    @Column(name = "HEAD_QUARTER_ID", nullable = false)
     private Place headQuarter;
 }

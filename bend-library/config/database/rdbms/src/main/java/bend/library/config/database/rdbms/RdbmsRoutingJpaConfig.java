@@ -1,5 +1,7 @@
 package bend.library.config.database.rdbms;
 
+import bend.framework.base.lang.ArrayUtil;
+import bend.framework.base.util.BendOptional;
 import bend.framework.properties.springproperties.SpringProperties;
 import bend.framework.properties.springproperties.database.Database;
 import bend.library.config.database.RoutingDataSource;
@@ -14,7 +16,6 @@ import bend.library.domain.cluster.enumeretion.DatabasePropertyType;
 import bend.library.domain.cluster.repositories.DatabaseConfigRepository;
 import bend.library.domain.cluster.repositories.JpaPropertiesRepository;
 import com.zaxxer.hikari.HikariDataSource;
-import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -49,27 +50,41 @@ public class RdbmsRoutingJpaConfig {
     private final DatabaseConfigRepository databaseConfigRepository;
     private final ClusterDatabaseRegistry clusterDatabaseRegistry;
     private final JpaPropertiesRepository jpaPropertiesRepository;
+    private final SpringProperties properties;
 
-    public RdbmsRoutingJpaConfig(EncoderService encoderService, @Autowired(required = false) ClusterDatabaseMigration databaseMigration, DatabaseConfigRepository databaseConfigRepository, ClusterDatabaseRegistry clusterDatabaseRegistry, JpaPropertiesRepository jpaPropertiesRepository) {
+    public RdbmsRoutingJpaConfig(EncoderService encoderService, @Autowired(required = false) ClusterDatabaseMigration databaseMigration, DatabaseConfigRepository databaseConfigRepository, @Autowired(required = false) ClusterDatabaseRegistry clusterDatabaseRegistry, JpaPropertiesRepository jpaPropertiesRepository, SpringProperties properties) {
         this.encoderService = encoderService;
         this.databaseMigration = databaseMigration;
         this.databaseConfigRepository = databaseConfigRepository;
         this.clusterDatabaseRegistry = clusterDatabaseRegistry;
         this.jpaPropertiesRepository = jpaPropertiesRepository;
+        this.properties = properties;
     }
 
     @Bean(name = BaseConstants.ROUTING_DATASOURCE_NAME)
     public DataSource routingDataSource() {
-        RoutingDataSource routingDataSource = new RoutingDataSource(this.clusterDatabaseRegistry);
-        final Pack pack = findDataSources();
-        routingDataSource.setTargetDataSources(pack.dataSourceMap);
-        routingDataSource.setDefaultTargetDataSource(pack.dataSourceMap.get(clusterDatabaseRegistry.defaultDataSourceKey()));
+        DataSource routingDataSource = null;
+        Pack pack = null;
+        if (properties.getDatabase().getRoutingDatabase().isActiveAllRoute()) {
+            routingDataSource = new RoutingDataSource(this.clusterDatabaseRegistry);
+            pack = findDataSources();
+            ((RoutingDataSource)routingDataSource).setTargetDataSources(pack.dataSourceMap);
+            ((RoutingDataSource)routingDataSource).setDefaultTargetDataSource(pack.dataSourceMap.get(clusterDatabaseRegistry.defaultDataSourceKey()));
+
+        } else {
+            DatabaseConfig  databaseConfig = databaseConfigRepository.findBySchema(properties.getDatabase().getRoutingDatabase().getSingleRouteSchema())
+                    .orElseThrow(()->new RuntimeException("Can't find Single-Route Schema"));
+            routingDataSource = configHikariDataSource(databaseConfig);
+            Map<MigrationConfig, List<DataSource>> map = new HashMap<>();
+            map.put(databaseConfig.getMigrationConfig(), List.of(routingDataSource));
+            pack = new Pack(null, map);
+        }
+
         if (databaseMigration != null) {
             log.info("Migration profile(Liquibase/Flyway) is active, and starting migration...");
             pack.dataSourceMigrationMap.forEach(this.databaseMigration::migrate);
         } else
             log.info("Migration profile(Liquibase/Flyway) is not active. Cant not started migration");
-
         return routingDataSource;
     }
 
@@ -84,7 +99,9 @@ public class RdbmsRoutingJpaConfig {
     public LocalContainerEntityManagerFactoryBean localContainerEntityManager(@Qualifier(BaseConstants.ROUTING_DATASOURCE_NAME) DataSource dataSource, @Qualifier(BaseConstants.ROUTING_JPA_VENDOR_ADAPTER) JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        this.jpaPropertiesRepository.findByPropertyKeyAndActiveIsTrue(JPA_PROPS_ANNOTATED_PACKAGE).ifPresent(prop -> em.setPackagesToScan(prop.getPropertyValue().split(":")));
+        if(!properties.getDatabase().getRoutingDatabase().isActiveAllRoute() && ArrayUtil.hasData(properties.getDatabase().getRoutingDatabase().getAnnotatedPackages()))
+            em.setPackagesToScan(properties.getDatabase().getRoutingDatabase().getAnnotatedPackages());
+        else this.jpaPropertiesRepository.findByPropertyKeyAndActiveIsTrue(JPA_PROPS_ANNOTATED_PACKAGE).ifPresent(prop -> em.setPackagesToScan(prop.getPropertyValue().split(":")));
         em.setJpaVendorAdapter(jpaVendorAdapter);
         em.setPersistenceUnitName(BaseConstants.ROUTING_JPA_UNIT);
         em.setSharedCacheMode(SharedCacheMode.ALL);
@@ -150,7 +167,7 @@ public class RdbmsRoutingJpaConfig {
         return hikariDataSource;
     }
 
-    private class Pack {
+    private static class Pack {
         public Map<Object, Object> dataSourceMap;
         public Map<MigrationConfig, List<DataSource>> dataSourceMigrationMap;
 

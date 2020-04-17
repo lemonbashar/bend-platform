@@ -4,6 +4,7 @@ import bend.library.config.security.registry.ClusterDatabaseRegistry;
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
 import bend.library.constant.ProfileConstants;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @RequiredArgsConstructor
+@ConditionalOnProperty("bend-platform.database.routing-database.active-all-route")
 @Profile(ProfileConstants.Database.POSTGRE)
 @Service
 public class StaticClusterDatabaseRegistry implements ClusterDatabaseRegistry {
