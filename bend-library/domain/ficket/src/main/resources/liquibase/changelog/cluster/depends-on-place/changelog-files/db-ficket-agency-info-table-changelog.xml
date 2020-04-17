@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS DB_FICKET_AGENCY_INFO;</sql>
+        <createTable tableName="DB_FICKET_AGENCY_INFO">
+            <column name="ID" valueSequenceNext="DB_FICKET_AGENCY_INFO_SEQ" type="${bigInteger}">
+                <constraints primaryKey="true" primaryKeyName="PK_DB_FICKET_AGENCY_INFO"/>
+            </column>
+            <column name="CREATE_BY" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_BY" type="${bigInteger}"/>
+            <column name="UPDATE_DATE" type="${localDate}"/>
+            <column name="ACTIVE_STATUS" type="boolean"/>
+            <!--END-OF-COMMON_BASE-ENTITY-->
+
+            <column name="HEAD_QUARTER_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="DB_FICKET_AGENCY_INFO"/>
+        </rollback>
+
+        <createSequence sequenceName="DB_FICKET_AGENCY_INFO_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="1" minValue="1" />
+
+        <addForeignKeyConstraint baseTableName="DB_FICKET_AGENCY_INFO" baseColumnNames="CREATE_BY"
+                                 constraintName="FK_BEND_USER_2_AGENCY_INFO_CREATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_AGENCY_INFO" baseColumnNames="UPDATE_BY"
+                                 constraintName="FK_BEND_USER_2_AGENCY_INFO_UPDATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_AGENCY_INFO" baseColumnNames="HEAD_QUARTER_ID"
+                                 constraintName="FK_PLACE_2_AGENCY_INFO_HEAD_QUARTER_ID"
+                                 referencedTableName="DB_PLACE_PLACE"
+                                 referencedColumnNames="ID"/>
+        <loadData tableName="DB_FICKET_AGENCY_INFO" file="classpath:liquibase/data/db-ficket-agency-info/agency-info-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>

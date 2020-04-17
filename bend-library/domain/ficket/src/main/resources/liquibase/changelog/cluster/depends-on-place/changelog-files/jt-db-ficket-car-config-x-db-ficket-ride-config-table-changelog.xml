@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS JT_DB_FICKET_CAR_CONFIG_X_DB_FICKET_RIDE_CONFIG;</sql>
+        <createTable tableName="JT_DB_FICKET_CAR_CONFIG_X_DB_FICKET_RIDE_CONFIG">
+            <column name="CAR_CONFIG_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RIDE_CONFIG_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="JT_DB_FICKET_CAR_CONFIG_X_DB_FICKET_RIDE_CONFIG"
+                             columnNames="CAR_CONFIG_ID,RIDE_CONFIG_ID" constraintName="CAR_CONFIG_ID_RIDE_CONFIG_ID_UNIQUE_KEY"/>
+        <rollback>
+            <dropTable tableName="JT_DB_FICKET_CAR_CONFIG_X_DB_FICKET_RIDE_CONFIG"/>
+        </rollback>
+
+        <addForeignKeyConstraint baseTableName="JT_DB_FICKET_CAR_CONFIG_X_DB_FICKET_RIDE_CONFIG" baseColumnNames="CAR_CONFIG_ID"
+                                 constraintName="FK_CAR_CONFIG_2_JT_CAR_CONFIG_X_RIDE_CONFIG"
+                                 referencedTableName="DB_FICKET_CAR_CONFIG"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="JT_DB_FICKET_CAR_CONFIG_X_DB_FICKET_RIDE_CONFIG" baseColumnNames="RIDE_CONFIG_ID"
+                                 constraintName="FK_RIDE_CONFIG_2_JT_CAR_CONFIG_X_RIDE_CONFIG"
+                                 referencedTableName="DB_FICKET_RIDE_CONFIG"
+                                 referencedColumnNames="ID"/>
+        <loadData tableName="JT_DB_FICKET_CAR_CONFIG_X_DB_FICKET_RIDE_CONFIG" file="classpath:liquibase/data/jt-db-ficket-car-config-x-db-ficket-ride-config-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>

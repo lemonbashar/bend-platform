@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS DB_FICKET_CAR;</sql>
+        <createTable tableName="DB_FICKET_CAR">
+            <column name="ID" valueSequenceNext="DB_FICKET_CAR_SEQ" type="${bigInteger}">
+                <constraints primaryKey="true" primaryKeyName="PK_DB_FICKET_CAR"/>
+            </column>
+            <column name="CREATE_BY" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_BY" type="${bigInteger}"/>
+            <column name="UPDATE_DATE" type="${localDate}"/>
+            <column name="ACTIVE_STATUS" type="boolean"/>
+            <!--END-OF-COMMON_BASE-ENTITY-->
+
+            <column name="NAME" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LICENCE" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NUMBER_PLATE" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CAR_TYPE" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TRAVEL_AGENCY_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CAR_CONFIG_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="DB_FICKET_CAR"/>
+        </rollback>
+
+        <createSequence sequenceName="DB_FICKET_CAR_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="1" minValue="1" />
+
+        <addForeignKeyConstraint baseTableName="DB_FICKET_CAR" baseColumnNames="CREATE_BY"
+                                 constraintName="FK_BEND_USER_2_CAR_CREATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_CAR" baseColumnNames="UPDATE_BY"
+                                 constraintName="FK_BEND_USER_2_CAR_UPDATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_CAR" baseColumnNames="CAR_CONFIG_ID"
+                                 constraintName="FK_CAR_CONFIG_2_CAR_CAR_CONFIG_ID"
+                                 referencedTableName="DB_FICKET_CAR_CONFIG"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_CAR" baseColumnNames="TRAVEL_AGENCY_ID"
+                                 constraintName="FK_TRAVEL_AGENCY_2_CAR_TRAVEL_AGENCY_ID"
+                                 referencedTableName="DB_FICKET_TRAVEL_AGENCY"
+                                 referencedColumnNames="ID"/>
+        <loadData tableName="DB_FICKET_CAR" file="classpath:liquibase/data/db-ficket-car/car-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>

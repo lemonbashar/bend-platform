@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+dependencies {
+    implementation project(':bend-library:config:admin-actuate')
+    implementation project(':bend-library:config:migration')
+    implementation project(':bend-library:config:database')
+    implementation project(':bend-library:config:database:rdbms')
+    implementation project(':bend-library:domain')
+    implementation project(':bend-library:domain:cluster')
+    implementation project(':bend-library:domain:place')
+    implementation project(':bend-library:domain:ficket')
+    implementation project(':bend-library:core:pre-persist')
+    implementation project(':bend-library:core')
+    implementation project(':bend-library:config:security')
+    implementation project(':bend-library:config:security:jwt')
+    implementation project(':bend-library:controller')
+    implementation project(':bend-library:controller:rest')
+    implementation project(':bend-library:config:api-docs')
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    /*Clouds*/
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}

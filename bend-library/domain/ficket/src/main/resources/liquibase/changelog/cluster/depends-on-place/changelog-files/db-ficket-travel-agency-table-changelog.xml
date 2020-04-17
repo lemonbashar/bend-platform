@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS DB_FICKET_TRAVEL_AGENCY;</sql>
+        <createTable tableName="DB_FICKET_TRAVEL_AGENCY">
+            <column name="ID" valueSequenceNext="DB_FICKET_TRAVEL_AGENCY_SEQ" type="${bigInteger}">
+                <constraints primaryKey="true" primaryKeyName="PK_DB_FICKET_TRAVEL_AGENCY"/>
+            </column>
+            <column name="CREATE_BY" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_BY" type="${bigInteger}"/>
+            <column name="UPDATE_DATE" type="${localDate}"/>
+            <column name="ACTIVE_STATUS" type="boolean"/>
+            <!--END-OF-COMMON_BASE-ENTITY-->
+
+            <column name="AGENCY_NAME" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AGENCY_INFO_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="DB_FICKET_TRAVEL_AGENCY"/>
+        </rollback>
+
+        <createSequence sequenceName="DB_FICKET_TRAVEL_AGENCY_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="1" minValue="1" />
+
+        <addForeignKeyConstraint baseTableName="DB_FICKET_TRAVEL_AGENCY" baseColumnNames="CREATE_BY"
+                                 constraintName="FK_BEND_USER_2_TRAVEL_AGENCY_CREATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_TRAVEL_AGENCY" baseColumnNames="UPDATE_BY"
+                                 constraintName="FK_BEND_USER_2_TRAVEL_AGENCY_UPDATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_TRAVEL_AGENCY" baseColumnNames="AGENCY_INFO_ID"
+                                 constraintName="FK_AGENCY_INFO_2_TRAVEL_AGENCY_AGENCY_INFO_ID"
+                                 referencedTableName="DB_FICKET_AGENCY_INFO"
+                                 referencedColumnNames="ID"/>
+        <loadData tableName="DB_FICKET_TRAVEL_AGENCY" file="classpath:liquibase/data/db-ficket-travel-agency/travel-agency-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,41 @@
+bend-platform:
+    settings:
+        general:
+            name: Bend-Main-App
+            version: V-1.0.2-Micro-Service
+            description: A Microservice Platform, which contains a service registry a gateway and some flexible pluggable applications module.
+        security:
+            cors:
+                active: false
+        utility:
+            sql-fetch:
+                domain-packages: [bend.library.domain.entity, bend.library.domain.cluster.entity, bend.library.domain.place.entity]
+    database:
+        routing-database:
+            active: true
+            active-all-route: false
+            single-route-schema: bend-cluster-database-ficket
+            annotated-packages: [bend.library.domain.entity, bend.library.domain.place.entity, bend.library.domain.ficket.entity]
+        migration:
+            active: true
+        hibernate:
+            annotated-packages:
+                - bend.library.domain.cluster.entity
+        jpa:
+            repository-locations:
+                - bend.library.domain.cluster.repositories
+spring:
+    liquibase:
+        enabled: true
+    flyway:
+        enabled: false
+    profiles:
+        include: actuator, api-docs
+server:
+    servlet:
+        context-path: /bend-main-app
+info:
+    app:
+        name: Bend-Main-Application
+        description: Bend-Platform-Application[Microservice-Main-Application]. A Highly Scallable Microservice Application.
+        version: 1.0.2-microservice

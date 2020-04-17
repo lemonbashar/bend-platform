@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet context="core" author="bend" id="1">
+        <sql>DROP TABLE IF EXISTS DB_FICKET_RIDE_CONFIG;</sql>
+        <createTable tableName="DB_FICKET_RIDE_CONFIG">
+            <column name="ID" valueSequenceNext="DB_FICKET_RIDE_CONFIG_SEQ" type="${bigInteger}">
+                <constraints primaryKey="true" primaryKeyName="PK_DB_FICKET_RIDE_CONFIG"/>
+            </column>
+            <column name="CREATE_BY" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DATE" type="${localDate}" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_BY" type="${bigInteger}"/>
+            <column name="UPDATE_DATE" type="${localDate}"/>
+            <column name="ACTIVE_STATUS" type="boolean"/>
+            <!--END-OF-COMMON_BASE-ENTITY-->
+
+            <column name="NAME" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="START_TIME" type="${localTime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FROM_PLACE_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REACH_TIME" type="${localTime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TO_PLACE_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TIME_FACTOR" type="${localTime}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="DB_FICKET_RIDE_CONFIG"/>
+        </rollback>
+
+        <createSequence sequenceName="DB_FICKET_RIDE_CONFIG_SEQ" incrementBy="1" maxValue="9223372036854775807" startValue="1" minValue="1" />
+
+        <addForeignKeyConstraint baseTableName="DB_FICKET_RIDE_CONFIG" baseColumnNames="CREATE_BY"
+                                 constraintName="FK_BEND_USER_2_RIDE_CONFIG_CREATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_RIDE_CONFIG" baseColumnNames="UPDATE_BY"
+                                 constraintName="FK_BEND_USER_2_RIDE_CONFIG_UPDATE_BY"
+                                 referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_RIDE_CONFIG" baseColumnNames="FROM_PLACE_ID"
+                                 constraintName="FK_PLACE_2_RIDE_CONFIG_FROM_PLACE_ID"
+                                 referencedTableName="DB_PLACE_PLACE"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_RIDE_CONFIG" baseColumnNames="TO_PLACE_ID"
+                                 constraintName="FK_PLACE_2_RIDE_CONFIG_TO_PLACE_ID"
+                                 referencedTableName="DB_PLACE_PLACE"
+                                 referencedColumnNames="ID"/>
+        <loadData tableName="DB_FICKET_RIDE_CONFIG" file="classpath:liquibase/data/db-ficket-ride-config/ride-config-update.csv" encoding="UTF-8" separator=","/>
+    </changeSet>
+</databaseChangeLog>
