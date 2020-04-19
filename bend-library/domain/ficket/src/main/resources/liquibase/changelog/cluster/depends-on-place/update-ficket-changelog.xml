@@ -10,4 +10,5 @@
     <include file="classpath:liquibase/changelog/cluster/depends-on-place/changelog-files/db-ficket-car-config-table-changelog.xml"/>
     <include file="classpath:liquibase/changelog/cluster/depends-on-place/changelog-files/jt-db-ficket-car-config-x-db-ficket-ride-config-table-changelog.xml"/>
     <include file="classpath:liquibase/changelog/cluster/depends-on-place/changelog-files/db-ficket-car-table-changelog.xml"/>
+    <include file="classpath:liquibase/changelog/cluster/depends-on-place/changelog-files/db-ficket-ticket-table-changelog.xml"/>
 </databaseChangeLog>

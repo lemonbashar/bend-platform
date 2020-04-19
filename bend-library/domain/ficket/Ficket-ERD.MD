@@ -8,3 +8,11 @@
     *   REWARDS
 *   TRAVEL-AGENCIES
     *   CAR
+
+# Ticket Seat Plan
+In Seat plan, a seat plan is simply a String sequence and from sequence you can view seat-plan by executing
+
+```javadoc
+    SeatService.printSeatConfig()
+```
+
