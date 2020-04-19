@@ -9,7 +9,6 @@ import bend.library.config.security.SecurityConfig;
 import bend.library.config.security.jwt.JwtSecurityConfig;
 import bend.library.constant.ProfileConstants;
 import bend.library.controller.ControllerConfig;
-import bend.library.controller.rest.RestConfig;
 import bend.library.core.CoreConfig;
 import bend.library.core.prepersist.PrePersistConfiguration;
 import bend.library.domain.DomainConfig;
@@ -46,7 +45,7 @@ import java.util.Collection;
         WebConfigurer.class,
         SecurityConfig.class,
         ClusterDomainConfig.class,
-        JwtSecurityConfig.class, ControllerConfig.class, RestConfig.class, ActuateConfig.class},
+        JwtSecurityConfig.class, ControllerConfig.class, ActuateConfig.class},
         exclude = {DataSourceAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class, HibernateJpaAutoConfiguration.class, LiquibaseAutoConfiguration.class})
 public class FicketApplication {
 

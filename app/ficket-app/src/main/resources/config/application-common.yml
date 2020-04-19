@@ -9,7 +9,7 @@ bend-platform:
                 active: false
         utility:
             sql-fetch:
-                domain-packages: [bend.library.domain.entity, bend.library.domain.cluster.entity, bend.library.domain.place.entity]
+                domain-packages: [bend.library.domain.cluster.entity, bend.library.domain.place.entity]
     database:
         routing-database:
             active: true
@@ -33,7 +33,7 @@ spring:
         include: actuator, api-docs
 server:
     servlet:
-        context-path: /bend-main-app
+        context-path: /bend-ficket-app
 info:
     app:
         name: Bend-Main-Application

@@ -1,7 +1,6 @@
 package bend.library.domain.repositories;
 
 import bend.library.data.crud.BaseCrudeViewData;
-import bend.library.domain.data.UserCrudData;
 import bend.library.domain.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
-import java.util.Collection;
 import java.util.Optional;
 
 /**

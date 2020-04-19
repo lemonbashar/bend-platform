@@ -12,6 +12,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -36,8 +37,12 @@ public class CarConfig  extends BaseEntity<BigInteger> implements Serializable {
 
     @ManyToMany
     @JoinTable(name = "JT_DB_FICKET_CAR_CONFIG_X_DB_FICKET_RIDE_CONFIG", uniqueConstraints = @UniqueConstraint(name = "CAR_CONFIG_ID_RIDE_CONFIG_ID_UNIQUE_KEY", columnNames = {"CAR_CONFIG_ID", "RIDE_CONFIG_ID"}), joinColumns = @JoinColumn(name = "CAR_CONFIG_ID", referencedColumnName = "ID", nullable = false), inverseJoinColumns = @JoinColumn(name = "RIDE_CONFIG_ID", referencedColumnName = "ID", nullable = false))
-    private Set<RideConfig> rideConfigs;
+    private Set<RideConfig> rideConfigs = new HashSet<>();
 
     @Column(name = "TOTAL_SEAT", nullable = false)
     private Integer totalSeat;
+
+    @ManyToOne
+    @JoinColumn(name = "SEAT_CONFIG_ID", nullable = false)
+    private SeatConfig seatConfig;
 }

@@ -10,9 +10,3 @@ dependencies {
     implementation project(':bend-library:core')
     implementation project(':bend-library:core:sql-fetch')
 }
-
-subprojects {
-    jar {
-        archivesBaseName = 'bend-library-controller-rest-' + project.name
-    }
-}

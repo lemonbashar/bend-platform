@@ -25,7 +25,7 @@ dependencies {
     implementation project(':bend-library:config:security')
     implementation project(':bend-library:config:security:jwt')
     implementation project(':bend-library:controller')
-    implementation project(':bend-library:controller:rest')
+    implementation project(':bend-library:controller:rest:ficket-rest')
     implementation project(':bend-library:config:api-docs')
 
     implementation 'org.springframework.boot:spring-boot-starter-security'

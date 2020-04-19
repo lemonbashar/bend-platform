@@ -6,4 +6,8 @@ zuul:
             path: /bend-main-app/**/*
             service-id: bend-main-app
             strip-prefix: false
+        bend-ficket-app:
+            path: /bend-ficket-app/**/*
+            service-id: bend-ficket-app
+            strip-prefix: false
     sensitive-headers: [Cookie, Set-Cookie]

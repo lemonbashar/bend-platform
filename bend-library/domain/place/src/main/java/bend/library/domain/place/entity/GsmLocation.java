@@ -31,6 +31,10 @@ public class GsmLocation extends BaseEntity<BigInteger> implements Serializable 
     @SequenceGenerator(name = "PK_DB_PLACE_GSM_LOCATION", sequenceName = "DB_PLACE_GSM_LOCATION_SEQ", allocationSize = 1)
     private BigInteger id;
 
+    /*private String name;
+
+    private String description;*/
+
     @Column(name = "LATITUDE")
     private Long latitude;
 

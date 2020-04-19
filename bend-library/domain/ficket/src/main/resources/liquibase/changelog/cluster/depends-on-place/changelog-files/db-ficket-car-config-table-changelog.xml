@@ -27,6 +27,9 @@
             <column name="TOTAL_SEAT" type="${smallInteger_4}">
                 <constraints nullable="false"/>
             </column>
+            <column name="SEAT_CONFIG_ID" type="${bigInteger}">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
         <rollback>
             <dropTable tableName="DB_FICKET_CAR_CONFIG"/>
@@ -41,6 +44,10 @@
         <addForeignKeyConstraint baseTableName="DB_FICKET_CAR_CONFIG" baseColumnNames="UPDATE_BY"
                                  constraintName="FK_BEND_USER_2_CAR_CONFIG_UPDATE_BY"
                                  referencedTableName="DB_MAIN_BEND_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="DB_FICKET_CAR_CONFIG" baseColumnNames="SEAT_CONFIG_ID"
+                                 constraintName="FK_SEAT_CONFIG_2_CAR_CONFIG_SEAT_CONFIG_ID"
+                                 referencedTableName="DB_FICKET_SEAT_CONFIG"
                                  referencedColumnNames="ID"/>
         <loadData tableName="DB_FICKET_CAR_CONFIG" file="classpath:liquibase/data/db-ficket-car-config/car-config-update.csv" encoding="UTF-8" separator=","/>
     </changeSet>
