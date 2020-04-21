@@ -15,7 +15,7 @@ bend-platform:
             active: true
             active-all-route: true
         migration:
-            active: true
+            active: false
         hibernate:
             annotated-packages:
                 - bend.library.domain.cluster.entity

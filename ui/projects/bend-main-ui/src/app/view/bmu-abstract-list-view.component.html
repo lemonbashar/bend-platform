@@ -4,7 +4,7 @@
   <table class="table table-striped table-bordered">
     <thead>
       <tr class="framework-bg-color text-white">
-        <th class="element-center" scope="col">Index</th>
+        <th class="element-center" scope="col">INDEX</th>
         <th class="element-center" scope="col" *ngFor="let col of crudData.data.columns">{{col}}</th>
       </tr>
     </thead>
@@ -14,7 +14,7 @@
       <td *ngFor="let index of crudData.data.indexes">{{index.dynamic ? compile(index, rows) : rows[index.index]}}</td>
       <td>
         <div class="row-cols-3">
-          <button class="col-sm-4 btn btn-secondary"><i class="fa fa-eye"></i> {{uiModel.tableStructure.actionColumn.actionViewName}}</button>
+          <button [routerLink]="['/bmu-crud', 'user-profile' , rows[crudData.data.idIndex]]" class="col-sm-4 btn btn-secondary"><i class="fa fa-eye"></i> {{uiModel.tableStructure.actionColumn.actionViewName}}</button>
           <button [disabled]="uiModel.name == 'User' && rows[uiModel.tableStructure.actionColumn.actionDisableIndex] == 'system'" class="col-sm-4 btn btn-primary"><i class="fa fa-pen"></i> {{uiModel.tableStructure.actionColumn.actionEditName}}</button>
           <button [disabled]="uiModel.name == 'User' && rows[uiModel.tableStructure.actionColumn.actionDisableIndex] == 'system'" class="col-sm-4 btn btn-danger"><i class="fa fa-trash"></i> {{uiModel.tableStructure.actionColumn.actionDeleteName}}</button>
         </div>

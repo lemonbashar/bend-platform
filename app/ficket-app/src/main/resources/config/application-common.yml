@@ -17,7 +17,7 @@ bend-platform:
             single-route-schema: bend-cluster-database-ficket
             annotated-packages: [bend.library.domain.entity, bend.library.domain.place.entity, bend.library.domain.ficket.entity]
         migration:
-            active: true
+            active: false
         hibernate:
             annotated-packages:
                 - bend.library.domain.cluster.entity

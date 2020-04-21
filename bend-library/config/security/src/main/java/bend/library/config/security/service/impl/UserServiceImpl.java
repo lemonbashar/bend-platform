@@ -6,6 +6,7 @@ import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.config.security.service.UserService;
 import bend.library.config.security.util.SecurityUtil;
 import bend.library.constant.SecurityConstants;
+import bend.library.domain.data.UserCrudData;
 import bend.library.domain.entity.User;
 import bend.library.domain.repositories.UserRepository;
 import lombok.NonNull;

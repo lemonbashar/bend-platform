@@ -2,6 +2,7 @@ export class BaseFlexibleCrudViewData {
   columns: string[];
   values: string[][];
   indexes: FlexibleIndex[];
+  idIndex: number;
 }
 
 export class FlexibleIndex {
@@ -17,10 +18,10 @@ export class FlexibleRule {
   fromIndices: number[];
   indicesDataTypes: string[];
   referenceValues: string[];
-  rulePolicy: FlexibbleRulePolicy;
+  rulePolicy: FlexibleRulePolicy;
 }
 
-export enum FlexibbleRulePolicy {
+export enum FlexibleRulePolicy {
   CHECKED_BY_NULL,
   CHECKED_BY_BOOLEAN
 }

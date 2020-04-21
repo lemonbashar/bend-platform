@@ -1,6 +1,5 @@
 import {BrowserModule } from '@angular/platform-browser';
 import {NgModule } from '@angular/core';
-
 import {AppRoutingModule } from './app-routing.module';
 import {AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -14,11 +13,12 @@ import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
 import {DialogModule} from 'primeng/dialog';
 import {BendCoreUiModule} from 'bend-core-ui';
 import {ToastModule} from 'primeng/toast';
-import {BmuUserViewComponent } from './view/crud/user-view/bmu-user-view.component';
 import {NgbCollapseModule} from '@ng-bootstrap/ng-bootstrap';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {BmuSettingDashboardComponent} from './view/dashboard/bmu-setting-dashboard/bmu-setting-dashboard.component';
+import {BmuUserViewComponent} from './view/crud/user-view/bmu-user-view.component';
+import {BmuUserProfileViewComponent} from './view/crud/user-view/bmu-user-profile-view/bmu-user-profile-view.component';
 
 
 const PRIME_NG_MODULES = [
@@ -48,7 +48,7 @@ const LAYOUT_COMPONENT = [
   BmuSettingDashboardComponent
 ];
 
-const VIEW_COMPONENT = [BmuUserViewComponent];
+const VIEW_COMPONENT = [BmuUserViewComponent, BmuUserProfileViewComponent];
 
 const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT, ...VIEW_COMPONENT];
 

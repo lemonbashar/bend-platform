@@ -2,6 +2,7 @@ package bend.library.controller.rest.api.crud;
 
 import bend.framework.base.util.BendOptional;
 import bend.library.config.security.service.UserService;
+import bend.library.config.security.util.SecurityUtil;
 import bend.library.controller.CrudController;
 import bend.library.controller.rest.constants.RestApiProvider;
 import bend.library.controller.util.ResponseType;
@@ -22,10 +23,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.math.BigInteger;
@@ -61,6 +59,24 @@ public class UserCrudController extends CrudController<UserCrudData, User> {
     @Override
     public ResponseEntity<DataResponse<UserCrudData>> findOne(@PathVariable BigInteger id) {
         return (ResponseEntity<DataResponse<UserCrudData>>) super.findOne(id);
+    }
+
+    @GetMapping("/by-username/{username}")
+    @PostAuthorize("@securityService.isSuperAdmin() || returnObject.body.data.username == principal.username")
+    public ResponseEntity<DataResponse<UserCrudData>> findByUsername(@PathVariable String username) {
+        return getByUsername(username);
+    }
+
+    @GetMapping("/current-user")
+    @PostAuthorize("returnObject.body.data.username == principal.username")
+    public ResponseEntity<DataResponse<UserCrudData>> findByCurrentUser() {
+        return getByUsername(SecurityUtil.loggedInUsername());
+    }
+
+    private ResponseEntity<DataResponse<UserCrudData>> getByUsername(String username) {
+        return BendOptional.ofNullable(((UserCrudService)this.baseCrudService).findByUsername(username))
+                .map(fetched -> new DataResponse<>(Objects.isNull(fetched) ? BendStatus.FAILURE : BendStatus.SUCCESS, fetched))
+                .map(ResponseUtil::of).get().response(ResponseType::get);
     }
 
     @PreAuthorize("@securityService.isSuperAdmin()")

@@ -14,8 +14,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StandardUserCrudService extends UserCrudService {
-    // FETCHED_COLUMNS = {"USERNAME", "EMAIL", "ACTIVE_STATUS", "CREATE_BY", "UPDATE_BY"};
+    // FETCHED_COLUMNS = {"USERNAME", "EMAIL", "ACTIVE_STATUS", "CREATE_BY", "UPDATE_BY", "ID"};
     private static final String[] FLEXIBLE_COLUMNS = {"USERNAME", "EMAIL", "ACTIVE STATUS", "CHANGED BY"};
+    private static final int idIndex = 5;
     private static final FlexibleIndex[] FLEXIBLE_INDICES ={
       FlexibleIndex.of(0),
       FlexibleIndex.of(1),
@@ -30,7 +31,7 @@ public class StandardUserCrudService extends UserCrudService {
     @Override
     public PageableDataResponse<BaseFlexibleCrudeViewData> findAllFlexible(Pageable pageable) {
         return BendOptional.of(((UserRepository)repository).findAllFlexible(pageable))
-                .map(page->new PageableDataResponse<>(new BaseFlexibleCrudeViewData(FLEXIBLE_COLUMNS, FLEXIBLE_INDICES, page.getContent()), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements()))
+                .map(page->new PageableDataResponse<>(new BaseFlexibleCrudeViewData(FLEXIBLE_COLUMNS, FLEXIBLE_INDICES, page.getContent(), idIndex), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements()))
                 .get();
     }
 }

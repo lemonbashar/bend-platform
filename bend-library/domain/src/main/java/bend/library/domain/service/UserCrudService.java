@@ -6,6 +6,7 @@ import bend.library.data.crud.BaseCrudeViewData;
 import bend.library.data.crud.flexible.BaseFlexibleCrudeViewData;
 import bend.library.data.crud.flexible.FlexibleIndex;
 import bend.library.data.response.BendStatus;
+import bend.library.data.response.impl.DataResponse;
 import bend.library.data.response.impl.PageableDataResponse;
 import bend.library.domain.AbstractBaseCrudService;
 import bend.library.domain.data.UserCrudData;
@@ -67,12 +68,16 @@ public class UserCrudService extends AbstractBaseCrudService<UserCrudData, User>
             return objects.toArray(new Object[0]);
         }).collect(Collectors.toList());
 
-        return new PageableDataResponse<>(new BaseFlexibleCrudeViewData(columns, FlexibleIndex.ofTotal(columns.length),crudeViewData), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements());
+        return new PageableDataResponse<>(new BaseFlexibleCrudeViewData(columns, FlexibleIndex.ofTotal(columns.length),crudeViewData, 0), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements());
     }
 
     @Override
     public boolean delete(BigInteger id) {
         // return super.delete(id);
         throw new SecurityException("Intentionally Not Implemented, force to inactive the user instead of delete.");
+    }
+
+    public UserCrudData findByUsername(String username) {
+        return ((UserRepository)this.repository).findByUsername(username).map(User::toData).orElse(null);
     }
 }

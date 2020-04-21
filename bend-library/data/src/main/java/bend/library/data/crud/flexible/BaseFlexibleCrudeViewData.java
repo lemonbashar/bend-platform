@@ -11,4 +11,5 @@ public class BaseFlexibleCrudeViewData {
     protected final String[] columns;
     protected final FlexibleIndex[] indexes;
     protected final List<Object[]> values;
+    protected final int idIndex;
 }
