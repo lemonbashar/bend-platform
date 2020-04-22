@@ -67,7 +67,7 @@ public class UserCrudController extends CrudController<UserCrudData, User> {
         return getByUsername(username);
     }
 
-    @GetMapping("/current-user")
+    @GetMapping(RestApiProvider.UserApi.CURRENT_USER)
     @PostAuthorize("returnObject.body.data.username == principal.username")
     public ResponseEntity<DataResponse<UserCrudData>> findByCurrentUser() {
         return getByUsername(SecurityUtil.loggedInUsername());

@@ -1,12 +1,13 @@
 package bend.library.domain.service;
 
+import bend.framework.base.util.BendOptional;
 import bend.library.constant.BaseConstants;
 import bend.library.data.crud.BaseCrudData;
 import bend.library.data.crud.BaseCrudeViewData;
 import bend.library.data.crud.flexible.BaseFlexibleCrudeViewData;
 import bend.library.data.crud.flexible.FlexibleIndex;
+import bend.library.data.crud.flexible.FlexibleRule;
 import bend.library.data.response.BendStatus;
-import bend.library.data.response.impl.DataResponse;
 import bend.library.data.response.impl.PageableDataResponse;
 import bend.library.domain.AbstractBaseCrudService;
 import bend.library.domain.data.UserCrudData;
@@ -16,18 +17,23 @@ import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
-//@Service
+@Service
 public class UserCrudService extends AbstractBaseCrudService<UserCrudData, User> {
-    @PersistenceContext(unitName = BaseConstants.ROUTING_JPA_UNIT)
-    private EntityManager entityManager;
+    // FETCHED_COLUMNS = {"USERNAME", "EMAIL", "ACTIVE_STATUS", "CREATE_BY", "UPDATE_BY", "ID"};
+    private static final String[] FLEXIBLE_COLUMNS = {"USERNAME", "EMAIL", "ACTIVE STATUS", "CHANGED BY"};
+    private static final int idIndex = 5;
+    private static final FlexibleIndex[] FLEXIBLE_INDICES ={
+            FlexibleIndex.of(0),
+            FlexibleIndex.of(1),
+            FlexibleIndex.ofDynamic(2, FlexibleRule.bool(2, "Active", "Inactive")),
+            FlexibleIndex.ofDynamic(3, FlexibleRule.or(3,4))
+    };
 
     @Autowired
     public UserCrudService(@NonNull UserRepository repository) {
@@ -36,12 +42,12 @@ public class UserCrudService extends AbstractBaseCrudService<UserCrudData, User>
 
     @Override
     public BaseCrudData save(User user) {
-        throw new SecurityException("Intentionally Not Implemented, force to bypass the request to UserService.");
+        throw new SecurityException("Intentionally Not Implemented, force to bypass the request to UserService Due to Security Reason.");
     }
 
     @Override
     public BaseCrudData update(User user) {
-        throw new SecurityException("Intentionally Not Implemented, force to bypass the request to UserService.");
+        throw new SecurityException("Intentionally Not Implemented, force to bypass the request to UserService Due to Security Reason");
     }
 
     @Override
@@ -56,19 +62,14 @@ public class UserCrudService extends AbstractBaseCrudService<UserCrudData, User>
 
     @Override
     public PageableDataResponse<BaseFlexibleCrudeViewData> findAllFlexible(Pageable pageable) {
-        String[] columns = {"username", "email", "active", "lastChangedBy"};
-        Page<User> page = this.repository.findAll(pageable);
-        List<Object[]> crudeViewData = page.getContent().stream().map(user -> {
-            List<Object> objects = new ArrayList<>();
-            objects.add(user.getId().toString());
-            objects.add(user.getUsername());
-            objects.add(user.getEmail());
-            objects.add(user.isActive()? "Active": "Inactive");
-            objects.add(user.getUpdateBy() != null? user.getUpdateBy().getUsername(): user.getCreateBy().getUsername());
-            return objects.toArray(new Object[0]);
-        }).collect(Collectors.toList());
+        return BendOptional.of(((UserRepository)repository).findAllFlexible(pageable))
+                .map(page->new PageableDataResponse<>(new BaseFlexibleCrudeViewData(FLEXIBLE_COLUMNS, FLEXIBLE_INDICES, page.getContent(), idIndex), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements()))
+                .get();
+    }
 
-        return new PageableDataResponse<>(new BaseFlexibleCrudeViewData(columns, FlexibleIndex.ofTotal(columns.length),crudeViewData, 0), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements());
+    @Override
+    public BaseFlexibleCrudeViewData findOneFlexible(final BigInteger id) {
+        return null;
     }
 
     @Override

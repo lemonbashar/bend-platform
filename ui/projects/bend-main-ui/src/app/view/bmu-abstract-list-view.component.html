@@ -14,7 +14,7 @@
       <td *ngFor="let index of crudData.data.indexes">{{index.dynamic ? compile(index, rows) : rows[index.index]}}</td>
       <td>
         <div class="row-cols-3">
-          <button [routerLink]="['/bmu-crud', 'user-profile' , rows[crudData.data.idIndex]]" class="col-sm-4 btn btn-secondary"><i class="fa fa-eye"></i> {{uiModel.tableStructure.actionColumn.actionViewName}}</button>
+          <button [routerLink]="[uiModel.tableStructure.actionRoute.viewRoute , rows[crudData.data.idIndex]]" class="col-sm-4 btn btn-secondary"><i class="fa fa-eye"></i> {{uiModel.tableStructure.actionColumn.actionViewName}}</button>
           <button [disabled]="uiModel.name == 'User' && rows[uiModel.tableStructure.actionColumn.actionDisableIndex] == 'system'" class="col-sm-4 btn btn-primary"><i class="fa fa-pen"></i> {{uiModel.tableStructure.actionColumn.actionEditName}}</button>
           <button [disabled]="uiModel.name == 'User' && rows[uiModel.tableStructure.actionColumn.actionDisableIndex] == 'system'" class="col-sm-4 btn btn-danger"><i class="fa fa-trash"></i> {{uiModel.tableStructure.actionColumn.actionDeleteName}}</button>
         </div>

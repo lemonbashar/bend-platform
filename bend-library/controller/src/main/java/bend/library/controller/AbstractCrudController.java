@@ -22,7 +22,7 @@ public abstract class AbstractCrudController<CrudData extends BaseCrudData, Doma
     public abstract ResponseEntity<? extends IBendResponse> update(Domain domain);
     public abstract ResponseEntity<? extends IDataResponse<CrudData>> findOne(BigInteger id);
     @Deprecated
-    public abstract ResponseEntity<? extends IDataResponse<List<BaseCrudeViewData>>> findAll(Pageable pageable);
+    public ResponseEntity<? extends IDataResponse<List<BaseCrudeViewData>>> findAll(Pageable pageable) {return null;}
     public abstract ResponseEntity<? extends IDataResponse<BaseFlexibleCrudeViewData>> findAllFlexible(Pageable pageable);
     public abstract ResponseEntity<? extends IBendResponse> delete(BigInteger id);
 }

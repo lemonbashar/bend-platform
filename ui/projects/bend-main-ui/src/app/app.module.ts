@@ -19,6 +19,7 @@ import {ButtonModule} from 'primeng/button';
 import {BmuSettingDashboardComponent} from './view/dashboard/bmu-setting-dashboard/bmu-setting-dashboard.component';
 import {BmuUserViewComponent} from './view/crud/user-view/bmu-user-view.component';
 import {BmuUserProfileViewComponent} from './view/crud/user-view/bmu-user-profile-view/bmu-user-profile-view.component';
+import {BmuAbstractDetailViewComponent} from './view/bmu-abstract-detail-view.component';
 
 
 const PRIME_NG_MODULES = [
@@ -48,7 +49,7 @@ const LAYOUT_COMPONENT = [
   BmuSettingDashboardComponent
 ];
 
-const VIEW_COMPONENT = [BmuUserViewComponent, BmuUserProfileViewComponent];
+const VIEW_COMPONENT = [BmuUserViewComponent, BmuUserProfileViewComponent, BmuAbstractDetailViewComponent];
 
 const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT, ...VIEW_COMPONENT];
 

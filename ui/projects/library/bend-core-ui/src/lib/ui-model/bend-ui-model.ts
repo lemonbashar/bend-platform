@@ -23,9 +23,9 @@ export class ActionColumn {
 
 export class ActionRoute {
   constructor(
-    public viewRoute: string = 'bmu-crud/view',
-    public editRoute: string = 'bmu-crud/edit',
-    public deleteRoute: string = 'bmu-crud/delete'
+    public viewRoute: string = '/bmu-crud/view',
+    public editRoute: string = '/bmu-crud/edit',
+    public deleteRoute: string = '/bmu-crud/delete'
   ) {
   }
 }

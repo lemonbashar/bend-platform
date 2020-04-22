@@ -1,9 +1,13 @@
 package bend.library.domain;
 
 import bend.library.data.crud.BaseCrudData;
+import bend.library.data.crud.BaseCrudeViewData;
+import bend.library.data.crud.flexible.BaseFlexibleCrudeViewData;
 import bend.library.domain.entity.BaseEntity;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.math.BigInteger;
@@ -32,5 +36,15 @@ public abstract class AbstractBaseCrudService<CrudData extends BaseCrudData, Dom
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public CrudData findOne(BigInteger id) {
+        return null;
+    }
+
+    @Override
+    public Page<BaseCrudeViewData> findAll(Pageable pageable) {
+        return null;
     }
 }

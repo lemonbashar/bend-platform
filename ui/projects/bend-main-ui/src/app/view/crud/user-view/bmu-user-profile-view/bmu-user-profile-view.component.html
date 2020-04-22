@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="element-center">User's Account Profile</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <hr/>
+  </div>
+</div>
+<div *ngIf="ready">
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Username:</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>{{userCrudData.username}}</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>Email:</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>{{userCrudData.email}}</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Last Changed By:</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>{{userCrudData.lastChangedBy?userCrudData.lastChangedBy:'N/A'}}</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>Last Changed Date:</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>{{userCrudData.lastChangedDate| date: 'dd-MMM-yyyy'}}</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Active Status:</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>{{userCrudData.active?'Active':'Inactive'}}</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>Authorities:</h4>
+    </div>
+    <div class="col-md-3">
+      <h4 *ngFor="let authority of userCrudData.authorities">{{authority}}</h4>
+    </div>
+  </div>
+</div>
+

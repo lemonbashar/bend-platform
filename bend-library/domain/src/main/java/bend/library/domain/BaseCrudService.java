@@ -17,7 +17,7 @@ public interface BaseCrudService< CrudData extends BaseCrudData, Domain extends 
     BaseCrudData update(Domain domain);
 
     CrudData findOne(BigInteger id);
-
+    @Deprecated
     Page<BaseCrudeViewData> findAll(Pageable pageable);
 
     boolean delete(BigInteger id);
@@ -28,5 +28,7 @@ public interface BaseCrudService< CrudData extends BaseCrudData, Domain extends 
      * @param pageable page
      * @return Flexible crud view data
      */
-    PageableDataResponse<BaseFlexibleCrudeViewData> findAllFlexible(Pageable pageable);
+    PageableDataResponse<BaseFlexibleCrudeViewData> findAllFlexible(final Pageable pageable);
+
+    BaseFlexibleCrudeViewData findOneFlexible(final BigInteger id);
 }

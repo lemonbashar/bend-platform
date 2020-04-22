@@ -39,6 +39,7 @@ public class RestApiProvider {
 
     public static final class UserApi {
         public static final String USER_PRIVATE_ROOT_API = APiConstants.PRIVATE_ROOT + "/user";
+        public static final String CURRENT_USER = "/current-user";
     }
 
     public static final class SqlFetchApi {
