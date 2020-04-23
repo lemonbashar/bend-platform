@@ -5,10 +5,11 @@ import {BmuDashboardComponent} from './layout/dashboard/bmu-dashboard.component'
 import {environment} from '../environments/environment';
 import {bmuNavbarRoute} from './layout/navbar/bmu-navbar.route';
 import {bmuSettingDashboardRoute} from './view/dashboard/bmu-setting-dashboard/bmu-setting-dashborad.route';
-import {bmuCrudRoute} from './view/crud/crud.route';
+import {bmuUserCrudRoute} from './view/crud/user-view/bmu-user-crud.route';
 
 const NAVBAR_LAYOUT_ROUTE = [...bmuNavbarRoute];
-const DASHBOARD_ROUTE = [...bmuSettingDashboardRoute, ...bmuCrudRoute];
+const CRUD_ROUTES = [...bmuUserCrudRoute];
+const DASHBOARD_ROUTE = [...bmuSettingDashboardRoute, ...CRUD_ROUTES];
 
 const routes: Routes = [...NAVBAR_LAYOUT_ROUTE, ...DASHBOARD_ROUTE];
 

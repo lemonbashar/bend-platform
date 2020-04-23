@@ -38,6 +38,7 @@ export * from './lib/service/base.service';
 export * from './lib/service/app-util-service';
 export * from './lib/service/fetch/sql-fetch-definition.service';
 export * from './lib/service/console/console.service';
+export * from './lib/service/text/text-processing.service';
 
 export * from './lib/compile/bend-flexible-compiler.service';
 

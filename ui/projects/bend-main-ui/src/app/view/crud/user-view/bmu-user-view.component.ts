@@ -5,7 +5,7 @@ import {BmuUserCrudService} from '../../../service/bmu-user-crud.service';
 import {bendUserUiModel} from './user-view-model';
 
 @Component({
-  selector: 'main-profile-dashboard',
+  selector: 'main-bmu-user-view',
   templateUrl: '../../bmu-abstract-list-view.component.html'
 })
 export class BmuUserViewComponent extends BendAbstractListViewComponent<UserCrudData, UserCrudData> implements OnInit {

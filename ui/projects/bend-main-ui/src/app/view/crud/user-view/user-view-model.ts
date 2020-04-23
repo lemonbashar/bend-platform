@@ -7,7 +7,7 @@ export const bendUserUiModel: BendUiModel = {
     updateTitle: 'Update an User',
     actionColumn: new ActionColumn(),
     // actionRoute: new ActionRoute('/bmu-crud/user-profile')
-    actionRoute: new ActionRoute()
+    actionRoute: new ActionRoute('/bmu-crud/user-view')
   },
   fields: [],
 };

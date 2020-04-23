@@ -1,11 +1,10 @@
 package bend.library.data;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,7 +13,8 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseData<ID> {
-    protected final String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("DD-MMM-YYYY HH:MM:SS"));
+    public static final String PATTERN = "DD-MMM-YYYY HH:MM:SS";
+    protected final String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern(PATTERN));
     protected ID id;
     protected boolean active;
 }
