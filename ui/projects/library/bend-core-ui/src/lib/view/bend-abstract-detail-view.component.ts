@@ -7,7 +7,7 @@ import {BendUiModel} from '../ui-model/bend-ui-model';
 
 export abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Domain extends BaseData> implements OnInit {
   private viewId: number;
-  ready;
+  ready: boolean;
   crudData: R;
 
   constructor(
@@ -40,7 +40,7 @@ export abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Do
       this.consoleService.message('Successfully Fetch Detail View Data');
       this.crudData = res.body.data;
       this.ready = true;
-    } else this.toastService.error('Erroer during Detail View data fetch');
+    } else this.toastService.error('Error during Detail View data fetch');
   }
 
   private error(error: HttpErrorResponse) {
