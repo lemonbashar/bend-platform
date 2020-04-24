@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AppUtilService, BendFlexibleCompilerService, ConsoleService, UserCrudData} from 'bend-core';
 import {BendAbstractListViewComponent, BendToastService} from 'bend-core-ui';
 import {BmuUserCrudService} from '../../../service/bmu-user-crud.service';
-import {bendUserUiModel} from './user-view-model';
+import {bendUserUiModel} from '../crud-ui-model';
 
 @Component({
   selector: 'main-bmu-user-view',

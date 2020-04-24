@@ -10,7 +10,7 @@
     <div class="btn-group" *bendIsAuthenticated="'YES'" role="group">
       <button id="id-layout-navbar-account-dropdown-collapsable" (click)="toggleAccountDropdown()" type="button" class="btn btn-primary dropdown-toggle" data-toggle="accountMenuDropdown" aria-haspopup="true" aria-expanded="false"></button>
       <div class="dropdown-menu" [ngbCollapse]="isAccountDropdownCollapsed" aria-labelledby="id-layout-navbar-account-dropdown-collapsable">
-        <a class="dropdown-item text-link" (click)="go(['/bmu-crud', 'user-profile', '0'])" >Profile</a>
+        <a class="dropdown-item text-link" (click)="go([makeRouteStartFromThis(userRoutes.user_profile), '0'])" >Profile</a>
         <a *bendHasAnyAuthority="auth.superAdmin()" (click)="go(['setting-dashboard'])" class="dropdown-item text-link" >Settings</a>
         <a *bendHasAnyAuthority="auth.superAdmin()" (click)="go(['terminal-runner'])" class="dropdown-item text-link" >Terminal</a>
       </div>

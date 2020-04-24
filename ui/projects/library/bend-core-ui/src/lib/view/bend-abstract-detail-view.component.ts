@@ -4,8 +4,9 @@ import {BaseCrudData, BaseData, BaseService, BendStatusText, ConsoleService, Dat
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {BendToastService} from '../message/bend-toast.service';
 import {BendUiModel} from '../ui-model/bend-ui-model';
+import {BendBaseComponent} from './bend-base.component';
 
-export abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Domain extends BaseData> implements OnInit {
+export abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Domain extends BaseData> extends BendBaseComponent implements OnInit {
   private viewId: number;
   ready: boolean;
   crudData: R;
@@ -17,7 +18,7 @@ export abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Do
     protected consoleService: ConsoleService,
     protected textProcessingService: TextProcessingService,
     public uiModel: BendUiModel
-  ) { }
+  ) { super(); }
 
   ngOnInit() {
     this.ready = false;

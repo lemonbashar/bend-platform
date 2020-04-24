@@ -14,8 +14,9 @@ import {
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {BendToastService} from '../message/bend-toast.service';
 import {BendUiModel} from '../ui-model/bend-ui-model';
+import {BendBaseComponent} from './bend-base.component';
 
-export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extends BaseData> implements OnInit {
+export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extends BaseData> extends BendBaseComponent implements OnInit {
   crudData: PageableDataResponse<BaseFlexibleCrudViewData>;
   private SUCCESS = 'Active Status Changed Successfully';
   private FAILED = 'Active Status Change Failed';
@@ -31,7 +32,7 @@ export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extend
     private appUtilService: AppUtilService,
     private compiler: BendFlexibleCompilerService,
     public uiModel: BendUiModel
-  ) { }
+  ) { super(); }
 
   ngOnInit(): void {
     this.crudData = this.emptyData();

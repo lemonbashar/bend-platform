@@ -17,7 +17,7 @@ export abstract class AbstractBaseService {
   protected DEFAULT_URL: string;
 
   protected constructor(
-    private BASE_URL: string,
+    private readonly BASE_URL: string,
     protected http: HttpClient,
     private readonly BASE_API_URL?: string
   ) {
