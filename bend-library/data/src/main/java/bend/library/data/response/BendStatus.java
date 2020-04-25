@@ -3,5 +3,6 @@ package bend.library.data.response;
 public enum BendStatus {
     SUCCESS,
     FAILURE,
-    FORBIDDEN;
+    FORBIDDEN,
+    NOT_FOUND;
 }
