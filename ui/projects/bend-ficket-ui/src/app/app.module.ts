@@ -18,6 +18,7 @@ import {ButtonModule} from 'primeng/button';
 import {BfuDashboardComponent} from './layout/dashboard/bfu-dashboard.component';
 import {BfuFooterComponent} from './layout/footer/bfu-footer.component';
 import {BfuNavbarComponent} from './layout/navbar/bfu-navbar.component';
+import {BfuTicketDashboardComponent} from './view/bfu-ticket-dashboard/bfu-ticket-dashboard.component';
 
 
 const PRIME_NG_MODULES = [
@@ -38,6 +39,7 @@ const THIRD_PARTIES_MODULE = [BrowserModule, HttpClientModule,
 ];
 const INTERNAL_MODULE = [AppRoutingModule];
 const LIBRARY_MODULE = [BendCoreModule, BendCoreUiModule];
+const VIEW_COMPONENTS = [BfuTicketDashboardComponent];
 
 const APP_MAIN_COMPONENT = [AppComponent];
 const LAYOUT_COMPONENT = [
@@ -46,9 +48,7 @@ const LAYOUT_COMPONENT = [
   BfuNavbarComponent
 ];
 
-const VIEW_COMPONENT = [];
-
-const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT, ...VIEW_COMPONENT];
+const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT, ...VIEW_COMPONENTS];
 
 @NgModule({
   declarations: [

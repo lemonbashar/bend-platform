@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="id-bmu-layout-nav-bar-list" [ngbCollapse]="isNavbarCollapsed">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Ticket</a>
+        <a class="nav-link" [routerLink]="['/ticket-dashboard']">Ticket</a>
       </li>
     </ul>
     <div class="btn-group" *bendIsAuthenticated="'YES'" role="group">
