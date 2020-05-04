@@ -19,6 +19,9 @@
     <property name="doubleType_4_2" value="number(6,2)" dbms="mssql,oracle"/>
     <property name="doubleType_4_2" value="numeric(6,2)" dbms="mysql,postgresql"/>
 
+    <property name="doubleType_4_6" value="number(10,6)" dbms="mssql,oracle"/>
+    <property name="doubleType_4_6" value="numeric(10,6)" dbms="mysql,postgresql"/>
+
     <property name="localTime" value="time" dbms="postgresql,mysql"/>
     <property name="localTime" value="datetime" dbms="mssql,oracle"/>
 

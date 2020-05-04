@@ -25,11 +25,11 @@ public class TicketServiceImpl implements TicketService {
     public Ticket buyTicket(final BigInteger userId, final String seatNo, final BigInteger rideConfigId, final BigInteger carId, final LocalDate rideDate) {
         Ticket ticket = this.ticketRepository.findBySeatNumberAndCarIdAndRideConfigIdAndRideDate(seatNo, carId, rideConfigId,rideDate).orElse(null);
         final Car car = this.carRepository.findById(carId).orElseThrow();
-        final
+        //final
         if (ticket == null) {
             ticket = new Ticket();
             ticket.setBuyer(new User(userId));
-            ticket.set
+            //ticket.set
         }
         return null;
     }

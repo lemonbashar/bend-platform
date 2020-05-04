@@ -21,13 +21,13 @@
             <column name="ACTIVE_STATUS" type="boolean"/>
             <!--END-OF-COMMON_BASE-ENTITY-->
 
-            <column name="LATITUDE" type="${long}">
+            <column name="LATITUDE" type="${doubleType_4_6}">
                 <constraints nullable="false"/>
             </column>
-            <column name="LONGITUDE" type="${long}">
+            <column name="LONGITUDE" type="${doubleType_4_6}">
                 <constraints nullable="false"/>
             </column>
-            <column name="APTITUDE" type="${long}"/>
+            <column name="APTITUDE" type="${doubleType_4_6}"/>
         </createTable>
         <rollback>
             <dropTable tableName="DB_PLACE_GSM_LOCATION"/>

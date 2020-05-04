@@ -36,11 +36,11 @@ public class GsmLocation extends BaseEntity<BigInteger> implements Serializable 
     private String description;*/
 
     @Column(name = "LATITUDE")
-    private Long latitude;
+    private Double latitude;
 
     @Column(name = "LONGITUDE")
-    private Long longitude;
+    private Double longitude;
 
     @Column(name = "APTITUDE")
-    private Long aptitude;
+    private Double aptitude;
 }
