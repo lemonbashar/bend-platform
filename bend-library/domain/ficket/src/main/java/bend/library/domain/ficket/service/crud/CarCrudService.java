@@ -2,11 +2,10 @@ package bend.library.domain.ficket.service.crud;
 
 import bend.library.data.crud.flexible.BaseFlexibleCrudeViewData;
 import bend.library.data.crud.flexible.FlexibleIndex;
-import bend.library.data.response.impl.PageableDataResponse;
 import bend.library.domain.AbstractBaseCrudService;
-import bend.library.domain.ficket.data.TicketCrudData;
-import bend.library.domain.ficket.entity.Ticket;
-import bend.library.domain.ficket.repositories.TicketRepository;
+import bend.library.domain.ficket.data.CarCrudData;
+import bend.library.domain.ficket.entity.Car;
+import bend.library.domain.ficket.repositories.CarRepository;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,11 +15,35 @@ import org.springframework.stereotype.Service;
 import java.math.BigInteger;
 
 @Service
-public class TicketCrudService extends AbstractBaseCrudService<TicketCrudData, Ticket> {
+public class CarCrudService extends AbstractBaseCrudService<CarCrudData, Car> {
 
     @Autowired
-    public TicketCrudService(@NonNull TicketRepository repository) {
+    public CarCrudService(@NonNull CarRepository repository) {
         super(repository);
+    }
+
+    @Override
+    protected Page<Object[]> flexiblePageData(Pageable pageable) {
+        return ((CarRepository)repository).findAllFlexible(pageable);
+    }
+
+    @Override
+    protected String[] flexibleColumns() {
+        return new String[] {"NAME", "LICENCE", "NUMBER_PLATE"};
+    }
+
+    @Override
+    protected int idIndexOfFlexibility() {
+        return 3;
+    }
+
+    @Override
+    protected FlexibleIndex[] flexibleIndices() {
+        return new FlexibleIndex[] {
+                FlexibleIndex.of(0),
+                FlexibleIndex.of(1),
+                FlexibleIndex.of(2)
+        };
     }
 
     @Override
@@ -28,23 +51,5 @@ public class TicketCrudService extends AbstractBaseCrudService<TicketCrudData, T
         return null;
     }
 
-    @Override
-    protected Page<Object[]> flexiblePageData(Pageable pageable) {
-        return null;
-    }
 
-    @Override
-    protected String[] flexibleColumns() {
-        return new String[0];
-    }
-
-    @Override
-    protected int idIndexOfFlexibility() {
-        return 0;
-    }
-
-    @Override
-    protected FlexibleIndex[] flexibleIndices() {
-        return new FlexibleIndex[0];
-    }
 }

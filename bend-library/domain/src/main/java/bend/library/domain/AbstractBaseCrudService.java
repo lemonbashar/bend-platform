@@ -1,9 +1,14 @@
 package bend.library.domain;
 
+import bend.framework.base.util.BendOptional;
 import bend.library.data.crud.BaseCrudData;
 import bend.library.data.crud.BaseCrudeViewData;
 import bend.library.data.crud.flexible.BaseFlexibleCrudeViewData;
+import bend.library.data.crud.flexible.FlexibleIndex;
+import bend.library.data.response.BendStatus;
+import bend.library.data.response.impl.PageableDataResponse;
 import bend.library.domain.entity.BaseEntity;
+import bend.library.domain.repositories.UserRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -47,4 +52,16 @@ public abstract class AbstractBaseCrudService<CrudData extends BaseCrudData, Dom
     public Page<BaseCrudeViewData> findAll(Pageable pageable) {
         return null;
     }
+
+    @Override
+    public PageableDataResponse<BaseFlexibleCrudeViewData> findAllFlexible(Pageable pageable) {
+        return BendOptional.of(flexiblePageData(pageable))
+                .map(page->new PageableDataResponse<>(new BaseFlexibleCrudeViewData(flexibleColumns(), flexibleIndices(), page.getContent(), idIndexOfFlexibility()), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements()))
+                .get();
+    }
+
+    protected abstract Page<Object[]> flexiblePageData(Pageable pageable);
+    protected abstract String[] flexibleColumns();
+    protected abstract int idIndexOfFlexibility();
+    protected abstract FlexibleIndex[] flexibleIndices();
 }

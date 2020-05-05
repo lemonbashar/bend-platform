@@ -9,7 +9,7 @@ import java.util.function.Function;
 public class ResponseUtil<T> {
     private final T body;
     private HttpStatus httpStatus;
-    private HttpHeaders httpHeaders;
+    private final HttpHeaders httpHeaders;
 
     private ResponseUtil(T body) {
         this.body = body;

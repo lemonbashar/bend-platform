@@ -35,8 +35,9 @@ export abstract class AbstractBaseService {
 export class BaseService<R extends BaseCrudData, Domain extends BaseData> extends AbstractBaseService {
   constructor(
     BASE_URL: string,
-    http: HttpClient
-  ) {super(BASE_URL, http); }
+    http: HttpClient,
+    BASE_API_URL: string = BendCoreConstants.API_URL
+  ) {super(BASE_URL, http, BASE_API_URL); }
 
   public save(baseData: Domain): Observable<HttpResponse<BendResponse>> {
     return this.http.post<BendResponse>(this.DEFAULT_URL, baseData, {observe: 'response'});

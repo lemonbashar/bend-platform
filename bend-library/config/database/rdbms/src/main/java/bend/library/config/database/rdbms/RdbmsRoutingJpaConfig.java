@@ -71,7 +71,7 @@ public class RdbmsRoutingJpaConfig {
             ((RoutingDataSource)routingDataSource).setTargetDataSources(pack.dataSourceMap);
             ((RoutingDataSource)routingDataSource).setDefaultTargetDataSource(pack.dataSourceMap.get(clusterDatabaseRegistry.defaultDataSourceKey()));
 
-        } else {
+        } else { /*TODO: Will Use Routing database for internationalization support in back-end.: See Future Goal*/
             DatabaseConfig  databaseConfig = databaseConfigRepository.findBySchema(properties.getDatabase().getRoutingDatabase().getSingleRouteSchema())
                     .orElseThrow(()->new RuntimeException("Can't find Single-Route Schema"));
             routingDataSource = configHikariDataSource(databaseConfig);

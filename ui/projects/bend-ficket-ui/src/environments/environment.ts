@@ -2,7 +2,13 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+export const commonResource = {
+  HOST_URL: 'http://localhost:8788',
+  CONTEXT: '/api/bend-ficket-app'
+};
+
 export const environment = {
+  API_URL: commonResource.HOST_URL + commonResource.CONTEXT,
   production: false,
   DEBUG_ENABLE: true,
   outlet: {

@@ -31,4 +31,5 @@ public interface BaseCrudService< CrudData extends BaseCrudData, Domain extends 
     PageableDataResponse<BaseFlexibleCrudeViewData> findAllFlexible(final Pageable pageable);
 
     BaseFlexibleCrudeViewData findOneFlexible(final BigInteger id);
+
 }

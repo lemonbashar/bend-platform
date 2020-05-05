@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class FlexibleIndex {
+    @SuppressWarnings("FieldMayBeFinal")
     private boolean dynamic = false;
     private final int index;
     private final String datatype;
@@ -20,10 +21,6 @@ public class FlexibleIndex {
 
     public FlexibleIndex(int index) {
         this(index, DataConstants.DataType.STRING, null, null);
-    }
-
-    public FlexibleIndex(int index, String datatype, String dataFormat) {
-        this(index, datatype, dataFormat, null);
     }
 
     public static FlexibleIndex of(int index) {
