@@ -4,6 +4,7 @@
 
 export * from './lib/ui-model/bend-ui-field';
 export * from './lib/ui-model/bend-ui-model';
+export * from './lib/model/place.model';
 
 export * from './lib/view/bend-base.component';
 export * from './lib/view/bend-abstract-list-view.component';
