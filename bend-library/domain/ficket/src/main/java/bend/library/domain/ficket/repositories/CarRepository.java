@@ -15,7 +15,12 @@ import java.math.BigInteger;
 public interface CarRepository extends JpaRepository<Car, BigInteger> {
 
     @SuppressWarnings("SqlResolve")
-    @Query(value = "SELECT DFC.NAME, DFC.LICENCE, DFC.NUMBER_PLATE\n" +
-            "FROM DB_FICKET_CAR  DFC", nativeQuery = true)
+    @Query(value = "SELECT DFC.NAME, DFC.LICENCE, DFC.NUMBER_PLATE, DFC.ID\n" +
+            "FROM DB_FICKET_CAR DFC", nativeQuery = true)
     Page<Object[]> findAllFlexible(Pageable pageable);
+
+    @SuppressWarnings("SqlResolve")
+    @Query(value = "SELECT DFC.NAME, DFC.ID\n" +
+            "FROM DB_FICKET_CAR DFC WHERE DFC.ACTIVE_STATUS=true", nativeQuery = true)
+    Page<Object[]> findAllFlexibleOnlyActive(Pageable pageable);
 }

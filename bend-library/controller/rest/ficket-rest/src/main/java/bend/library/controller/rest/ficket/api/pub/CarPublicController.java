@@ -2,7 +2,6 @@ package bend.library.controller.rest.ficket.api.pub;
 
 import bend.framework.base.util.BendOptional;
 import bend.library.controller.rest.ficket.FicketRestApiProvider;
-import bend.library.controller.rest.ficket.api.CarController;
 import bend.library.controller.util.ResponseType;
 import bend.library.controller.util.ResponseUtil;
 import bend.library.data.crud.flexible.BaseFlexibleCrudeViewData;
@@ -28,7 +27,6 @@ import java.util.Set;
 @RequestMapping(FicketRestApiProvider.CarApi.CAR_PUBLIC_ROOT_API)
 public class CarPublicController {
     private final @NonNull CarService carService;
-    private final @NonNull CarController carController;
 
     @GetMapping(FicketRestApiProvider.CarApi.EXTRACT_SEAT_FROM_CAR)
     public ResponseEntity<DataResponse<Set<String>>> extractSeatFromCar(@PathVariable BigInteger carId) {
@@ -39,6 +37,6 @@ public class CarPublicController {
 
     @GetMapping(FicketRestApiProvider.CarApi.CAR_LIST_FLEXIBLE)
     public ResponseEntity<PageableDataResponse<BaseFlexibleCrudeViewData>> findAllFlexibleData(Pageable pageable) {
-        return carController.findAllFlexible(pageable);
+        return ResponseUtil.of(carService.findAllFlexibleOnlyActive(pageable)).response(ResponseType::get);
     }
 }
