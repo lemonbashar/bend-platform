@@ -7,6 +7,7 @@ public final class FicketRestApiProvider {
         public static final String CAR_PUBLIC_ROOT_API = APiConstants.PUBLIC_ROOT + "/car";
         public static final String CAR_API = APiConstants.PRIVATE_ROOT + "/car";
         public static final String EXTRACT_SEAT_FROM_CAR = "/extract-seat-from-car/{carId}";
+        public static final String CAR_LIST_FLEXIBLE = "/car-list-flexible";
     }
 
     public static final class TicketApi {
