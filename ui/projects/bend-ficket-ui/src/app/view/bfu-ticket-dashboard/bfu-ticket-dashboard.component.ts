@@ -10,7 +10,7 @@ import {BendToastService} from 'bend-core-ui';
 })
 export class BfuTicketDashboardComponent implements OnInit {
   cars: BaseFlexibleCrudViewData;
-  ready: boolean = false;
+  ready = false;
 
   constructor(
     private bfuCarService: BfuCarService,
