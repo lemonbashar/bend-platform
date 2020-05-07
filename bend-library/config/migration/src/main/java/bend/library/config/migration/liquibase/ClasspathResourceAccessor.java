@@ -36,13 +36,13 @@ public class ClasspathResourceAccessor implements ResourceAccessor {
 
     @Override
     public Set<InputStream> getResourcesAsStream(String path) throws IOException {
-        log.warn("Migrating started for " + path);
+        log.info("Migrating started for " + path);
         return getAccessor(path).getResourcesAsStream(extractFilePath(path));
     }
 
     @Override
     public Set<String> list(String relativeTo, String path, boolean includeFiles, boolean includeDirectories, boolean recursive) throws IOException {
-        log.warn("Started Migrating at Directory " + path + " ");
+        log.info("Started Migrating at Directory " + path + " ");
         return getAccessor(path).list(relativeTo, extractFilePath(path), includeFiles, includeDirectories, liquibase.isRecursiveInclude());
     }
 
