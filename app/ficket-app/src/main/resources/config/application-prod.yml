@@ -1,4 +1,4 @@
-#Enabled All Facilities for development, Testing & Debugging
+#Enabled All Facilities for Only Production
 
 spring:
     profiles:

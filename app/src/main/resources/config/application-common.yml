@@ -24,7 +24,7 @@ bend-platform:
                 - bend.library.domain.cluster.repositories
 spring:
     liquibase:
-        enabled: true
+        enabled: false
     flyway:
         enabled: false
     profiles:
