@@ -16,7 +16,6 @@ export class BmuNavbarComponent extends BendBaseComponent implements OnInit {
   public userRoutes = environment.routes.crud.user_crud;
   constructor(
     private authenticationService: BendAuthenticationService,
-    public auth: AuthoritiesConstants,
     private dialogService: DialogService,
     private bendToastService: BendToastService,
     private route: Router
