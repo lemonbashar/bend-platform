@@ -24,7 +24,12 @@ public class CarServiceImpl extends AbstractBaseService implements CarService {
 
     @Override
     public Set<String> extractSetsFromCar(BigInteger carId) {
-        return carRepository.findById(carId).map(car -> seatService.extractSetsFromStructure(car.getCarConfig().getSeatConfig())).orElse(null);
+        return carRepository.findSeatStructure(carId).map(seatService::extractSetsFromStructure).orElse(null);
+    }
+
+    @Override
+    public String findSeatStructure(BigInteger carId) {
+        return carRepository.findSeatStructure(carId).orElse(null);
     }
 
     @Override

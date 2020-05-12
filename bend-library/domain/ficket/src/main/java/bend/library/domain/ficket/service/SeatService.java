@@ -12,4 +12,5 @@ public interface SeatService {
     void printSeatStructure(final SeatConfig seatConfig);
 
     Set<String> extractSetsFromStructure(final SeatConfig seatConfig);
+    Set<String> extractSetsFromStructure(final String seatStructure);
 }

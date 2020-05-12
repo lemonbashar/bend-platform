@@ -28,6 +28,11 @@ export class ConsoleService {
     return this;
   }
 
+  successBodyPrint(body: any): ConsoleService {
+    console.log(body);
+    return this;
+  }
+
   log(message: string, body: HttpResponse<any>): ConsoleService {
     console.log(message);
     return this;

@@ -2,7 +2,8 @@
   <div class="col-md-12">
     <div class="form-group">
       <label for="id-bfu-ticket-dashboard-select-car">Select Car</label>
-      <select class="form-control" id="id-bfu-ticket-dashboard-select-car">
+      <select class="form-control" [(ngModel)]="uiData.carId" (change)="onCarSelectionChange()" id="id-bfu-ticket-dashboard-select-car">
+        <option [value]="0">No Car Selected</option>
         <option *ngFor="let car of cars.values" [value]="car[cars.idIndex]">{{car[cars.indexes[0].index]}}</option>
       </select>
     </div>

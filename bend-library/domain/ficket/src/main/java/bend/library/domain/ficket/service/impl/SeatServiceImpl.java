@@ -29,8 +29,13 @@ public class SeatServiceImpl implements SeatService {
 
     @Override
     public Set<String> extractSetsFromStructure(SeatConfig seatConfig) {
+        return extractSetsFromStructure(seatConfig.getSeatStructure());
+    }
+
+    @Override
+    public Set<String> extractSetsFromStructure(final String seatStructure) {
         Set<String> seatSet = new LinkedHashSet<>();
-        String[] rows = seatConfig.getSeatStructure().split(ROW_SEPARATOR_REGEX);
+        String[] rows = seatStructure.split(ROW_SEPARATOR_REGEX);
         for(String row: rows) {
             String[] plays = row.split(LINE_SEPARATOR_REGEX);
             for(String play: plays) {

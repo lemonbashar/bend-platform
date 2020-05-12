@@ -8,7 +8,10 @@ import java.math.BigInteger;
 import java.util.Set;
 
 public interface CarService {
+    @Deprecated
     Set<String> extractSetsFromCar(final BigInteger carId);
+
+    String findSeatStructure(final BigInteger carId);
 
     PageableDataResponse<BaseFlexibleCrudeViewData> findAllFlexibleOnlyActive(Pageable pageable);
 }

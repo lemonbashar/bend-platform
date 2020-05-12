@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigInteger;
 import java.util.Objects;
-import java.util.Set;
 
 @RequiredArgsConstructor
 @RestController
@@ -29,8 +28,8 @@ public class CarPublicController {
     private final @NonNull CarService carService;
 
     @GetMapping(FicketRestApiProvider.CarApi.EXTRACT_SEAT_FROM_CAR)
-    public ResponseEntity<DataResponse<Set<String>>> extractSeatFromCar(@PathVariable BigInteger carId) {
-        return BendOptional.ofNullable(this.carService.extractSetsFromCar(carId))
+    public ResponseEntity<DataResponse<String>> extractSeatFromCar(@PathVariable BigInteger carId) {
+        return BendOptional.ofNullable(this.carService.findSeatStructure(carId))
                 .map(seats -> new DataResponse<>(Objects.isNull(seats)? BendStatus.NOT_FOUND: BendStatus.SUCCESS, seats))
                 .map(ResponseUtil::of).get().response(ResponseType::get);
     }
