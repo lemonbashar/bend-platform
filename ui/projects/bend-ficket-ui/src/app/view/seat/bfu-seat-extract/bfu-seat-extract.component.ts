@@ -6,19 +6,19 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class BfuSeatExtractComponent implements OnInit {
   private structure: string;
-  rowList: string[];
+  seatLinesList: string[];
 
   constructor() { }
 
   @Input()
   set seatStructure(structure: string) {
     this.structure = structure;
-    this.rowList = this.rows();
+    this.seatLinesList = this.rows();
   }
 
   ngOnInit(): void {
     this.structure = null;
-    this.rowList = [];
+    this.seatLinesList = [];
   }
 
   rows(): string[] {
@@ -28,9 +28,14 @@ export class BfuSeatExtractComponent implements OnInit {
 
     for (let i = 0; i < rowRows.length; i++) {
       const cols = rowRows[i].split('|');
-      rows.push(cols);
+      const colList = [];
+      for (let j = 0; j < cols.length; j++) {
+        const colExts = cols[j].split('-');
+        colList.push(colExts);
+      }
+      rows.push(colList);
     }
-
+    console.log(rows);
     return rows;
   }
 }

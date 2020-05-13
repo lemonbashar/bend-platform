@@ -1,10 +1,7 @@
-<div class="row">
+<div class="row" *ngFor="let seatLines of seatLinesList">
+  <div class="col-md-3"></div>
+  <button *ngFor="let seat of seatLines[0]" [disabled]="seat == ' '" class="btn btn-primary col-md-1">{{seat}}</button>
   <div class="col-md-2"></div>
-  <div class="col-md-8">
-    <div class="row" *ngFor="let cols of rowList">
-      <div class="col-sm-1" *ngFor="let col of cols">
-        <button class="btn btn-primary">{{col | bendTranslate}}</button>
-      </div>
-    </div>
-  </div>
+  <button *ngFor="let seat of seatLines[1]" [disabled]="seat == ' '" class="btn btn-primary col-md-1">{{seat}}</button>
+  <div class="col-md-3"></div>
 </div>
