@@ -10,6 +10,7 @@ import {MessageService} from 'primeng/api';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {HttpClientModule} from '@angular/common/http';
+import {BendTranslatePipe} from './pipe/lang/bend-translate-pipe';
 
 const PRIME_NG_MODULES = [
   DynamicDialogModule,
@@ -25,15 +26,17 @@ const LIBRARY_MODULE = [BendCoreModule];
 const COMPONENTS = [BendLoginDialogComponent];
 const ENTRY_COMPONENTS = [BendLoginDialogComponent];
 
+const PIPES = [BendTranslatePipe];
+
 @NgModule({
-  declarations: [...COMPONENTS],
+  declarations: [...COMPONENTS, ...PIPES],
   imports: [
     ...LIBRARY_MODULE,
     ...THIRD_PARTIES_MODULES,
     HttpClientModule
   ],
   providers: [MessageService],
-  exports: [],
+  exports: [...PIPES],
   entryComponents: [...ENTRY_COMPONENTS]
 })
 export class BendCoreUiModule { }

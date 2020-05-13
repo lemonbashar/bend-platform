@@ -17,3 +17,6 @@ export * from './lib/message/bend-toast.service';
 export * from './lib/bend-core-ui.module';
 
 export * from './lib/util/route.util';
+
+export * from './lib/pipe/lang/bend-translate-pipe';
+export * from './lib/service/lang-key-service';
