@@ -19,6 +19,7 @@ import {BfuDashboardComponent} from './layout/dashboard/bfu-dashboard.component'
 import {BfuFooterComponent} from './layout/footer/bfu-footer.component';
 import {BfuNavbarComponent} from './layout/navbar/bfu-navbar.component';
 import {BfuTicketDashboardComponent} from './view/bfu-ticket-dashboard/bfu-ticket-dashboard.component';
+import {BfuSeatExtractComponent} from './view/seat/bfu-seat-extract/bfu-seat-extract.component';
 
 
 const PRIME_NG_MODULES = [
@@ -39,7 +40,7 @@ const THIRD_PARTIES_MODULE = [BrowserModule, HttpClientModule,
 ];
 const INTERNAL_MODULE = [AppRoutingModule];
 const LIBRARY_MODULE = [BendCoreModule, BendCoreUiModule];
-const VIEW_COMPONENTS = [BfuTicketDashboardComponent];
+const VIEW_COMPONENTS = [BfuTicketDashboardComponent, BfuSeatExtractComponent];
 
 const APP_MAIN_COMPONENT = [AppComponent];
 const LAYOUT_COMPONENT = [
