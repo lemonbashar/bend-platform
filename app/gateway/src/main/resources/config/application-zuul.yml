@@ -11,3 +11,11 @@ zuul:
             service-id: bend-ficket-app
             strip-prefix: false
     sensitive-headers: [Cookie, Set-Cookie]
+
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeout-in-milliseconds: 60000
