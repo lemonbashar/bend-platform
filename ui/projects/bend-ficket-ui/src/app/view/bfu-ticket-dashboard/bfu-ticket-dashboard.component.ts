@@ -2,18 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import {BfuCarService} from '../../service/bfu-car.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {BaseFlexibleCrudViewData, BendStatusText, ConsoleService, DataResponse, PageableDataResponse} from 'bend-core';
-import {BendToastService} from 'bend-core-ui';
+import {BendBaseComponent, BendToastService} from 'bend-core-ui';
 
 @Component({
   selector: 'ficket-bfu-ticket-dashboard',
   templateUrl: './bfu-ticket-dashboard.component.html'
 })
-export class BfuTicketDashboardComponent implements OnInit {
+export class BfuTicketDashboardComponent extends BendBaseComponent implements OnInit {
   cars: BaseFlexibleCrudViewData;
   ready = false;
   seatReady = false;
+  shifts = [{
+    id: 1,
+    name: 'Day Shift 06:30'
+  },
+  {
+    id: 2,
+    name: 'Night Shift 09:30'
+  }];
+
   uiData: any = {
-    carId: 0
+    carId: 0,
+    date: new Date(),
+    shift: 1
   };
   seatStructure: string;
 
@@ -21,7 +32,7 @@ export class BfuTicketDashboardComponent implements OnInit {
     private bfuCarService: BfuCarService,
     private consoleService: ConsoleService,
     private toastService: BendToastService
-  ) { }
+  ) { super(); }
 
   ngOnInit(): void {
     this.fetch();
@@ -56,5 +67,9 @@ export class BfuTicketDashboardComponent implements OnInit {
       this.toastService.error('Network Problem');
       this.consoleService.error('Error During Extract Seat info From Car', error);
     });
+  }
+
+  onShiftSelectionChange() {
+
   }
 }

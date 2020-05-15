@@ -1,5 +1,5 @@
 <div class="row" *ngIf="ready">
-  <div class="col-md-12">
+  <div class="col-md-4">
     <div class="form-group">
       <label for="id-bfu-ticket-dashboard-select-car">Select Car</label>
       <select class="form-control" [(ngModel)]="uiData.carId" (change)="onCarSelectionChange()" id="id-bfu-ticket-dashboard-select-car">
@@ -8,5 +8,19 @@
       </select>
     </div>
   </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="id-bfu-ticket-dashboard-pick-date">Travel Date</label>
+      <input type="date" class="form-control" [ngModel]="uiData.date" id="id-bfu-ticket-dashboard-pick-date" [min]="today"/>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="id-bfu-ticket-dashboard-select-shift">Select Shift</label>
+      <select class="form-control" [(ngModel)]="uiData.shift" (change)="onShiftSelectionChange()" id="id-bfu-ticket-dashboard-select-shift">
+        <option *ngFor="let shift of shifts" [value]="shift.id">{{shift.name}}</option>
+      </select>
+    </div>
+  </div>
 </div>
-<ficket-bfu-seat-extract [seatStructure]="seatStructure"></ficket-bfu-seat-extract>
+<ficket-bfu-seat-extract [seatStructure]="seatStructure" [soldSeat]="['B4', 'I2', 'G1', 'G4']"></ficket-bfu-seat-extract>

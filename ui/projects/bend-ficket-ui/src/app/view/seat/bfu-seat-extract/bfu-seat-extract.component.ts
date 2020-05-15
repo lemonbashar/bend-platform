@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BfuSeatExtractComponent implements OnInit {
   private structure: string;
   seatLinesList: string[];
+  soldSeats: string[];
 
   constructor() { }
 
@@ -14,6 +15,11 @@ export class BfuSeatExtractComponent implements OnInit {
   set seatStructure(structure: string) {
     this.structure = structure;
     this.seatLinesList = this.rows();
+  }
+
+  @Input()
+  set soldSeat(seats: string[]) {
+    this.soldSeats = seats;
   }
 
   ngOnInit(): void {
@@ -37,5 +43,9 @@ export class BfuSeatExtractComponent implements OnInit {
     }
     console.log(rows);
     return rows;
+  }
+
+  isSold(seat: string): boolean {
+    return this.soldSeats.indexOf(seat) >= 0;
   }
 }

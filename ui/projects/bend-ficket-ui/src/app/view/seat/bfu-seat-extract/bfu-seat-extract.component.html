@@ -1,7 +1,7 @@
 <div class="row" *ngFor="let seatLines of seatLinesList">
   <div class="col-md-3"></div>
-  <button *ngFor="let seat of seatLines[0]" [disabled]="seat == ' '" class="btn btn-primary col-md-1">{{seat}}</button>
+  <button *ngFor="let seat of seatLines[0]" [disabled]="seat == ' ' || isSold(seat)" class="btn btn-primary col-md-1">{{seat}}</button>
   <div class="col-md-2"></div>
-  <button *ngFor="let seat of seatLines[1]" [disabled]="seat == ' '" class="btn btn-primary col-md-1">{{seat}}</button>
+  <button *ngFor="let seat of seatLines[1]" [disabled]="seat == ' ' || isSold(seat)" class="btn btn-primary col-md-1">{{seat}}</button>
   <div class="col-md-3"></div>
 </div>
