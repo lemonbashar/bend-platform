@@ -38,7 +38,7 @@ public class ResponseType<T> {
 
     @SuppressWarnings("unchecked")
     public ResponseEntity<T> response() {
-        return body.ifThenMap(Objects::nonNull, t -> new ResponseEntity<T>(t, this.httpHeaders, this.httpStatus))
+        return body.ifThenMap(Objects::nonNull, t -> new ResponseEntity<T>(t, this.httpHeaders, this.httpStatus)).map(obj -> (ResponseEntity<T>)obj)
                 .orElse((ResponseEntity<T>) empty);
     }
 }

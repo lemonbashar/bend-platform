@@ -140,7 +140,7 @@ public class RdbmsRoutingJpaConfig {
         this.databaseConfigRepository.findAllByActiveIsTrue()
                 .forEach(databaseConfig -> {
                     final DataSource dataSource = configHikariDataSource(databaseConfig);
-                    dataSourceMap.put(databaseConfig.getSchema(), dataSource);
+                    dataSourceMap.put(databaseConfig.getIdentifiedKey(), dataSource);
                     migrationConfigListMap.computeIfAbsent(databaseConfig.getMigrationConfig(), k -> new ArrayList<>());
                     migrationConfigListMap.get(databaseConfig.getMigrationConfig()).add(dataSource);
                 });

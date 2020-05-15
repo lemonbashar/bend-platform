@@ -50,6 +50,9 @@ public class DatabaseConfig extends BaseEntity<BigInteger> implements Serializab
     @JoinColumn(name = "MIGRATION_CONFIG_ID")
     private MigrationConfig migrationConfig;
 
+    @Column(name = "IDENTIFIED_KEY", nullable = false, unique = true, length = 5)
+    private String identifiedKey;
+
 
     public DatabaseConfig(String schema, String username, String password, String host, DatabaseType databaseType, Set<JpaProperties> databaseProperties) {
         this.schema = schema;

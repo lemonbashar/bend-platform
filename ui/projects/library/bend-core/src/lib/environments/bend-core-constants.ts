@@ -16,7 +16,14 @@ export const BendCoreConstants = {
       TOKEN_LIFETIME: 3600000,
       TOKEN_LIFETIME_FOR_REMEMBER_ME: 7200000
     },
-    TOKEN_LIFETIME: 'TOKEN_LIFETIME'
+    TOKEN_LIFETIME: 'TOKEN_LIFETIME',
+    routingDatabase: {
+      REGISTRY_TYPE: 'REGISTRY_TYPE',
+      REGISTRY_VALUE: 'REGISTRY_VALUE',
+      detectionTypes: {
+        CLUSTER_KEY: 'CLUSTER_KEY'
+      }
+    }
   },
   jwt: {
     JSON_WEB_TOKEN: 'Json-Web-Token',

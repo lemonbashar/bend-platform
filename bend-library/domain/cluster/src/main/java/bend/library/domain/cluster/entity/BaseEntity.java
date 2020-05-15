@@ -29,11 +29,15 @@ public abstract class BaseEntity<ID> {
     private LocalDate updateDate;
 
     @Column(name = "ACTIVE_STATUS")
-    private boolean active;
+    private Boolean active;
 
     public abstract ID getId();
 
     public abstract void setId(ID id);
+
+    public Boolean isActive() {
+        return active == null ? false : active;
+    }
 
     @Override
     public boolean equals(Object o) {

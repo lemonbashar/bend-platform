@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
@@ -19,7 +20,7 @@ import java.util.Optional;
  * Created 2/6/2020
  */
 @Repository
-@Transactional
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public interface UserRepository extends JpaRepository<User, BigInteger> {
 
     Optional<User> findByUsernameAndActive(String username, boolean activeStatus);

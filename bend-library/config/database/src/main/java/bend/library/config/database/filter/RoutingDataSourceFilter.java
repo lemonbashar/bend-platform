@@ -9,6 +9,8 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
@@ -19,13 +21,14 @@ import java.io.IOException;
  * These are total detecting method we gonna use.
  *
  * <ul>
- *     <li>{@link RegistryDetectionType#BY_USERNAME} BY_USERNAME</li>
+ *     <li>{@link RegistryDetectionType#CLUSTER_KEY} BY_USERNAME</li>
  *     <li>BY_ORGANIZATION_NAME</li>
  * </ul>
  */
 public class RoutingDataSourceFilter extends AbstractFilter {
+
     @Override
-    protected void doFilterInternal(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         final String registryDetectionValue = findHeaderValue(request, RouteConstants.HEADER_REGISTRY_DETECTION_VALUE);
         final String registryDetectionType = findHeaderValue(request, RouteConstants.HEADER_REGISTRY_DETECTION_TYPE);
         if (registryDetectionValue != null && registryDetectionType != null) {

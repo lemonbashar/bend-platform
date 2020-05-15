@@ -38,6 +38,9 @@
             <column name="MIGRATION_CONFIG_ID" type="${bigInteger}">
                 <constraints nullable="false"/>
             </column>
+            <column name="IDENTIFIED_KEY" type="VARCHAR(5)">
+                <constraints unique="false" uniqueConstraintName="UK_DB_CLUSTER_DATABASE_CONFIG_IDENTIFIED_KEY"/>
+            </column>
         </createTable>
         <rollback>
             <dropTable tableName="DB_CLUSTER_DATABASE_CONFIG"/>

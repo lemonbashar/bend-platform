@@ -5,6 +5,7 @@ import {ConsoleService} from '../../service/console/console.service';
 import {AccountInfo, LoginInfo, LogoutInfo} from '../../model/account.model';
 import {httpStatus} from '../http/http-status';
 import {BendCoreConstants} from '../../environments/bend-core-constants';
+import {StorageService} from '../../service/storage/storage-service';
 
 export interface IAuthenticationCallback {
   authenticationState(isAuthenticated: boolean, message?: string, error?: HttpErrorResponse): void;
@@ -24,7 +25,7 @@ export class ConsoleAuthenticationCallback implements IAuthenticationCallback {
   }
 }
 
-export interface AbstractAuthenticationService {
+export interface IAbstractAuthenticationService {
   authenticate(info: LoginInfo, callback?: IAuthenticationCallback);
 
   refreshToken(token: string);
@@ -44,7 +45,7 @@ export interface AbstractAuthenticationService {
   hasAnyAuthority(authorities: string[]): boolean;
 }
 
-export abstract class AbstractAuthenticationService implements AbstractAuthenticationService {
+export abstract class AbstractAuthenticationService implements IAbstractAuthenticationService {
   protected accountInfo: AccountInfo;
   protected authenticationState = new Subject<AccountInfo>();
   SUCCESS_MESSAGE = 'Authenticated Successfully';
@@ -52,7 +53,8 @@ export abstract class AbstractAuthenticationService implements AbstractAuthentic
 
   constructor(
     private accountService: BendAccountService,
-    private consoleService: ConsoleService
+    private consoleService: ConsoleService,
+    private storageService: StorageService
   ) {}
 
   authenticate(info: LoginInfo, callback: IAuthenticationCallback) {
@@ -162,22 +164,14 @@ export abstract class AbstractAuthenticationService implements AbstractAuthentic
   }
 
   protected deleteCookieByKey(key: string) {
-    localStorage.removeItem(key);
+    this.storageService.remove(key);
   }
 
   protected saveCookieByKey(key: string, value: string) {
-    this.saveToLocalStorage(key, value);
+    this.storageService.put(key, value);
   }
 
   protected retrieveCookieByKey(key: string): string {
-    return this.retrieveFromLocalStorage(key);
-  }
-
-  protected saveToLocalStorage(key: string, value: string) {
-    localStorage.setItem(key, value);
-  }
-
-  protected retrieveFromLocalStorage(key: string): string {
-    return localStorage.getItem(key);
+    return this.storageService.get(key);
   }
 }

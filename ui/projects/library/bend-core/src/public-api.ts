@@ -43,3 +43,5 @@ export * from './lib/service/text/text-processing.service';
 export * from './lib/compile/bend-flexible-compiler.service';
 
 export * from './lib/bend-core.module';
+export * from './lib/service/storage/storage-service';
+export * from './lib/environments/bend-core-constants';

@@ -1,6 +1,7 @@
 package bend.library.config.security.filter;
 
 import org.springframework.web.filter.GenericFilterBean;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import java.io.PrintWriter;
  * Email lemon.bashar@gmail.com
  * Created 2/16/2020
  */
-public abstract class AbstractFilter extends GenericFilterBean {
+public abstract class AbstractFilter extends OncePerRequestFilter {
     public static String findHeaderValue(ServletRequest servletRequest, String headerName) {
         return findHeaderValue((HttpServletRequest) servletRequest, headerName);
     }
@@ -23,13 +24,6 @@ public abstract class AbstractFilter extends GenericFilterBean {
     public static String findHeaderValue(HttpServletRequest httpServletRequest, String headerName) {
         return httpServletRequest.getHeader(headerName);
     }
-
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        doFilterInternal(request, response, chain);
-    }
-
-    protected abstract void doFilterInternal(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException;
 
     /**
      * At client-end it will found on error.text

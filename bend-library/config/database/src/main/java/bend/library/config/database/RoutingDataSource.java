@@ -8,6 +8,7 @@ import bend.library.config.security.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
+import java.util.List;
 import java.util.Objects;
 
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
                 .ifThenMap(Objects::nonNull, efp -> efp
                         .and(CustomUserDetails::getRegistryDetectionType)
                         .and(CustomUserDetails::getRegistryDetectionValue).extract())
-                .ifThenMap(Objects::nonNull, list -> determineLookupKey((RegistryDetectionType) list.get(0), list.get(1).toString()))
+                .ifThenMap(Objects::nonNull, list -> determineLookupKey((RegistryDetectionType) ((List<?>)list).get(0), ((List<?>)list).get(1).toString()))
                 .ifThenMap(Objects::isNull, list -> clusterDatabaseRegistry.defaultDataSourceKey())
                 .get();
     }

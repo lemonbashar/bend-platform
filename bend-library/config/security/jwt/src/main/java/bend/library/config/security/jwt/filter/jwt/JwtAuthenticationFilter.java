@@ -41,10 +41,10 @@ public class JwtAuthenticationFilter extends AbstractFilter {
     }
 
     @Override
-    protected void doFilterInternal(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String jwt = resolveToken(httpServletRequest);
-        resolveJWT(request, response, chain, jwt);
+        resolveJWT(request, response, filterChain, jwt);
     }
 
     protected void resolveJWT(ServletRequest request, ServletResponse response, FilterChain chain, String jwt) throws IOException, ServletException {
