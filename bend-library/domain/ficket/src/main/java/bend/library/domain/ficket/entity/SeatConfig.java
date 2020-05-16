@@ -9,6 +9,7 @@ import bend.library.domain.ficket.enumeretion.SeatType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,6 +32,7 @@ public class SeatConfig extends BaseEntity<BigInteger> implements Serializable {
     @SequenceGenerator(name = "PK_DB_FICKET_SEAT_CONFIG", sequenceName = "DB_FICKET_SEAT_CONFIG_SEQ", allocationSize = 1)
     private BigInteger id;
 
+    @Nationalized
     @Column(name = "CONFIG_NAME", length = 32, nullable = false)
     private String configName;
 

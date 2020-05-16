@@ -12,3 +12,6 @@ Aim to use technology.
     <li>Apache KAFKA</li>
     <li>RabbitMQ</li>
 </ul>
+
+#Change Connection limit on postresql.conf
+    max_connections = 1000

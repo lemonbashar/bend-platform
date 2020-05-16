@@ -1,7 +1,6 @@
 package bend.library.config.database.rdbms;
 
 import bend.framework.base.lang.ArrayUtil;
-import bend.framework.base.util.BendOptional;
 import bend.framework.properties.springproperties.SpringProperties;
 import bend.framework.properties.springproperties.database.Database;
 import bend.library.config.database.RoutingDataSource;
@@ -13,8 +12,8 @@ import bend.library.domain.cluster.entity.DatabaseConfig;
 import bend.library.domain.cluster.entity.JpaProperties;
 import bend.library.domain.cluster.entity.MigrationConfig;
 import bend.library.domain.cluster.enumeretion.DatabasePropertyType;
-import bend.library.domain.cluster.repositories.DatabaseConfigRepository;
 import bend.library.domain.cluster.repositories.JpaPropertiesRepository;
+import bend.library.domain.cluster.service.DatabaseConfigService;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,15 +46,15 @@ public class RdbmsRoutingJpaConfig {
     private static final String HIBERNATE_PROPS_DATABASE_TYPE = "databaseType";
     private final EncoderService encoderService;
     private final ClusterDatabaseMigration databaseMigration;
-    private final DatabaseConfigRepository databaseConfigRepository;
+    private final DatabaseConfigService databaseConfigService;
     private final ClusterDatabaseRegistry clusterDatabaseRegistry;
     private final JpaPropertiesRepository jpaPropertiesRepository;
     private final SpringProperties properties;
 
-    public RdbmsRoutingJpaConfig(EncoderService encoderService, @Autowired(required = false) ClusterDatabaseMigration databaseMigration, DatabaseConfigRepository databaseConfigRepository, @Autowired(required = false) ClusterDatabaseRegistry clusterDatabaseRegistry, JpaPropertiesRepository jpaPropertiesRepository, SpringProperties properties) {
+    public RdbmsRoutingJpaConfig(EncoderService encoderService, @Autowired(required = false) ClusterDatabaseMigration databaseMigration, DatabaseConfigService databaseConfigService, @Autowired(required = false) ClusterDatabaseRegistry clusterDatabaseRegistry, JpaPropertiesRepository jpaPropertiesRepository, SpringProperties properties) {
         this.encoderService = encoderService;
         this.databaseMigration = databaseMigration;
-        this.databaseConfigRepository = databaseConfigRepository;
+        this.databaseConfigService = databaseConfigService;
         this.clusterDatabaseRegistry = clusterDatabaseRegistry;
         this.jpaPropertiesRepository = jpaPropertiesRepository;
         this.properties = properties;
@@ -63,22 +62,19 @@ public class RdbmsRoutingJpaConfig {
 
     @Bean(name = BaseConstants.ROUTING_DATASOURCE_NAME)
     public DataSource routingDataSource() {
-        DataSource routingDataSource = null;
-        Pack pack = null;
-        if (properties.getDatabase().getRoutingDatabase().isActiveAllRoute()) {
-            routingDataSource = new RoutingDataSource(this.clusterDatabaseRegistry);
-            pack = findDataSources();
-            ((RoutingDataSource)routingDataSource).setTargetDataSources(pack.dataSourceMap);
-            ((RoutingDataSource)routingDataSource).setDefaultTargetDataSource(pack.dataSourceMap.get(clusterDatabaseRegistry.defaultDataSourceKey()));
+        RoutingDataSource routingDataSource = new RoutingDataSource(this.clusterDatabaseRegistry);
+        Pack pack = findDataSources();
+        routingDataSource.setTargetDataSources(pack.dataSourceMap);
+        routingDataSource.setDefaultTargetDataSource(pack.dataSourceMap.get(clusterDatabaseRegistry.defaultDataSourceKey()));
 
-        } else { /*TODO: Will Use Routing database for internationalization support in back-end.: See Future Goal*/
+        /*else { *//*TODO: Will Use Routing database for internationalization support in back-end.: See Future Goal*//*
             DatabaseConfig  databaseConfig = databaseConfigRepository.findBySchema(properties.getDatabase().getRoutingDatabase().getSingleRouteSchema())
                     .orElseThrow(()->new RuntimeException("Can't find Single-Route Schema"));
             routingDataSource = configHikariDataSource(databaseConfig);
             Map<MigrationConfig, List<DataSource>> map = new HashMap<>();
             map.put(databaseConfig.getMigrationConfig(), List.of(routingDataSource));
             pack = new Pack(null, map);
-        }
+        }*/
 
         if (databaseMigration != null) {
             log.info("Migration profile(Liquibase/Flyway) is active, and starting migration...");
@@ -137,13 +133,13 @@ public class RdbmsRoutingJpaConfig {
     private Pack findDataSources() {
         final Map<Object, Object> dataSourceMap = new HashMap<>();
         final Map<MigrationConfig, List<DataSource>> migrationConfigListMap = new HashMap<>();
-        this.databaseConfigRepository.findAllByActiveIsTrue()
-                .forEach(databaseConfig -> {
-                    final DataSource dataSource = configHikariDataSource(databaseConfig);
-                    dataSourceMap.put(databaseConfig.getIdentifiedKey(), dataSource);
-                    migrationConfigListMap.computeIfAbsent(databaseConfig.getMigrationConfig(), k -> new ArrayList<>());
-                    migrationConfigListMap.get(databaseConfig.getMigrationConfig()).add(dataSource);
-                });
+        List<DatabaseConfig> databaseConfigs = properties.getDatabase().getRoutingDatabase().isActiveAllRoute() ? this.databaseConfigService.findAllDatabases() : this.databaseConfigService.findAllDatabaseConfigAccordingToKeys(properties.getDatabase().getRoutingDatabase().getSelectedRouteSchemaKeys());
+        databaseConfigs.forEach(databaseConfig -> {
+            final DataSource dataSource = configHikariDataSource(databaseConfig);
+            dataSourceMap.put(databaseConfig.getIdentifiedKey(), dataSource);
+            migrationConfigListMap.computeIfAbsent(databaseConfig.getMigrationConfig(), k -> new ArrayList<>());
+            migrationConfigListMap.get(databaseConfig.getMigrationConfig()).add(dataSource);
+        });
         return new Pack(dataSourceMap, migrationConfigListMap);
     }
 

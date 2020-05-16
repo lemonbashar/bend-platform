@@ -1,9 +1,9 @@
 ID,ACTIVE_STATUS,CREATE_BY,PROPERTY_KEY,PROPERTY_TYPE,PROPERTY_VALUE
 1,true,1,driver,NATIVE,org.postgresql.Driver
-2,true,1,connectionTimeout,NATIVE,20000
+2,true,1,connectionTimeout,NATIVE,2000
 3,true,1,minIdleConnectionSize,NATIVE,10
 4,true,1,maxPoolSize,NATIVE,20
-5,true,1,idleTimeout,NATIVE,500000
+5,true,1,idleTimeout,NATIVE,5000
 6,true,1,autoCommit,NATIVE,false
 7,true,1,datasourcePoolName,NATIVE,default-datasource-pool
 8,true,1,hibernate.dialect,HIBERNATE,org.hibernate.dialect.PostgreSQL82Dialect

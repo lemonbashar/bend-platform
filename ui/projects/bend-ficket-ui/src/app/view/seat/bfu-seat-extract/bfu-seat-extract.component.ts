@@ -41,7 +41,6 @@ export class BfuSeatExtractComponent implements OnInit {
       }
       rows.push(colList);
     }
-    console.log(rows);
     return rows;
   }
 

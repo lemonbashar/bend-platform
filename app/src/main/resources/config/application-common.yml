@@ -14,6 +14,7 @@ bend-platform:
         routing-database:
             active: true
             active-all-route: true
+            default-schema-key: bcd
         migration:
             active: false
         hibernate:

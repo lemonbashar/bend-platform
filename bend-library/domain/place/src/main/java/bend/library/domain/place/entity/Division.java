@@ -9,6 +9,7 @@ import bend.library.domain.entity.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,6 +32,7 @@ public class Division extends BaseEntity<BigInteger> implements Serializable {
     @SequenceGenerator(name = "PK_DB_PLACE_DIVISION", sequenceName = "DB_PLACE_DIVISION_SEQ", allocationSize = 1)
     private BigInteger id;
 
+    @Nationalized
     @Column(name = "NAME", length = 32)
     private String name;
 }

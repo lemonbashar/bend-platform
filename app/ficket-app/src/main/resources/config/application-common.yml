@@ -14,7 +14,8 @@ bend-platform:
         routing-database:
             active: true
             active-all-route: false
-            single-route-schema: bend-cluster-database-ficket
+            selected-route-schema-keys: [bcdf, bcdf-bn]
+            default-schema-key: bcdf
             annotated-packages: [bend.library.domain.entity, bend.library.domain.place.entity, bend.library.domain.ficket.entity]
         migration:
             active: false

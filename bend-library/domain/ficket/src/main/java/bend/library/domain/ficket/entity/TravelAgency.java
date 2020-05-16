@@ -8,6 +8,7 @@ import bend.library.domain.entity.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,6 +31,7 @@ public class TravelAgency extends BaseEntity<BigInteger> implements Serializable
     @SequenceGenerator(name = "PK_DB_FICKET_TRAVEL_AGENCIES", sequenceName = "DB_FICKET_TRAVEL_AGENCIES_SEQ", allocationSize = 1)
     private BigInteger id;
 
+    @Nationalized
     @Column(name = "AGENCY_NAME", length = 32, nullable = false)
     private String agencyName;
 

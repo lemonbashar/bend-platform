@@ -50,7 +50,7 @@ public class DatabaseConfig extends BaseEntity<BigInteger> implements Serializab
     @JoinColumn(name = "MIGRATION_CONFIG_ID")
     private MigrationConfig migrationConfig;
 
-    @Column(name = "IDENTIFIED_KEY", nullable = false, unique = true, length = 5)
+    @Column(name = "IDENTIFIED_KEY", nullable = false, unique = true, length = 10)
     private String identifiedKey;
 
 

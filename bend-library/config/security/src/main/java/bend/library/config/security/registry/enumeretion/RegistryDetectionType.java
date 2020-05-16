@@ -6,5 +6,6 @@ package bend.library.config.security.registry.enumeretion;
  * for this reason we need detection type.
  */
 public enum RegistryDetectionType {
-    CLUSTER_KEY
+    CLUSTER_KEY,
+    LOCALE_KEY
 }

@@ -61,7 +61,6 @@ export class BfuTicketDashboardComponent extends BendBaseComponent implements On
       if (resp.ok && resp.body.status.toString() === BendStatusText.SUCCESS) {
         this.seatStructure = resp.body.data;
         this.seatReady = true;
-        this.consoleService.successBodyPrint(resp.body);
       } else this.consoleService.error('Error During Fetch Seat Info Data');
     }, (error: HttpErrorResponse) => {
       this.toastService.error('Network Problem');

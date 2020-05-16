@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -74,6 +75,16 @@ public class DatabaseConfigServiceImpl implements DatabaseConfigService {
         jpaProperties.add(makeJpaProperties("entityManagerBeanName", Jpa::getEntityManagerBeanName, database.getJpa()));
 
         createDatabaseConfig(host, databaseType, username, password, jpaProperties, schemas);
+    }
+
+    @Override
+    public List<DatabaseConfig> findAllDatabases() {
+        return databaseConfigRepository.findAllByActiveIsTrue();
+    }
+
+    @Override
+    public List<DatabaseConfig> findAllDatabaseConfigAccordingToKeys(String[] keys) {
+        return databaseConfigRepository.findAllByKeysAndActiveIsTrue(keys);
     }
 
     private void createDatabaseConfig(String host, DatabaseType databaseType, String username, String password, Set<JpaProperties> jpaProperties, String... schemas) {

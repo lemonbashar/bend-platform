@@ -2,6 +2,9 @@ package bend.library.domain.cluster.service;
 
 import bend.framework.properties.springproperties.database.Database;
 import bend.framework.properties.springproperties.database.DatabaseType;
+import bend.library.domain.cluster.entity.DatabaseConfig;
+
+import java.util.List;
 
 /**
  * Use for create database config and define runtime transactional and datasource configuration
@@ -31,4 +34,8 @@ public interface DatabaseConfigService {
      * @param database     Associate Database properties
      */
     void createDatabaseConfig(String host, DatabaseType databaseType, String username, String password, Database database, String... schemas);
+
+    List<DatabaseConfig> findAllDatabases();
+
+    List<DatabaseConfig> findAllDatabaseConfigAccordingToKeys(String[] keys);
 }

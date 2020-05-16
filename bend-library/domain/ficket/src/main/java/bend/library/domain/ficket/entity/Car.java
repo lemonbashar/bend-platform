@@ -10,6 +10,7 @@ import bend.library.domain.ficket.enumeretion.CarType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -32,18 +33,22 @@ public class Car  extends BaseEntity<BigInteger> implements Serializable {
     @SequenceGenerator(name = "PK_DB_FICKET_CAR", sequenceName = "DB_FICKET_CAR_SEQ", allocationSize = 1)
     private BigInteger id;
 
+    @Nationalized
     @Column(name = "NAME", length = 64, nullable = false)
     private String name;
 
+    @Nationalized
     @Column(name = "LICENCE", length = 32)
     private String licence;
 
+    @Nationalized
     @Column(name = "NUMBER_PLATE", length = 32, nullable = false)
     private String numberPlate;
 
     @Column(name = "CAR_TYPE", length = 16, nullable = false)
     @Enumerated(EnumType.STRING)
     private CarType carType;
+
     @ManyToOne
     @JoinColumn(name = "TRAVEL_AGENCY_ID", nullable = false)
     private TravelAgency travelAgency;
