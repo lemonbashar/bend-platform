@@ -9,7 +9,7 @@ bend-platform:
                 active: false
         utility:
             sql-fetch:
-                domain-packages: [bend.library.domain.cluster.entity, bend.library.domain.place.entity]
+                domain-packages: [bend.library.domain.ficket.entity, bend.library.domain.place.entity, bend.library.domain.entity]
     database:
         routing-database:
             active: true

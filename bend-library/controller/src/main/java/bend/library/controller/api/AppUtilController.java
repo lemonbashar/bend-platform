@@ -1,6 +1,6 @@
-package bend.library.controller.rest.api;
+package bend.library.controller.api;
 
-import bend.library.controller.rest.constants.RestApiProvider;
+import bend.library.controller.ApiProvider;
 import bend.library.controller.util.ResponseType;
 import bend.library.controller.util.ResponseUtil;
 import bend.library.core.dao.AppUtilJdbcDao;
@@ -25,7 +25,7 @@ import java.util.Map;
 @Log4j2
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(RestApiProvider.AppUtilApi.APP_UTIL_PRIVATE_ROOT_API)
+@RequestMapping(ApiProvider.AppUtilApi.APP_UTIL_PRIVATE_ROOT_API)
 public class AppUtilController {
     private static final String NOT_PERMIT = "NO PERMISSION TO EDIT";
     private static final String SUCCESS = "SUCCESSFULLY UPDATED";
@@ -40,7 +40,7 @@ public class AppUtilController {
      * @return Result of the batch-update
      */
     @Transactional(rollbackFor = {Exception.class})
-    @PostMapping(RestApiProvider.AppUtilApi.FIELD_EDIT)
+    @PostMapping(ApiProvider.AppUtilApi.FIELD_EDIT)
     public ResponseEntity<DataResponse<Map<String, Object>>> fieldEdit(@RequestBody List<FieldDefinition> fieldDefinitions) throws Exception {
         Map<String, Object> feedback = new HashMap<>();
         HttpStatus httpStatus = HttpStatus.BAD_REQUEST;

@@ -1,10 +1,9 @@
 package bend.library.data.fetch.fetch;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,7 +33,7 @@ import java.util.List;
  */
 @Setter
 @Getter
-@Builder
+@NoArgsConstructor
 public class SqlFetchDefinition extends FetchDefinition {
     private String[] columns;
     private String condition;
@@ -48,4 +47,75 @@ public class SqlFetchDefinition extends FetchDefinition {
      * current userId, then use, param.put("uid","SPEL:@authService.currentUserId()")
      */
     private List<Parameter> parameters;
+    private boolean isNative;
+
+    SqlFetchDefinition(String[] columns, String condition, String alias, SqlJoin[] joins, String orderBy, List<Parameter> parameters, boolean isNative) {
+        this.columns = columns;
+        this.condition = condition;
+        this.alias = alias;
+        this.joins = joins;
+        this.orderBy = orderBy;
+        this.parameters = parameters;
+        this.isNative = isNative;
+    }
+
+    public static SqlFetchDefinition.SqlFetchDefinitionBuilder builder() {
+        return new SqlFetchDefinition.SqlFetchDefinitionBuilder();
+    }
+
+    public static class SqlFetchDefinitionBuilder {
+        private String[] columns;
+        private String condition;
+        private String alias;
+        private SqlJoin[] joins;
+        private String orderBy;
+        private List<Parameter> parameters;
+        private boolean isNative = false;
+
+        SqlFetchDefinitionBuilder() {
+        }
+
+        public SqlFetchDefinition.SqlFetchDefinitionBuilder columns(String[] columns) {
+            this.columns = columns;
+            return this;
+        }
+        public SqlFetchDefinition.SqlFetchDefinitionBuilder isNative(boolean isNative) {
+            this.isNative = isNative;
+            return this;
+        }
+
+        public SqlFetchDefinition.SqlFetchDefinitionBuilder condition(String condition) {
+            this.condition = condition;
+            return this;
+        }
+
+        public SqlFetchDefinition.SqlFetchDefinitionBuilder alias(String alias) {
+            this.alias = alias;
+            return this;
+        }
+
+        public SqlFetchDefinition.SqlFetchDefinitionBuilder joins(SqlJoin[] joins) {
+            this.joins = joins;
+            return this;
+        }
+
+        public SqlFetchDefinition.SqlFetchDefinitionBuilder orderBy(String orderBy) {
+            this.orderBy = orderBy;
+            return this;
+        }
+
+        public SqlFetchDefinition.SqlFetchDefinitionBuilder parameters(List<Parameter> parameters) {
+            this.parameters = parameters;
+            return this;
+        }
+
+        public SqlFetchDefinition build() {
+            return new SqlFetchDefinition(this.columns, this.condition, this.alias, this.joins, this.orderBy, this.parameters, isNative);
+        }
+
+        public String toString() {
+            String var10000 = Arrays.deepToString(this.columns);
+            return "SqlFetchDefinition.SqlFetchDefinitionBuilder(columns=" + var10000 + ", condition=" + this.condition + ", alias=" + this.alias + ", joins=" + Arrays.deepToString(this.joins) + ", orderBy=" + this.orderBy + ", parameters=" + this.parameters + ")";
+        }
+    }
 }

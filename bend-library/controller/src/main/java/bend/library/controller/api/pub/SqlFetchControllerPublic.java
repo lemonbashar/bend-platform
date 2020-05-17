@@ -1,7 +1,7 @@
-package bend.library.controller.rest.api;
+package bend.library.controller.api.pub;
 
 import bend.framework.base.util.BendOptional;
-import bend.library.controller.rest.constants.RestApiProvider;
+import bend.library.controller.ApiProvider;
 import bend.library.controller.util.ResponseType;
 import bend.library.controller.util.ResponseUtil;
 import bend.library.core.sqlfetch.SqlFetchService;
@@ -23,8 +23,8 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(RestApiProvider.SqlFetchApi.SQL_FETCH_PRIVATE_ROOT)
-public class SqlFetchController {
+@RequestMapping(ApiProvider.SqlFetchApi.SQL_FETCH_PUBLIC_ROOT)
+public class SqlFetchControllerPublic {
     private final @NonNull SqlFetchService sqlFetchService;
 
     @PostMapping

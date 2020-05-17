@@ -1,6 +1,6 @@
-package bend.library.controller.rest.api.pub;
+package bend.library.controller.api.pub;
 
-import bend.library.controller.rest.constants.RestApiProvider;
+import bend.library.controller.ApiProvider;
 import bend.library.controller.util.ResponseType;
 import bend.library.controller.util.ResponseUtil;
 import bend.library.core.dao.AppUtilJdbcDao;
@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Log4j2
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(RestApiProvider.AppUtilApi.APP_UTIL_PUBLIC_ROOT_API)
+@RequestMapping(ApiProvider.AppUtilApi.APP_UTIL_PUBLIC_ROOT_API)
 public class AppUtilControllerPublic {
     private final @NonNull CheckFieldDiscoveryService checkFieldDiscoveryService;
     private final @NonNull AppUtilJdbcDao appUtilJdbcDao;
 
     @SuppressWarnings("MVCPathVariableInspection")
-    @GetMapping(RestApiProvider.AppUtilApi.SINGLE_FIELD_EXISTENCE_CHECK)
+    @GetMapping(ApiProvider.AppUtilApi.SINGLE_FIELD_EXISTENCE_CHECK)
     public ResponseEntity<Boolean> checkExistence(@PathVariable String table, @PathVariable String field, @PathVariable String value) {
         boolean exist = false;
         try {

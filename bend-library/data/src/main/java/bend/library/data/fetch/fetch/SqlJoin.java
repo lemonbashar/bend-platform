@@ -1,8 +1,8 @@
 package bend.library.data.fetch.fetch;
 
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -18,10 +18,15 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-@Builder
+@NoArgsConstructor
 public class SqlJoin {
     private JoinType joinType;
     private String dependentAlias;
     private String relationName;
     private String alias;
+
+    @Override
+    public String toString() {
+        return joinType.name().replace('_', ' ') + " " + dependentAlias + "." + relationName + " "+ alias;
+    }
 }
