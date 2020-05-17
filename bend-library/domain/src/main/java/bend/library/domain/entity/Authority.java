@@ -45,4 +45,9 @@ public class Authority extends BaseEntity<BigInteger> implements Serializable {
     public Authority(String name) {
         this.name = name;
     }
+
+    public Authority(BigInteger id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

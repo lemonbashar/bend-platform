@@ -2,6 +2,8 @@ package bend.library.domain.repositories;
 
 import bend.library.domain.entity.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,5 +18,9 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface AuthorityRepository extends JpaRepository<Authority, BigInteger> {
-    Optional<Authority> findAuthorityByNameAndActive(String authorityName, boolean activeStatus);
+    @Query("SELECT new bend.library.domain.entity.Authority(auth.id, auth.name) FROM Authority auth WHERE auth.name =:authorityName AND auth.active=:activeStatus")
+    Optional<Authority> findAuthorityByNameAndActive(@Param("authorityName") String authorityName, @Param("activeStatus") boolean activeStatus);
+
+    @Query("SELECT new bend.library.domain.entity.Authority(auth.id, auth.name) FROM Authority auth WHERE auth.name =:authorityName")
+    Optional<Authority> findAuthorityByName(String authorityName);
 }

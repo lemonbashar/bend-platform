@@ -68,11 +68,11 @@ public class User extends BaseEntity<BigInteger> implements Serializable {
         this.id = id;
     }
 
-    public User(@Size(min = 5, max = 32, message = "Username length must be in between 4 ~ 32 ") String username, String password, @Email String email, String... authorities) {
+    public User(BigInteger id, @Size(min = 5, max = 32, message = "Username length must be in between 4 ~ 32 ") String username, @Email String email, Set<Authority> authorities) {
+        this.id = id;
         this.username = username;
-        this.password = password;
         this.email = email;
-        this.authorities = Stream.of(authorities).map(Authority::new).collect(Collectors.toSet());
+        this.authorities = authorities;
     }
 
     public User(@Size(min = 5, max = 32, message = "Username length must be in between 4 ~ 32 ") String username, String password, @Email String email, Set<Authority> authorities) {

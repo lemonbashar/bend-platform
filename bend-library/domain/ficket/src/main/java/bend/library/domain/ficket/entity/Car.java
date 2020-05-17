@@ -56,4 +56,8 @@ public class Car  extends BaseEntity<BigInteger> implements Serializable {
     @ManyToOne
     @JoinColumn(name = "CAR_CONFIG_ID", nullable = false)
     private CarConfig carConfig;
+
+    public Car(BigInteger id) {
+        this.id =id;
+    }
 }

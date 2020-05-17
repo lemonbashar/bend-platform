@@ -58,4 +58,8 @@ public class RideConfig  extends BaseEntity<BigInteger> implements Serializable 
      */
     @Column(name = "TIME_FACTOR", nullable = false)
     private LocalTime timeFactor;
+
+    public RideConfig(BigInteger id) {
+        this.id = id;
+    }
 }

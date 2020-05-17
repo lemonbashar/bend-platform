@@ -20,6 +20,6 @@ public class StandardCustomUserDetailsService implements CustomUserDetailsServic
 
     @Override
     public CustomUserDetails findUserDetails(String username) {
-        return userRepository.findByUsernameAndActive(username, true).map(CustomUserDetails::of).get();
+        return userRepository.findByUsernameOrEmailAndActiveIsTrue(username).map(CustomUserDetails::of).orElseThrow(() -> new SecurityException("User Not Found By Provided Username or Email"));
     }
 }

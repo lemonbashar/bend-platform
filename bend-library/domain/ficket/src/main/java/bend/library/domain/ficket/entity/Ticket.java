@@ -52,4 +52,16 @@ public class Ticket extends BaseEntity<BigInteger> implements Serializable {
     @ManyToOne
     @JoinColumn(name = "BUYER_ID")
     private User buyer;
+
+    public Ticket(BigInteger id, LocalDate rideDate, Double buyPrice, String seatNumber, BigInteger rideConfigId, BigInteger carId, BigInteger buyerId) {
+        this.id = id;
+        this.rideDate = rideDate;
+        this.buyPrice = buyPrice;
+        this.seatNumber = seatNumber;
+        this.rideConfig = new RideConfig(rideConfigId);
+        this.car = new Car(carId);
+        this.buyer = new User(buyerId);
+    }
+
+
 }

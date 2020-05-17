@@ -2,11 +2,12 @@ package bend.library.data.fetch.fetch;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
-@Builder
+@NoArgsConstructor
 public class Parameter {
     private String name;
     private String value;

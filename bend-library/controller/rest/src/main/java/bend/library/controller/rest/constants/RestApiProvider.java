@@ -30,19 +30,8 @@ public class RestApiProvider {
         public static final String LOGIN = "/login";
     }
 
-    public static class AppUtilApi {
-        public static final String APP_UTIL_PRIVATE_ROOT_API = APiConstants.PRIVATE_ROOT + "/app-util";
-        public static final String APP_UTIL_PUBLIC_ROOT_API = APiConstants.PUBLIC_ROOT + "/app-util";
-        public static final String SINGLE_FIELD_EXISTENCE_CHECK = "/single-field-existence-check/{table}/{field}/{value}";
-        public static final String FIELD_EDIT = "/field-edit";
-    }
-
     public static final class UserApi {
         public static final String USER_PRIVATE_ROOT_API = APiConstants.PRIVATE_ROOT + "/user";
         public static final String CURRENT_USER = "/current-user";
-    }
-
-    public static final class SqlFetchApi {
-        public static final String SQL_FETCH_PRIVATE_ROOT = APiConstants.PRIVATE_ROOT + "/sql-fetch";
     }
 }

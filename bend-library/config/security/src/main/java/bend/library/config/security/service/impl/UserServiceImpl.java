@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User systemUser() {
-        Optional<User> systemUser = userRepository.findByUsernameAndActive(SecurityConstants.UserConstants.SYSTEM_USER, true);
+        Optional<User> systemUser = userRepository.findByUsernameOrEmailAndActiveIsTrue(SecurityConstants.UserConstants.SYSTEM_USER);
         if (systemUser.isEmpty()) {
             log.error(MESSAGE_OF_MISSING_SYSTEM_USER);
             throw new RuntimeException(MESSAGE_OF_MISSING_SYSTEM_USER);

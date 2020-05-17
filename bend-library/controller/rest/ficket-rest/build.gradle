@@ -7,8 +7,6 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation project(':bend-library:core')
     implementation project(':bend-library:domain')
     implementation project(':bend-library:domain:ficket')
-    implementation project(':bend-library:core:sql-fetch')
 }

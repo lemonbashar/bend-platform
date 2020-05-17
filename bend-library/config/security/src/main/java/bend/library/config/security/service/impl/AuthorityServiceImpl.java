@@ -24,7 +24,7 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Override
     public Set<Authority> validRawAuthorities(String... authorities) {
         return Stream.of(authorities)
-                .map(authority -> authorityRepository.findAuthorityByNameAndActive(authority, true).orElseGet(() -> authorityRepository.save(new Authority(authority))))
+                .map(authority -> authorityRepository.findAuthorityByName(authority).orElseGet(() -> authorityRepository.save(new Authority(authority))))
                 .collect(Collectors.toSet());
     }
 }
