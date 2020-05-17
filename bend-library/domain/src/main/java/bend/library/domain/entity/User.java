@@ -7,7 +7,6 @@ import bend.library.annotation.prepersist.AutoCreate;
 import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
 import bend.library.constant.SpringElConstants;
-import bend.library.data.crud.BaseCrudData;
 import bend.library.domain.data.UserCrudData;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,6 @@ import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author lemon
@@ -79,7 +77,10 @@ public class User extends BaseEntity<BigInteger> implements Serializable {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.authorities = authorities;
+        this.authorities = authorities.stream().peek(auth -> {
+            auth.setCreateBy(null);
+            auth.setUpdateBy(null);
+        }).collect(Collectors.toSet());
     }
 
     @Override

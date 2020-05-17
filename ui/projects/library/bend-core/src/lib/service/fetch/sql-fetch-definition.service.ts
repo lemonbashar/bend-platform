@@ -10,5 +10,6 @@ export class SqlFetchDefinitionService extends BaseFetchService<ISqlFetchDefinit
     http: HttpClient
   ) {
     super('/sql-fetch', http);
+    this.DEFAULT_URL = this.PUBLIC_URL;
   }
 }

@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * @author lemon
@@ -42,6 +41,6 @@ public interface UserRepository extends JpaRepository<User, BigInteger> {
             "LEFT JOIN DB_MAIN_BEND_USER UB ON DMBU.UPDATE_BY = UB.ID ORDER BY DMBU.ID", nativeQuery = true)
     Page<Object[]> findAllFlexible(Pageable pageable);
 
-    @Query("SELECT user FROM User user WHERE (user.username =:username OR user.email =:username) AND user.active =true")
+    @Query("SELECT new bend.library.domain.entity.User(user.id, user.username, user.password, user.email, user.authorities) FROM User user WHERE (user.username =:username OR user.email =:username) AND user.active =true")
     Optional<User> findByUsernameOrEmailAndActiveIsTrue(@Param("username") String username);
 }

@@ -1,6 +1,7 @@
 export const commonResource = {
   HOST_URL: 'http://localhost:8788',
-  CONTEXT: '/api/bend-main-app'
+  CONTEXT: '/api/bend-main-app',
+  FICKET_CONTEXT: '/api/bend-ficket-app'
 };
 
 export const BendCoreConstants = {
@@ -28,5 +29,9 @@ export const BendCoreConstants = {
   jwt: {
     JSON_WEB_TOKEN: 'Json-Web-Token',
     REFRESHED_JSON_WEB_TOKEN: 'Refreshed-Json-Web-Token'
+  },
+  neighbourBaseUrls: {
+    BEND_MAIN_APP: commonResource.HOST_URL + commonResource.CONTEXT,
+    BEND_FICKET_APP: commonResource.HOST_URL + commonResource.FICKET_CONTEXT
   }
 };

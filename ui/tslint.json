@@ -28,7 +28,7 @@
     "interface-name": false,
     "max-classes-per-file": false,
     "max-line-length": [
-      true,
+      false,
       240
     ],
     "member-access": false,

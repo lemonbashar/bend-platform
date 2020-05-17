@@ -69,8 +69,9 @@ export class BaseService<R extends BaseCrudData, Domain extends BaseData> extend
 export class BaseFetchService<I, O> extends AbstractBaseService {
   constructor(
     BASE_URL: string,
-    http: HttpClient
-  ) { super(BASE_URL, http); }
+    http: HttpClient,
+    BASE_API_URL?: string
+  ) { super(BASE_URL, http, BASE_API_URL); }
 
   fetch(inputs: I[]): Observable<HttpResponse<Map<string, O>>> {
     return this.http.post<Map<string, O>>(this.DEFAULT_URL, inputs, {observe: 'response'});

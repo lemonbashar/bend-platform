@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BfuCarService} from '../../service/bfu-car.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {BaseFlexibleCrudViewData, BendStatusText, ConsoleService, DataResponse, PageableDataResponse} from 'bend-core';
+import {BaseFlexibleCrudViewData, BendStatusText, ConsoleService, DataResponse, FetchResponse, IJoinType, PageableDataResponse, SqlFetchDefinition} from 'bend-core';
 import {BendBaseComponent, BendToastService} from 'bend-core-ui';
+import {BridgeSqlFetchDefinitionService} from '../../bridge/bridge.sql-fetch-definition.service';
 
 @Component({
   selector: 'ficket-bfu-ticket-dashboard',
@@ -12,6 +13,14 @@ export class BfuTicketDashboardComponent extends BendBaseComponent implements On
   cars: BaseFlexibleCrudViewData;
   ready = false;
   seatReady = false;
+  private fetchDef = {
+    rideConfigDef: new SqlFetchDefinition(),
+    soldDef: new SqlFetchDefinition(),
+    keys: {
+      RIDES: 'RIDES',
+      SOLD: 'SOLD'
+    }
+  };
   shifts = [{
     id: 1,
     name: 'Day Shift 06:30'
@@ -31,8 +40,12 @@ export class BfuTicketDashboardComponent extends BendBaseComponent implements On
   constructor(
     private bfuCarService: BfuCarService,
     private consoleService: ConsoleService,
-    private toastService: BendToastService
-  ) { super(); }
+    private toastService: BendToastService,
+    private sqlFetchService: BridgeSqlFetchDefinitionService
+  ) {
+    super();
+    this.initFetchDefinitions();
+  }
 
   ngOnInit(): void {
     this.fetch();
@@ -52,6 +65,7 @@ export class BfuTicketDashboardComponent extends BendBaseComponent implements On
 
   onCarSelectionChange() {
     this.fetchSeatConfig(this.uiData.carId);
+    this.fetchRideConfigs(this.uiData.carId);
   }
 
   private fetchSeatConfig(carId: number) {
@@ -70,5 +84,42 @@ export class BfuTicketDashboardComponent extends BendBaseComponent implements On
 
   onShiftSelectionChange() {
 
+  }
+
+  private fetchRideConfigs(carId: number) {
+
+    const sqlFetchDefinitions = [];
+    this.fetchDef.rideConfigDef.parameters = [{name: 'carId', value: `SPEL:new java.math.BigInteger(${carId})`}];
+    this.fetchDef.soldDef.parameters = this.fetchDef.rideConfigDef.parameters;
+    sqlFetchDefinitions.push(this.fetchDef.rideConfigDef);
+    this.sqlFetchService.fetch(sqlFetchDefinitions).subscribe((resp: HttpResponse<Map<string, FetchResponse>>) => {
+    this.makeSifts(resp.body[this.fetchDef.keys.RIDES]);
+    }, (error: HttpErrorResponse) => {
+      this.consoleService.error('Error During Sql-Fetch', error);
+    });
+  }
+
+  private initFetchDefinitions() {
+    this.fetchDef.rideConfigDef.domain = 'Car';
+    this.fetchDef.rideConfigDef.alias = 'car';
+    this.fetchDef.rideConfigDef.condition = 'car.id=:carId';
+    this.fetchDef.rideConfigDef.joins = [{dependentAlias: 'car', joinType: IJoinType.INNER_JOIN, relationName: 'carConfig', alias: 'carConfig'}, {dependentAlias: 'carConfig', joinType: IJoinType.INNER_JOIN, relationName: 'rideConfigs', alias: 'ride'}];
+    this.fetchDef.rideConfigDef.columns = ['ride.id', 'ride.name', 'ride.description', 'ride.startTime', 'ride.reachTime'];
+    this.fetchDef.rideConfigDef.key = this.fetchDef.keys.RIDES;
+
+    this.fetchDef.soldDef = new SqlFetchDefinition();
+    this.fetchDef.soldDef.key = this.fetchDef.keys.SOLD;
+    this.fetchDef.soldDef.columns = ['ticket.seatNumber'];
+    this.fetchDef.soldDef.joins = [{dependentAlias: 'ticket', relationName: 'car', alias: 'car', joinType: IJoinType.INNER_JOIN}];
+    this.fetchDef.soldDef.alias = 'ticket';
+    this.fetchDef.soldDef.domain = 'Ticket';
+    this.fetchDef.soldDef.condition = 'car.id=:carId';
+  }
+
+  private makeSifts(fetchResponse: FetchResponse) {
+    console.log(fetchResponse.data);
+    this.shifts = [];
+    for (let i = 0; i < fetchResponse.data.length; i++)
+      this.shifts.push({id: Number(fetchResponse.data[i][0]), name: fetchResponse.data[i][1] });
   }
 }

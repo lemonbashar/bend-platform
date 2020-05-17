@@ -1,5 +1,7 @@
 export enum IJoinType {
   INNER_JOIN,
+  LEFT_JOIN,
+  RIGHT_JOIN,
   LEFT_OUTER_JOIN,
   RIGHT_OUTER_JOIN,
   FULL_JOIN
