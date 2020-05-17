@@ -20,6 +20,8 @@ export class BfuSeatExtractComponent implements OnInit {
   @Input()
   set soldSeat(seats: string[]) {
     this.soldSeats = seats;
+    console.log('<><><><><><><><><><><><><><><><><><><><><><><><>');
+    console.log(this.soldSeats);
   }
 
   ngOnInit(): void {

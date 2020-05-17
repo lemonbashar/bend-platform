@@ -29,6 +29,7 @@ export class BfuTicketDashboardComponent extends BendBaseComponent implements On
     id: 2,
     name: 'Night Shift 09:30'
   }];
+  soldSeats: string[] = [];
 
   uiData: any = {
     carId: 0,
@@ -92,8 +93,11 @@ export class BfuTicketDashboardComponent extends BendBaseComponent implements On
     this.fetchDef.rideConfigDef.parameters = [{name: 'carId', value: `SPEL:new java.math.BigInteger(${carId})`}];
     this.fetchDef.soldDef.parameters = this.fetchDef.rideConfigDef.parameters;
     sqlFetchDefinitions.push(this.fetchDef.rideConfigDef);
+    sqlFetchDefinitions.push(this.fetchDef.soldDef);
+
     this.sqlFetchService.fetch(sqlFetchDefinitions).subscribe((resp: HttpResponse<Map<string, FetchResponse>>) => {
     this.makeSifts(resp.body[this.fetchDef.keys.RIDES]);
+    this.makeSoldSeats(resp.body[this.fetchDef.keys.SOLD]);
     }, (error: HttpErrorResponse) => {
       this.consoleService.error('Error During Sql-Fetch', error);
     });
@@ -104,7 +108,8 @@ export class BfuTicketDashboardComponent extends BendBaseComponent implements On
     this.fetchDef.rideConfigDef.alias = 'car';
     this.fetchDef.rideConfigDef.condition = 'car.id=:carId';
     this.fetchDef.rideConfigDef.joins = [{dependentAlias: 'car', joinType: IJoinType.INNER_JOIN, relationName: 'carConfig', alias: 'carConfig'}, {dependentAlias: 'carConfig', joinType: IJoinType.INNER_JOIN, relationName: 'rideConfigs', alias: 'ride'}];
-    this.fetchDef.rideConfigDef.columns = ['ride.id', 'ride.name', 'ride.description', 'ride.startTime', 'ride.reachTime'];
+    this.fetchDef.rideConfigDef.columns = ['ride.id', 'ride.name'];
+    // this.fetchDef.rideConfigDef.columns = ['ride.id', 'ride.name', 'ride.description', 'ride.startTime', 'ride.reachTime'];
     this.fetchDef.rideConfigDef.key = this.fetchDef.keys.RIDES;
 
     this.fetchDef.soldDef = new SqlFetchDefinition();
@@ -117,9 +122,14 @@ export class BfuTicketDashboardComponent extends BendBaseComponent implements On
   }
 
   private makeSifts(fetchResponse: FetchResponse) {
-    console.log(fetchResponse.data);
     this.shifts = [];
     for (let i = 0; i < fetchResponse.data.length; i++)
       this.shifts.push({id: Number(fetchResponse.data[i][0]), name: fetchResponse.data[i][1] });
+  }
+
+  private makeSoldSeats(seatResp: FetchResponse) {
+    this.soldSeats = [];
+    for (let i = 0; i < seatResp.data.length; i++)
+      this.soldSeats.push(seatResp.data[i]);
   }
 }

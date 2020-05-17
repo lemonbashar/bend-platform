@@ -23,7 +23,7 @@ import java.util.Optional;
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public interface UserRepository extends JpaRepository<User, BigInteger> {
 
-    @Query("SELECT user FROM User user WHERE user.username =:username AND user.active =:activeStatus")
+    @Query("SELECT new bend.library.domain.entity.User(user.id, user.username, user.password, user.email, user.authorities) FROM User user WHERE user.username =:username AND user.active =:activeStatus")
     Optional<User> findByUsernameAndActive(@Param("username") String username, @Param("activeStatus") Boolean activeStatus);
 
     Optional<User> findByUsername(String username);
