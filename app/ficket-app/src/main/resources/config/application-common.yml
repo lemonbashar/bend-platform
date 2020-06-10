@@ -18,7 +18,7 @@ bend-platform:
             default-schema-key: bcdf
             annotated-packages: [bend.library.domain.entity, bend.library.domain.place.entity, bend.library.domain.ficket.entity]
         migration:
-            active: false
+            active: true
         hibernate:
             annotated-packages:
                 - bend.library.domain.cluster.entity

@@ -16,7 +16,7 @@ bend-platform:
             active-all-route: true
             default-schema-key: bcd
         migration:
-            active: false
+            active: true
         hibernate:
             annotated-packages:
                 - bend.library.domain.cluster.entity
