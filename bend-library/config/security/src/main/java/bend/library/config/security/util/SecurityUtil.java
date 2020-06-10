@@ -92,10 +92,10 @@ public final class SecurityUtil {
 
     @SuppressWarnings("unchecked")
     public static <T> CustomUserDetailsExtractor<T> extractFromPrincipal(Class<T> returnType) {
-        return (CustomUserDetailsExtractor<T>) BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+        return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
                 .ifThenMap(obj->Objects.nonNull(obj) && obj instanceof CustomUserDetails, obj->(CustomUserDetails)obj)
-                .ifThenMap(Objects::nonNull, principal -> new CustomUserDetailsExtractor<T>((CustomUserDetails) principal, returnType)).get();
+                .ifThenMapOtherwiseNull(obj -> Objects.nonNull(obj) &&  obj instanceof CustomUserDetails, principal -> new CustomUserDetailsExtractor<T>((CustomUserDetails) principal, returnType)).get();
     }
 
     public static void updateRegistryDetection(RegistryDetectionType registryDetectionType, String registryDetectionValue) {
