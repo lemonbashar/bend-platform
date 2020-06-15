@@ -11,7 +11,7 @@ public class FlexibleRule {
     private final int[] fromIndices;
     private final String[] indicesDataTypes;
     private String[] referenceValues;
-    private RulePolicy rulePolicy = RulePolicy.CHECKED_BY_NULL;
+    private final RulePolicy rulePolicy = RulePolicy.CHECKED_BY_NULL;
 
     public static FlexibleRule or(int ...fromIndex) {
         return new FlexibleRule(DataConstants.FlexibleRuleConstants.OR, fromIndex, new String[]{DataConstants.DataType.STRING, DataConstants.DataType.STRING});
