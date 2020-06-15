@@ -5,6 +5,7 @@ import bend.library.config.security.data.CustomUserDetails;
 import bend.library.config.security.jwt.jwt.TokenProvider;
 import bend.library.config.security.service.AuthenticationManager;
 import bend.library.config.security.service.SaltedPasswordEncoder;
+import bend.library.config.security.service.UserService;
 import bend.library.data.JwtAccountInfo;
 import bend.library.data.JwtLogoutInfo;
 import bend.library.data.LoginInfo;
@@ -14,10 +15,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -31,6 +34,7 @@ public class JwtAuthenticationManager implements AuthenticationManager {
     private final @NonNull TokenProvider tokenProvider;
     private final @NonNull UserDetailsService customUserDetailsService;
     private final @NonNull SaltedPasswordEncoder saltedPasswordEncoder;
+    private final @NonNull UserService userService;
 
 
     @Override
@@ -39,9 +43,11 @@ public class JwtAuthenticationManager implements AuthenticationManager {
                 .mustTrue(user -> saltedPasswordEncoder.matches(loginInfo.getPassword(), user.getUsername(), user.getPassword()))
                 .map(userDetails -> {
                     loginInfo.setId(((CustomUserDetails) userDetails).getId());
+                    final Set<String> auths = userService.getAuthoritiesByUid(loginInfo.getId());
+                    ((CustomUserDetails)userDetails).setAuthorities(auths.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));
                     Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getUsername(), userDetails.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
-                    return JwtAccountInfo.builder().authenticated(true).authorities(userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet()))
+                    return JwtAccountInfo.builder().authenticated(true).authorities(auths)
                             .token(tokenProvider.createToken(authentication, loginInfo)).username(userDetails.getUsername()).build();
                 }).get();
     }

@@ -11,6 +11,7 @@ allprojects {
         implementation project(':bend-library:config')
         implementation "jakarta.validation:jakarta.validation-api:$jakartaValidationApi"
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        //implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
         implementation "jakarta.validation:jakarta.validation-api:$jakartaValidationApi"
         implementation project(':bend-library:annotation')
         implementation project(':bend-library:annotation:pre-persist-annotation')

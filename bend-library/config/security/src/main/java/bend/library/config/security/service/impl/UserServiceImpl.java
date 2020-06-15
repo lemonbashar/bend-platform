@@ -6,17 +6,19 @@ import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.config.security.service.UserService;
 import bend.library.config.security.util.SecurityUtil;
 import bend.library.constant.SecurityConstants;
-import bend.library.domain.data.UserCrudData;
+import bend.library.constant.jdbc.JdbcParam;
 import bend.library.domain.entity.User;
 import bend.library.domain.repositories.UserRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
-import java.util.Objects;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author lemon
@@ -31,6 +33,12 @@ public class UserServiceImpl implements UserService {
     private final @NonNull UserRepository userRepository;
     private final @NonNull AuthorityService authorityService;
     private final @NonNull SaltedPasswordEncoder saltedPasswordEncoder;
+    private final @NonNull NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    private static final String QUERY_FOR_USER_AUTHS = "SELECT dma.authority_name FROM db_main_bend_user dmbu\n" +
+            "    INNER JOIN jt_db_main_bend_user_x_db_main_authority jdmbuxdma ON dmbu.id = jdmbuxdma.bend_user_id\n" +
+            "    INNER JOIN db_main_authority dma ON jdmbuxdma.authority_name = dma.authority_name\n" +
+            "WHERE dma.active_status IS TRUE AND dmbu.id=:userIdentity";
 
     @Override
     public BigInteger loggedInUserIdOrSystemUserId() {
@@ -56,5 +64,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(String username, String email, String password, String... authorities) {
         return userRepository.save(new User(username, saltedPasswordEncoder.encode(password, username), email, authorityService.validRawAuthorities(authorities)));
+    }
+
+    @Override
+    public Set<String> getAuthoritiesByUid(BigInteger userId) {
+        return new HashSet<>(this.namedParameterJdbcTemplate.queryForList(QUERY_FOR_USER_AUTHS, JdbcParam.of("userIdentity", userId.intValue()).build(), String.class));
     }
 }

@@ -2,7 +2,6 @@ package bend.library.domain.ficket.service.crud;
 
 import bend.library.data.crud.flexible.BaseFlexibleCrudeViewData;
 import bend.library.data.crud.flexible.FlexibleIndex;
-import bend.library.data.response.impl.PageableDataResponse;
 import bend.library.domain.AbstractBaseCrudService;
 import bend.library.domain.ficket.data.TicketCrudData;
 import bend.library.domain.ficket.entity.Ticket;

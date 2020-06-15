@@ -6,6 +6,7 @@ import bend.library.domain.entity.User;
 import org.springframework.http.ResponseEntity;
 
 import java.math.BigInteger;
+import java.util.Set;
 
 /**
  * @author lemon
@@ -46,4 +47,6 @@ public interface UserService {
      * @return saved User
      */
     User saveUser(String username, String email, String password, String... authorities);
+
+    Set<String> getAuthoritiesByUid(BigInteger userId);
 }

@@ -1,7 +1,7 @@
 package bend.library.config.security.data;
 
 import bend.library.config.security.registry.enumeretion.RegistryDetectionType;
-import bend.library.domain.entity.User;
+import bend.library.domain.data.UserCrudData;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +29,7 @@ public class CustomUserDetails implements UserDetails {
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
+    @Setter
     private Set<? extends GrantedAuthority> authorities;
     @Setter
     private String registryDetectionValue;
@@ -50,11 +51,7 @@ public class CustomUserDetails implements UserDetails {
         this(id, username, password, true, true, true, true, Stream.of(authorities).map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));
     }
 
-    public CustomUserDetails(BigInteger id, String username, String password, Set<? extends GrantedAuthority> authorities) {
-        this(id, username, password, true, true, true, true, authorities);
-    }
-
-    public static CustomUserDetails of(User user) {
-        return new CustomUserDetails(user.getId(), user.getUsername(), user.getPassword(), user.getAuthorities().stream().map(authority -> new SimpleGrantedAuthority(authority.getName())).collect(Collectors.toSet()));
+    public static CustomUserDetails of(UserCrudData userCrudData) {
+        return new CustomUserDetails(userCrudData.getId(), userCrudData.getUsername(), userCrudData.getPassword());
     }
 }
