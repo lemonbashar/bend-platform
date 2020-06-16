@@ -5,8 +5,6 @@ import {
   BendStatus,
   BendStatusText,
   ConsoleService,
-  DataResponse,
-  FieldDefinition,
   FlexibleIndex,
   httpStatus,
   PageableDataResponse
@@ -53,7 +51,7 @@ export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extend
     });
   }
 
-  changeActiveStatus(id: number, status: boolean) {
+  /*changeActiveStatus(id: number, status: boolean) {
     const fieldDefinition = new FieldDefinition();
     fieldDefinition.domainName = this.domainName;
     fieldDefinition.fieldName = 'active';
@@ -68,7 +66,7 @@ export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extend
       this.toastService.error(this.FAILED);
       this.consoleService.error(this.FAILED, error);
     });
-  }
+  }*/
 
   compile(index: FlexibleIndex, values: any[]): any {
     return this.compiler.compile(index, values);

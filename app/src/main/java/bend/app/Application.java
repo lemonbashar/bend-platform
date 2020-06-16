@@ -26,7 +26,6 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
-import org.springframework.core.env.SimpleCommandLinePropertySource;
 
 import javax.annotation.PostConstruct;
 import java.net.InetAddress;
@@ -34,7 +33,6 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -56,8 +54,6 @@ public class Application {
 
     public static void main(String[] args) throws UnknownHostException {
         SpringApplication application = new SpringApplication(Application.class);
-        SimpleCommandLinePropertySource propertySource = new SimpleCommandLinePropertySource(args);
-        //addDefaultProfile(application, propertySource);
         applicationContext = application.run(args);
         Environment env = applicationContext.getEnvironment();
         log.info("Access URLs:\n----------------------------------------------------------\n\t" +
@@ -66,14 +62,6 @@ public class Application {
                 env.getProperty("server.port"),
                 InetAddress.getLocalHost().getHostAddress(),
                 env.getProperty("server.port"));
-    }
-
-    private static void addDefaultProfile(SpringApplication application, SimpleCommandLinePropertySource propertySource) {
-        if (!propertySource.containsProperty("spring.profiles.active") &&
-                !System.getenv().containsKey("SPRING_PROFILES_ACTIVE")) {
-
-            application.setAdditionalProfiles(ProfileConstants.DEV);
-        }
     }
 
     @PostConstruct
