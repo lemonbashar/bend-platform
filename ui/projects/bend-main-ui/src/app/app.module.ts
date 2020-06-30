@@ -2,7 +2,7 @@ import {BrowserModule } from '@angular/platform-browser';
 import {NgModule } from '@angular/core';
 import {AppRoutingModule } from './app-routing.module';
 import {AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {BendCoreModule} from 'bend-core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BmuDashboardComponent} from './layout/dashboard/bmu-dashboard.component';
@@ -20,7 +20,12 @@ import {BmuSettingDashboardComponent} from './view/dashboard/bmu-setting-dashboa
 import {BmuUserViewComponent} from './view/crud/user-view/bmu-user-view.component';
 import {BmuUserProfileViewComponent} from './view/crud/user-view/bmu-user-profile-view/bmu-user-profile-view.component';
 import {BmuUserDetailViewComponent} from './view/crud/user-view/bmu-user-detail-view.component';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './../assets/i18n/', '.json');
+}
 
 const PRIME_NG_MODULES = [
   BrowserAnimationsModule,
@@ -60,7 +65,16 @@ const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT, ...VIEW_COMP
   imports: [
     ...THIRD_PARTIES_MODULE,
     ...INTERNAL_MODULE,
-    ...LIBRARY_MODULE
+    ...LIBRARY_MODULE,
+    TranslateModule.forRoot(
+      {
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+        }
+      }
+    )
   ],
   providers: [DialogService],
   entryComponents: [],

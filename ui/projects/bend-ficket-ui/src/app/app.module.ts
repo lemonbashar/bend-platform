@@ -3,7 +3,7 @@ import {NgModule } from '@angular/core';
 
 import {AppRoutingModule } from './app-routing.module';
 import {AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {BendCoreModule} from 'bend-core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule} from '@angular/common';
@@ -20,7 +20,12 @@ import {BfuFooterComponent} from './layout/footer/bfu-footer.component';
 import {BfuNavbarComponent} from './layout/navbar/bfu-navbar.component';
 import {BfuTicketDashboardComponent} from './view/bfu-ticket-dashboard/bfu-ticket-dashboard.component';
 import {BfuSeatExtractComponent} from './view/seat/bfu-seat-extract/bfu-seat-extract.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './../assets/i18n/', '.json');
+}
 
 const PRIME_NG_MODULES = [
   BrowserAnimationsModule,
@@ -58,7 +63,17 @@ const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT, ...VIEW_COMP
   imports: [
     ...THIRD_PARTIES_MODULE,
     ...INTERNAL_MODULE,
-    ...LIBRARY_MODULE
+    ...LIBRARY_MODULE,
+    ,
+    TranslateModule.forRoot(
+      {
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+        }
+      }
+    )
   ],
   providers: [DialogService],
   entryComponents: [],

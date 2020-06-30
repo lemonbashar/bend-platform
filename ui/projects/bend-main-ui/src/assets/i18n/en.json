@@ -1,0 +1,24 @@
+{
+  "app": {
+    "name": "Kantell Survey",
+    "views": {
+      "survey": {
+        "p1": {
+          "home": {
+            "title": "Survey Evidensia",
+            "invalid-error-message": "OOPS! Your survey is already ended."
+          },
+          "dashboard": {
+            "button": {
+              "print_result": "Print Result",
+              "print_graph": "Print Graph",
+              "print_open_text": "Print open Text",
+              "print_everything": "Print Everything",
+              "print_selection": "Print Selection"
+            }
+          }
+        }
+      }
+    }
+  }
+}
