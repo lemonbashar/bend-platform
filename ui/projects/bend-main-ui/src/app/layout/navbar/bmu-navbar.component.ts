@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthoritiesConstants, BendAuthenticationService, LogoutInfo} from 'bend-core';
+import {BendAuthenticationService, LogoutInfo, StorageService} from 'bend-core';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
-import {BendBaseComponent, BendLoginDialogComponent, BendToastService} from 'bend-core-ui';
+import {BendBaseLangComponent, BendLoginDialogComponent, BendToastService} from 'bend-core-ui';
 import {NavigationExtras, Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'main-navbar',
   templateUrl: './bmu-navbar.component.html'
 })
-export class BmuNavbarComponent extends BendBaseComponent implements OnInit {
+export class BmuNavbarComponent extends BendBaseLangComponent implements OnInit {
   isNavbarCollapsed: boolean;
   private dialogRef: DynamicDialogRef;
   public isAccountDropdownCollapsed: boolean;
@@ -18,10 +19,13 @@ export class BmuNavbarComponent extends BendBaseComponent implements OnInit {
     private authenticationService: BendAuthenticationService,
     private dialogService: DialogService,
     private bendToastService: BendToastService,
-    private route: Router
-  ) { super(); }
+    private route: Router,
+    translate: TranslateService,
+    storageService: StorageService
+  ) { super(translate, storageService); }
 
   ngOnInit() {
+    super.ngOnInit();
     this.isNavbarCollapsed = true;
     this.isAccountDropdownCollapsed = true;
   }

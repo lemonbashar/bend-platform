@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AppUtilService, BendFlexibleCompilerService, ConsoleService, UserCrudData} from 'bend-core';
+import {AppUtilService, BendFlexibleCompilerService, ConsoleService, StorageService, UserCrudData} from 'bend-core';
 import {BendAbstractListViewComponent, BendToastService} from 'bend-core-ui';
 import {BmuUserCrudService} from '../../../service/bmu-user-crud.service';
 import {bendUserUiModel} from '../crud-ui-model';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'main-bmu-user-view',
@@ -15,9 +16,11 @@ export class BmuUserViewComponent extends BendAbstractListViewComponent<UserCrud
     toastService: BendToastService,
     consoleService: ConsoleService,
     appUtilService: AppUtilService,
-    compiler: BendFlexibleCompilerService
+    compiler: BendFlexibleCompilerService,
+    translate: TranslateService,
+    storageService: StorageService
   ) {
-    super(crudService, toastService, consoleService, appUtilService, compiler, bendUserUiModel);
+    super(crudService, toastService, consoleService, appUtilService, compiler, bendUserUiModel, translate, storageService);
     this.pageSize = 20;
   }
 

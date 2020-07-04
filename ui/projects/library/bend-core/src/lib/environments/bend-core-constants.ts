@@ -24,6 +24,10 @@ export const BendCoreConstants = {
       detectionTypes: {
         CLUSTER_KEY: 'CLUSTER_KEY'
       }
+    },
+    lang: {
+      DEFAULT_LANG_KEY: 'DEF-LANG-KEY',
+      USE_LANG_KEY: 'USE-LANG-KEY'
     }
   },
   jwt: {

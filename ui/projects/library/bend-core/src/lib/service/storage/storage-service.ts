@@ -15,7 +15,7 @@ export class StorageService {
 
   get(key: string, valueIfMissing?: string): string {
     const value = localStorage.getItem(key);
-    if (value == null) return valueIfMissing;
+    if (value === undefined || value === null) return  valueIfMissing;
     return value;
   }
 

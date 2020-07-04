@@ -7,11 +7,12 @@ import {
   ConsoleService,
   FlexibleIndex,
   httpStatus,
-  PageableDataResponse
+  PageableDataResponse, StorageService
 } from 'bend-core';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {BendToastService} from '../message/bend-toast.service';
 import {BendUiModel} from '../ui-model/bend-ui-model';
+import {TranslateService} from '@ngx-translate/core';
 import {BendBaseComponent} from './bend-base.component';
 
 export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extends BaseData> extends BendBaseComponent implements OnInit {
@@ -29,10 +30,13 @@ export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extend
     private consoleService: ConsoleService,
     private appUtilService: AppUtilService,
     private compiler: BendFlexibleCompilerService,
-    public uiModel: BendUiModel
+    public uiModel: BendUiModel,
+    private translate: TranslateService,
+    private storageService: StorageService
   ) { super(); }
 
   ngOnInit(): void {
+    super.prepareTranslate(this.translate, this.storageService);
     this.crudData = this.emptyData();
     this.fetchAll();
   }

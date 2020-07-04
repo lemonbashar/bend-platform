@@ -1,9 +1,19 @@
 import {OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {BaseCrudData, BaseData, BaseService, BendStatusText, ConsoleService, DataResponse, TextProcessingService} from 'bend-core';
+import {
+  BaseCrudData,
+  BaseData,
+  BaseService,
+  BendStatusText,
+  ConsoleService,
+  DataResponse,
+  StorageService,
+  TextProcessingService
+} from 'bend-core';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {BendToastService} from '../message/bend-toast.service';
 import {BendUiModel} from '../ui-model/bend-ui-model';
+import {TranslateService} from '@ngx-translate/core';
 import {BendBaseComponent} from './bend-base.component';
 
 export abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Domain extends BaseData> extends BendBaseComponent implements OnInit {
@@ -17,10 +27,13 @@ export abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Do
     protected toastService: BendToastService,
     protected consoleService: ConsoleService,
     protected textProcessingService: TextProcessingService,
-    public uiModel: BendUiModel
+    public uiModel: BendUiModel,
+    private translate: TranslateService,
+    private storageService: StorageService
   ) { super(); }
 
   ngOnInit() {
+    super.prepareTranslate(this.translate, this.storageService);
     this.ready = false;
     this.viewId = this.activatedRoute.snapshot.params.id;
     if (this.viewId == null)

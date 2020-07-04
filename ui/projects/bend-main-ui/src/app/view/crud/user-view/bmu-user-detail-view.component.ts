@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ConsoleService, TextProcessingService, UserCrudData} from 'bend-core';
+import {ConsoleService, StorageService, TextProcessingService, UserCrudData} from 'bend-core';
 import {BendAbstractDetailViewComponent, BendToastService} from 'bend-core-ui';
 import {BmuUserCrudService} from '../../../service/bmu-user-crud.service';
 import {ActivatedRoute} from '@angular/router';
 import {bendUserUiModel} from '../crud-ui-model';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'main-bmu-user-detail-view',
@@ -16,9 +17,11 @@ export class BmuUserDetailViewComponent extends BendAbstractDetailViewComponent<
     crudService: BmuUserCrudService,
     toastService: BendToastService,
     consoleService: ConsoleService,
-    textProcessingService: TextProcessingService
+    textProcessingService: TextProcessingService,
+    translate: TranslateService,
+    storageService: StorageService
   ) {
-    super(activatedRoute, crudService, toastService, consoleService, textProcessingService, bendUserUiModel);
+    super(activatedRoute, crudService, toastService, consoleService, textProcessingService, bendUserUiModel, translate, storageService);
   }
 
   ngOnInit(): void {
