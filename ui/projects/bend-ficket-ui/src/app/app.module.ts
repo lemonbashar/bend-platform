@@ -64,7 +64,6 @@ const ALL_COMPONENTS = [...APP_MAIN_COMPONENT, ...LAYOUT_COMPONENT, ...VIEW_COMP
     ...THIRD_PARTIES_MODULE,
     ...INTERNAL_MODULE,
     ...LIBRARY_MODULE,
-    ,
     TranslateModule.forRoot(
       {
         loader: {
