@@ -16,7 +16,7 @@ public class StandardClusterDatabaseRegistry implements ClusterDatabaseRegistry 
         switch (detectionType) {
             case CLUSTER_KEY:
                 return value;
-            case LOCALE_KEY:
+            case LOCALE_KEY: /*EXAMPLE, EXEC ON BROWSER: localStorage.setItem('REGISTRY_TYPE', 'LOCALE_KEY'); localStorage.setItem('REGISTRY_VALUE', 'bn'); BEFORE DO IT EXEC: Ficket-bn.sql*/
                 return properties.getDatabase().getRoutingDatabase().getDefaultSchemaKey() + "-" + value.toLowerCase();
         }
         return value;
