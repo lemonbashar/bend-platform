@@ -22,6 +22,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Import;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -61,7 +63,7 @@ public class RdbmsRoutingJpaConfig {
     }
 
     @Bean(name = BaseConstants.ROUTING_DATASOURCE_NAME)
-    public DataSource routingDataSource() {
+    public RoutingDataSource routingDataSource() {
         RoutingDataSource routingDataSource = new RoutingDataSource(this.clusterDatabaseRegistry);
         Pack pack = findDataSources();
         routingDataSource.setTargetDataSources(pack.dataSourceMap);
@@ -171,6 +173,16 @@ public class RdbmsRoutingJpaConfig {
             this.dataSourceMap = dataSourceMap;
             this.dataSourceMigrationMap = dataSourceMigrationMap;
         }
+    }
+
+    @Bean
+    public NamedParameterJdbcTemplate namedParameterJdbcTemplate(RoutingDataSource routingDataSource) {
+        return new NamedParameterJdbcTemplate(routingDataSource);
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(RoutingDataSource routingDataSource) {
+        return new JdbcTemplate(routingDataSource);
     }
 
 }
