@@ -22,7 +22,8 @@ export const BendCoreConstants = {
       REGISTRY_TYPE: 'REGISTRY_TYPE',
       REGISTRY_VALUE: 'REGISTRY_VALUE',
       detectionTypes: {
-        CLUSTER_KEY: 'CLUSTER_KEY'
+        CLUSTER_KEY: 'CLUSTER_KEY',
+        LOCALE_KEY: 'LOCALE_KEY'
       }
     },
     lang: {

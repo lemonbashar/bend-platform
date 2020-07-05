@@ -1,28 +1,38 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthoritiesConstants, BendAuthenticationService, LogoutInfo} from 'bend-core';
+import {
+  AuthoritiesConstants,
+  BendAuthenticationService,
+  BendCoreConstants,
+  LogoutInfo,
+  StorageService
+} from 'bend-core';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
-import {BendLoginDialogComponent, BendToastService} from 'bend-core-ui';
+import {BendBaseLangComponent, BendLoginDialogComponent, BendToastService} from 'bend-core-ui';
 import {NavigationExtras, Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'ficket-navbar',
   templateUrl: './bfu-navbar.component.html'
 })
-export class BfuNavbarComponent implements OnInit {
+export class BfuNavbarComponent extends BendBaseLangComponent implements OnInit {
   isNavbarCollapsed: boolean;
   private dialogRef: DynamicDialogRef;
   public isAccountDropdownCollapsed: boolean;
+  isLangDropdownCollapsed: boolean;
   constructor(
     private authenticationService: BendAuthenticationService,
     public auth: AuthoritiesConstants,
     private dialogService: DialogService,
     private bendToastService: BendToastService,
-    private route: Router
-  ) { }
+    private route: Router,
+    translate: TranslateService,
+    storageService: StorageService
+  ) { super(translate, storageService); }
 
   ngOnInit() {
-    this.isNavbarCollapsed = true;
-    this.isAccountDropdownCollapsed = true;
+    super.ngOnInit();
+    this.collapseAll();
   }
 
   toggleNavbar() {
@@ -51,7 +61,20 @@ export class BfuNavbarComponent implements OnInit {
   }
 
   private collapseAll(): void {
-    this.isAccountDropdownCollapsed = true;
     this.isNavbarCollapsed = true;
+    this.isAccountDropdownCollapsed = true;
+    this.isLangDropdownCollapsed = true;
+  }
+
+  language(langKey: string) {
+    this.collapseAll();
+    this.storageService.put(BendCoreConstants.cookies.routingDatabase.REGISTRY_TYPE, BendCoreConstants.cookies.routingDatabase.detectionTypes.LOCALE_KEY);
+    this.storageService.put(BendCoreConstants.cookies.routingDatabase.REGISTRY_VALUE, langKey);
+    this.storageService.put(BendCoreConstants.cookies.lang.USE_LANG_KEY, langKey);
+    location.reload();
+  }
+
+  toggleLangDropdown() {
+    this.isLangDropdownCollapsed = !this.isLangDropdownCollapsed;
   }
 }

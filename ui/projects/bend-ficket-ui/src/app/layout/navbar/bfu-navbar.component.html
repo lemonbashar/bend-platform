@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">FICKET</a>
+  <a class="navbar-brand" href="#">{{'app.name' | translate}}</a>
   <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,18 +7,26 @@
   <div class="collapse navbar-collapse" id="id-bmu-layout-nav-bar-list" [ngbCollapse]="isNavbarCollapsed">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/ticket-dashboard']">Ticket</a>
+        <a class="nav-link" [routerLink]="['/ticket-dashboard']">{{'app.navbar.link.ticket' | translate}}</a>
       </li>
     </ul>
     <div class="btn-group" *bendIsAuthenticated="'YES'" role="group">
       <button id="id-layout-navbar-account-dropdown-collapsable" (click)="toggleAccountDropdown()" type="button" class="btn btn-primary dropdown-toggle" data-toggle="accountMenuDropdown" aria-haspopup="true" aria-expanded="false"></button>
       <div class="dropdown-menu" [ngbCollapse]="isAccountDropdownCollapsed" aria-labelledby="id-layout-navbar-account-dropdown-collapsable">
-        <a class="dropdown-item text-link" (click)="go(['account-profile'])" >Profile</a> <!--Redirect to bend-Main-UI-->
+        <a class="dropdown-item text-link" (click)="go(['account-profile'])" >{{'app.navbar.link.profile' | translate}}</a> <!--Redirect to bend-Main-UI-->
+      </div>
+    </div>
+
+    <div class="btn-group" role="group">
+      <button id="id-layout-navbar-language-dropdown-collapsable" (click)="toggleLangDropdown()" type="button" class="btn btn-primary dropdown-toggle" data-toggle="langMenuDropdown" aria-haspopup="true" aria-expanded="false">{{'app.navbar.link.lang.title' | translate}}</button>
+      <div class="dropdown-menu" [ngbCollapse]="isLangDropdownCollapsed" aria-labelledby="id-layout-navbar-lang-dropdown-collapsable">
+        <a class="dropdown-item text-link" (click)="language('en')" >{{'app.navbar.link.lang.en' | translate}}</a>
+        <a class="dropdown-item text-link" (click)="language('bn')" >{{'app.navbar.link.lang.bn' | translate}}</a>
       </div>
     </div>
     <form class="form-inline my-2 my-lg-0">
-      <a *bendIsAuthenticated="'NO'" class="nav-link text-white" href="#" (click)="login()">Login</a>
-      <a *bendIsAuthenticated="'YES'" class="nav-link text-white" href="#" (click)="logout()">Logout</a>
+      <a *bendIsAuthenticated="'NO'" class="nav-link text-white" href="#" (click)="login()">{{'app.navbar.link.login' | translate}}</a>
+      <a *bendIsAuthenticated="'YES'" class="nav-link text-white" href="#" (click)="logout()">{{'app.navbar.link.logout' | translate}}</a>
     </form>
   </div>
 </nav>

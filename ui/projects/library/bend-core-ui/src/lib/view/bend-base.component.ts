@@ -16,7 +16,7 @@ export class BendBaseComponent {
   }
 
   prepareTranslate(translate: TranslateService, storageService: StorageService) {
-    translate.setDefaultLang(storageService.get(BendCoreConstants.cookies.lang.DEFAULT_LANG_KEY, this.DEF_LANG_KEY));
+    translate.setDefaultLang(this.DEF_LANG_KEY);
     translate.use(storageService.get(BendCoreConstants.cookies.lang.USE_LANG_KEY, this.DEF_LANG_KEY));
   }
 }

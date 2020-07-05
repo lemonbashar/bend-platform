@@ -1,15 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {BfuCarService} from '../../service/bfu-car.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {BaseFlexibleCrudViewData, BendStatusText, ConsoleService, DataResponse, FetchResponse, IJoinType, PageableDataResponse, SqlFetchDefinition} from 'bend-core';
-import {BendBaseComponent, BendToastService} from 'bend-core-ui';
+import {
+  BaseFlexibleCrudViewData,
+  BendStatusText,
+  ConsoleService,
+  DataResponse,
+  FetchResponse,
+  IJoinType,
+  PageableDataResponse,
+  SqlFetchDefinition,
+  StorageService
+} from 'bend-core';
+import {BendBaseComponent, BendBaseLangComponent, BendToastService} from 'bend-core-ui';
 import {BridgeSqlFetchDefinitionService} from '../../bridge/bridge.sql-fetch-definition.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'ficket-bfu-ticket-dashboard',
   templateUrl: './bfu-ticket-dashboard.component.html'
 })
-export class BfuTicketDashboardComponent extends BendBaseComponent implements OnInit {
+export class BfuTicketDashboardComponent extends BendBaseLangComponent implements OnInit {
   cars: BaseFlexibleCrudViewData;
   ready = false;
   seatReady = false;
@@ -42,13 +53,16 @@ export class BfuTicketDashboardComponent extends BendBaseComponent implements On
     private bfuCarService: BfuCarService,
     private consoleService: ConsoleService,
     private toastService: BendToastService,
-    private sqlFetchService: BridgeSqlFetchDefinitionService
+    private sqlFetchService: BridgeSqlFetchDefinitionService,
+    translate: TranslateService,
+    storageService: StorageService
   ) {
-    super();
+    super(translate, storageService);
     this.initFetchDefinitions();
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.fetch();
   }
 

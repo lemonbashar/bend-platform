@@ -1,28 +1,36 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {BendBaseLangComponent} from 'bend-core-ui';
+import {Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
+import {StorageService} from "bend-core";
 
 @Component({
   selector: 'ficket-bfu-seat-extract',
   templateUrl: './bfu-seat-extract.component.html'
 })
-export class BfuSeatExtractComponent implements OnInit {
+export class BfuSeatExtractComponent extends BendBaseLangComponent implements OnInit {
   private structure: string;
   seatLinesList: string[];
   soldSeats: string[];
 
-  constructor() { }
+  constructor(
+    translate: TranslateService,
+    storageService: StorageService
+  ) { super(translate, storageService); }
 
-  @Input()
+  @Input('seat-structure')
   set seatStructure(structure: string) {
     this.structure = structure;
     this.seatLinesList = this.rows();
   }
 
-  @Input()
-  set soldSeat(seats: string[]) {
+  @Input('sold-seats')
+  set setSoldSeats(seats: string[]) {
     this.soldSeats = seats;
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.structure = null;
     this.seatLinesList = [];
   }
