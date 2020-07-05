@@ -22,5 +22,5 @@ public interface AuthorityRepository extends JpaRepository<Authority, BigInteger
     Optional<Authority> findAuthorityByNameAndActive(@Param("authorityName") String authorityName, @Param("activeStatus") boolean activeStatus);
 
     @Query("SELECT new bend.library.domain.entity.Authority(auth.id, auth.name) FROM Authority auth WHERE auth.name =:authorityName")
-    Optional<Authority> findAuthorityByName(String authorityName);
+    Optional<Authority> findAuthorityByName(@Param("authorityName") String authorityName);
 }

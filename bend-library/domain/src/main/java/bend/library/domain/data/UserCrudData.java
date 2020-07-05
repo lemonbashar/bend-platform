@@ -30,6 +30,10 @@ public class UserCrudData extends BaseCrudData {
 
     private String[] authorities;
 
+    public UserCrudData( @NotNull String username, @NotNull @Email String email, Set<Authority> authorities) {
+        this(null, username, email, authorities);
+    }
+
     public UserCrudData(BaseCrudData baseCrudData, @NotNull String username, @NotNull @Email String email, Set<Authority> authorities) {
         super(baseCrudData);
         this.username = username;

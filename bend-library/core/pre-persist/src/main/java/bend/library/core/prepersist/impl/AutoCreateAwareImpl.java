@@ -32,8 +32,8 @@ public class AutoCreateAwareImpl implements PrePersistAware<AutoCreate> {
     public void aware(BaseEntity<?> baseEntity, AutoCreate autoCreate) {
         if (!elEvaluator.evaluate(Boolean.class, autoCreate.isApplicable(), () -> false, baseEntity))
             return;
-        BigInteger uid = BendOptional.ofNullable(elEvaluator.evaluate(BigInteger.class, autoCreate.createBy(), () -> userService.systemUser().getId(), baseEntity))
-                .orElse(userService.systemUser().getId());
+        BigInteger uid = BendOptional.ofNullable(elEvaluator.evaluate(BigInteger.class, autoCreate.createBy(), () -> userService.systemUserId(), baseEntity))
+                .orElse(userService.systemUserId());
         baseEntity.setCreateBy(new User(uid));
     }
 }

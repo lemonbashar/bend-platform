@@ -9,24 +9,34 @@ bend-platform:
                 active: false
         utility:
             sql-fetch:
-                domain-packages: [bend.library.domain.entity, bend.library.domain.cluster.entity]
+                domain-packages: [bend.library.domain.ficket.entity, bend.library.domain.place.entity, bend.library.domain.entity]
     database:
+        routing-database:
+            active: true
+            active-all-route: true
+            selected-route-schema-keys: [bcdf, bcdf-bn]
+            default-schema-key: bcd-test
+            annotated-packages: [bend.library.domain.entity, bend.library.domain.place.entity, bend.library.domain.ficket.entity]
+        migration:
+            active: false
         hibernate:
             annotated-packages:
+                - bend.library.domain.entity
                 - bend.library.domain.cluster.entity
         jpa:
             repository-locations:
+                - bend.library.domain.repositories
                 - bend.library.domain.cluster.repositories
 spring:
     liquibase:
-        enabled: true
+        enabled: false
     flyway:
         enabled: false
     profiles:
         include: actuator, api-docs
 server:
     servlet:
-        context-path: /bend-main-app
+        context-path: /bend-ficket-app
 info:
     app:
         name: Bend-Main-Application

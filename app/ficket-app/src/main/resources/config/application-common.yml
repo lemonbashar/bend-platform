@@ -14,7 +14,7 @@ bend-platform:
         routing-database:
             active: true
             active-all-route: false
-            selected-route-schema-keys: [bcdf, bcdf-bn]
+            selected-route-schema-keys: [bcdf, bcdf-bn, bcd-test]
             default-schema-key: bcdf
             annotated-packages: [bend.library.domain.entity, bend.library.domain.place.entity, bend.library.domain.ficket.entity]
         migration:

@@ -4,6 +4,7 @@ DROP DATABASE IF EXISTS "bend-cluster-database-north";
 DROP DATABASE IF EXISTS "bend-cluster-database-west";
 DROP DATABASE IF EXISTS "bend-cluster-database-ficket";
 DROP DATABASE IF EXISTS "bend-cluster-database-ficket-bn";
+DROP DATABASE IF EXISTS "bend-cluster-database-test";
 
 
 create database "bend-platform"
@@ -17,4 +18,6 @@ create database "bend-cluster-database-west"
 create database "bend-cluster-database-ficket"
     with owner lemon;
 create database "bend-cluster-database-ficket-bn"
+    with owner lemon;
+create database "bend-cluster-database-test"
     with owner lemon;

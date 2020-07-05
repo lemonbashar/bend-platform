@@ -51,8 +51,6 @@ bend-platform:
         maximum-active-connection-size: 200
         max-idle-connection-size: 100
         min-idle-connection-size: 20
-        migration:
-            active: false
         hibernate:
             hbm2-ddl-auto: none
             format-sql: true
