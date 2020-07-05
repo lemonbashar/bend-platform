@@ -2,12 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {
   AuthoritiesConstants,
   BendAuthenticationService,
-  BendCoreConstants,
-  LogoutInfo,
-  StorageService
+  LogoutInfo
 } from 'bend-core';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
-import {BendBaseLangComponent, BendLoginDialogComponent, BendToastService} from 'bend-core-ui';
+import {BendBaseLangComponent, BendLoginDialogComponent, BendToastService, LangKeyService} from 'bend-core-ui';
 import {NavigationExtras, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -27,8 +25,8 @@ export class BfuNavbarComponent extends BendBaseLangComponent implements OnInit 
     private bendToastService: BendToastService,
     private route: Router,
     translate: TranslateService,
-    storageService: StorageService
-  ) { super(translate, storageService); }
+    langKeyService: LangKeyService
+  ) { super(translate, langKeyService); }
 
   ngOnInit() {
     super.ngOnInit();
@@ -68,9 +66,7 @@ export class BfuNavbarComponent extends BendBaseLangComponent implements OnInit 
 
   language(langKey: string) {
     this.collapseAll();
-    this.storageService.put(BendCoreConstants.cookies.routingDatabase.REGISTRY_TYPE, BendCoreConstants.cookies.routingDatabase.detectionTypes.LOCALE_KEY);
-    this.storageService.put(BendCoreConstants.cookies.routingDatabase.REGISTRY_VALUE, langKey);
-    this.storageService.put(BendCoreConstants.cookies.lang.USE_LANG_KEY, langKey);
+    this.langKeyService.activeKey(langKey);
     location.reload();
   }
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {BendAuthenticationService, LogoutInfo, StorageService} from 'bend-core';
+import {BendAuthenticationService, LogoutInfo} from 'bend-core';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
-import {BendBaseLangComponent, BendLoginDialogComponent, BendToastService} from 'bend-core-ui';
+import {BendBaseLangComponent, BendLoginDialogComponent, BendToastService, LangKeyService} from 'bend-core-ui';
 import {NavigationExtras, Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import {TranslateService} from '@ngx-translate/core';
@@ -15,19 +15,20 @@ export class BmuNavbarComponent extends BendBaseLangComponent implements OnInit 
   private dialogRef: DynamicDialogRef;
   public isAccountDropdownCollapsed: boolean;
   public userRoutes = environment.routes.crud.user_crud;
+  public isLangDropdownCollapsed: boolean;
+
   constructor(
     private authenticationService: BendAuthenticationService,
     private dialogService: DialogService,
     private bendToastService: BendToastService,
     private route: Router,
     translate: TranslateService,
-    storageService: StorageService
-  ) { super(translate, storageService); }
+    langKeyService: LangKeyService
+  ) { super(translate, langKeyService); }
 
   ngOnInit() {
     super.ngOnInit();
-    this.isNavbarCollapsed = true;
-    this.isAccountDropdownCollapsed = true;
+    this.collapseAll();
   }
 
   toggleNavbar() {
@@ -58,5 +59,16 @@ export class BmuNavbarComponent extends BendBaseLangComponent implements OnInit 
   private collapseAll(): void {
     this.isAccountDropdownCollapsed = true;
     this.isNavbarCollapsed = true;
+    this.isLangDropdownCollapsed = true;
+  }
+
+  language(langKey: string) {
+    this.collapseAll();
+    this.langKeyService.activeKey(langKey);
+    location.reload();
+  }
+
+  toggleLangDropdown() {
+    this.isLangDropdownCollapsed = !this.isLangDropdownCollapsed;
   }
 }

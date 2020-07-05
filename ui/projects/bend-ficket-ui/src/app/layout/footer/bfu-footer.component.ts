@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BendBaseLangComponent} from 'bend-core-ui';
+import {BendBaseLangComponent, LangKeyService} from 'bend-core-ui';
 import {TranslateService} from '@ngx-translate/core';
 import {StorageService} from 'bend-core';
 
@@ -11,8 +11,8 @@ export class BfuFooterComponent extends BendBaseLangComponent implements OnInit 
 
   constructor(
     translate: TranslateService,
-    storageService: StorageService
-  ) { super(translate, storageService); }
+    langKeyService: LangKeyService
+  ) { super(translate, langKeyService); }
 
   ngOnInit() {
     super.ngOnInit();

@@ -1,5 +1,20 @@
 {
   "app": {
-    "name": "Bend-Platform"
+    "name": "Bend-Platform",
+    "navbar": {
+      "link": {
+        "login": "Login",
+        "logout": "Logout",
+        "profile": "Profile",
+        "lang": {
+          "title": "Language",
+          "en": "English",
+          "bn": "Bengali"
+        }
+      }
+    },
+    "footer": {
+      "title": "BEND-PLATFORM"
+    }
   }
 }

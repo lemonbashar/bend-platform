@@ -1,8 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BendBaseLangComponent} from 'bend-core-ui';
-import {Router} from "@angular/router";
-import {TranslateService} from "@ngx-translate/core";
-import {StorageService} from "bend-core";
+import {BendBaseLangComponent, LangKeyService} from 'bend-core-ui';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'ficket-bfu-seat-extract',
@@ -15,8 +13,8 @@ export class BfuSeatExtractComponent extends BendBaseLangComponent implements On
 
   constructor(
     translate: TranslateService,
-    storageService: StorageService
-  ) { super(translate, storageService); }
+    langKeyService: LangKeyService
+  ) { super(translate, langKeyService); }
 
   @Input('seat-structure')
   set seatStructure(structure: string) {

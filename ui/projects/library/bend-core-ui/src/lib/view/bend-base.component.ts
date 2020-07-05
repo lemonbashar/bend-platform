@@ -1,6 +1,7 @@
 import {RouteUtil} from '../util/route.util';
 import {AuthoritiesConstants, BendCoreConstants, StorageService} from 'bend-core';
 import {TranslateService} from '@ngx-translate/core';
+import {LangKeyService} from "../service/lang-key-service";
 
 export class BendBaseComponent {
   authoritiesConstants = new AuthoritiesConstants();
@@ -15,8 +16,8 @@ export class BendBaseComponent {
     return this.authoritiesConstants;
   }
 
-  prepareTranslate(translate: TranslateService, storageService: StorageService) {
+  prepareTranslate(translate: TranslateService, langKeyService: LangKeyService) {
     translate.setDefaultLang(this.DEF_LANG_KEY);
-    translate.use(storageService.get(BendCoreConstants.cookies.lang.USE_LANG_KEY, this.DEF_LANG_KEY));
+    translate.use(langKeyService.activatedKey());
   }
 }

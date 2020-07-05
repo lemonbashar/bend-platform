@@ -14,6 +14,7 @@ import {BendToastService} from '../message/bend-toast.service';
 import {BendUiModel} from '../ui-model/bend-ui-model';
 import {TranslateService} from '@ngx-translate/core';
 import {BendBaseComponent} from './bend-base.component';
+import {LangKeyService} from '../service/lang-key-service';
 
 export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extends BaseData> extends BendBaseComponent implements OnInit {
   crudData: PageableDataResponse<BaseFlexibleCrudViewData>;
@@ -32,11 +33,11 @@ export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extend
     private compiler: BendFlexibleCompilerService,
     public uiModel: BendUiModel,
     private translate: TranslateService,
-    private storageService: StorageService
+    private langKeyService: LangKeyService
   ) { super(); }
 
   ngOnInit(): void {
-    super.prepareTranslate(this.translate, this.storageService);
+    super.prepareTranslate(this.translate, this.langKeyService);
     this.crudData = this.emptyData();
     this.fetchAll();
   }
@@ -54,23 +55,6 @@ export class BendAbstractListViewComponent<R extends BaseCrudData, Domain extend
       this.consoleService.error('Error Occurred During Crud Data Fetch', error);
     });
   }
-
-  /*changeActiveStatus(id: number, status: boolean) {
-    const fieldDefinition = new FieldDefinition();
-    fieldDefinition.domainName = this.domainName;
-    fieldDefinition.fieldName = 'active';
-    fieldDefinition.value = JSON.stringify(status);
-    this.appUtilService.updateAll([fieldDefinition]).subscribe((res: HttpResponse<DataResponse<Map<string, object>>>) => {
-      if (res.status === httpStatus.OK && res.body.status.toString() === BendStatusText.SUCCESS) {
-        this.toastService.info(this.SUCCESS);
-      } else {
-        this.toastService.error(this.FAILED);
-      }
-    }, (error: HttpErrorResponse) => {
-      this.toastService.error(this.FAILED);
-      this.consoleService.error(this.FAILED, error);
-    });
-  }*/
 
   compile(index: FlexibleIndex, values: any[]): any {
     return this.compiler.compile(index, values);

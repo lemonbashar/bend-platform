@@ -3,14 +3,15 @@ import {ActivatedRoute, NavigationEnd, Route, Router, RouterEvent} from '@angula
 import {BmuUserCrudService} from '../../../../service/bmu-user-crud.service';
 import {BendStatusText, ConsoleService, DataResponse, UserCrudData} from 'bend-core';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {BendToastService} from 'bend-core-ui';
+import {BendBaseLangComponent, BendToastService, LangKeyService} from 'bend-core-ui';
 import {filter} from 'rxjs/operators';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'main-bmu-user-profile-view',
   templateUrl: './bmu-user-profile-view.component.html'
 })
-export class BmuUserProfileViewComponent implements OnInit {
+export class BmuUserProfileViewComponent extends BendBaseLangComponent implements OnInit {
   private uid: number;
   userCrudData: UserCrudData;
   ready: boolean;
@@ -20,10 +21,13 @@ export class BmuUserProfileViewComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private userCrudService: BmuUserCrudService,
     private toastService: BendToastService,
-    private consoleService: ConsoleService
-  ) { }
+    private consoleService: ConsoleService,
+    translate: TranslateService,
+    langKeyService: LangKeyService
+  ) { super(translate, langKeyService); }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.ready = false;
     this.route.events.pipe(
       filter((event: RouterEvent) => event instanceof NavigationEnd)

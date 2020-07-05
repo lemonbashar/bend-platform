@@ -9,12 +9,11 @@ import {
   FetchResponse,
   IJoinType,
   PageableDataResponse,
-  SqlFetchDefinition,
-  StorageService
+  SqlFetchDefinition
 } from 'bend-core';
-import {BendBaseComponent, BendBaseLangComponent, BendToastService} from 'bend-core-ui';
+import {BendBaseLangComponent, BendToastService, LangKeyService} from 'bend-core-ui';
 import {BridgeSqlFetchDefinitionService} from '../../bridge/bridge.sql-fetch-definition.service';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'ficket-bfu-ticket-dashboard',
@@ -55,9 +54,9 @@ export class BfuTicketDashboardComponent extends BendBaseLangComponent implement
     private toastService: BendToastService,
     private sqlFetchService: BridgeSqlFetchDefinitionService,
     translate: TranslateService,
-    storageService: StorageService
+    langKeyService: LangKeyService
   ) {
-    super(translate, storageService);
+    super(translate, langKeyService);
     this.initFetchDefinitions();
   }
 

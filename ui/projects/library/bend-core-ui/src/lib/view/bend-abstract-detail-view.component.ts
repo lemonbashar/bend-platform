@@ -7,7 +7,6 @@ import {
   BendStatusText,
   ConsoleService,
   DataResponse,
-  StorageService,
   TextProcessingService
 } from 'bend-core';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
@@ -15,6 +14,7 @@ import {BendToastService} from '../message/bend-toast.service';
 import {BendUiModel} from '../ui-model/bend-ui-model';
 import {TranslateService} from '@ngx-translate/core';
 import {BendBaseComponent} from './bend-base.component';
+import {LangKeyService} from '../service/lang-key-service';
 
 export abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Domain extends BaseData> extends BendBaseComponent implements OnInit {
   private viewId: number;
@@ -29,11 +29,11 @@ export abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Do
     protected textProcessingService: TextProcessingService,
     public uiModel: BendUiModel,
     private translate: TranslateService,
-    private storageService: StorageService
+    private langKeyService: LangKeyService
   ) { super(); }
 
   ngOnInit() {
-    super.prepareTranslate(this.translate, this.storageService);
+    super.prepareTranslate(this.translate, this.langKeyService);
     this.ready = false;
     this.viewId = this.activatedRoute.snapshot.params.id;
     if (this.viewId == null)
