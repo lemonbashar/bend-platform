@@ -11,7 +11,6 @@ import bend.library.domain.data.UserCrudData;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -46,7 +45,6 @@ public class User extends BaseEntity<BigInteger> implements Serializable {
     private BigInteger id;
 
     @Discoverable
-    @Nationalized
     @Size(min = 4, max = 32, message = "Username length must be in between 4 ~ 32 ")
     @Column(name = "USERNAME", unique = true)
     private String username;

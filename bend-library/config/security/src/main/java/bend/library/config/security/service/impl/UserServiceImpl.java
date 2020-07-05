@@ -1,6 +1,7 @@
 package bend.library.config.security.service.impl;
 
 import bend.framework.base.util.BendOptional;
+import bend.library.config.exception.DatabaseNotAppropriateException;
 import bend.library.config.security.service.AuthorityService;
 import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.config.security.service.UserService;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -43,17 +43,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public BigInteger loggedInUserIdOrSystemUserId() {
         return BendOptional.ofNullable(SecurityUtil.loggedInUser())
-                .ifNotPresentThenConsume(this::systemUser).get().getId();
+                .ifNotPresentThenConsume(() -> new User(this.systemUserId())).get().getId();
     }
 
     @Override
-    public User systemUser() {
-        Optional<User> systemUser = userRepository.findByUsernameOrEmailAndActiveIsTrue(SecurityConstants.UserConstants.SYSTEM_USER);
-        if (systemUser.isEmpty()) {
-            log.error(MESSAGE_OF_MISSING_SYSTEM_USER);
-            throw new RuntimeException(MESSAGE_OF_MISSING_SYSTEM_USER);
-        }
-        return systemUser.get();
+    public BigInteger systemUserId() {
+        return userRepository.findUserIdByUsernameOrEmailAndActiveIsTrue(SecurityConstants.UserConstants.SYSTEM_USER).orElseThrow(() -> new DatabaseNotAppropriateException("System User Must Active and pre-persisted"));
     }
 
     @Override

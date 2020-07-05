@@ -29,7 +29,7 @@ public interface UserService {
     /**
      * @return Persisted System User
      */
-    User systemUser();
+    BigInteger systemUserId();
 
     /**
      * @param user User Entity

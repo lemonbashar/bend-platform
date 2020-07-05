@@ -5,7 +5,7 @@ import bend.library.constant.APiConstants;
 import lombok.Generated;
 import lombok.Value;
 
-public class RestApiProvider {
+public final class RestApiProvider {
     public static final String[] NEED_TO_SET_DATA_SOURCE_ROUTE_IF_MATCH = {
             AccountApi.ACCOUNT_PUBLIC_ROOT_API + AccountApi.CREATE_ACCOUNT
     };
