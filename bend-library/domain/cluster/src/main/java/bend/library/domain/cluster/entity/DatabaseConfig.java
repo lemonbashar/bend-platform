@@ -2,6 +2,7 @@ package bend.library.domain.cluster.entity;
 
 import bend.framework.properties.springproperties.database.DatabaseType;
 import bend.library.annotation.prepersist.SelfPrePersist;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true, of = {"id", "schema"})
 @Setter
 @Getter
 @SelfPrePersist

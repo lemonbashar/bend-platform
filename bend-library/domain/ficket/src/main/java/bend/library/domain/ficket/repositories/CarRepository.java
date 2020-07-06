@@ -1,6 +1,7 @@
 package bend.library.domain.ficket.repositories;
 
 import bend.library.domain.ficket.entity.Car;
+import bend.library.domain.ficket.entity.SeatConfig;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,4 +29,7 @@ public interface CarRepository extends JpaRepository<Car, BigInteger> {
 
     @Query("SELECT sConf.seatStructure FROM Car model INNER JOIN model.carConfig conf INNER JOIN conf.seatConfig sConf WHERE model.id=:carId")
     Optional<String> findSeatStructure(@Param("carId") BigInteger carId);
+
+    @Query("SELECT seatconf FROM Car model INNER JOIN model.carConfig cc INNER JOIN cc.seatConfig seatconf WHERE model.id =:carId ")
+    Optional<SeatConfig> findSeatConfigByCarId(@Param("carId") BigInteger carId);
 }

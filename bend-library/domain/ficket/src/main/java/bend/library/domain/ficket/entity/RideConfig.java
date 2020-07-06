@@ -6,6 +6,7 @@ import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
 import bend.library.domain.entity.BaseEntity;
 import bend.library.domain.place.entity.Place;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.math.BigInteger;
 import java.time.LocalTime;
 
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true, of = {"id", "name"})
 @Setter
 @Getter
 @PrePersist

@@ -5,6 +5,7 @@ import bend.library.annotation.prepersist.AutoCreate;
 import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
 import bend.library.domain.entity.BaseEntity;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true, of = {"id", "ticketPrice"})
 @Setter
 @Getter
 @PrePersist

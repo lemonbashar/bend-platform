@@ -1,14 +1,22 @@
 package bend.library.domain.ficket.service.impl;
 
 import bend.library.domain.ficket.entity.SeatConfig;
+import bend.library.domain.ficket.repositories.CarRepository;
 import bend.library.domain.ficket.service.SeatService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
+@RequiredArgsConstructor
 @Service
 public class SeatServiceImpl implements SeatService {
+    private final @NonNull CarRepository carRepository;
+
     @Override
     public void printSeatStructure(final SeatConfig seatConfig) {
         String[] rows = seatConfig.getSeatStructure().split(ROW_SEPARATOR_REGEX);
@@ -45,5 +53,10 @@ public class SeatServiceImpl implements SeatService {
             }
         }
         return seatSet;
+    }
+
+    @Override
+    public Optional<SeatConfig> findSeatConfigByCarId(BigInteger carId) {
+        return carRepository.findSeatConfigByCarId(carId);
     }
 }

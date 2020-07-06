@@ -69,15 +69,6 @@ public class RdbmsRoutingJpaConfig {
         routingDataSource.setTargetDataSources(pack.dataSourceMap);
         routingDataSource.setDefaultTargetDataSource(pack.dataSourceMap.get(clusterDatabaseRegistry.defaultDataSourceKey()));
 
-        /*else { *//*TODO: Will Use Routing database for internationalization support in back-end.: See Future Goal*//*
-            DatabaseConfig  databaseConfig = databaseConfigRepository.findBySchema(properties.getDatabase().getRoutingDatabase().getSingleRouteSchema())
-                    .orElseThrow(()->new RuntimeException("Can't find Single-Route Schema"));
-            routingDataSource = configHikariDataSource(databaseConfig);
-            Map<MigrationConfig, List<DataSource>> map = new HashMap<>();
-            map.put(databaseConfig.getMigrationConfig(), List.of(routingDataSource));
-            pack = new Pack(null, map);
-        }*/
-
         if (databaseMigration != null) {
             log.info("Migration profile(Liquibase/Flyway) is active, and starting migration...");
             pack.dataSourceMigrationMap.forEach(this.databaseMigration::migrate);

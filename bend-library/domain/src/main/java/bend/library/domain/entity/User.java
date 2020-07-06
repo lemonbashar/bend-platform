@@ -8,6 +8,7 @@ import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
 import bend.library.constant.SpringElConstants;
 import bend.library.domain.data.UserCrudData;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
  * Created 1/29/2020
  */
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true, of = {"id", "username", "email"})
 @Setter
 @Getter
 @Restrictions(canFetch = SpringElConstants.Security.IS_SUPER_ADMIN, restrictedFields = "@securityService.isAnyAdmin()?{'password'}:{'password','email','authorities'}", restrictedFieldsIfErrorOccurred = {"password", "email", "authorities"})
@@ -56,7 +58,7 @@ public class User extends BaseEntity<BigInteger> implements Serializable {
     @Column(name = "EMAIL", unique = true, nullable = false, length = 32)
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "JT_DB_MAIN_BEND_USER_X_DB_MAIN_AUTHORITY", uniqueConstraints = @UniqueConstraint(name = "USER_ID_AUTHORITY_UNIQUE_KEY", columnNames = {"BEND_USER_ID", "AUTHORITY_NAME"}), joinColumns = @JoinColumn(name = "BEND_USER_ID", referencedColumnName = "ID", nullable = false), inverseJoinColumns = @JoinColumn(name = "AUTHORITY_NAME", referencedColumnName = "AUTHORITY_NAME", nullable = false))
     private Set<Authority> authorities = new HashSet<>();
 

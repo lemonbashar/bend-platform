@@ -13,19 +13,23 @@ bend-platform:
     database:
         routing-database:
             active: true
-            active-all-route: true
-            selected-route-schema-keys: [bcdf, bcdf-bn]
+            active-all-route: false
+            selected-route-schema-keys: [bcdf, bcdf-bn, bcd-test]
             default-schema-key: bcd-test
-            annotated-packages: [bend.library.domain.entity, bend.library.domain.place.entity, bend.library.domain.ficket.entity]
+            annotated-packages: [bend.library.domain.cluster.entity, bend.library.domain.entity, bend.library.domain.place.entity, bend.library.domain.ficket.entity]
         migration:
             active: false
         hibernate:
             annotated-packages:
                 - bend.library.domain.entity
+                - bend.library.domain.place.entity
+                - bend.library.domain.ficket.entity
                 - bend.library.domain.cluster.entity
         jpa:
             repository-locations:
                 - bend.library.domain.repositories
+                - bend.library.domain.place.repositories
+                - bend.library.domain.ficket.repositories
                 - bend.library.domain.cluster.repositories
 spring:
     liquibase:

@@ -3,6 +3,7 @@ package bend.library.config.migration.liquibase;
 import bend.framework.properties.springproperties.SpringProperties;
 import liquibase.Contexts;
 import liquibase.Liquibase;
+import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
@@ -14,6 +15,8 @@ import java.sql.Connection;
 
 @Log4j2
 public abstract class AbstractLiquibaseMigration {
+    private static final String LIQUIBASE_CHANGELOG_LOCK_NAME = "Z_LIQUIBASE_MIGRATION_CHANGELOG_LOCK";
+    private static final String LIQUIBASE_CHANGELOG_NAME = "Z_LIQUIBASE_MIGRATION_CHANGELOG";
     protected final @NonNull SpringProperties properties;
     private ResourceAccessor resourceAccessor;
 
@@ -28,7 +31,11 @@ public abstract class AbstractLiquibaseMigration {
     }
 
     protected void runChangelog(final Connection connection, final String changelogPath, final String tag, final String[] contexts) throws LiquibaseException {
-        this.liquibase = new Liquibase(changelogPath, this.resourceAccessor, DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection)));
+        final Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
+        database.setDatabaseChangeLogTableName(LIQUIBASE_CHANGELOG_NAME);
+        database.setDatabaseChangeLogLockTableName(LIQUIBASE_CHANGELOG_LOCK_NAME);
+
+        this.liquibase = new Liquibase(changelogPath, this.resourceAccessor, database );
         if (tag != null)
             liquibase.update(tag, (contexts == null || contexts.length < 1) ? new Contexts() : new Contexts(contexts));
         else

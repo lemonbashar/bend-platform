@@ -6,6 +6,7 @@ import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
 import bend.library.constant.SpringElConstants;
 import bend.library.domain.entity.BaseEntity;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true, of = {"id", "name"})
 @Setter
 @Getter
 @PrePersist(isUpdatable = SpringElConstants.FALSE)

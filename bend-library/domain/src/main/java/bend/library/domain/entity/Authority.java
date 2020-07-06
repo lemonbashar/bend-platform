@@ -4,6 +4,7 @@ import bend.library.annotation.prepersist.AutoActive;
 import bend.library.annotation.prepersist.AutoCreate;
 import bend.library.annotation.prepersist.AutoUpdate;
 import bend.library.annotation.prepersist.PrePersist;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +20,7 @@ import java.math.BigInteger;
  */
 
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true, of = {"id", "name"})
 @Setter
 @Getter
 @PrePersist

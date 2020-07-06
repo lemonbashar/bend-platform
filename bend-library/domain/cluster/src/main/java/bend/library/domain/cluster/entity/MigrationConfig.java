@@ -1,6 +1,7 @@
 package bend.library.domain.cluster.entity;
 
 import bend.library.annotation.prepersist.SelfPrePersist;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true, of = {"id", "migrationName"})
 @Setter
 @Getter
 @SelfPrePersist
