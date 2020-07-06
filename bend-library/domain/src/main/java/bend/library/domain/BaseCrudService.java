@@ -9,14 +9,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.math.BigInteger;
-import java.util.List;
 
-public interface BaseCrudService< CrudData extends BaseCrudData, Domain extends BaseEntity<BigInteger>> {
+public interface BaseCrudService<CrudData extends BaseCrudData, Domain extends BaseEntity<BigInteger>> {
     BaseCrudData save(Domain domain);
 
     BaseCrudData update(Domain domain);
 
     CrudData findOne(BigInteger id);
+
     @Deprecated
     Page<BaseCrudeViewData> findAll(Pageable pageable);
 
@@ -25,6 +25,7 @@ public interface BaseCrudService< CrudData extends BaseCrudData, Domain extends 
     /**
      * make view flexible according to server responses and it's data-types.
      * like if data not dynamic, then it just print actual data otherwise it print based on flexible rule.
+     *
      * @param pageable page
      * @return Flexible crud view data
      */

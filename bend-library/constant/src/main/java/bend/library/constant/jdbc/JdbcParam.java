@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JdbcParam<V> {
-    private final Map<String,V> paramsMap;
+    private final Map<String, V> paramsMap;
 
     private JdbcParam() {
         paramsMap = new HashMap<>();
@@ -21,7 +21,7 @@ public class JdbcParam<V> {
         return this;
     }
 
-    public Map<String,V> build() {
+    public Map<String, V> build() {
         return paramsMap;
     }
 }

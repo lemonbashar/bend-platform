@@ -60,6 +60,6 @@ public class AppUtilController {
                 throw new Exception(e);
             }
         }
-        return ResponseUtil.of(new DataResponse<>(httpStatus.equals(HttpStatus.OK)? BendStatus.SUCCESS: BendStatus.FAILURE, feedback)).status(httpStatus).response(ResponseType::post);
+        return ResponseUtil.of(new DataResponse<>(httpStatus.equals(HttpStatus.OK) ? BendStatus.SUCCESS : BendStatus.FAILURE, feedback)).status(httpStatus).response(ResponseType::post);
     }
 }

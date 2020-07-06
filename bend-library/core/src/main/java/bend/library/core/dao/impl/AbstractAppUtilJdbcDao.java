@@ -17,14 +17,14 @@ import javax.persistence.Query;
 @RequiredArgsConstructor
 @Service
 public class AbstractAppUtilJdbcDao implements AppUtilJdbcDao {
+    protected final @NonNull SpringElEvaluator springElEvaluator;
     @PersistenceContext(unitName = BaseConstants.ROUTING_JPA_UNIT)
     protected EntityManager entityManager;
-    protected final @NonNull SpringElEvaluator springElEvaluator;
 
     @SuppressWarnings("JpaQlInspection")
     @Override
     public boolean isExistFieldValue(String table, String field, String value) {
-        return entityManager.createQuery("SELECT id FROM " + table + " tab WHERE tab." + field + " = '" + value + "'").getResultList().size()>0;
+        return entityManager.createQuery("SELECT id FROM " + table + " tab WHERE tab." + field + " = '" + value + "'").getResultList().size() > 0;
     }
 
     @Transactional(rollbackFor = SecurityException.class)
@@ -37,8 +37,8 @@ public class AbstractAppUtilJdbcDao implements AppUtilJdbcDao {
         Object obj = queryGet.getSingleResult();
         if (obj.getClass().isAnnotationPresent(PrePersist.class)) {
             PrePersist prePersist = obj.getClass().getAnnotation(PrePersist.class);
-            if(this.springElEvaluator.evaluate(Boolean.class, prePersist.isApplicable(), ()->true, obj))
-                if(!this.springElEvaluator.evaluate(Boolean.class, prePersist.isUpdatable(), ()->false, obj))
+            if (this.springElEvaluator.evaluate(Boolean.class, prePersist.isApplicable(), () -> true, obj))
+                if (!this.springElEvaluator.evaluate(Boolean.class, prePersist.isUpdatable(), () -> false, obj))
                     throw new SecurityException("This Entity is Not Updateable for current instance information ");
         }
     }

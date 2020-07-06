@@ -45,7 +45,7 @@ public class CarServiceImpl extends AbstractBaseService<Car> implements CarServi
 
     @Override
     protected String[] flexibleColumns() {
-        return new String[] {"Name"};
+        return new String[]{"Name"};
     }
 
     @Override
@@ -55,6 +55,6 @@ public class CarServiceImpl extends AbstractBaseService<Car> implements CarServi
 
     @Override
     protected FlexibleIndex[] flexibleIndices() {
-        return new FlexibleIndex[] {FlexibleIndex.of(0)};
+        return new FlexibleIndex[]{FlexibleIndex.of(0)};
     }
 }

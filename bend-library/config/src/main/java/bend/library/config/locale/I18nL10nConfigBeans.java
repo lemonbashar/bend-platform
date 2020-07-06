@@ -24,6 +24,6 @@ public class I18nL10nConfigBeans {
         messageSource.setBasename("i18n/messages");
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setUseCodeAsDefaultMessage(true);
-        return  messageSource;
+        return messageSource;
     }
 }

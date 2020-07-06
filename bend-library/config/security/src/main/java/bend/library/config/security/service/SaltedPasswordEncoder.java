@@ -10,8 +10,8 @@ package bend.library.config.security.service;
  */
 public interface SaltedPasswordEncoder {
     /**
-     * @param password password
-     * @param usernameSalt     here salt means the username
+     * @param password     password
+     * @param usernameSalt here salt means the username
      * @return encoded password
      */
     String encode(String password, String usernameSalt);

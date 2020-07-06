@@ -1,6 +1,8 @@
 package bend.library.data.fetch.fetch;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
@@ -79,6 +81,7 @@ public class SqlFetchDefinition extends FetchDefinition {
             this.columns = columns;
             return this;
         }
+
         public SqlFetchDefinition.SqlFetchDefinitionBuilder isNative(boolean isNative) {
             this.isNative = isNative;
             return this;

@@ -30,15 +30,14 @@ import java.util.Set;
 @Service("userService")
 public class UserServiceImpl implements UserService {
     private static final String MESSAGE_OF_MISSING_SYSTEM_USER = "You Must need to save an user of named as system user and it's status must be active";
-    private final @NonNull UserRepository userRepository;
-    private final @NonNull AuthorityService authorityService;
-    private final @NonNull SaltedPasswordEncoder saltedPasswordEncoder;
-    private final @NonNull NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
     private static final String QUERY_FOR_USER_AUTHS = "SELECT dma.authority_name FROM db_main_bend_user dmbu\n" +
             "    INNER JOIN jt_db_main_bend_user_x_db_main_authority jdmbuxdma ON dmbu.id = jdmbuxdma.bend_user_id\n" +
             "    INNER JOIN db_main_authority dma ON jdmbuxdma.authority_name = dma.authority_name\n" +
             "WHERE dma.active_status IS TRUE AND dmbu.id=:userIdentity";
+    private final @NonNull UserRepository userRepository;
+    private final @NonNull AuthorityService authorityService;
+    private final @NonNull SaltedPasswordEncoder saltedPasswordEncoder;
+    private final @NonNull NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Override
     public BigInteger loggedInUserIdOrSystemUserId() {

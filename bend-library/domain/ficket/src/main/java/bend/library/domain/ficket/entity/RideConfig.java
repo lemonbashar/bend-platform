@@ -27,7 +27,7 @@ import java.time.LocalTime;
 @AutoCreate
 @Table(name = "DB_FICKET_RIDE_CONFIG")
 @Entity
-public class RideConfig  extends BaseEntity<BigInteger> implements Serializable {
+public class RideConfig extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

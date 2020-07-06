@@ -5,7 +5,6 @@ import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.SecurityConfig;
 import bend.library.constant.ProfileConstants;
 import bend.library.domain.DomainConfig;
-import bend.library.domain.ficket.FicketConfig;
 import bend.library.domain.place.PlaceConfig;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

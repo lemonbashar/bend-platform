@@ -24,12 +24,12 @@ public class CarCrudService extends AbstractBaseCrudService<CarCrudData, Car> {
 
     @Override
     protected Page<Object[]> flexiblePageData(Pageable pageable) {
-        return ((CarRepository)repository).findAllFlexible(pageable);
+        return ((CarRepository) repository).findAllFlexible(pageable);
     }
 
     @Override
     protected String[] flexibleColumns() {
-        return new String[] {"NAME", "LICENCE", "NUMBER_PLATE"};
+        return new String[]{"NAME", "LICENCE", "NUMBER_PLATE"};
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CarCrudService extends AbstractBaseCrudService<CarCrudData, Car> {
 
     @Override
     protected FlexibleIndex[] flexibleIndices() {
-        return new FlexibleIndex[] {
+        return new FlexibleIndex[]{
                 FlexibleIndex.of(0),
                 FlexibleIndex.of(1),
                 FlexibleIndex.of(2)

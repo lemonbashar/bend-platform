@@ -57,7 +57,7 @@ public abstract class AbstractBaseCrudService<CrudData extends BaseCrudData, Dom
 
     public PageableDataResponse<BaseFlexibleCrudeViewData> makeFlexible(Page<Object[]> pageData) {
         return BendOptional.of(pageData)
-                .map(page->new PageableDataResponse<>(new BaseFlexibleCrudeViewData(flexibleColumns(), flexibleIndices(), page.getContent(), idIndexOfFlexibility()), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements()))
+                .map(page -> new PageableDataResponse<>(new BaseFlexibleCrudeViewData(flexibleColumns(), flexibleIndices(), page.getContent(), idIndexOfFlexibility()), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements()))
                 .get();
     }
 

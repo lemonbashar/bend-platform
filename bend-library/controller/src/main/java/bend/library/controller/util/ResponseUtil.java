@@ -8,8 +8,8 @@ import java.util.function.Function;
 
 public class ResponseUtil<T> {
     private final T body;
-    private HttpStatus httpStatus;
     private final HttpHeaders httpHeaders;
+    private HttpStatus httpStatus;
 
     private ResponseUtil(T body) {
         this.body = body;

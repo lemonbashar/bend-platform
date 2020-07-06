@@ -27,7 +27,7 @@ import java.util.Set;
 @AutoCreate
 @Table(name = "DB_FICKET_CAR_CONFIG")
 @Entity
-public class CarConfig  extends BaseEntity<BigInteger> implements Serializable {
+public class CarConfig extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

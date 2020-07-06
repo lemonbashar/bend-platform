@@ -72,7 +72,7 @@ subprojects {
 
 	test {
 		useJUnitPlatform{
-			//includeTags 'ndb'
+			includeTags 'ndb'
 			includeTags 'db'
 			//excludeTags 'ndb'
 		}

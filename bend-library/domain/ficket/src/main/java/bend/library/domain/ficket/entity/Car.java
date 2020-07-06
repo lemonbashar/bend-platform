@@ -27,7 +27,7 @@ import java.math.BigInteger;
 @AutoCreate
 @Table(name = "DB_FICKET_CAR")
 @Entity
-public class Car  extends BaseEntity<BigInteger> implements Serializable {
+public class Car extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -60,6 +60,6 @@ public class Car  extends BaseEntity<BigInteger> implements Serializable {
     private CarConfig carConfig;
 
     public Car(BigInteger id) {
-        this.id =id;
+        this.id = id;
     }
 }

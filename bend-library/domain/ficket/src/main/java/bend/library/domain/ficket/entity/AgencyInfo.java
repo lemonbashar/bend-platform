@@ -25,7 +25,7 @@ import java.math.BigInteger;
 @AutoCreate
 @Table(name = "DB_FICKET_AGENCY_INFO")
 @Entity
-public class AgencyInfo  extends BaseEntity<BigInteger> implements Serializable {
+public class AgencyInfo extends BaseEntity<BigInteger> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

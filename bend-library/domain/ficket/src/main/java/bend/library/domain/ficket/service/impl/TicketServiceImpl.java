@@ -2,7 +2,6 @@ package bend.library.domain.ficket.service.impl;
 
 import bend.library.domain.entity.User;
 import bend.library.domain.ficket.entity.Car;
-import bend.library.domain.ficket.entity.RideConfig;
 import bend.library.domain.ficket.entity.Ticket;
 import bend.library.domain.ficket.repositories.CarRepository;
 import bend.library.domain.ficket.repositories.TicketRepository;
@@ -23,7 +22,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket buyTicket(final BigInteger userId, final String seatNo, final BigInteger rideConfigId, final BigInteger carId, final LocalDate rideDate) {
-        Ticket ticket = this.ticketRepository.findBySeatNumberAndCarIdAndRideConfigIdAndRideDate(seatNo, carId, rideConfigId,rideDate).orElse(null);
+        Ticket ticket = this.ticketRepository.findBySeatNumberAndCarIdAndRideConfigIdAndRideDate(seatNo, carId, rideConfigId, rideDate).orElse(null);
         final Car car = this.carRepository.findById(carId).orElseThrow();
         //final
         if (ticket == null) {

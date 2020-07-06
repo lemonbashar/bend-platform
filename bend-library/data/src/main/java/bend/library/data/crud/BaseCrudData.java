@@ -22,7 +22,7 @@ public class BaseCrudData extends BaseData<BigInteger> {
         super(id, active);
     }
 
-    public BaseCrudData(BigInteger id,  boolean active, LocalDate lastChangedDate, String lastChangedBy) {
+    public BaseCrudData(BigInteger id, boolean active, LocalDate lastChangedDate, String lastChangedBy) {
         super(id, active);
         this.lastChangedDate = lastChangedDate;
         this.lastChangedBy = lastChangedBy;
@@ -30,8 +30,8 @@ public class BaseCrudData extends BaseData<BigInteger> {
 
     public BaseCrudData(BigInteger id, boolean active, LocalDate createData, LocalDate updateDate, String createBy, String updateBy) {
         super(id, active);
-        this.lastChangedDate = Objects.nonNull(updateDate)? updateDate: createData;
-        this.lastChangedBy = Objects.nonNull(updateBy)? updateBy: createBy;
+        this.lastChangedDate = Objects.nonNull(updateDate) ? updateDate : createData;
+        this.lastChangedBy = Objects.nonNull(updateBy) ? updateBy : createBy;
     }
 
     public BaseCrudData(BaseCrudData baseCrudData) {

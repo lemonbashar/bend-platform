@@ -30,7 +30,7 @@ public class CarPublicController {
     @GetMapping(FicketRestApiProvider.CarApi.EXTRACT_SEAT_FROM_CAR)
     public ResponseEntity<DataResponse<String>> extractSeatFromCar(@PathVariable BigInteger carId) {
         return BendOptional.ofNullable(this.carService.findSeatStructure(carId))
-                .map(seats -> new DataResponse<>(Objects.isNull(seats)? BendStatus.NOT_FOUND: BendStatus.SUCCESS, seats))
+                .map(seats -> new DataResponse<>(Objects.isNull(seats) ? BendStatus.NOT_FOUND : BendStatus.SUCCESS, seats))
                 .map(ResponseUtil::of).get().response(ResponseType::get);
     }
 

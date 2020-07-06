@@ -10,11 +10,13 @@ import org.springframework.data.domain.Page;
 public abstract class BaseService {
     public PageableDataResponse<BaseFlexibleCrudeViewData> makeFlexible(Page<Object[]> pageData) {
         return BendOptional.of(pageData)
-                .map(page->new PageableDataResponse<>(new BaseFlexibleCrudeViewData(flexibleColumns(), flexibleIndices(), page.getContent(), idIndexOfFlexibility()), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements()))
+                .map(page -> new PageableDataResponse<>(new BaseFlexibleCrudeViewData(flexibleColumns(), flexibleIndices(), page.getContent(), idIndexOfFlexibility()), BendStatus.SUCCESS, page.getTotalPages(), page.getTotalElements()))
                 .get();
     }
 
     protected abstract String[] flexibleColumns();
+
     protected abstract int idIndexOfFlexibility();
+
     protected abstract FlexibleIndex[] flexibleIndices();
 }

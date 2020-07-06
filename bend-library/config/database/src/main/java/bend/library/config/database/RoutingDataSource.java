@@ -21,7 +21,7 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
                 .ifThenMap(Objects::nonNull, efp -> efp
                         .and(CustomUserDetails::getRegistryDetectionType)
                         .and(CustomUserDetails::getRegistryDetectionValue).extract())
-                .ifThenMap(Objects::nonNull, list -> determineLookupKey((RegistryDetectionType) ((List<?>)list).get(0), ((List<?>)list).get(1).toString()))
+                .ifThenMap(Objects::nonNull, list -> determineLookupKey((RegistryDetectionType) ((List<?>) list).get(0), ((List<?>) list).get(1).toString()))
                 .ifThenMap(Objects::isNull, list -> clusterDatabaseRegistry.defaultDataSourceKey())
                 .get();
     }

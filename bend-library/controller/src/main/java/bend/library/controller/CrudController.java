@@ -26,7 +26,6 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
-import static bend.library.constant.APiConstants.CrudControllerApi.FLEXIBLE;
 import static bend.library.constant.APiConstants.CrudControllerApi.ONE_PARAM_ID;
 
 @RequiredArgsConstructor

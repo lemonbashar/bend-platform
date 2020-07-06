@@ -2,8 +2,6 @@ package bend.library.controller.rest.constants;
 
 
 import bend.library.constant.APiConstants;
-import lombok.Generated;
-import lombok.Value;
 
 public final class RestApiProvider {
     public static final String[] NEED_TO_SET_DATA_SOURCE_ROUTE_IF_MATCH = {

@@ -43,7 +43,7 @@ public class JwtAuthenticationManager implements AuthenticationManager {
                 .map(userDetails -> {
                     loginInfo.setId(((CustomUserDetails) userDetails).getId());
                     final Set<String> auths = userService.getAuthoritiesByUid(loginInfo.getId());
-                    ((CustomUserDetails)userDetails).setAuthorities(auths.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));
+                    ((CustomUserDetails) userDetails).setAuthorities(auths.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));
                     Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getUsername(), userDetails.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                     return JwtAccountInfo.builder().authenticated(true).authorities(auths)

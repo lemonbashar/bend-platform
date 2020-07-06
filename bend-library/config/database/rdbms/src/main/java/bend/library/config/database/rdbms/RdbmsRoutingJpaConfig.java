@@ -88,9 +88,10 @@ public class RdbmsRoutingJpaConfig {
     public LocalContainerEntityManagerFactoryBean localContainerEntityManager(@Qualifier(BaseConstants.ROUTING_DATASOURCE_NAME) DataSource dataSource, @Qualifier(BaseConstants.ROUTING_JPA_VENDOR_ADAPTER) JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        if(!properties.getDatabase().getRoutingDatabase().isActiveAllRoute() && ArrayUtil.hasData(properties.getDatabase().getRoutingDatabase().getAnnotatedPackages()))
+        if (!properties.getDatabase().getRoutingDatabase().isActiveAllRoute() && ArrayUtil.hasData(properties.getDatabase().getRoutingDatabase().getAnnotatedPackages()))
             em.setPackagesToScan(properties.getDatabase().getRoutingDatabase().getAnnotatedPackages());
-        else this.jpaPropertiesRepository.findByPropertyKeyAndActiveIsTrue(JPA_PROPS_ANNOTATED_PACKAGE).ifPresent(prop -> em.setPackagesToScan(prop.getPropertyValue().split(":")));
+        else
+            this.jpaPropertiesRepository.findByPropertyKeyAndActiveIsTrue(JPA_PROPS_ANNOTATED_PACKAGE).ifPresent(prop -> em.setPackagesToScan(prop.getPropertyValue().split(":")));
         em.setJpaVendorAdapter(jpaVendorAdapter);
         em.setPersistenceUnitName(BaseConstants.ROUTING_JPA_UNIT);
         em.setSharedCacheMode(SharedCacheMode.ALL);
@@ -156,16 +157,6 @@ public class RdbmsRoutingJpaConfig {
         return hikariDataSource;
     }
 
-    private static class Pack {
-        public Map<Object, Object> dataSourceMap;
-        public Map<MigrationConfig, List<DataSource>> dataSourceMigrationMap;
-
-        public Pack(Map<Object, Object> dataSourceMap, Map<MigrationConfig, List<DataSource>> dataSourceMigrationMap) {
-            this.dataSourceMap = dataSourceMap;
-            this.dataSourceMigrationMap = dataSourceMigrationMap;
-        }
-    }
-
     @Bean
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate(RoutingDataSource routingDataSource) {
         return new NamedParameterJdbcTemplate(routingDataSource);
@@ -174,6 +165,16 @@ public class RdbmsRoutingJpaConfig {
     @Bean
     public JdbcTemplate jdbcTemplate(RoutingDataSource routingDataSource) {
         return new JdbcTemplate(routingDataSource);
+    }
+
+    private static class Pack {
+        public Map<Object, Object> dataSourceMap;
+        public Map<MigrationConfig, List<DataSource>> dataSourceMigrationMap;
+
+        public Pack(Map<Object, Object> dataSourceMap, Map<MigrationConfig, List<DataSource>> dataSourceMigrationMap) {
+            this.dataSourceMap = dataSourceMap;
+            this.dataSourceMigrationMap = dataSourceMigrationMap;
+        }
     }
 
 }

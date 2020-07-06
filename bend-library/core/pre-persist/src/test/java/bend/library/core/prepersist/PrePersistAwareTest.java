@@ -28,7 +28,7 @@ import java.util.Optional;
 @SpringBootTest(classes = {PropertiesConfig.class, RdbmsJpaConfig.class, SecurityConfig.class,
         bend.library.config.security.SecurityConfig.class, JwtSecurityConfig.class,
         DomainConfig.class, PrePersistConfiguration.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-class PrePersistAwareTest {
+public class PrePersistAwareTest {
     private static final String systemUser = "system";
     private static final String systemPassword = "system1234";
     @Autowired
@@ -42,7 +42,7 @@ class PrePersistAwareTest {
 
     @Order(1)
     @Test
-    void prePersistCheck() {
+    public void prePersistCheck() {
         this.authenticationService.authenticate(LoginInfo.builder().username(systemUser).password(systemPassword).build());
         Optional<User> user = this.userRepository.findByUsername("pre-persist-user");
         user.ifPresent(value -> userRepository.delete(value));

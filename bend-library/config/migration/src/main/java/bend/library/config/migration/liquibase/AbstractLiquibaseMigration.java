@@ -35,7 +35,7 @@ public abstract class AbstractLiquibaseMigration {
         database.setDatabaseChangeLogTableName(LIQUIBASE_CHANGELOG_NAME);
         database.setDatabaseChangeLogLockTableName(LIQUIBASE_CHANGELOG_LOCK_NAME);
 
-        this.liquibase = new Liquibase(changelogPath, this.resourceAccessor, database );
+        this.liquibase = new Liquibase(changelogPath, this.resourceAccessor, database);
         if (tag != null)
             liquibase.update(tag, (contexts == null || contexts.length < 1) ? new Contexts() : new Contexts(contexts));
         else

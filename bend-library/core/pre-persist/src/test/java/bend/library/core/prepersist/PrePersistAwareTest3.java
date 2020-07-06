@@ -3,9 +3,6 @@ package bend.library.core.prepersist;
 import bend.library.config.PropertiesConfig;
 import bend.library.config.database.rdbms.RdbmsJpaConfig;
 import bend.library.config.security.jwt.JwtSecurityConfig;
-import bend.library.config.security.service.AuthenticationService;
-import bend.library.config.security.service.AuthorityService;
-import bend.library.config.security.service.SaltedPasswordEncoder;
 import bend.library.constant.ProfileConstants;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.repositories.UserRepository;
@@ -24,16 +21,8 @@ import org.springframework.test.context.TestPropertySource;
         bend.library.config.security.SecurityConfig.class, JwtSecurityConfig.class,
         DomainConfig.class, PrePersistConfiguration.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class PrePersistAwareTest3 {
-    private static final String systemUser = "system";
-    private static final String systemPassword = "system1234";
-    @Autowired
-    private AuthenticationService authenticationService;
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private AuthorityService authorityService;
-    @Autowired
-    private SaltedPasswordEncoder saltedPasswordEncoder;
 
     @Test
     void testForUpdate() {

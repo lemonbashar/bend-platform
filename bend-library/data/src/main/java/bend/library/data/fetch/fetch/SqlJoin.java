@@ -27,6 +27,6 @@ public class SqlJoin {
 
     @Override
     public String toString() {
-        return joinType.name().replace('_', ' ') + " " + dependentAlias + "." + relationName + " "+ alias;
+        return joinType.name().replace('_', ' ') + " " + dependentAlias + "." + relationName + " " + alias;
     }
 }

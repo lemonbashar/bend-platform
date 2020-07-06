@@ -34,8 +34,8 @@ public final class SecurityUtil {
     public static boolean hasAnyAuthority(final String... authorities) {
         Set<String> set = BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
-                .ifThenMap(Objects::nonNull, obj -> ((CustomUserDetails)obj).getAuthorities())
-                .ifThenMap(Objects::nonNull, auths -> ((Set<GrantedAuthority>)auths).stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet())).map(obj -> (Set<String>)obj).get();
+                .ifThenMap(Objects::nonNull, obj -> ((CustomUserDetails) obj).getAuthorities())
+                .ifThenMap(Objects::nonNull, auths -> ((Set<GrantedAuthority>) auths).stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet())).map(obj -> (Set<String>) obj).get();
         if (set == null) return false;
         for (String authority : authorities)
             if (set.contains(authority))
@@ -51,15 +51,15 @@ public final class SecurityUtil {
     public static BigInteger loggedInUserId() {
         return (BigInteger) BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
-                .ifThenMap(obj->Objects.nonNull(obj) && obj instanceof CustomUserDetails, obj->(CustomUserDetails)obj)
-                .ifThenMap(Objects::nonNull, obj -> ((CustomUserDetails)obj).getId()).get();
+                .ifThenMap(obj -> Objects.nonNull(obj) && obj instanceof CustomUserDetails, obj -> (CustomUserDetails) obj)
+                .ifThenMap(Objects::nonNull, obj -> ((CustomUserDetails) obj).getId()).get();
     }
 
     public static String loggedInUsername() {
         return (String) BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal) /*If Exists then map with next object otherwise response null*/
-                .ifThenMap(obj->Objects.nonNull(obj) && obj instanceof CustomUserDetails, obj->(CustomUserDetails)obj)
-                .ifThenMap(Objects::nonNull, obj -> ((CustomUserDetails)obj).getUsername()).get();
+                .ifThenMap(obj -> Objects.nonNull(obj) && obj instanceof CustomUserDetails, obj -> (CustomUserDetails) obj)
+                .ifThenMap(Objects::nonNull, obj -> ((CustomUserDetails) obj).getUsername()).get();
     }
 
     public static Authentication authentication() {
@@ -69,8 +69,8 @@ public final class SecurityUtil {
     public static AccountInfo accountInfo() {
         return (AccountInfo) BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
-                .ifThenMap(obj->Objects.nonNull(obj) && obj instanceof CustomUserDetails, obj->(CustomUserDetails)obj)
-                .ifThenMap(Objects::nonNull,  userDetails -> new AccountInfo(((UserDetails)userDetails).getUsername(), ((UserDetails)userDetails).getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet()), true))
+                .ifThenMap(obj -> Objects.nonNull(obj) && obj instanceof CustomUserDetails, obj -> (CustomUserDetails) obj)
+                .ifThenMap(Objects::nonNull, userDetails -> new AccountInfo(((UserDetails) userDetails).getUsername(), ((UserDetails) userDetails).getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet()), true))
                 .orElse(null);
     }
 
@@ -94,8 +94,8 @@ public final class SecurityUtil {
     public static <T> CustomUserDetailsExtractor<T> extractFromPrincipal(Class<T> returnType) {
         return BendOptional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .ifThenMap(Objects::nonNull, Authentication::getPrincipal)
-                .ifThenMap(obj->Objects.nonNull(obj) && obj instanceof CustomUserDetails, obj->(CustomUserDetails)obj)
-                .ifThenMapOtherwiseNull(obj -> Objects.nonNull(obj) &&  obj instanceof CustomUserDetails, principal -> new CustomUserDetailsExtractor<T>((CustomUserDetails) principal, returnType)).get();
+                .ifThenMap(obj -> Objects.nonNull(obj) && obj instanceof CustomUserDetails, obj -> (CustomUserDetails) obj)
+                .ifThenMapOtherwiseNull(obj -> Objects.nonNull(obj) && obj instanceof CustomUserDetails, principal -> new CustomUserDetailsExtractor<T>((CustomUserDetails) principal, returnType)).get();
     }
 
     public static void updateRegistryDetection(RegistryDetectionType registryDetectionType, String registryDetectionValue) {

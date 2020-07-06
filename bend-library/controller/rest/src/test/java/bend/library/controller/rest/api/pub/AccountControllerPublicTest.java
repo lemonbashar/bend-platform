@@ -16,6 +16,7 @@ import bend.library.core.prepersist.PrePersistConfiguration;
 import bend.library.data.AccountInfo;
 import bend.library.domain.DomainConfig;
 import bend.library.domain.data.UserCrudData;
+import bend.library.domain.repositories.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -41,10 +42,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class AccountControllerPublicTest {
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
+    private UserRepository userRepository;
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     void createAccount() throws Exception {
+        userRepository.findByUsername("lemon").ifPresent(userRepository::delete);
+        userRepository.flush();
         UserCrudData userData = new UserCrudData("lemon", "lemon@mail.com", "lemon1234", SecurityConstants.AuthorityConstants.ROLES_FOR_ADMIN);
         MvcResult mvcResult = mockMvc.perform(post(RestApiProvider.build(RestApiProvider.AccountApi.ACCOUNT_PUBLIC_ROOT_API, RestApiProvider.AccountApi.CREATE_ACCOUNT)).contentType(MediaType.APPLICATION_JSON_VALUE).content(objectMapper.writeValueAsString(userData)).accept(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print()).andExpect(status().is(HttpStatus.OK.value())).andReturn();

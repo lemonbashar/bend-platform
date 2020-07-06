@@ -5,7 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -62,6 +65,6 @@ public abstract class BaseEntity<ID> {
     }
 
     public BaseCrudData toData() {
-        return new BaseCrudData((BigInteger) getId(), isActive(), createDate, updateDate, Objects.isNull(createBy)?null:createBy.getUsername(), Objects.isNull(updateBy)?null: createBy.getUsername());
+        return new BaseCrudData((BigInteger) getId(), isActive(), createDate, updateDate, Objects.isNull(createBy) ? null : createBy.getUsername(), Objects.isNull(updateBy) ? null : createBy.getUsername());
     }
 }

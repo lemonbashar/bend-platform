@@ -44,7 +44,7 @@ public class UserCrudController extends CrudController<UserCrudData, User> {
     @Override
     public ResponseEntity<? extends IBendResponse> save(@Valid User user) {
         return BendOptional.ofNullable(this.userService.saveUser(user))
-                .map(usr->new BendResponse(Objects.isNull(usr) ? BendStatus.FAILURE : BendStatus.SUCCESS))
+                .map(usr -> new BendResponse(Objects.isNull(usr) ? BendStatus.FAILURE : BendStatus.SUCCESS))
                 .map(ResponseUtil::of).get().response(ResponseType::post);
     }
 
@@ -74,7 +74,7 @@ public class UserCrudController extends CrudController<UserCrudData, User> {
     }
 
     private ResponseEntity<DataResponse<UserCrudData>> getByUsername(String username) {
-        return BendOptional.ofNullable(((UserCrudService)this.baseCrudService).findByUsername(username))
+        return BendOptional.ofNullable(((UserCrudService) this.baseCrudService).findByUsername(username))
                 .map(fetched -> new DataResponse<>(Objects.isNull(fetched) ? BendStatus.FAILURE : BendStatus.SUCCESS, fetched))
                 .map(ResponseUtil::of).get().response(ResponseType::get);
     }

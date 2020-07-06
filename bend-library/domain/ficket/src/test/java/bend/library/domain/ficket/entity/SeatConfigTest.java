@@ -4,14 +4,12 @@ import bend.library.constant.ProfileConstants;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @Tag(ProfileConstants.TestInclude.RUN_FLUENTLY_WITHOUT_DB_DEPENDENCY)
 class SeatConfigTest {
 
     @Test
     public void seatsExtract() {
-        String seats = ""+
+        String seats = "" +
                 "A1, | ,A2" +
                 ":B1,B2|B3,B4" +
                 ":C1,C2|C3,C4" +
@@ -26,7 +24,7 @@ class SeatConfigTest {
                 ":L1,L2|L3,L4";
 
         String[] rows = seats.split(":");
-        for(String row: rows) {
+        for (String row : rows) {
             String[] plays = row.split("[|]");
             String[] seat = plays[0].split(",");
             System.out.print(String.format("%2s %2s", seat[0], seat[1]));

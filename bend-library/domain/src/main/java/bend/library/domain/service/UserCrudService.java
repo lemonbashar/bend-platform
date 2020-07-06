@@ -38,12 +38,12 @@ public class UserCrudService extends AbstractBaseCrudService<UserCrudData, User>
 
     @Override
     public UserCrudData findOne(BigInteger id) {
-        return ((UserRepository)this.repository).findOneById(id).map(User::toData).orElse(null);
+        return ((UserRepository) this.repository).findOneById(id).map(User::toData).orElse(null);
     }
 
     @Override
     public Page<BaseCrudeViewData> findAll(Pageable pageable) {
-        return ((UserRepository)this.repository).findAllPageable(pageable);
+        return ((UserRepository) this.repository).findAllPageable(pageable);
     }
 
     @Override
@@ -58,17 +58,17 @@ public class UserCrudService extends AbstractBaseCrudService<UserCrudData, User>
     }
 
     public UserCrudData findByUsername(String username) {
-        return ((UserRepository)this.repository).findByUsername(username).map(User::toData).orElse(null);
+        return ((UserRepository) this.repository).findByUsername(username).map(User::toData).orElse(null);
     }
 
     @Override
     protected Page<Object[]> flexiblePageData(Pageable pageable) {
-        return ((UserRepository)repository).findAllFlexible(pageable);
+        return ((UserRepository) repository).findAllFlexible(pageable);
     }
 
     @Override
     protected String[] flexibleColumns() {
-        return new String[] {"USERNAME", "EMAIL", "ACTIVE STATUS", "CHANGED BY"};
+        return new String[]{"USERNAME", "EMAIL", "ACTIVE STATUS", "CHANGED BY"};
     }
 
     @Override
@@ -78,11 +78,11 @@ public class UserCrudService extends AbstractBaseCrudService<UserCrudData, User>
 
     @Override
     protected FlexibleIndex[] flexibleIndices() {
-        return new FlexibleIndex[] {
+        return new FlexibleIndex[]{
                 FlexibleIndex.of(0),
                 FlexibleIndex.of(1),
                 FlexibleIndex.ofDynamic(2, FlexibleRule.bool(2, "Active", "Inactive")),
-                FlexibleIndex.ofDynamic(3, FlexibleRule.or(3,4))
+                FlexibleIndex.ofDynamic(3, FlexibleRule.or(3, 4))
         };
     }
 }

@@ -6,6 +6,6 @@ public class DatabaseNotAppropriateException extends RuntimeException {
     }
 
     public DatabaseNotAppropriateException(String message) {
-        super("Database Not persisted perfectly:"+ message);
+        super("Database Not persisted perfectly:" + message);
     }
 }

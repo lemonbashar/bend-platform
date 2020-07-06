@@ -20,10 +20,9 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Service
 public class StandardCustomUserDetailsService implements CustomUserDetailsService {
-    private final @NonNull NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
     public static final String QUERY_FOR_USER = "SELECT dmbu.id, dmbu.username, dmbu.password, dmbu.email FROM db_main_bend_user dmbu \n" +
             "WHERE dmbu.active_status IS TRUE AND dmbu.username=:userIdentity OR dmbu.email=:userIdentity";
+    private final @NonNull NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Override
     public CustomUserDetails findUserDetails(String username) {

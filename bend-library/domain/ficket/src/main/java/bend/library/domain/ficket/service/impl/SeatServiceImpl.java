@@ -21,16 +21,16 @@ public class SeatServiceImpl implements SeatService {
     public void printSeatStructure(final SeatConfig seatConfig) {
         String[] rows = seatConfig.getSeatStructure().split(ROW_SEPARATOR_REGEX);
         StringBuilder builder = new StringBuilder();
-        for(String row: rows) {
+        for (String row : rows) {
             String[] plays = row.split(LINE_SEPARATOR_REGEX);
             String[] seats = plays[0].split(SEAT_SEPARATOR_REGEX);
-            for(String seat: seats)
+            for (String seat : seats)
                 builder.append(String.format("%2s ", seat));
             builder.append("|  | ");
             seats = plays[1].split(SEAT_SEPARATOR_REGEX);
-            for(String seat: seats)
+            for (String seat : seats)
                 builder.append(String.format("%2s ", seat));
-            builder.deleteCharAt(builder.length()-1).append('\n');
+            builder.deleteCharAt(builder.length() - 1).append('\n');
         }
         System.out.print(builder);
     }
@@ -44,10 +44,10 @@ public class SeatServiceImpl implements SeatService {
     public Set<String> extractSetsFromStructure(final String seatStructure) {
         Set<String> seatSet = new LinkedHashSet<>();
         String[] rows = seatStructure.split(ROW_SEPARATOR_REGEX);
-        for(String row: rows) {
+        for (String row : rows) {
             String[] plays = row.split(LINE_SEPARATOR_REGEX);
-            for(String play: plays) {
-                for(String seat: play.split(SEAT_SEPARATOR_REGEX))
+            for (String play : plays) {
+                for (String seat : play.split(SEAT_SEPARATOR_REGEX))
                     if (seat != null && !seat.isBlank())
                         seatSet.add(seat);
             }

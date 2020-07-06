@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class StandardClusterDatabaseRegistry implements ClusterDatabaseRegistry {
     private final @NonNull SpringProperties properties;
+
     @Override
     public String findAppropriateDatabase(String value, RegistryDetectionType detectionType) {
         switch (detectionType) {

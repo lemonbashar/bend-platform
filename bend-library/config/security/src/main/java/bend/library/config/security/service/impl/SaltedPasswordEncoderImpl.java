@@ -22,6 +22,6 @@ public class SaltedPasswordEncoderImpl implements bend.library.config.security.s
     }
 
     public boolean matches(String rawPassword, String salt, String encodedPassword) {
-        return this.encode(rawPassword , salt).equals(encodedPassword);
+        return this.encode(rawPassword, salt).equals(encodedPassword);
     }
 }

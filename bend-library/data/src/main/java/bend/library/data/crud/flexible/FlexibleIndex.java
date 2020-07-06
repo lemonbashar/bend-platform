@@ -33,7 +33,7 @@ public class FlexibleIndex {
 
     public static FlexibleIndex[] ofTotal(int length) {
         FlexibleIndex[] flexibleIndices = new FlexibleIndex[length];
-        for(int i=0; i<length; i++)
+        for (int i = 0; i < length; i++)
             flexibleIndices[i] = FlexibleIndex.of(i);
         return flexibleIndices;
     }

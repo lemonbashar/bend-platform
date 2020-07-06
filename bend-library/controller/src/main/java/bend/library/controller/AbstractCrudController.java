@@ -19,10 +19,17 @@ import java.util.List;
 public abstract class AbstractCrudController<CrudData extends BaseCrudData, Domain extends BaseEntity<BigInteger>> {
 
     public abstract ResponseEntity<? extends IBendResponse> save(Domain domain);
+
     public abstract ResponseEntity<? extends IBendResponse> update(Domain domain);
+
     public abstract ResponseEntity<? extends IDataResponse<CrudData>> findOne(BigInteger id);
+
     @Deprecated
-    public ResponseEntity<? extends IDataResponse<List<BaseCrudeViewData>>> findAll(Pageable pageable) {return null;}
+    public ResponseEntity<? extends IDataResponse<List<BaseCrudeViewData>>> findAll(Pageable pageable) {
+        return null;
+    }
+
     public abstract ResponseEntity<? extends IDataResponse<BaseFlexibleCrudeViewData>> findAllFlexible(Pageable pageable);
+
     public abstract ResponseEntity<? extends IBendResponse> delete(BigInteger id);
 }
