@@ -1,0 +1,61 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "bend.framework",
+    "module": "bend-properties",
+    "version": "1.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.0.1",
+      "buildId": "vkzbkqq7t5eu7aowve6xnsnyma"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 13,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "bend-properties-1.0.1.jar",
+          "url": "bend-properties-1.0.1.jar",
+          "size": 2767,
+          "sha512": "2ba2fbd308451b0632e8b098ef952a5c9b430375c8f2a64d972a1c1015bdaa904e73b723f6349df54d90a08db4ce51c6ee03e16366bc7355ba375a2addeb1ccf",
+          "sha256": "32476b837934246e5849e9a0caef798ee0a520d3a10848944876a181c1fd58f7",
+          "sha1": "2c676d7f58846cfcbd6cfa5bfb137b5e355aaeda",
+          "md5": "f5b23e8a23fd3c72fb317d2b0ed84e2a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 13,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "bend-properties-1.0.1.jar",
+          "url": "bend-properties-1.0.1.jar",
+          "size": 2767,
+          "sha512": "2ba2fbd308451b0632e8b098ef952a5c9b430375c8f2a64d972a1c1015bdaa904e73b723f6349df54d90a08db4ce51c6ee03e16366bc7355ba375a2addeb1ccf",
+          "sha256": "32476b837934246e5849e9a0caef798ee0a520d3a10848944876a181c1fd58f7",
+          "sha1": "2c676d7f58846cfcbd6cfa5bfb137b5e355aaeda",
+          "md5": "f5b23e8a23fd3c72fb317d2b0ed84e2a"
+        }
+      ]
+    }
+  ]
+}

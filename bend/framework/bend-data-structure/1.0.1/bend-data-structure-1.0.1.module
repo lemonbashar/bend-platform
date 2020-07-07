@@ -1,0 +1,70 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "bend.framework",
+    "module": "bend-data-structure",
+    "version": "1.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.0.1",
+      "buildId": "vkzbkqq7t5eu7aowve6xnsnyma"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 13,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "bend-data-structure-1.0.1.jar",
+          "url": "bend-data-structure-1.0.1.jar",
+          "size": 23487,
+          "sha512": "72461f7308cf83bbcd0e665bd42d59135543741d3ef0a7ddcf72cf3bde2583560fd1c38250909848a955f3c26071ae1d78407d2a9cc4f99c5c4410beaf9efcd6",
+          "sha256": "2ac9cf87eaa28518e8826d42b55744d4668785c69290553e36dd284ff8d8269a",
+          "sha1": "90fc1e5ac0aacaeb7a394bbe7598a292697b1c84",
+          "md5": "d12bf1a54700d6d63e73b2420b0a77a8"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 13,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "bend.framework",
+          "module": "bend-base",
+          "version": {
+            "requires": "1.0.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "bend-data-structure-1.0.1.jar",
+          "url": "bend-data-structure-1.0.1.jar",
+          "size": 23487,
+          "sha512": "72461f7308cf83bbcd0e665bd42d59135543741d3ef0a7ddcf72cf3bde2583560fd1c38250909848a955f3c26071ae1d78407d2a9cc4f99c5c4410beaf9efcd6",
+          "sha256": "2ac9cf87eaa28518e8826d42b55744d4668785c69290553e36dd284ff8d8269a",
+          "sha1": "90fc1e5ac0aacaeb7a394bbe7598a292697b1c84",
+          "md5": "d12bf1a54700d6d63e73b2420b0a77a8"
+        }
+      ]
+    }
+  ]
+}

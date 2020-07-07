@@ -1,0 +1,77 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "bend.framework.bend-properties",
+    "module": "bend-spring-properties",
+    "version": "1.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.0.1",
+      "buildId": "vkzbkqq7t5eu7aowve6xnsnyma"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 13,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "bend-spring-properties-1.0.1.jar",
+          "url": "bend-spring-properties-1.0.1.jar",
+          "size": 75027,
+          "sha512": "efa062f357dd5b76e6d242eaa8d4c5a99202fee13ee4e46e6bccac361dc5a76f83134e5a370cc3b4bc3686fe7ae030902d2facbda83d209f5da37a529063f3a3",
+          "sha256": "1d26566fd639cc75c7f793b9f243268d96dac48bc9777dd67fee92191f9620c0",
+          "sha1": "6ea42513e7450cc5b309121fadf791ce148a9ad0",
+          "md5": "7145cb76738926bf51cde91a463702db"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 13,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "bend.framework",
+          "module": "bend-properties",
+          "version": {
+            "requires": "1.0.1"
+          }
+        },
+        {
+          "group": "bend.framework",
+          "module": "bend-data-structure",
+          "version": {
+            "requires": "1.0.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "bend-spring-properties-1.0.1.jar",
+          "url": "bend-spring-properties-1.0.1.jar",
+          "size": 75027,
+          "sha512": "efa062f357dd5b76e6d242eaa8d4c5a99202fee13ee4e46e6bccac361dc5a76f83134e5a370cc3b4bc3686fe7ae030902d2facbda83d209f5da37a529063f3a3",
+          "sha256": "1d26566fd639cc75c7f793b9f243268d96dac48bc9777dd67fee92191f9620c0",
+          "sha1": "6ea42513e7450cc5b309121fadf791ce148a9ad0",
+          "md5": "7145cb76738926bf51cde91a463702db"
+        }
+      ]
+    }
+  ]
+}

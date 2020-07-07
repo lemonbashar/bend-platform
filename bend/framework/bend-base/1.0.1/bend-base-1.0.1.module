@@ -1,0 +1,61 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "bend.framework",
+    "module": "bend-base",
+    "version": "1.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.0.1",
+      "buildId": "vkzbkqq7t5eu7aowve6xnsnyma"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 13,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "bend-base-1.0.1.jar",
+          "url": "bend-base-1.0.1.jar",
+          "size": 47079,
+          "sha512": "49beef09853a6585badb3d1062f027c9e9446f64339e2837a71b3732d20933673863523fe131b8e9442e5a7210676d1db0043fe52a0efd644b1aa4ebb0188801",
+          "sha256": "987f8d5b8384f2ed6442a6f9cbcf816c35dc132d376ee2c901bb95cd975289b7",
+          "sha1": "8d277fc9203967cae049c0c0db93e03d2f7dc985",
+          "md5": "57886f5ac38532bfe2111bd5fc11a550"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 13,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "bend-base-1.0.1.jar",
+          "url": "bend-base-1.0.1.jar",
+          "size": 47079,
+          "sha512": "49beef09853a6585badb3d1062f027c9e9446f64339e2837a71b3732d20933673863523fe131b8e9442e5a7210676d1db0043fe52a0efd644b1aa4ebb0188801",
+          "sha256": "987f8d5b8384f2ed6442a6f9cbcf816c35dc132d376ee2c901bb95cd975289b7",
+          "sha1": "8d277fc9203967cae049c0c0db93e03d2f7dc985",
+          "md5": "57886f5ac38532bfe2111bd5fc11a550"
+        }
+      ]
+    }
+  ]
+}

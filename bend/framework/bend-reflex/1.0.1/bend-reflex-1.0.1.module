@@ -1,0 +1,61 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "bend.framework",
+    "module": "bend-reflex",
+    "version": "1.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.0.1",
+      "buildId": "vkzbkqq7t5eu7aowve6xnsnyma"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 13,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "bend-reflex-1.0.1.jar",
+          "url": "bend-reflex-1.0.1.jar",
+          "size": 14453,
+          "sha512": "c7b3562fc8d88090c08f55d7715dce90e53352b6b07afa3ae5617417c875248a099823b8bcdd90b71fd229950606a913e92f0a04a44d398169a18284c47b573e",
+          "sha256": "7bb4fecb14ab7f1da8c2e354e521d80c27e6583654feb907d8c7a9b837ced4c3",
+          "sha1": "8da88c2f98d1ff3726ce7d2e23b6656fa1ceadc0",
+          "md5": "34af3d869f0ffded833ac8854884ebc9"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 13,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "bend-reflex-1.0.1.jar",
+          "url": "bend-reflex-1.0.1.jar",
+          "size": 14453,
+          "sha512": "c7b3562fc8d88090c08f55d7715dce90e53352b6b07afa3ae5617417c875248a099823b8bcdd90b71fd229950606a913e92f0a04a44d398169a18284c47b573e",
+          "sha256": "7bb4fecb14ab7f1da8c2e354e521d80c27e6583654feb907d8c7a9b837ced4c3",
+          "sha1": "8da88c2f98d1ff3726ce7d2e23b6656fa1ceadc0",
+          "md5": "34af3d869f0ffded833ac8854884ebc9"
+        }
+      ]
+    }
+  ]
+}
