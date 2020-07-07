@@ -1,0 +1,29 @@
+import { OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BaseCrudData, BaseData, BaseService, ConsoleService, TextProcessingService } from 'bend-core';
+import { BendToastService } from '../message/bend-toast.service';
+import { BendUiModel } from '../ui-model/bend-ui-model';
+import { TranslateService } from '@ngx-translate/core';
+import { BendBaseComponent } from './bend-base.component';
+import { LangKeyService } from '../service/lang-key-service';
+export declare abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Domain extends BaseData> extends BendBaseComponent implements OnInit {
+    protected activatedRoute: ActivatedRoute;
+    protected userCrudService: BaseService<R, Domain>;
+    protected toastService: BendToastService;
+    protected consoleService: ConsoleService;
+    protected textProcessingService: TextProcessingService;
+    uiModel: BendUiModel;
+    private translate;
+    private langKeyService;
+    private viewId;
+    ready: boolean;
+    crudData: R;
+    constructor(activatedRoute: ActivatedRoute, userCrudService: BaseService<R, Domain>, toastService: BendToastService, consoleService: ConsoleService, textProcessingService: TextProcessingService, uiModel: BendUiModel, translate: TranslateService, langKeyService: LangKeyService);
+    ngOnInit(): void;
+    private fetchData;
+    private response;
+    private error;
+    getAllAvailableFields(baseCrudData: BaseCrudData): string[];
+    getFieldValue(baseCrudData: BaseCrudData, fieldName: string): any;
+    prepareField(text: string): string;
+}

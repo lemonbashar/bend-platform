@@ -1,0 +1,9 @@
+export interface ITextProcessingService {
+    camelCaseToSentence(text: string): string;
+}
+export declare class TextProcessingService implements ITextProcessingService {
+    camelCaseToSentence(text: string): string;
+    checkSeparator(indexOfChar: number, currentChar: string, text: string): boolean;
+    isUpperCase(currentChar: string): boolean;
+    isLowerCase(currentChar: string): boolean;
+}

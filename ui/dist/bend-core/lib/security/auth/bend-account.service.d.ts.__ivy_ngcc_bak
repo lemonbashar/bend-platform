@@ -1,0 +1,12 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AccountInfo, LoginInfo } from '../../model/account.model';
+import { UserCrudData } from '../../model/user.data';
+import { BaseService } from '../../service/base.service';
+import { BendResponse } from '../../model/crud/response/bend-response.model';
+export declare class BendAccountService extends BaseService<UserCrudData, UserCrudData> {
+    constructor(http: HttpClient);
+    save(user: UserCrudData): Observable<HttpResponse<BendResponse>>;
+    login(info: LoginInfo): Observable<HttpResponse<AccountInfo>>;
+    accountInfo(): Observable<HttpResponse<AccountInfo>>;
+}

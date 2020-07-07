@@ -1,0 +1,17 @@
+import { __extends } from "tslib";
+import { BendBaseComponent } from './bend-base.component';
+var BendBaseLangComponent = /** @class */ (function (_super) {
+    __extends(BendBaseLangComponent, _super);
+    function BendBaseLangComponent(translate, langKeyService) {
+        var _this = _super.call(this) || this;
+        _this.translate = translate;
+        _this.langKeyService = langKeyService;
+        return _this;
+    }
+    BendBaseLangComponent.prototype.ngOnInit = function () {
+        _super.prototype.prepareTranslate.call(this, this.translate, this.langKeyService);
+    };
+    return BendBaseLangComponent;
+}(BendBaseComponent));
+export { BendBaseLangComponent };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmVuZC1iYXNlLWxhbmctY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6Im5nOi8vYmVuZC1jb3JlLXVpLyIsInNvdXJjZXMiOlsibGliL3ZpZXcvYmVuZC1iYXNlLWxhbmctY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFFQSxPQUFPLEVBQUMsaUJBQWlCLEVBQUMsTUFBTSx1QkFBdUIsQ0FBQztBQUd4RDtJQUEyQyx5Q0FBaUI7SUFDMUQsK0JBQ1UsU0FBMkIsRUFDNUIsY0FBOEI7UUFGdkMsWUFHSSxpQkFBTyxTQUFJO1FBRkwsZUFBUyxHQUFULFNBQVMsQ0FBa0I7UUFDNUIsb0JBQWMsR0FBZCxjQUFjLENBQWdCOztJQUN6QixDQUFDO0lBRWYsd0NBQVEsR0FBUjtRQUNFLGlCQUFNLGdCQUFnQixZQUFDLElBQUksQ0FBQyxTQUFTLEVBQUUsSUFBSSxDQUFDLGNBQWMsQ0FBQyxDQUFDO0lBQzlELENBQUM7SUFDSCw0QkFBQztBQUFELENBQUMsQUFURCxDQUEyQyxpQkFBaUIsR0FTM0QiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge1RyYW5zbGF0ZVNlcnZpY2V9IGZyb20gJ0BuZ3gtdHJhbnNsYXRlL2NvcmUnO1xyXG5pbXBvcnQge09uSW5pdH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XHJcbmltcG9ydCB7QmVuZEJhc2VDb21wb25lbnR9IGZyb20gJy4vYmVuZC1iYXNlLmNvbXBvbmVudCc7XHJcbmltcG9ydCB7TGFuZ0tleVNlcnZpY2V9IGZyb20gJy4uL3NlcnZpY2UvbGFuZy1rZXktc2VydmljZSc7XHJcblxyXG5leHBvcnQgY2xhc3MgQmVuZEJhc2VMYW5nQ29tcG9uZW50IGV4dGVuZHMgQmVuZEJhc2VDb21wb25lbnQgaW1wbGVtZW50cyBPbkluaXQge1xyXG4gIGNvbnN0cnVjdG9yKFxyXG4gICAgcHJpdmF0ZSB0cmFuc2xhdGU6IFRyYW5zbGF0ZVNlcnZpY2UsXHJcbiAgICBwdWJsaWMgbGFuZ0tleVNlcnZpY2U6IExhbmdLZXlTZXJ2aWNlXHJcbiAgKSB7IHN1cGVyKCk7ICB9XHJcblxyXG4gIG5nT25Jbml0KCk6IHZvaWQge1xyXG4gICAgc3VwZXIucHJlcGFyZVRyYW5zbGF0ZSh0aGlzLnRyYW5zbGF0ZSwgdGhpcy5sYW5nS2V5U2VydmljZSk7XHJcbiAgfVxyXG59XHJcbiJdfQ==

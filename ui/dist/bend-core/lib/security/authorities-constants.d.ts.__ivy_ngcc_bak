@@ -1,0 +1,13 @@
+export declare const authorities: {
+    ROLE_USER: string;
+    ROLE_ADMIN: string;
+    ROLE_SYSTEM_ADMIN: string;
+    ROLE_SETTINGS_ADMIN: string;
+    ROLE_USER_ADMIN: string;
+};
+export declare class AuthoritiesConstants {
+    allAdmin(): string[];
+    superAdmin(): string[];
+    settingAdmin(): string[];
+    userAdmin(): string[];
+}

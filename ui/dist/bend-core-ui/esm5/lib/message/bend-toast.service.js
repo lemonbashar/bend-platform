@@ -1,0 +1,43 @@
+import { __decorate } from "tslib";
+import { Injectable } from '@angular/core';
+import { Message, MessageService } from 'primeng/api';
+import { bendToastPosition } from './bend-toast-position-key';
+import * as i0 from "@angular/core";
+import * as i1 from "primeng/api";
+var BendToastService = /** @class */ (function () {
+    function BendToastService(messageService) {
+        this.messageService = messageService;
+        this.SEVERITY_INFO = 'info';
+        this.SEVERITY_ERROR = 'error';
+        this.MESSAGE_TITLE = 'Alert';
+        this.POSITION_KEY_CENTER = 'key-center';
+        this.POSITION_KEY_BOTTOM_CENTER = 'key-bottom-center';
+    }
+    BendToastService.prototype.info = function (message, position) {
+        if (position === void 0) { position = bendToastPosition.POSITION_BOTTOM_CENTER; }
+        this.show(message, this.MESSAGE_TITLE, this.SEVERITY_INFO, position);
+    };
+    BendToastService.prototype.infoBottomCenter = function (message) {
+        this.showMessage({ severity: this.SEVERITY_INFO, summary: this.MESSAGE_TITLE, detail: message, key: this.POSITION_KEY_BOTTOM_CENTER });
+    };
+    BendToastService.prototype.error = function (message, position) {
+        if (position === void 0) { position = bendToastPosition.POSITION_BOTTOM_CENTER; }
+        this.show(message, this.MESSAGE_TITLE, this.SEVERITY_ERROR, position);
+    };
+    BendToastService.prototype.show = function (message, messageTitle, severityType, position) {
+        this.showMessage({ severity: severityType, summary: messageTitle, detail: message, key: position });
+    };
+    BendToastService.prototype.showMessage = function (message) {
+        this.messageService.add(message);
+    };
+    BendToastService.ctorParameters = function () { return [
+        { type: MessageService }
+    ]; };
+    BendToastService.ɵprov = i0.ɵɵdefineInjectable({ factory: function BendToastService_Factory() { return new BendToastService(i0.ɵɵinject(i1.MessageService)); }, token: BendToastService, providedIn: "root" });
+    BendToastService = __decorate([
+        Injectable({ providedIn: 'root' })
+    ], BendToastService);
+    return BendToastService;
+}());
+export { BendToastService };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmVuZC10b2FzdC5zZXJ2aWNlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vYmVuZC1jb3JlLXVpLyIsInNvdXJjZXMiOlsibGliL21lc3NhZ2UvYmVuZC10b2FzdC5zZXJ2aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxPQUFPLEVBQUMsVUFBVSxFQUFDLE1BQU0sZUFBZSxDQUFDO0FBQ3pDLE9BQU8sRUFBQyxPQUFPLEVBQUUsY0FBYyxFQUFDLE1BQU0sYUFBYSxDQUFDO0FBQ3BELE9BQU8sRUFBQyxpQkFBaUIsRUFBQyxNQUFNLDJCQUEyQixDQUFDOzs7QUFHNUQ7SUFPRSwwQkFDVSxjQUE4QjtRQUE5QixtQkFBYyxHQUFkLGNBQWMsQ0FBZ0I7UUFQaEMsa0JBQWEsR0FBRyxNQUFNLENBQUM7UUFDdkIsbUJBQWMsR0FBRyxPQUFPLENBQUM7UUFDekIsa0JBQWEsR0FBRyxPQUFPLENBQUM7UUFDeEIsd0JBQW1CLEdBQUcsWUFBWSxDQUFDO1FBQ25DLCtCQUEwQixHQUFHLG1CQUFtQixDQUFDO0lBS3pELENBQUM7SUFFRCwrQkFBSSxHQUFKLFVBQUssT0FBZSxFQUFFLFFBQTJEO1FBQTNELHlCQUFBLEVBQUEsV0FBbUIsaUJBQWlCLENBQUMsc0JBQXNCO1FBQy9FLElBQUksQ0FBQyxJQUFJLENBQUMsT0FBTyxFQUFFLElBQUksQ0FBQyxhQUFhLEVBQUUsSUFBSSxDQUFDLGFBQWEsRUFBRSxRQUFRLENBQUMsQ0FBQztJQUN2RSxDQUFDO0lBRUQsMkNBQWdCLEdBQWhCLFVBQWlCLE9BQWU7UUFDOUIsSUFBSSxDQUFDLFdBQVcsQ0FBQyxFQUFDLFFBQVEsRUFBRSxJQUFJLENBQUMsYUFBYSxFQUFFLE9BQU8sRUFBRSxJQUFJLENBQUMsYUFBYSxFQUFFLE1BQU0sRUFBRSxPQUFPLEVBQUUsR0FBRyxFQUFFLElBQUksQ0FBQywwQkFBMEIsRUFBQyxDQUFDLENBQUM7SUFDdkksQ0FBQztJQUVELGdDQUFLLEdBQUwsVUFBTSxPQUFlLEVBQUUsUUFBMkQ7UUFBM0QseUJBQUEsRUFBQSxXQUFtQixpQkFBaUIsQ0FBQyxzQkFBc0I7UUFDaEYsSUFBSSxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUUsSUFBSSxDQUFDLGFBQWEsRUFBRSxJQUFJLENBQUMsY0FBYyxFQUFFLFFBQVEsQ0FBQyxDQUFDO0lBQ3hFLENBQUM7SUFFRCwrQkFBSSxHQUFKLFVBQUssT0FBZSxFQUFFLFlBQW9CLEVBQUUsWUFBb0IsRUFBRSxRQUFnQjtRQUNoRixJQUFJLENBQUMsV0FBVyxDQUFDLEVBQUMsUUFBUSxFQUFFLFlBQVksRUFBRSxPQUFPLEVBQUUsWUFBWSxFQUFFLE1BQU0sRUFBRSxPQUFPLEVBQUUsR0FBRyxFQUFFLFFBQVEsRUFBQyxDQUFDLENBQUM7SUFDcEcsQ0FBQztJQUVELHNDQUFXLEdBQVgsVUFBWSxPQUFnQjtRQUMxQixJQUFJLENBQUMsY0FBYyxDQUFDLEdBQUcsQ0FBQyxPQUFPLENBQUMsQ0FBQztJQUNuQyxDQUFDOztnQkF0QnlCLGNBQWM7OztJQVI3QixnQkFBZ0I7UUFENUIsVUFBVSxDQUFDLEVBQUUsVUFBVSxFQUFFLE1BQU0sRUFBRSxDQUFDO09BQ3RCLGdCQUFnQixDQStCNUI7MkJBcENEO0NBb0NDLEFBL0JELElBK0JDO1NBL0JZLGdCQUFnQiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7SW5qZWN0YWJsZX0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XHJcbmltcG9ydCB7TWVzc2FnZSwgTWVzc2FnZVNlcnZpY2V9IGZyb20gJ3ByaW1lbmcvYXBpJztcclxuaW1wb3J0IHtiZW5kVG9hc3RQb3NpdGlvbn0gZnJvbSAnLi9iZW5kLXRvYXN0LXBvc2l0aW9uLWtleSc7XHJcblxyXG5ASW5qZWN0YWJsZSh7IHByb3ZpZGVkSW46ICdyb290JyB9KVxyXG5leHBvcnQgY2xhc3MgQmVuZFRvYXN0U2VydmljZSB7XHJcbiAgcHJpdmF0ZSBTRVZFUklUWV9JTkZPID0gJ2luZm8nO1xyXG4gIHByaXZhdGUgU0VWRVJJVFlfRVJST1IgPSAnZXJyb3InO1xyXG4gIHByaXZhdGUgTUVTU0FHRV9USVRMRSA9ICdBbGVydCc7XHJcbiAgcHJpdmF0ZSBQT1NJVElPTl9LRVlfQ0VOVEVSID0gJ2tleS1jZW50ZXInO1xyXG4gIHByaXZhdGUgUE9TSVRJT05fS0VZX0JPVFRPTV9DRU5URVIgPSAna2V5LWJvdHRvbS1jZW50ZXInO1xyXG5cclxuICBjb25zdHJ1Y3RvcihcclxuICAgIHByaXZhdGUgbWVzc2FnZVNlcnZpY2U6IE1lc3NhZ2VTZXJ2aWNlXHJcbiAgKSB7XHJcbiAgfVxyXG5cclxuICBpbmZvKG1lc3NhZ2U6IHN0cmluZywgcG9zaXRpb246IHN0cmluZyA9IGJlbmRUb2FzdFBvc2l0aW9uLlBPU0lUSU9OX0JPVFRPTV9DRU5URVIpIHtcclxuICAgIHRoaXMuc2hvdyhtZXNzYWdlLCB0aGlzLk1FU1NBR0VfVElUTEUsIHRoaXMuU0VWRVJJVFlfSU5GTywgcG9zaXRpb24pO1xyXG4gIH1cclxuXHJcbiAgaW5mb0JvdHRvbUNlbnRlcihtZXNzYWdlOiBzdHJpbmcpIHtcclxuICAgIHRoaXMuc2hvd01lc3NhZ2Uoe3NldmVyaXR5OiB0aGlzLlNFVkVSSVRZX0lORk8sIHN1bW1hcnk6IHRoaXMuTUVTU0FHRV9USVRMRSwgZGV0YWlsOiBtZXNzYWdlLCBrZXk6IHRoaXMuUE9TSVRJT05fS0VZX0JPVFRPTV9DRU5URVJ9KTtcclxuICB9XHJcblxyXG4gIGVycm9yKG1lc3NhZ2U6IHN0cmluZywgcG9zaXRpb246IHN0cmluZyA9IGJlbmRUb2FzdFBvc2l0aW9uLlBPU0lUSU9OX0JPVFRPTV9DRU5URVIpIHtcclxuICAgIHRoaXMuc2hvdyhtZXNzYWdlLCB0aGlzLk1FU1NBR0VfVElUTEUsIHRoaXMuU0VWRVJJVFlfRVJST1IsIHBvc2l0aW9uKTtcclxuICB9XHJcblxyXG4gIHNob3cobWVzc2FnZTogc3RyaW5nLCBtZXNzYWdlVGl0bGU6IHN0cmluZywgc2V2ZXJpdHlUeXBlOiBzdHJpbmcsIHBvc2l0aW9uOiBzdHJpbmcpIHtcclxuICAgIHRoaXMuc2hvd01lc3NhZ2Uoe3NldmVyaXR5OiBzZXZlcml0eVR5cGUsIHN1bW1hcnk6IG1lc3NhZ2VUaXRsZSwgZGV0YWlsOiBtZXNzYWdlLCBrZXk6IHBvc2l0aW9ufSk7XHJcbiAgfVxyXG5cclxuICBzaG93TWVzc2FnZShtZXNzYWdlOiBNZXNzYWdlKSB7XHJcbiAgICB0aGlzLm1lc3NhZ2VTZXJ2aWNlLmFkZChtZXNzYWdlKTtcclxuICB9XHJcbn1cclxuIl19

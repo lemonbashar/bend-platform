@@ -1,0 +1,11 @@
+import { BaseFetchService } from '../base.service';
+import { HttpClient } from '@angular/common/http';
+import { ISqlFetchDefinition } from '../../model/fetch/fetch-definition.model';
+import { FetchResponse } from '../../model/fetch/fetch-response.model';
+import * as ɵngcc0 from '@angular/core';
+export declare class SqlFetchDefinitionService extends BaseFetchService<ISqlFetchDefinition, FetchResponse> {
+    constructor(http: HttpClient);
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<SqlFetchDefinitionService>;
+}
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3FsLWZldGNoLWRlZmluaXRpb24uc2VydmljZS5kLnRzIiwic291cmNlcyI6WyJzcWwtZmV0Y2gtZGVmaW5pdGlvbi5zZXJ2aWNlLmQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7O0FBSUE7OztBQUVBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQmFzZUZldGNoU2VydmljZSB9IGZyb20gJy4uL2Jhc2Uuc2VydmljZSc7XHJcbmltcG9ydCB7IEh0dHBDbGllbnQgfSBmcm9tICdAYW5ndWxhci9jb21tb24vaHR0cCc7XHJcbmltcG9ydCB7IElTcWxGZXRjaERlZmluaXRpb24gfSBmcm9tICcuLi8uLi9tb2RlbC9mZXRjaC9mZXRjaC1kZWZpbml0aW9uLm1vZGVsJztcclxuaW1wb3J0IHsgRmV0Y2hSZXNwb25zZSB9IGZyb20gJy4uLy4uL21vZGVsL2ZldGNoL2ZldGNoLXJlc3BvbnNlLm1vZGVsJztcclxuZXhwb3J0IGRlY2xhcmUgY2xhc3MgU3FsRmV0Y2hEZWZpbml0aW9uU2VydmljZSBleHRlbmRzIEJhc2VGZXRjaFNlcnZpY2U8SVNxbEZldGNoRGVmaW5pdGlvbiwgRmV0Y2hSZXNwb25zZT4ge1xyXG4gICAgY29uc3RydWN0b3IoaHR0cDogSHR0cENsaWVudCk7XHJcbn1cclxuIl19

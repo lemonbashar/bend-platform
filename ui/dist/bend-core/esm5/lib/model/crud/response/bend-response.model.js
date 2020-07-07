@@ -1,0 +1,7 @@
+var BendResponse = /** @class */ (function () {
+    function BendResponse() {
+    }
+    return BendResponse;
+}());
+export { BendResponse };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmVuZC1yZXNwb25zZS5tb2RlbC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2JlbmQtY29yZS8iLCJzb3VyY2VzIjpbImxpYi9tb2RlbC9jcnVkL3Jlc3BvbnNlL2JlbmQtcmVzcG9uc2UubW9kZWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7SUFBQTtJQUdBLENBQUM7SUFBRCxtQkFBQztBQUFELENBQUMsQUFIRCxJQUdDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtCZW5kU3RhdHVzfSBmcm9tICcuL2JlbmQtc3RhdHVzLmVudW0nO1xyXG5cclxuZXhwb3J0IGNsYXNzIEJlbmRSZXNwb25zZSB7XHJcbiAgcHVibGljIHN0YXR1czogQmVuZFN0YXR1cztcclxuICBwdWJsaWMgZGF0YVR5cGVzOiBzdHJpbmdbXTtcclxufVxyXG4iXX0=

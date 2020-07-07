@@ -1,0 +1,19 @@
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+export declare enum LogLevel {
+    CONSOLE = 0,
+    TOAST = 1,
+    MESSAGE = 2
+}
+export declare class ConsoleService {
+    private location;
+    private route;
+    constructor(location: Location, route: Router);
+    message(message: string, logLevel?: LogLevel): ConsoleService;
+    successBodyPrint(body: any): ConsoleService;
+    log(message: string, body: HttpResponse<any>): ConsoleService;
+    error(errMessage: string, error?: HttpErrorResponse): ConsoleService;
+    backStack(): void;
+    goTo(url: string[]): void;
+}

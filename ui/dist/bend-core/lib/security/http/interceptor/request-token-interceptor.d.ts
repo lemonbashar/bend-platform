@@ -1,0 +1,13 @@
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { BendAuthenticationService } from '../../auth/bend-authentication-service';
+import * as ɵngcc0 from '@angular/core';
+export declare class RequestTokenInterceptor implements HttpInterceptor {
+    private authenticationService;
+    constructor(authenticationService: BendAuthenticationService);
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<RequestTokenInterceptor>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<RequestTokenInterceptor>;
+}
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmVxdWVzdC10b2tlbi1pbnRlcmNlcHRvci5kLnRzIiwic291cmNlcyI6WyJyZXF1ZXN0LXRva2VuLWludGVyY2VwdG9yLmQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7QUFHQTs7Ozs7O0FBSUEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBIdHRwRXZlbnQsIEh0dHBIYW5kbGVyLCBIdHRwSW50ZXJjZXB0b3IsIEh0dHBSZXF1ZXN0IH0gZnJvbSAnQGFuZ3VsYXIvY29tbW9uL2h0dHAnO1xyXG5pbXBvcnQgeyBPYnNlcnZhYmxlIH0gZnJvbSAncnhqcyc7XHJcbmltcG9ydCB7IEJlbmRBdXRoZW50aWNhdGlvblNlcnZpY2UgfSBmcm9tICcuLi8uLi9hdXRoL2JlbmQtYXV0aGVudGljYXRpb24tc2VydmljZSc7XHJcbmV4cG9ydCBkZWNsYXJlIGNsYXNzIFJlcXVlc3RUb2tlbkludGVyY2VwdG9yIGltcGxlbWVudHMgSHR0cEludGVyY2VwdG9yIHtcclxuICAgIHByaXZhdGUgYXV0aGVudGljYXRpb25TZXJ2aWNlO1xyXG4gICAgY29uc3RydWN0b3IoYXV0aGVudGljYXRpb25TZXJ2aWNlOiBCZW5kQXV0aGVudGljYXRpb25TZXJ2aWNlKTtcclxuICAgIGludGVyY2VwdChyZXE6IEh0dHBSZXF1ZXN0PGFueT4sIG5leHQ6IEh0dHBIYW5kbGVyKTogT2JzZXJ2YWJsZTxIdHRwRXZlbnQ8YW55Pj47XHJcbn1cclxuIl19

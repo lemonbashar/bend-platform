@@ -1,0 +1,11 @@
+import { BaseCrudData } from './crud/base-crud.data';
+export class UserCrudData extends BaseCrudData {
+    constructor(username, email, password, authorities) {
+        super();
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.authorities = authorities;
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXNlci5kYXRhLmpzIiwic291cmNlUm9vdCI6Im5nOi8vYmVuZC1jb3JlLyIsInNvdXJjZXMiOlsibGliL21vZGVsL3VzZXIuZGF0YS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQSxPQUFPLEVBQUMsWUFBWSxFQUFDLE1BQU0sdUJBQXVCLENBQUM7QUFFbkQsTUFBTSxPQUFPLFlBQWEsU0FBUSxZQUFZO0lBQzVDLFlBQ1MsUUFBaUIsRUFDakIsS0FBYyxFQUNkLFFBQWlCLEVBQ2pCLFdBQWlDO1FBRXhDLEtBQUssRUFBRSxDQUFDO1FBTEQsYUFBUSxHQUFSLFFBQVEsQ0FBUztRQUNqQixVQUFLLEdBQUwsS0FBSyxDQUFTO1FBQ2QsYUFBUSxHQUFSLFFBQVEsQ0FBUztRQUNqQixnQkFBVyxHQUFYLFdBQVcsQ0FBc0I7SUFHMUMsQ0FBQztDQUNGIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtBdXRob3JpdHlDcnVkRGF0YX0gZnJvbSAnLi9hdXRob3JpdHktY3J1ZC5kYXRhJztcclxuaW1wb3J0IHtCYXNlQ3J1ZERhdGF9IGZyb20gJy4vY3J1ZC9iYXNlLWNydWQuZGF0YSc7XHJcblxyXG5leHBvcnQgY2xhc3MgVXNlckNydWREYXRhIGV4dGVuZHMgQmFzZUNydWREYXRhIHtcclxuICBjb25zdHJ1Y3RvcihcclxuICAgIHB1YmxpYyB1c2VybmFtZT86IHN0cmluZyxcclxuICAgIHB1YmxpYyBlbWFpbD86IHN0cmluZyxcclxuICAgIHB1YmxpYyBwYXNzd29yZD86IHN0cmluZyxcclxuICAgIHB1YmxpYyBhdXRob3JpdGllcz86IEF1dGhvcml0eUNydWREYXRhW11cclxuICApIHtcclxuICAgIHN1cGVyKCk7XHJcbiAgfVxyXG59XHJcbiJdfQ==

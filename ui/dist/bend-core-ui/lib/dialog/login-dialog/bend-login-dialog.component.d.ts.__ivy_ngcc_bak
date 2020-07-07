@@ -1,0 +1,22 @@
+import { OnInit } from '@angular/core';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { HttpErrorResponse } from '@angular/common/http';
+import { BendAuthenticationService, IAuthenticationCallback, LoginInfo } from 'bend-core';
+import { BendToastService } from '../../message/bend-toast.service';
+export declare class AuthState implements IAuthenticationCallback {
+    private ref;
+    private toastService;
+    constructor(ref: DynamicDialogRef, toastService: BendToastService);
+    authenticationState(isAuthenticated: boolean, message?: string, error?: HttpErrorResponse): void;
+}
+export declare class BendLoginDialogComponent implements OnInit {
+    private authenticationService;
+    private ref;
+    config: DynamicDialogConfig;
+    private toastService;
+    loginInfo: LoginInfo;
+    constructor(authenticationService: BendAuthenticationService, ref: DynamicDialogRef, config: DynamicDialogConfig, toastService: BendToastService);
+    ngOnInit(): void;
+    login(): void;
+    cancel(): void;
+}

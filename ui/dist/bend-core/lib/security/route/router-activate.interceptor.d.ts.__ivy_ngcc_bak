@@ -1,0 +1,10 @@
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { BendAuthenticationService } from '../auth/bend-authentication-service';
+export declare class RouterActivateInterceptor implements CanActivate {
+    private router;
+    private authenticationService;
+    constructor(router: Router, authenticationService: BendAuthenticationService);
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Promise<boolean>;
+    checkLogin(authorities: string[], url: string): Promise<boolean>;
+    private checkInternally;
+}

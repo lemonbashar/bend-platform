@@ -1,0 +1,26 @@
+import { __decorate } from "tslib";
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { AbstractBaseService } from './base.service';
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/common/http";
+let AppUtilService = class AppUtilService extends AbstractBaseService {
+    constructor(http) {
+        super('/app-util', http);
+    }
+    checkExistence(table, field, value) {
+        return this.http.get(this.PUBLIC_URL + `/single-field-existence-check/${table}/${field}/${value}`, { observe: 'response' });
+    }
+    updateAll(fields) {
+        return this.http.post(this.PRIVATE_URL + `/field-edit`, fields, { observe: 'response' });
+    }
+};
+AppUtilService.ctorParameters = () => [
+    { type: HttpClient }
+];
+AppUtilService.ɵprov = i0.ɵɵdefineInjectable({ factory: function AppUtilService_Factory() { return new AppUtilService(i0.ɵɵinject(i1.HttpClient)); }, token: AppUtilService, providedIn: "root" });
+AppUtilService = __decorate([
+    Injectable({ providedIn: 'root' })
+], AppUtilService);
+export { AppUtilService };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLXV0aWwtc2VydmljZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2JlbmQtY29yZS8iLCJzb3VyY2VzIjpbImxpYi9zZXJ2aWNlL2FwcC11dGlsLXNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLE9BQU8sRUFBQyxVQUFVLEVBQUUsWUFBWSxFQUFDLE1BQU0sc0JBQXNCLENBQUM7QUFFOUQsT0FBTyxFQUFDLFVBQVUsRUFBQyxNQUFNLGVBQWUsQ0FBQztBQUN6QyxPQUFPLEVBQUMsbUJBQW1CLEVBQUMsTUFBTSxnQkFBZ0IsQ0FBQzs7O0FBS25ELElBQWEsY0FBYyxHQUEzQixNQUFhLGNBQWUsU0FBUSxtQkFBbUI7SUFDckQsWUFDRSxJQUFnQjtRQUNmLEtBQUssQ0FBQyxXQUFXLEVBQUUsSUFBSSxDQUFDLENBQUM7SUFBQyxDQUFDO0lBRTlCLGNBQWMsQ0FBQyxLQUFhLEVBQUUsS0FBYSxFQUFFLEtBQWE7UUFDeEQsT0FBTyxJQUFJLENBQUMsSUFBSSxDQUFDLEdBQUcsQ0FBVSxJQUFJLENBQUMsVUFBVSxHQUFHLGlDQUFpQyxLQUFLLElBQUksS0FBSyxJQUFJLEtBQUssRUFBRSxFQUFFLEVBQUUsT0FBTyxFQUFFLFVBQVUsRUFBRSxDQUFDLENBQUM7SUFDdkksQ0FBQztJQUVELFNBQVMsQ0FBQyxNQUF5QjtRQUNqQyxPQUFPLElBQUksQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFvQyxJQUFJLENBQUMsV0FBVyxHQUFHLGFBQWEsRUFBRSxNQUFNLEVBQUUsRUFBQyxPQUFPLEVBQUUsVUFBVSxFQUFDLENBQUMsQ0FBQztJQUM1SCxDQUFDO0NBQ0YsQ0FBQTs7WUFWUyxVQUFVOzs7QUFGUCxjQUFjO0lBRDFCLFVBQVUsQ0FBQyxFQUFFLFVBQVUsRUFBRSxNQUFNLEVBQUUsQ0FBQztHQUN0QixjQUFjLENBWTFCO1NBWlksY0FBYyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7SHR0cENsaWVudCwgSHR0cFJlc3BvbnNlfSBmcm9tICdAYW5ndWxhci9jb21tb24vaHR0cCc7XHJcbmltcG9ydCB7T2JzZXJ2YWJsZX0gZnJvbSAncnhqcyc7XHJcbmltcG9ydCB7SW5qZWN0YWJsZX0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XHJcbmltcG9ydCB7QWJzdHJhY3RCYXNlU2VydmljZX0gZnJvbSAnLi9iYXNlLnNlcnZpY2UnO1xyXG5pbXBvcnQge0ZpZWxkRGVmaW5pdGlvbn0gZnJvbSAnLi4vbW9kZWwvZmV0Y2gvZmllbGQtZGVmaW5pdGlvbi5tb2RlbCc7XHJcbmltcG9ydCB7RGF0YVJlc3BvbnNlfSBmcm9tICcuLi9tb2RlbC9jcnVkL3Jlc3BvbnNlL2RhdGEtcmVzcG9uc2UubW9kZWwnO1xyXG5cclxuQEluamVjdGFibGUoeyBwcm92aWRlZEluOiAncm9vdCcgfSlcclxuZXhwb3J0IGNsYXNzIEFwcFV0aWxTZXJ2aWNlIGV4dGVuZHMgQWJzdHJhY3RCYXNlU2VydmljZSB7XHJcbiAgY29uc3RydWN0b3IoXHJcbiAgICBodHRwOiBIdHRwQ2xpZW50XHJcbiAgKSB7c3VwZXIoJy9hcHAtdXRpbCcsIGh0dHApOyB9XHJcblxyXG4gIGNoZWNrRXhpc3RlbmNlKHRhYmxlOiBzdHJpbmcsIGZpZWxkOiBzdHJpbmcsIHZhbHVlOiBzdHJpbmcpOiBPYnNlcnZhYmxlPEh0dHBSZXNwb25zZTxib29sZWFuPj4ge1xyXG4gICAgcmV0dXJuIHRoaXMuaHR0cC5nZXQ8Ym9vbGVhbj4odGhpcy5QVUJMSUNfVVJMICsgYC9zaW5nbGUtZmllbGQtZXhpc3RlbmNlLWNoZWNrLyR7dGFibGV9LyR7ZmllbGR9LyR7dmFsdWV9YCwgeyBvYnNlcnZlOiAncmVzcG9uc2UnIH0pO1xyXG4gIH1cclxuXHJcbiAgdXBkYXRlQWxsKGZpZWxkczogRmllbGREZWZpbml0aW9uW10pOiBPYnNlcnZhYmxlPEh0dHBSZXNwb25zZTxEYXRhUmVzcG9uc2U8TWFwPHN0cmluZywgb2JqZWN0Pj4+PiB7XHJcbiAgICByZXR1cm4gdGhpcy5odHRwLnBvc3Q8RGF0YVJlc3BvbnNlPE1hcDxzdHJpbmcsIG9iamVjdD4+Pih0aGlzLlBSSVZBVEVfVVJMICsgYC9maWVsZC1lZGl0YCwgZmllbGRzLCB7b2JzZXJ2ZTogJ3Jlc3BvbnNlJ30pO1xyXG4gIH1cclxufVxyXG4iXX0=

@@ -1,0 +1,6 @@
+export declare class StorageService {
+    put(key: string, value: string): StorageService;
+    removeAll(): StorageService;
+    get(key: string, valueIfMissing?: string): string;
+    remove(key: string): StorageService;
+}

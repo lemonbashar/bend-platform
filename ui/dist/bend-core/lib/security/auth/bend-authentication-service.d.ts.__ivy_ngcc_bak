@@ -1,0 +1,7 @@
+import { BendAccountService } from './bend-account.service';
+import { AbstractAuthenticationService } from './abstract-authentication-service';
+import { ConsoleService } from '../../service/console/console.service';
+import { StorageService } from '../../service/storage/storage-service';
+export declare class BendAuthenticationService extends AbstractAuthenticationService {
+    constructor(accountService: BendAccountService, consoleService: ConsoleService, storageService: StorageService);
+}

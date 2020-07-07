@@ -1,0 +1,10 @@
+import { TranslateService } from '@ngx-translate/core';
+import { OnInit } from '@angular/core';
+import { BendBaseComponent } from './bend-base.component';
+import { LangKeyService } from '../service/lang-key-service';
+export declare class BendBaseLangComponent extends BendBaseComponent implements OnInit {
+    private translate;
+    langKeyService: LangKeyService;
+    constructor(translate: TranslateService, langKeyService: LangKeyService);
+    ngOnInit(): void;
+}

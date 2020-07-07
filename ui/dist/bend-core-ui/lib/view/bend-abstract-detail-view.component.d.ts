@@ -1,0 +1,34 @@
+import { OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BaseCrudData, BaseData, BaseService, ConsoleService, TextProcessingService } from 'bend-core';
+import { BendToastService } from '../message/bend-toast.service';
+import { BendUiModel } from '../ui-model/bend-ui-model';
+import { TranslateService } from '@ngx-translate/core';
+import { BendBaseComponent } from './bend-base.component';
+import { LangKeyService } from '../service/lang-key-service';
+import * as ɵngcc0 from '@angular/core';
+export declare abstract class BendAbstractDetailViewComponent<R extends BaseCrudData, Domain extends BaseData> extends BendBaseComponent implements OnInit {
+    protected activatedRoute: ActivatedRoute;
+    protected userCrudService: BaseService<R, Domain>;
+    protected toastService: BendToastService;
+    protected consoleService: ConsoleService;
+    protected textProcessingService: TextProcessingService;
+    uiModel: BendUiModel;
+    private translate;
+    private langKeyService;
+    private viewId;
+    ready: boolean;
+    crudData: R;
+    constructor(activatedRoute: ActivatedRoute, userCrudService: BaseService<R, Domain>, toastService: BendToastService, consoleService: ConsoleService, textProcessingService: TextProcessingService, uiModel: BendUiModel, translate: TranslateService, langKeyService: LangKeyService);
+    ngOnInit(): void;
+    private fetchData;
+    private response;
+    private error;
+    getAllAvailableFields(baseCrudData: BaseCrudData): string[];
+    getFieldValue(baseCrudData: BaseCrudData, fieldName: string): any;
+    prepareField(text: string): string;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<BendAbstractDetailViewComponent<any, any>>;
+    static ɵdir: ɵngcc0.ɵɵDirectiveDefWithMeta<BendAbstractDetailViewComponent<any, any>, never, never, {}, {}, never>;
+}
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmVuZC1hYnN0cmFjdC1kZXRhaWwtdmlldy5jb21wb25lbnQuZC50cyIsInNvdXJjZXMiOlsiYmVuZC1hYnN0cmFjdC1kZXRhaWwtdmlldy5jb21wb25lbnQuZC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7O0FBUUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFvQkEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBPbkluaXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcclxuaW1wb3J0IHsgQWN0aXZhdGVkUm91dGUgfSBmcm9tICdAYW5ndWxhci9yb3V0ZXInO1xyXG5pbXBvcnQgeyBCYXNlQ3J1ZERhdGEsIEJhc2VEYXRhLCBCYXNlU2VydmljZSwgQ29uc29sZVNlcnZpY2UsIFRleHRQcm9jZXNzaW5nU2VydmljZSB9IGZyb20gJ2JlbmQtY29yZSc7XHJcbmltcG9ydCB7IEJlbmRUb2FzdFNlcnZpY2UgfSBmcm9tICcuLi9tZXNzYWdlL2JlbmQtdG9hc3Quc2VydmljZSc7XHJcbmltcG9ydCB7IEJlbmRVaU1vZGVsIH0gZnJvbSAnLi4vdWktbW9kZWwvYmVuZC11aS1tb2RlbCc7XHJcbmltcG9ydCB7IFRyYW5zbGF0ZVNlcnZpY2UgfSBmcm9tICdAbmd4LXRyYW5zbGF0ZS9jb3JlJztcclxuaW1wb3J0IHsgQmVuZEJhc2VDb21wb25lbnQgfSBmcm9tICcuL2JlbmQtYmFzZS5jb21wb25lbnQnO1xyXG5pbXBvcnQgeyBMYW5nS2V5U2VydmljZSB9IGZyb20gJy4uL3NlcnZpY2UvbGFuZy1rZXktc2VydmljZSc7XHJcbmV4cG9ydCBkZWNsYXJlIGFic3RyYWN0IGNsYXNzIEJlbmRBYnN0cmFjdERldGFpbFZpZXdDb21wb25lbnQ8UiBleHRlbmRzIEJhc2VDcnVkRGF0YSwgRG9tYWluIGV4dGVuZHMgQmFzZURhdGE+IGV4dGVuZHMgQmVuZEJhc2VDb21wb25lbnQgaW1wbGVtZW50cyBPbkluaXQge1xyXG4gICAgcHJvdGVjdGVkIGFjdGl2YXRlZFJvdXRlOiBBY3RpdmF0ZWRSb3V0ZTtcclxuICAgIHByb3RlY3RlZCB1c2VyQ3J1ZFNlcnZpY2U6IEJhc2VTZXJ2aWNlPFIsIERvbWFpbj47XHJcbiAgICBwcm90ZWN0ZWQgdG9hc3RTZXJ2aWNlOiBCZW5kVG9hc3RTZXJ2aWNlO1xyXG4gICAgcHJvdGVjdGVkIGNvbnNvbGVTZXJ2aWNlOiBDb25zb2xlU2VydmljZTtcclxuICAgIHByb3RlY3RlZCB0ZXh0UHJvY2Vzc2luZ1NlcnZpY2U6IFRleHRQcm9jZXNzaW5nU2VydmljZTtcclxuICAgIHVpTW9kZWw6IEJlbmRVaU1vZGVsO1xyXG4gICAgcHJpdmF0ZSB0cmFuc2xhdGU7XHJcbiAgICBwcml2YXRlIGxhbmdLZXlTZXJ2aWNlO1xyXG4gICAgcHJpdmF0ZSB2aWV3SWQ7XHJcbiAgICByZWFkeTogYm9vbGVhbjtcclxuICAgIGNydWREYXRhOiBSO1xyXG4gICAgY29uc3RydWN0b3IoYWN0aXZhdGVkUm91dGU6IEFjdGl2YXRlZFJvdXRlLCB1c2VyQ3J1ZFNlcnZpY2U6IEJhc2VTZXJ2aWNlPFIsIERvbWFpbj4sIHRvYXN0U2VydmljZTogQmVuZFRvYXN0U2VydmljZSwgY29uc29sZVNlcnZpY2U6IENvbnNvbGVTZXJ2aWNlLCB0ZXh0UHJvY2Vzc2luZ1NlcnZpY2U6IFRleHRQcm9jZXNzaW5nU2VydmljZSwgdWlNb2RlbDogQmVuZFVpTW9kZWwsIHRyYW5zbGF0ZTogVHJhbnNsYXRlU2VydmljZSwgbGFuZ0tleVNlcnZpY2U6IExhbmdLZXlTZXJ2aWNlKTtcclxuICAgIG5nT25Jbml0KCk6IHZvaWQ7XHJcbiAgICBwcml2YXRlIGZldGNoRGF0YTtcclxuICAgIHByaXZhdGUgcmVzcG9uc2U7XHJcbiAgICBwcml2YXRlIGVycm9yO1xyXG4gICAgZ2V0QWxsQXZhaWxhYmxlRmllbGRzKGJhc2VDcnVkRGF0YTogQmFzZUNydWREYXRhKTogc3RyaW5nW107XHJcbiAgICBnZXRGaWVsZFZhbHVlKGJhc2VDcnVkRGF0YTogQmFzZUNydWREYXRhLCBmaWVsZE5hbWU6IHN0cmluZyk6IGFueTtcclxuICAgIHByZXBhcmVGaWVsZCh0ZXh0OiBzdHJpbmcpOiBzdHJpbmc7XHJcbn1cclxuIl19

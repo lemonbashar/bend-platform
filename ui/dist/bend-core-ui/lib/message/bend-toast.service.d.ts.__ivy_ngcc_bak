@@ -1,0 +1,15 @@
+import { Message, MessageService } from 'primeng/api';
+export declare class BendToastService {
+    private messageService;
+    private SEVERITY_INFO;
+    private SEVERITY_ERROR;
+    private MESSAGE_TITLE;
+    private POSITION_KEY_CENTER;
+    private POSITION_KEY_BOTTOM_CENTER;
+    constructor(messageService: MessageService);
+    info(message: string, position?: string): void;
+    infoBottomCenter(message: string): void;
+    error(message: string, position?: string): void;
+    show(message: string, messageTitle: string, severityType: string, position: string): void;
+    showMessage(message: Message): void;
+}

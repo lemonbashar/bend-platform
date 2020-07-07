@@ -1,0 +1,14 @@
+import { FlexibleIndex } from '../model/crud/base-flexible-crud.data';
+export declare abstract class AbstractBendFlexibleCompilerService {
+    AND_SEPARATOR: string;
+    private GLOBAL_DEFAULT_VALUE;
+    compile(index: FlexibleIndex, values: any[]): any;
+    private valueByDataType;
+    protected returnFromAnd(index: FlexibleIndex, values: any[]): any;
+    protected returnFromOr(index: FlexibleIndex, values: any[]): any;
+    protected returnFromBool(index: FlexibleIndex, values: any[]): any;
+    private getByIndex;
+    private basedOnNull;
+}
+export declare class BendFlexibleCompilerService extends AbstractBendFlexibleCompilerService {
+}

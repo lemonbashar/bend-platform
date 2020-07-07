@@ -1,0 +1,12 @@
+import { TemplateRef, ViewContainerRef } from '@angular/core';
+import { BendAuthenticationService } from '../auth/bend-authentication-service';
+export declare class BendHasAnyAuthorityDirective {
+    private templateRef;
+    private viewContainerRef;
+    private authenticationService;
+    private authorities;
+    constructor(templateRef: TemplateRef<any>, viewContainerRef: ViewContainerRef, authenticationService: BendAuthenticationService);
+    set bendHasAnyAuthority(value: string | string[]);
+    private updateView;
+    private hasAnyAuthorityCheck;
+}

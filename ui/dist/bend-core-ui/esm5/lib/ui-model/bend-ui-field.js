@@ -1,0 +1,13 @@
+var BendUiField = /** @class */ (function () {
+    function BendUiField() {
+    }
+    return BendUiField;
+}());
+export { BendUiField };
+export var DataType;
+(function (DataType) {
+    DataType[DataType["TEXT"] = 0] = "TEXT";
+    DataType[DataType["LONG_TEXT"] = 1] = "LONG_TEXT";
+    DataType[DataType["SELECT"] = 2] = "SELECT";
+})(DataType || (DataType = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmVuZC11aS1maWVsZC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2JlbmQtY29yZS11aS8iLCJzb3VyY2VzIjpbImxpYi91aS1tb2RlbC9iZW5kLXVpLWZpZWxkLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0lBQUE7SUFLQSxDQUFDO0lBQUQsa0JBQUM7QUFBRCxDQUFDLEFBTEQsSUFLQzs7QUFFRCxNQUFNLENBQU4sSUFBWSxRQUlYO0FBSkQsV0FBWSxRQUFRO0lBQ2xCLHVDQUFJLENBQUE7SUFDSixpREFBUyxDQUFBO0lBQ1QsMkNBQU0sQ0FBQTtBQUNSLENBQUMsRUFKVyxRQUFRLEtBQVIsUUFBUSxRQUluQiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7SVNxbEZldGNoRGVmaW5pdGlvbn0gZnJvbSAnYmVuZC1jb3JlJztcclxuXHJcbmV4cG9ydCBjbGFzcyBCZW5kVWlGaWVsZCB7XHJcbiAgbmFtZTogc3RyaW5nO1xyXG4gIHZpZXdOYW1lOiBzdHJpbmc7XHJcbiAgZGF0YVR5cGU6IERhdGFUeXBlO1xyXG4gIGZldGNoOiBJU3FsRmV0Y2hEZWZpbml0aW9uOyAvKldoZW4gdGhlIGRhdGF0eXBlIGlzIHNlbGVjdCB0aGVuIGl0J3MgbmVlZCBhIGxpc3Qgb2Ygc2VsZWN0aW9uIGRhdGEqL1xyXG59XHJcblxyXG5leHBvcnQgZW51bSBEYXRhVHlwZSB7XHJcbiAgVEVYVCxcclxuICBMT05HX1RFWFQsXHJcbiAgU0VMRUNUXHJcbn1cclxuIl19

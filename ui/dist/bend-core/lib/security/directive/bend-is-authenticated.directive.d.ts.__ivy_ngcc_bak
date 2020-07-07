@@ -1,0 +1,11 @@
+import { TemplateRef, ViewContainerRef } from '@angular/core';
+import { BendAuthenticationService } from '../auth/bend-authentication-service';
+export declare class BendIsAuthenticatedDirective {
+    private templateRef;
+    private viewContainerRef;
+    private authenticationService;
+    constructor(templateRef: TemplateRef<any>, viewContainerRef: ViewContainerRef, authenticationService: BendAuthenticationService);
+    set bendIsAuthenticated(value: string);
+    private updateView;
+    private isAuthenticatedCheck;
+}

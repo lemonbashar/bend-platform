@@ -1,0 +1,42 @@
+import { __decorate } from "tslib";
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { BendAuthenticationService } from '../auth/bend-authentication-service';
+/*If Passed Empty or YES Tag that means it check for authenticated*/
+/*If Passed NO Tag that means it check for not authenticated*/
+/*ALL OTHER TAG ARE MENTIONED AS YES TAG*/
+let BendIsAuthenticatedDirective = class BendIsAuthenticatedDirective {
+    constructor(templateRef, viewContainerRef, authenticationService) {
+        this.templateRef = templateRef;
+        this.viewContainerRef = viewContainerRef;
+        this.authenticationService = authenticationService;
+    }
+    set bendIsAuthenticated(value) {
+        this.updateView(value);
+        this.authenticationService.getAuthenticationState().subscribe(info => this.updateView(value));
+    }
+    updateView(value) {
+        this.viewContainerRef.clear();
+        if (this.isAuthenticatedCheck(value)) {
+            this.viewContainerRef.createEmbeddedView(this.templateRef);
+        }
+    }
+    isAuthenticatedCheck(value) {
+        const out = this.authenticationService.isAuthenticated();
+        return value.toLowerCase() === 'no' ? !out : out;
+    }
+};
+BendIsAuthenticatedDirective.ctorParameters = () => [
+    { type: TemplateRef },
+    { type: ViewContainerRef },
+    { type: BendAuthenticationService }
+];
+__decorate([
+    Input()
+], BendIsAuthenticatedDirective.prototype, "bendIsAuthenticated", null);
+BendIsAuthenticatedDirective = __decorate([
+    Directive({
+        selector: '[bendIsAuthenticated]'
+    })
+], BendIsAuthenticatedDirective);
+export { BendIsAuthenticatedDirective };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmVuZC1pcy1hdXRoZW50aWNhdGVkLmRpcmVjdGl2ZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2JlbmQtY29yZS8iLCJzb3VyY2VzIjpbImxpYi9zZWN1cml0eS9kaXJlY3RpdmUvYmVuZC1pcy1hdXRoZW50aWNhdGVkLmRpcmVjdGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsT0FBTyxFQUFDLFNBQVMsRUFBRSxLQUFLLEVBQUUsV0FBVyxFQUFFLGdCQUFnQixFQUFDLE1BQU0sZUFBZSxDQUFDO0FBQzlFLE9BQU8sRUFBQyx5QkFBeUIsRUFBQyxNQUFNLHFDQUFxQyxDQUFDO0FBRzlFLG9FQUFvRTtBQUNwRSw4REFBOEQ7QUFDOUQsMENBQTBDO0FBSzFDLElBQWEsNEJBQTRCLEdBQXpDLE1BQWEsNEJBQTRCO0lBQ3ZDLFlBQW9CLFdBQTZCLEVBQzdCLGdCQUFrQyxFQUNsQyxxQkFBZ0Q7UUFGaEQsZ0JBQVcsR0FBWCxXQUFXLENBQWtCO1FBQzdCLHFCQUFnQixHQUFoQixnQkFBZ0IsQ0FBa0I7UUFDbEMsMEJBQXFCLEdBQXJCLHFCQUFxQixDQUEyQjtJQUVwRSxDQUFDO0lBR0QsSUFBSSxtQkFBbUIsQ0FBQyxLQUFhO1FBQ25DLElBQUksQ0FBQyxVQUFVLENBQUMsS0FBSyxDQUFDLENBQUM7UUFDdkIsSUFBSSxDQUFDLHFCQUFxQixDQUFDLHNCQUFzQixFQUFFLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDO0lBQ2hHLENBQUM7SUFFTyxVQUFVLENBQUMsS0FBYTtRQUM5QixJQUFJLENBQUMsZ0JBQWdCLENBQUMsS0FBSyxFQUFFLENBQUM7UUFDOUIsSUFBSSxJQUFJLENBQUMsb0JBQW9CLENBQUMsS0FBSyxDQUFDLEVBQUc7WUFBRSxJQUFJLENBQUMsZ0JBQWdCLENBQUMsa0JBQWtCLENBQUMsSUFBSSxDQUFDLFdBQVcsQ0FBQyxDQUFDO1NBQUU7SUFDeEcsQ0FBQztJQUVPLG9CQUFvQixDQUFDLEtBQWE7UUFDeEMsTUFBTSxHQUFHLEdBQUcsSUFBSSxDQUFDLHFCQUFxQixDQUFDLGVBQWUsRUFBRSxDQUFDO1FBQ3pELE9BQU8sS0FBSyxDQUFDLFdBQVcsRUFBRSxLQUFLLElBQUksQ0FBQyxDQUFDLENBQUMsQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQztJQUNuRCxDQUFDO0NBRUYsQ0FBQTs7WUF0QmtDLFdBQVc7WUFDTixnQkFBZ0I7WUFDWCx5QkFBeUI7O0FBS3BFO0lBREMsS0FBSyxFQUFFO3VFQUlQO0FBWFUsNEJBQTRCO0lBSHhDLFNBQVMsQ0FBQztRQUNULFFBQVEsRUFBRSx1QkFBdUI7S0FDbEMsQ0FBQztHQUNXLDRCQUE0QixDQXVCeEM7U0F2QlksNEJBQTRCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtEaXJlY3RpdmUsIElucHV0LCBUZW1wbGF0ZVJlZiwgVmlld0NvbnRhaW5lclJlZn0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XHJcbmltcG9ydCB7QmVuZEF1dGhlbnRpY2F0aW9uU2VydmljZX0gZnJvbSAnLi4vYXV0aC9iZW5kLWF1dGhlbnRpY2F0aW9uLXNlcnZpY2UnO1xyXG5cclxuXHJcbi8qSWYgUGFzc2VkIEVtcHR5IG9yIFlFUyBUYWcgdGhhdCBtZWFucyBpdCBjaGVjayBmb3IgYXV0aGVudGljYXRlZCovXHJcbi8qSWYgUGFzc2VkIE5PIFRhZyB0aGF0IG1lYW5zIGl0IGNoZWNrIGZvciBub3QgYXV0aGVudGljYXRlZCovXHJcbi8qQUxMIE9USEVSIFRBRyBBUkUgTUVOVElPTkVEIEFTIFlFUyBUQUcqL1xyXG5cclxuQERpcmVjdGl2ZSh7XHJcbiAgc2VsZWN0b3I6ICdbYmVuZElzQXV0aGVudGljYXRlZF0nXHJcbn0pXHJcbmV4cG9ydCBjbGFzcyBCZW5kSXNBdXRoZW50aWNhdGVkRGlyZWN0aXZlIHtcclxuICBjb25zdHJ1Y3Rvcihwcml2YXRlIHRlbXBsYXRlUmVmOiBUZW1wbGF0ZVJlZjxhbnk+LFxyXG4gICAgICAgICAgICAgIHByaXZhdGUgdmlld0NvbnRhaW5lclJlZjogVmlld0NvbnRhaW5lclJlZixcclxuICAgICAgICAgICAgICBwcml2YXRlIGF1dGhlbnRpY2F0aW9uU2VydmljZTogQmVuZEF1dGhlbnRpY2F0aW9uU2VydmljZVxyXG4gICkge1xyXG4gIH1cclxuXHJcbiAgQElucHV0KClcclxuICBzZXQgYmVuZElzQXV0aGVudGljYXRlZCh2YWx1ZTogc3RyaW5nKSB7XHJcbiAgICB0aGlzLnVwZGF0ZVZpZXcodmFsdWUpO1xyXG4gICAgdGhpcy5hdXRoZW50aWNhdGlvblNlcnZpY2UuZ2V0QXV0aGVudGljYXRpb25TdGF0ZSgpLnN1YnNjcmliZShpbmZvID0+IHRoaXMudXBkYXRlVmlldyh2YWx1ZSkpO1xyXG4gIH1cclxuXHJcbiAgcHJpdmF0ZSB1cGRhdGVWaWV3KHZhbHVlOiBzdHJpbmcpOiB2b2lkIHtcclxuICAgIHRoaXMudmlld0NvbnRhaW5lclJlZi5jbGVhcigpO1xyXG4gICAgaWYgKHRoaXMuaXNBdXRoZW50aWNhdGVkQ2hlY2sodmFsdWUpICkgeyB0aGlzLnZpZXdDb250YWluZXJSZWYuY3JlYXRlRW1iZWRkZWRWaWV3KHRoaXMudGVtcGxhdGVSZWYpOyB9XHJcbiAgfVxyXG5cclxuICBwcml2YXRlIGlzQXV0aGVudGljYXRlZENoZWNrKHZhbHVlOiBzdHJpbmcpOiBib29sZWFuIHtcclxuICAgIGNvbnN0IG91dCA9IHRoaXMuYXV0aGVudGljYXRpb25TZXJ2aWNlLmlzQXV0aGVudGljYXRlZCgpO1xyXG4gICAgcmV0dXJuIHZhbHVlLnRvTG93ZXJDYXNlKCkgPT09ICdubycgPyAhb3V0IDogb3V0O1xyXG4gIH1cclxuXHJcbn1cclxuIl19

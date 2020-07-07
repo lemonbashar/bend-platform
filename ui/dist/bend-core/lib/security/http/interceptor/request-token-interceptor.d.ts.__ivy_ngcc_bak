@@ -1,0 +1,8 @@
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { BendAuthenticationService } from '../../auth/bend-authentication-service';
+export declare class RequestTokenInterceptor implements HttpInterceptor {
+    private authenticationService;
+    constructor(authenticationService: BendAuthenticationService);
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
+}

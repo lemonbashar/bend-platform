@@ -1,0 +1,12 @@
+import { ConsoleService, StorageService } from 'bend-core';
+import { BendToastService } from '../message/bend-toast.service';
+export declare class LangKeyService {
+    private consoleService;
+    private bendToastService;
+    private storageService;
+    private DEF_LANG_KEY;
+    constructor(consoleService: ConsoleService, bendToastService: BendToastService, storageService: StorageService);
+    activeKey(langKey: string): void;
+    activatedKey(): string;
+    availableKeys(): string[];
+}

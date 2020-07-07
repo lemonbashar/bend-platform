@@ -1,0 +1,7 @@
+import { BaseFetchService } from '../base.service';
+import { HttpClient } from '@angular/common/http';
+import { ISqlFetchDefinition } from '../../model/fetch/fetch-definition.model';
+import { FetchResponse } from '../../model/fetch/fetch-response.model';
+export declare class SqlFetchDefinitionService extends BaseFetchService<ISqlFetchDefinition, FetchResponse> {
+    constructor(http: HttpClient);
+}

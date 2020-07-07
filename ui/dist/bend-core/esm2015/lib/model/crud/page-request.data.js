@@ -1,0 +1,10 @@
+export class Page {
+    constructor(page, size) {
+        this.page = page;
+        this.size = size;
+    }
+    static defaultPage() {
+        return new Page(0, 20);
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGFnZS1yZXF1ZXN0LmRhdGEuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9iZW5kLWNvcmUvIiwic291cmNlcyI6WyJsaWIvbW9kZWwvY3J1ZC9wYWdlLXJlcXVlc3QuZGF0YS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLE9BQU8sSUFBSTtJQUNmLFlBQ1MsSUFBYSxFQUNiLElBQWE7UUFEYixTQUFJLEdBQUosSUFBSSxDQUFTO1FBQ2IsU0FBSSxHQUFKLElBQUksQ0FBUztJQUV0QixDQUFDO0lBRU0sTUFBTSxDQUFDLFdBQVc7UUFDdkIsT0FBTyxJQUFJLElBQUksQ0FBQyxDQUFDLEVBQUUsRUFBRSxDQUFDLENBQUM7SUFDekIsQ0FBQztDQUNGIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIFBhZ2Uge1xyXG4gIGNvbnN0cnVjdG9yKFxyXG4gICAgcHVibGljIHBhZ2U/OiBudW1iZXIsXHJcbiAgICBwdWJsaWMgc2l6ZT86IG51bWJlclxyXG4gICkge1xyXG4gIH1cclxuXHJcbiAgcHVibGljIHN0YXRpYyBkZWZhdWx0UGFnZSgpOiBQYWdlIHtcclxuICAgIHJldHVybiBuZXcgUGFnZSgwLCAyMCk7XHJcbiAgfVxyXG59XHJcbiJdfQ==

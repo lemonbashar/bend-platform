@@ -1,0 +1,10 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AbstractBaseService } from './base.service';
+import { FieldDefinition } from '../model/fetch/field-definition.model';
+import { DataResponse } from '../model/crud/response/data-response.model';
+export declare class AppUtilService extends AbstractBaseService {
+    constructor(http: HttpClient);
+    checkExistence(table: string, field: string, value: string): Observable<HttpResponse<boolean>>;
+    updateAll(fields: FieldDefinition[]): Observable<HttpResponse<DataResponse<Map<string, object>>>>;
+}

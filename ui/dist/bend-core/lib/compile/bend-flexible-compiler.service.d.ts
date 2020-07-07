@@ -1,0 +1,18 @@
+import { FlexibleIndex } from '../model/crud/base-flexible-crud.data';
+import * as ɵngcc0 from '@angular/core';
+export declare abstract class AbstractBendFlexibleCompilerService {
+    AND_SEPARATOR: string;
+    private GLOBAL_DEFAULT_VALUE;
+    compile(index: FlexibleIndex, values: any[]): any;
+    private valueByDataType;
+    protected returnFromAnd(index: FlexibleIndex, values: any[]): any;
+    protected returnFromOr(index: FlexibleIndex, values: any[]): any;
+    protected returnFromBool(index: FlexibleIndex, values: any[]): any;
+    private getByIndex;
+    private basedOnNull;
+}
+export declare class BendFlexibleCompilerService extends AbstractBendFlexibleCompilerService {
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<BendFlexibleCompilerService>;
+}
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmVuZC1mbGV4aWJsZS1jb21waWxlci5zZXJ2aWNlLmQudHMiLCJzb3VyY2VzIjpbImJlbmQtZmxleGlibGUtY29tcGlsZXIuc2VydmljZS5kLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztBQUNBOzs7Ozs7Ozs7Ozs7O0FBWUEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBGbGV4aWJsZUluZGV4IH0gZnJvbSAnLi4vbW9kZWwvY3J1ZC9iYXNlLWZsZXhpYmxlLWNydWQuZGF0YSc7XHJcbmV4cG9ydCBkZWNsYXJlIGFic3RyYWN0IGNsYXNzIEFic3RyYWN0QmVuZEZsZXhpYmxlQ29tcGlsZXJTZXJ2aWNlIHtcclxuICAgIEFORF9TRVBBUkFUT1I6IHN0cmluZztcclxuICAgIHByaXZhdGUgR0xPQkFMX0RFRkFVTFRfVkFMVUU7XHJcbiAgICBjb21waWxlKGluZGV4OiBGbGV4aWJsZUluZGV4LCB2YWx1ZXM6IGFueVtdKTogYW55O1xyXG4gICAgcHJpdmF0ZSB2YWx1ZUJ5RGF0YVR5cGU7XHJcbiAgICBwcm90ZWN0ZWQgcmV0dXJuRnJvbUFuZChpbmRleDogRmxleGlibGVJbmRleCwgdmFsdWVzOiBhbnlbXSk6IGFueTtcclxuICAgIHByb3RlY3RlZCByZXR1cm5Gcm9tT3IoaW5kZXg6IEZsZXhpYmxlSW5kZXgsIHZhbHVlczogYW55W10pOiBhbnk7XHJcbiAgICBwcm90ZWN0ZWQgcmV0dXJuRnJvbUJvb2woaW5kZXg6IEZsZXhpYmxlSW5kZXgsIHZhbHVlczogYW55W10pOiBhbnk7XHJcbiAgICBwcml2YXRlIGdldEJ5SW5kZXg7XHJcbiAgICBwcml2YXRlIGJhc2VkT25OdWxsO1xyXG59XHJcbmV4cG9ydCBkZWNsYXJlIGNsYXNzIEJlbmRGbGV4aWJsZUNvbXBpbGVyU2VydmljZSBleHRlbmRzIEFic3RyYWN0QmVuZEZsZXhpYmxlQ29tcGlsZXJTZXJ2aWNlIHtcclxufVxyXG4iXX0=

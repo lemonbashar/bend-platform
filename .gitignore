@@ -76,4 +76,6 @@ testem.log
 Thumbs.db
 !bend/*.*
 !bend/
-!ui/dist
+!ui/dist/*
+!ui/dist/*.*
+!ui/dist/
