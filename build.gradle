@@ -12,16 +12,12 @@ allprojects {
 
 	//repositories
 	repositories {
-		mavenLocal()
+		maven {
+			url uri("${rootDir}/local-repository")
+		}
 		mavenCentral()
 		maven { url "https://repo.spring.io/milestone" }
 		jcenter()
-		maven {
-			url "https://oss.jfrog.org/artifactory/oss-snapshot-local/"
-			mavenContent {
-				snapshotsOnly()
-			}
-		}
 	}
 
 	ext {
