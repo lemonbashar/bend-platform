@@ -10,8 +10,10 @@ To run this project you will need,
 * Angular Version 9
 
 ##Step 1
+
 Create a postgre user with username 'lemon' & password 'lemon'
 ##Step 2
+
 Create 4 empty databases:
     bend-platform
     bend-cluster-database
@@ -28,6 +30,7 @@ Goto project root directory and run followings step-by-step
     gradle :app:ficket-app:bootRun
     
 ##Step 4
+
 goto project root/ui directory and run step-by-step
 
     npm install   #(only for first time)
